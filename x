@@ -4807,3 +4807,5315 @@ colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
 2023-11-13 05:26:05.542171 : Organizing Assays (1 of 1), 0.851 mins elapsed.
 2023-11-13 05:26:08.613307 : Constructing SummarizedExperiment, 0.903 mins elapsed.
 2023-11-13 05:26:21.986284 : Finished Matrix Creation, 1.126 mins elapsed.
+
+2023-11-14 04:34:54.042194 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 04:34:58.670851 : Reading GeneIntegrationMatrix : SRR13927737(1 of 4), 0.077 mins elapsed.
+
+2023-11-14 04:34:58.712178 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:34:59.677593 : featureDF SRR13927737, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 04:34:59.70981 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.017 mins elapsed.
+
+2023-11-14 04:35:20.648855 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 23525, nCols = 4439
+mat SRR13927737: NonZeroEntries = 50277774, EntryRange = [ 0.000148130054904683 , 376.345870564644 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                      .                             .         
+[2,]                      .                             .         
+[3,]                      0.1057576                     0.09630696
+[4,]                      .                             0.01806508
+[5,]                      .                             .         
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.09113499                     0.08396973
+[4,]                     0.02096304                     0.01727603
+[5,]                     .                              .         
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.08327649
+[4,]                     0.01368917
+[5,]                     .         
+
+
+2023-11-14 04:35:21.129591 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.374 mins elapsed.
+
+2023-11-14 04:35:21.45731 : se SRR13927737, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 4439 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:35:21.464407 : Completed GeneIntegrationMatrix : SRR13927737(1 of 4), 0.457 mins elapsed.
+2023-11-14 04:35:21.464982 : Reading GeneIntegrationMatrix : SRR13927738(2 of 4), 0.457 mins elapsed.
+
+2023-11-14 04:35:21.489317 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:35:22.657015 : featureDF SRR13927738, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 04:35:22.690381 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.02 mins elapsed.
+
+2023-11-14 04:35:42.787937 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 23525, nCols = 3736
+mat SRR13927738: NonZeroEntries = 41898897, EntryRange = [ 9.73975135001421e-05 , 758.763031303812 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                    .                                .        
+[2,]                    .                                .        
+[3,]                    0.002346352                      0.0084575
+[4,]                    0.005836413                      .        
+[5,]                    .                                .        
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     .                             0.004081077
+[4,]                     0.02001583                    .          
+[5,]                     .                             .          
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.007640877
+[4,]                    0.015048796
+[5,]                    .          
+
+
+2023-11-14 04:35:43.1193 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.361 mins elapsed.
+
+2023-11-14 04:35:43.430782 : se SRR13927738, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3736 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:35:43.436557 : Completed GeneIntegrationMatrix : SRR13927738(2 of 4), 0.823 mins elapsed.
+2023-11-14 04:35:43.437079 : Reading GeneIntegrationMatrix : SRR13927735(3 of 4), 0.823 mins elapsed.
+
+2023-11-14 04:35:43.470225 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:35:44.64561 : featureDF SRR13927735, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 04:35:44.679237 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.02 mins elapsed.
+
+2023-11-14 04:36:04.718519 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 23525, nCols = 3813
+mat SRR13927735: NonZeroEntries = 45535634, EntryRange = [ 7.20715653308254e-05 , 673.990433360078 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                    .                              .          
+[2,]                    .                              .          
+[3,]                    0.070892732                    0.057009268
+[4,]                    0.008800039                    0.002978408
+[5,]                    .                              .          
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                     .                               .        
+[2,]                     .                               .        
+[3,]                     0.05523011                      0.0248301
+[4,]                     .                               .        
+[5,]                     .                               .        
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.05384571
+[4,]                     0.01228688
+[5,]                     .         
+
+
+2023-11-14 04:36:05.108048 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.361 mins elapsed.
+
+2023-11-14 04:36:05.400267 : se SRR13927735, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3813 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:36:05.406029 : Completed GeneIntegrationMatrix : SRR13927735(3 of 4), 1.189 mins elapsed.
+2023-11-14 04:36:05.406534 : Reading GeneIntegrationMatrix : SRR13927736(4 of 4), 1.189 mins elapsed.
+
+2023-11-14 04:36:05.429178 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:36:06.44368 : featureDF SRR13927736, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 04:36:06.47891 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.017 mins elapsed.
+
+2023-11-14 04:36:23.242969 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 23525, nCols = 3534
+mat SRR13927736: NonZeroEntries = 39003616, EntryRange = [ 8.77627031078293e-05 , 770.387276519725 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     0.07845381                    0.028344539
+[4,]                     0.01395289                    0.008499189
+[5,]                     .                             .          
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.06535130                     0.06576222
+[4,]                     0.01810177                     0.01315728
+[5,]                     .                              .         
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.016229526
+[4,]                    0.003862592
+[5,]                    .          
+
+
+2023-11-14 04:36:23.567478 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.302 mins elapsed.
+
+2023-11-14 04:36:23.832512 : se SRR13927736, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3534 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:36:23.837846 : Completed GeneIntegrationMatrix : SRR13927736(4 of 4), 1.497 mins elapsed.
+2023-11-14 04:36:23.839036 : Organizing colData, 1.497 mins elapsed.
+2023-11-14 04:36:23.986064 : Organizing rowData, 1.499 mins elapsed.
+2023-11-14 04:36:23.989325 : Organizing rowRanges, 1.499 mins elapsed.
+2023-11-14 04:36:23.994774 : Organizing Assays (1 of 1), 1.499 mins elapsed.
+2023-11-14 04:36:33.433822 : Constructing SummarizedExperiment, 1.657 mins elapsed.
+2023-11-14 04:36:36.218726 : Finished Matrix Creation, 1.703 mins elapsed.
+
+2023-11-14 04:36:36.221188 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 04:36:38.846849 : Reading PeakMatrix : SRR13927737(1 of 4), 0.044 mins elapsed.
+
+2023-11-14 04:36:38.881399 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:36:39.877393 : featureDF SRR13927737, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 04:36:39.980603 : Getting PeakMatrix from ArrowFile : SRR13927737.arrow, 0.018 mins elapsed.
+
+2023-11-14 04:36:53.249179 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 210721, nCols = 4439
+mat SRR13927737: NonZeroEntries = 29963541, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                              .                              .
+[2,]                              .                              2
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              2                              .
+[4,]                              .                              .
+[5,]                              4                              .
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 04:36:53.481856 : Organizing SE PeakMatrix from ArrowFile : SRR13927737.arrow, 0.243 mins elapsed.
+
+2023-11-14 04:36:53.79917 : se SRR13927737, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 4439 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:36:53.80931 : Completed PeakMatrix : SRR13927737(1 of 4), 0.293 mins elapsed.
+2023-11-14 04:36:53.809827 : Reading PeakMatrix : SRR13927738(2 of 4), 0.293 mins elapsed.
+
+2023-11-14 04:36:53.826733 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:36:54.592878 : featureDF SRR13927738, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 04:36:54.646801 : Getting PeakMatrix from ArrowFile : SRR13927738.arrow, 0.014 mins elapsed.
+
+2023-11-14 04:37:07.709293 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 210721, nCols = 3736
+mat SRR13927738: NonZeroEntries = 30165921, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                              2                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              2                              .
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                              .
+[2,]                              .
+[3,]                              2
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 04:37:07.903662 : Organizing SE PeakMatrix from ArrowFile : SRR13927738.arrow, 0.235 mins elapsed.
+
+2023-11-14 04:37:08.19677 : se SRR13927738, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3736 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:37:08.204336 : Completed PeakMatrix : SRR13927738(2 of 4), 0.533 mins elapsed.
+2023-11-14 04:37:08.204883 : Reading PeakMatrix : SRR13927735(3 of 4), 0.533 mins elapsed.
+
+2023-11-14 04:37:08.259334 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:37:09.328358 : featureDF SRR13927735, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 04:37:09.432828 : Getting PeakMatrix from ArrowFile : SRR13927735.arrow, 0.02 mins elapsed.
+
+2023-11-14 04:37:21.096422 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 210721, nCols = 3813
+mat SRR13927735: NonZeroEntries = 26038084, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                              2
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 04:37:21.276463 : Organizing SE PeakMatrix from ArrowFile : SRR13927735.arrow, 0.217 mins elapsed.
+
+2023-11-14 04:37:21.582537 : se SRR13927735, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3813 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:37:21.59084 : Completed PeakMatrix : SRR13927735(3 of 4), 0.756 mins elapsed.
+2023-11-14 04:37:21.591398 : Reading PeakMatrix : SRR13927736(4 of 4), 0.756 mins elapsed.
+
+2023-11-14 04:37:21.610724 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 04:37:22.380122 : featureDF SRR13927736, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 04:37:22.432963 : Getting PeakMatrix from ArrowFile : SRR13927736.arrow, 0.014 mins elapsed.
+
+2023-11-14 04:37:32.974291 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 210721, nCols = 3534
+mat SRR13927736: NonZeroEntries = 25583439, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 04:37:33.18388 : Organizing SE PeakMatrix from ArrowFile : SRR13927736.arrow, 0.193 mins elapsed.
+
+2023-11-14 04:37:33.487366 : se SRR13927736, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3534 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 04:37:33.494921 : Completed PeakMatrix : SRR13927736(4 of 4), 0.955 mins elapsed.
+2023-11-14 04:37:33.496065 : Organizing colData, 0.955 mins elapsed.
+2023-11-14 04:37:33.647049 : Organizing rowData, 0.957 mins elapsed.
+2023-11-14 04:37:33.655823 : Organizing rowRanges, 0.957 mins elapsed.
+2023-11-14 04:37:33.66738 : Organizing Assays (1 of 1), 0.957 mins elapsed.
+2023-11-14 04:37:37.319184 : Constructing SummarizedExperiment, 1.018 mins elapsed.
+2023-11-14 04:37:53.286671 : Finished Matrix Creation, 1.284 mins elapsed.
+
+2023-11-14 06:13:52.95926 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:13:53.965478 : Reading GeneIntegrationMatrix : SRR13927737(1 of 4), 0.017 mins elapsed.
+
+2023-11-14 06:13:53.986277 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:13:54.309119 : featureDF SRR13927737, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:13:54.356765 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.006 mins elapsed.
+
+2023-11-14 06:14:49.362983 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:14:49.713162 : Reading GeneIntegrationMatrix : SRR13927737(1 of 4), 0.006 mins elapsed.
+
+2023-11-14 06:14:49.728871 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:14:49.958341 : featureDF SRR13927737, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:14:49.991564 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.004 mins elapsed.
+
+2023-11-14 06:15:23.264313 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 23525, nCols = 4439
+mat SRR13927737: NonZeroEntries = 50277774, EntryRange = [ 0.000148130054904683 , 376.345870564644 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                      .                             .         
+[2,]                      .                             .         
+[3,]                      0.1057576                     0.09630696
+[4,]                      .                             0.01806508
+[5,]                      .                             .         
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.09113499                     0.08396973
+[4,]                     0.02096304                     0.01727603
+[5,]                     .                              .         
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.08327649
+[4,]                     0.01368917
+[5,]                     .         
+
+
+2023-11-14 06:15:23.738251 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.567 mins elapsed.
+
+2023-11-14 06:15:24.096991 : se SRR13927737, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 4439 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:15:24.103542 : Completed GeneIntegrationMatrix : SRR13927737(1 of 4), 0.579 mins elapsed.
+2023-11-14 06:15:24.104048 : Reading GeneIntegrationMatrix : SRR13927738(2 of 4), 0.579 mins elapsed.
+
+2023-11-14 06:15:24.11641 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:15:24.297146 : featureDF SRR13927738, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:15:24.313689 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:15:42.679327 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 23525, nCols = 3736
+mat SRR13927738: NonZeroEntries = 41898897, EntryRange = [ 9.73975135001421e-05 , 758.763031303812 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                    .                                .        
+[2,]                    .                                .        
+[3,]                    0.002346352                      0.0084575
+[4,]                    0.005836413                      .        
+[5,]                    .                                .        
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     .                             0.004081077
+[4,]                     0.02001583                    .          
+[5,]                     .                             .          
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.007640877
+[4,]                    0.015048796
+[5,]                    .          
+
+
+2023-11-14 06:15:43.025897 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.315 mins elapsed.
+
+2023-11-14 06:15:44.02805 : se SRR13927738, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3736 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:15:44.03347 : Completed GeneIntegrationMatrix : SRR13927738(2 of 4), 0.911 mins elapsed.
+2023-11-14 06:15:44.033971 : Reading GeneIntegrationMatrix : SRR13927735(3 of 4), 0.911 mins elapsed.
+
+2023-11-14 06:15:44.046197 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:15:44.232858 : featureDF SRR13927735, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:15:44.247892 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:16:03.594877 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 23525, nCols = 3813
+mat SRR13927735: NonZeroEntries = 45535634, EntryRange = [ 7.20715653308254e-05 , 673.990433360078 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                    .                              .          
+[2,]                    .                              .          
+[3,]                    0.070892732                    0.057009268
+[4,]                    0.008800039                    0.002978408
+[5,]                    .                              .          
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                     .                               .        
+[2,]                     .                               .        
+[3,]                     0.05523011                      0.0248301
+[4,]                     .                               .        
+[5,]                     .                               .        
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.05384571
+[4,]                     0.01228688
+[5,]                     .         
+
+
+2023-11-14 06:16:03.957084 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.332 mins elapsed.
+
+2023-11-14 06:16:04.206586 : se SRR13927735, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3813 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:16:04.211783 : Completed GeneIntegrationMatrix : SRR13927735(3 of 4), 1.247 mins elapsed.
+2023-11-14 06:16:04.212266 : Reading GeneIntegrationMatrix : SRR13927736(4 of 4), 1.248 mins elapsed.
+
+2023-11-14 06:16:04.223965 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:16:04.398181 : featureDF SRR13927736, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:16:04.412576 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:16:20.64852 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 23525, nCols = 3534
+mat SRR13927736: NonZeroEntries = 39003616, EntryRange = [ 8.77627031078293e-05 , 770.387276519725 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     0.07845381                    0.028344539
+[4,]                     0.01395289                    0.008499189
+[5,]                     .                             .          
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.06535130                     0.06576222
+[4,]                     0.01810177                     0.01315728
+[5,]                     .                              .         
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.016229526
+[4,]                    0.003862592
+[5,]                    .          
+
+
+2023-11-14 06:16:20.978674 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.279 mins elapsed.
+
+2023-11-14 06:16:21.23631 : se SRR13927736, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3534 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:16:21.241697 : Completed GeneIntegrationMatrix : SRR13927736(4 of 4), 1.531 mins elapsed.
+2023-11-14 06:16:21.242779 : Organizing colData, 1.531 mins elapsed.
+2023-11-14 06:16:21.392269 : Organizing rowData, 1.534 mins elapsed.
+2023-11-14 06:16:21.395642 : Organizing rowRanges, 1.534 mins elapsed.
+2023-11-14 06:16:21.40152 : Organizing Assays (1 of 1), 1.534 mins elapsed.
+2023-11-14 06:16:27.818254 : Constructing SummarizedExperiment, 1.641 mins elapsed.
+2023-11-14 06:16:28.549128 : Finished Matrix Creation, 1.653 mins elapsed.
+
+2023-11-14 06:16:28.551666 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:16:29.214335 : Reading PeakMatrix : SRR13927737(1 of 4), 0.011 mins elapsed.
+
+2023-11-14 06:16:29.228618 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:16:29.509403 : featureDF SRR13927737, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:16:29.560348 : Getting PeakMatrix from ArrowFile : SRR13927737.arrow, 0.006 mins elapsed.
+
+2023-11-14 06:16:42.052511 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 210721, nCols = 4439
+mat SRR13927737: NonZeroEntries = 29963541, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                              .                              .
+[2,]                              .                              2
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              2                              .
+[4,]                              .                              .
+[5,]                              4                              .
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:16:42.239958 : Organizing SE PeakMatrix from ArrowFile : SRR13927737.arrow, 0.217 mins elapsed.
+
+2023-11-14 06:16:42.558903 : se SRR13927737, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 4439 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:16:42.569254 : Completed PeakMatrix : SRR13927737(1 of 4), 0.234 mins elapsed.
+2023-11-14 06:16:42.569818 : Reading PeakMatrix : SRR13927738(2 of 4), 0.234 mins elapsed.
+
+2023-11-14 06:16:42.582556 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:16:42.842114 : featureDF SRR13927738, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:16:42.883088 : Getting PeakMatrix from ArrowFile : SRR13927738.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:16:54.841495 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 210721, nCols = 3736
+mat SRR13927738: NonZeroEntries = 30165921, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                              2                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              2                              .
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                              .
+[2,]                              .
+[3,]                              2
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:16:55.096251 : Organizing SE PeakMatrix from ArrowFile : SRR13927738.arrow, 0.209 mins elapsed.
+
+2023-11-14 06:16:55.381942 : se SRR13927738, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3736 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:16:55.388936 : Completed PeakMatrix : SRR13927738(2 of 4), 0.447 mins elapsed.
+2023-11-14 06:16:55.389415 : Reading PeakMatrix : SRR13927735(3 of 4), 0.447 mins elapsed.
+
+2023-11-14 06:16:55.402107 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:16:55.720554 : featureDF SRR13927735, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:16:55.76092 : Getting PeakMatrix from ArrowFile : SRR13927735.arrow, 0.006 mins elapsed.
+
+2023-11-14 06:17:05.899371 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 210721, nCols = 3813
+mat SRR13927735: NonZeroEntries = 26038084, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                              2
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:17:06.107453 : Organizing SE PeakMatrix from ArrowFile : SRR13927735.arrow, 0.178 mins elapsed.
+
+2023-11-14 06:17:06.384486 : se SRR13927735, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3813 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:17:06.391737 : Completed PeakMatrix : SRR13927735(3 of 4), 0.631 mins elapsed.
+2023-11-14 06:17:06.392242 : Reading PeakMatrix : SRR13927736(4 of 4), 0.631 mins elapsed.
+
+2023-11-14 06:17:06.404649 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:17:06.69032 : featureDF SRR13927736, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:17:06.729396 : Getting PeakMatrix from ArrowFile : SRR13927736.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:17:17.067418 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 210721, nCols = 3534
+mat SRR13927736: NonZeroEntries = 25583439, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:17:17.274543 : Organizing SE PeakMatrix from ArrowFile : SRR13927736.arrow, 0.181 mins elapsed.
+
+2023-11-14 06:17:17.565583 : se SRR13927736, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3534 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:17:17.57298 : Completed PeakMatrix : SRR13927736(4 of 4), 0.817 mins elapsed.
+2023-11-14 06:17:17.574028 : Organizing colData, 0.817 mins elapsed.
+2023-11-14 06:17:17.708702 : Organizing rowData, 0.819 mins elapsed.
+2023-11-14 06:17:17.717264 : Organizing rowRanges, 0.819 mins elapsed.
+2023-11-14 06:17:17.728079 : Organizing Assays (1 of 1), 0.82 mins elapsed.
+2023-11-14 06:17:20.955517 : Constructing SummarizedExperiment, 0.873 mins elapsed.
+2023-11-14 06:17:34.28632 : Finished Matrix Creation, 1.096 mins elapsed.
+
+2023-11-14 06:22:34.817651 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:22:35.261912 : Reading GeneIntegrationMatrix : SRR13927737(1 of 4), 0.007 mins elapsed.
+
+2023-11-14 06:22:35.276826 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:22:35.525662 : featureDF SRR13927737, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:22:35.579642 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:23:09.145415 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 23525, nCols = 4439
+mat SRR13927737: NonZeroEntries = 50277774, EntryRange = [ 0.000148130054904683 , 376.345870564644 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                      .                             .         
+[2,]                      .                             .         
+[3,]                      0.1057576                     0.09630696
+[4,]                      .                             0.01806508
+[5,]                      .                             .         
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.09113499                     0.08396973
+[4,]                     0.02096304                     0.01727603
+[5,]                     .                              .         
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.08327649
+[4,]                     0.01368917
+[5,]                     .         
+
+
+2023-11-14 06:23:09.618093 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.572 mins elapsed.
+
+2023-11-14 06:23:09.983389 : se SRR13927737, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 4439 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:23:09.989983 : Completed GeneIntegrationMatrix : SRR13927737(1 of 4), 0.586 mins elapsed.
+2023-11-14 06:23:09.99056 : Reading GeneIntegrationMatrix : SRR13927738(2 of 4), 0.586 mins elapsed.
+
+2023-11-14 06:23:10.003118 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:23:10.19484 : featureDF SRR13927738, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:23:10.211825 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:23:27.558019 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 23525, nCols = 3736
+mat SRR13927738: NonZeroEntries = 41898897, EntryRange = [ 9.73975135001421e-05 , 758.763031303812 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                    .                                .        
+[2,]                    .                                .        
+[3,]                    0.002346352                      0.0084575
+[4,]                    0.005836413                      .        
+[5,]                    .                                .        
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     .                             0.004081077
+[4,]                     0.02001583                    .          
+[5,]                     .                             .          
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.007640877
+[4,]                    0.015048796
+[5,]                    .          
+
+
+2023-11-14 06:23:27.895305 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.298 mins elapsed.
+
+2023-11-14 06:23:28.907256 : se SRR13927738, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3736 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:23:28.912612 : Completed GeneIntegrationMatrix : SRR13927738(2 of 4), 0.902 mins elapsed.
+2023-11-14 06:23:28.913103 : Reading GeneIntegrationMatrix : SRR13927735(3 of 4), 0.902 mins elapsed.
+
+2023-11-14 06:23:28.925262 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:23:29.145978 : featureDF SRR13927735, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:23:29.161376 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.004 mins elapsed.
+
+2023-11-14 06:23:46.738884 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 23525, nCols = 3813
+mat SRR13927735: NonZeroEntries = 45535634, EntryRange = [ 7.20715653308254e-05 , 673.990433360078 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                    .                              .          
+[2,]                    .                              .          
+[3,]                    0.070892732                    0.057009268
+[4,]                    0.008800039                    0.002978408
+[5,]                    .                              .          
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                     .                               .        
+[2,]                     .                               .        
+[3,]                     0.05523011                      0.0248301
+[4,]                     .                               .        
+[5,]                     .                               .        
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.05384571
+[4,]                     0.01228688
+[5,]                     .         
+
+
+2023-11-14 06:23:47.107289 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.303 mins elapsed.
+
+2023-11-14 06:23:47.359538 : se SRR13927735, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3813 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:23:47.364258 : Completed GeneIntegrationMatrix : SRR13927735(3 of 4), 1.209 mins elapsed.
+2023-11-14 06:23:47.364642 : Reading GeneIntegrationMatrix : SRR13927736(4 of 4), 1.209 mins elapsed.
+
+2023-11-14 06:23:47.376507 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:23:47.543532 : featureDF SRR13927736, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:23:47.557872 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:24:02.747429 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 23525, nCols = 3534
+mat SRR13927736: NonZeroEntries = 39003616, EntryRange = [ 8.77627031078293e-05 , 770.387276519725 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     0.07845381                    0.028344539
+[4,]                     0.01395289                    0.008499189
+[5,]                     .                             .          
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.06535130                     0.06576222
+[4,]                     0.01810177                     0.01315728
+[5,]                     .                              .         
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.016229526
+[4,]                    0.003862592
+[5,]                    .          
+
+
+2023-11-14 06:24:03.071558 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.262 mins elapsed.
+
+2023-11-14 06:24:03.328911 : se SRR13927736, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3534 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:24:03.333871 : Completed GeneIntegrationMatrix : SRR13927736(4 of 4), 1.475 mins elapsed.
+2023-11-14 06:24:03.334839 : Organizing colData, 1.475 mins elapsed.
+2023-11-14 06:24:03.476155 : Organizing rowData, 1.478 mins elapsed.
+2023-11-14 06:24:03.479306 : Organizing rowRanges, 1.478 mins elapsed.
+2023-11-14 06:24:03.484935 : Organizing Assays (1 of 1), 1.478 mins elapsed.
+2023-11-14 06:24:09.795546 : Constructing SummarizedExperiment, 1.583 mins elapsed.
+2023-11-14 06:24:10.517282 : Finished Matrix Creation, 1.595 mins elapsed.
+
+2023-11-14 06:24:10.519619 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:24:11.047502 : Reading PeakMatrix : SRR13927737(1 of 4), 0.009 mins elapsed.
+
+2023-11-14 06:24:11.061463 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:24:11.340264 : featureDF SRR13927737, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:24:11.3929 : Getting PeakMatrix from ArrowFile : SRR13927737.arrow, 0.006 mins elapsed.
+
+2023-11-14 06:24:22.997259 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 210721, nCols = 4439
+mat SRR13927737: NonZeroEntries = 29963541, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                              .                              .
+[2,]                              .                              2
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              2                              .
+[4,]                              .                              .
+[5,]                              4                              .
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:24:23.185595 : Organizing SE PeakMatrix from ArrowFile : SRR13927737.arrow, 0.202 mins elapsed.
+
+2023-11-14 06:24:23.483414 : se SRR13927737, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 4439 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:24:23.49325 : Completed PeakMatrix : SRR13927737(1 of 4), 0.216 mins elapsed.
+2023-11-14 06:24:23.493677 : Reading PeakMatrix : SRR13927738(2 of 4), 0.216 mins elapsed.
+
+2023-11-14 06:24:23.506397 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:24:23.765626 : featureDF SRR13927738, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:24:23.810143 : Getting PeakMatrix from ArrowFile : SRR13927738.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:24:35.984252 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 210721, nCols = 3736
+mat SRR13927738: NonZeroEntries = 30165921, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                              2                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              2                              .
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                              .
+[2,]                              .
+[3,]                              2
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:24:36.219008 : Organizing SE PeakMatrix from ArrowFile : SRR13927738.arrow, 0.212 mins elapsed.
+
+2023-11-14 06:24:36.498009 : se SRR13927738, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3736 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:24:36.504769 : Completed PeakMatrix : SRR13927738(2 of 4), 0.433 mins elapsed.
+2023-11-14 06:24:36.505191 : Reading PeakMatrix : SRR13927735(3 of 4), 0.433 mins elapsed.
+
+2023-11-14 06:24:36.517648 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:24:36.775162 : featureDF SRR13927735, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:24:36.816079 : Getting PeakMatrix from ArrowFile : SRR13927735.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:24:46.446446 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 210721, nCols = 3813
+mat SRR13927735: NonZeroEntries = 26038084, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                              2
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:24:46.654355 : Organizing SE PeakMatrix from ArrowFile : SRR13927735.arrow, 0.169 mins elapsed.
+
+2023-11-14 06:24:46.98007 : se SRR13927735, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3813 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:24:46.986727 : Completed PeakMatrix : SRR13927735(3 of 4), 0.608 mins elapsed.
+2023-11-14 06:24:46.987133 : Reading PeakMatrix : SRR13927736(4 of 4), 0.608 mins elapsed.
+
+2023-11-14 06:24:46.998779 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:24:47.254298 : featureDF SRR13927736, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:24:47.293727 : Getting PeakMatrix from ArrowFile : SRR13927736.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:24:57.019682 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 210721, nCols = 3534
+mat SRR13927736: NonZeroEntries = 25583439, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:24:57.222024 : Organizing SE PeakMatrix from ArrowFile : SRR13927736.arrow, 0.17 mins elapsed.
+
+2023-11-14 06:24:57.492102 : se SRR13927736, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3534 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:24:57.49905 : Completed PeakMatrix : SRR13927736(4 of 4), 0.783 mins elapsed.
+2023-11-14 06:24:57.49993 : Organizing colData, 0.783 mins elapsed.
+2023-11-14 06:24:57.639328 : Organizing rowData, 0.785 mins elapsed.
+2023-11-14 06:24:57.647971 : Organizing rowRanges, 0.785 mins elapsed.
+2023-11-14 06:24:57.658803 : Organizing Assays (1 of 1), 0.786 mins elapsed.
+2023-11-14 06:25:00.849687 : Constructing SummarizedExperiment, 0.839 mins elapsed.
+2023-11-14 06:25:13.839966 : Finished Matrix Creation, 1.055 mins elapsed.
+
+2023-11-14 06:35:15.190466 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:35:15.527953 : Reading GeneIntegrationMatrix : SRR13927737(1 of 4), 0.006 mins elapsed.
+
+2023-11-14 06:35:15.543221 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:35:15.770224 : featureDF SRR13927737, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:35:15.803408 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.004 mins elapsed.
+
+2023-11-14 06:35:48.267537 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 23525, nCols = 4439
+mat SRR13927737: NonZeroEntries = 50277774, EntryRange = [ 0.000148130054904683 , 376.345870564644 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                      .                             .         
+[2,]                      .                             .         
+[3,]                      0.1057576                     0.09630696
+[4,]                      .                             0.01806508
+[5,]                      .                             .         
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.09113499                     0.08396973
+[4,]                     0.02096304                     0.01727603
+[5,]                     .                              .         
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.08327649
+[4,]                     0.01368917
+[5,]                     .         
+
+
+2023-11-14 06:35:48.737962 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.553 mins elapsed.
+
+2023-11-14 06:35:49.074943 : se SRR13927737, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 4439 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:35:49.081278 : Completed GeneIntegrationMatrix : SRR13927737(1 of 4), 0.565 mins elapsed.
+2023-11-14 06:35:49.081712 : Reading GeneIntegrationMatrix : SRR13927738(2 of 4), 0.565 mins elapsed.
+
+2023-11-14 06:35:49.094614 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:35:49.281341 : featureDF SRR13927738, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:35:49.29518 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:36:06.600244 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 23525, nCols = 3736
+mat SRR13927738: NonZeroEntries = 41898897, EntryRange = [ 9.73975135001421e-05 , 758.763031303812 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                    .                                .        
+[2,]                    .                                .        
+[3,]                    0.002346352                      0.0084575
+[4,]                    0.005836413                      .        
+[5,]                    .                                .        
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     .                             0.004081077
+[4,]                     0.02001583                    .          
+[5,]                     .                             .          
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.007640877
+[4,]                    0.015048796
+[5,]                    .          
+
+
+2023-11-14 06:36:06.938364 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.297 mins elapsed.
+
+2023-11-14 06:36:07.941979 : se SRR13927738, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3736 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:36:07.947145 : Completed GeneIntegrationMatrix : SRR13927738(2 of 4), 0.879 mins elapsed.
+2023-11-14 06:36:07.947985 : Reading GeneIntegrationMatrix : SRR13927735(3 of 4), 0.879 mins elapsed.
+
+2023-11-14 06:36:07.962063 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:36:08.147994 : featureDF SRR13927735, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:36:08.162743 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:36:25.662636 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 23525, nCols = 3813
+mat SRR13927735: NonZeroEntries = 45535634, EntryRange = [ 7.20715653308254e-05 , 673.990433360078 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                    .                              .          
+[2,]                    .                              .          
+[3,]                    0.070892732                    0.057009268
+[4,]                    0.008800039                    0.002978408
+[5,]                    .                              .          
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                     .                               .        
+[2,]                     .                               .        
+[3,]                     0.05523011                      0.0248301
+[4,]                     .                               .        
+[5,]                     .                               .        
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.05384571
+[4,]                     0.01228688
+[5,]                     .         
+
+
+2023-11-14 06:36:26.017622 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.301 mins elapsed.
+
+2023-11-14 06:36:26.259511 : se SRR13927735, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3813 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:36:26.264706 : Completed GeneIntegrationMatrix : SRR13927735(3 of 4), 1.185 mins elapsed.
+2023-11-14 06:36:26.265116 : Reading GeneIntegrationMatrix : SRR13927736(4 of 4), 1.185 mins elapsed.
+
+2023-11-14 06:36:26.27723 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:36:26.470202 : featureDF SRR13927736, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:36:26.483498 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:36:41.58275 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 23525, nCols = 3534
+mat SRR13927736: NonZeroEntries = 39003616, EntryRange = [ 8.77627031078293e-05 , 770.387276519725 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     0.07845381                    0.028344539
+[4,]                     0.01395289                    0.008499189
+[5,]                     .                             .          
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.06535130                     0.06576222
+[4,]                     0.01810177                     0.01315728
+[5,]                     .                              .         
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.016229526
+[4,]                    0.003862592
+[5,]                    .          
+
+
+2023-11-14 06:36:41.885075 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.26 mins elapsed.
+
+2023-11-14 06:36:42.13638 : se SRR13927736, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3534 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:36:42.141623 : Completed GeneIntegrationMatrix : SRR13927736(4 of 4), 1.449 mins elapsed.
+2023-11-14 06:36:42.142594 : Organizing colData, 1.449 mins elapsed.
+2023-11-14 06:36:42.286047 : Organizing rowData, 1.452 mins elapsed.
+2023-11-14 06:36:42.289285 : Organizing rowRanges, 1.452 mins elapsed.
+2023-11-14 06:36:42.295074 : Organizing Assays (1 of 1), 1.452 mins elapsed.
+2023-11-14 06:36:48.605098 : Constructing SummarizedExperiment, 1.557 mins elapsed.
+2023-11-14 06:36:49.324662 : Finished Matrix Creation, 1.569 mins elapsed.
+
+2023-11-14 06:36:49.327018 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:36:49.777542 : Reading PeakMatrix : SRR13927737(1 of 4), 0.008 mins elapsed.
+
+2023-11-14 06:36:49.790822 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:36:50.080656 : featureDF SRR13927737, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:36:50.132908 : Getting PeakMatrix from ArrowFile : SRR13927737.arrow, 0.006 mins elapsed.
+
+2023-11-14 06:37:01.908879 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 210721, nCols = 4439
+mat SRR13927737: NonZeroEntries = 29963541, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                              .                              .
+[2,]                              .                              2
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              2                              .
+[4,]                              .                              .
+[5,]                              4                              .
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:37:02.094123 : Organizing SE PeakMatrix from ArrowFile : SRR13927737.arrow, 0.205 mins elapsed.
+
+2023-11-14 06:37:02.397633 : se SRR13927737, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 4439 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:37:02.406753 : Completed PeakMatrix : SRR13927737(1 of 4), 0.218 mins elapsed.
+2023-11-14 06:37:02.407127 : Reading PeakMatrix : SRR13927738(2 of 4), 0.218 mins elapsed.
+
+2023-11-14 06:37:02.418982 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:37:02.663679 : featureDF SRR13927738, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:37:02.703845 : Getting PeakMatrix from ArrowFile : SRR13927738.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:37:14.038735 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 210721, nCols = 3736
+mat SRR13927738: NonZeroEntries = 30165921, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                              2                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              2                              .
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                              .
+[2,]                              .
+[3,]                              2
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:37:14.264364 : Organizing SE PeakMatrix from ArrowFile : SRR13927738.arrow, 0.197 mins elapsed.
+
+2023-11-14 06:37:14.554611 : se SRR13927738, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3736 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:37:14.561294 : Completed PeakMatrix : SRR13927738(2 of 4), 0.421 mins elapsed.
+2023-11-14 06:37:14.561702 : Reading PeakMatrix : SRR13927735(3 of 4), 0.421 mins elapsed.
+
+2023-11-14 06:37:14.573953 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:37:14.837072 : featureDF SRR13927735, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:37:14.88193 : Getting PeakMatrix from ArrowFile : SRR13927735.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:37:25.245642 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 210721, nCols = 3813
+mat SRR13927735: NonZeroEntries = 26038084, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                              2
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:37:25.452072 : Organizing SE PeakMatrix from ArrowFile : SRR13927735.arrow, 0.181 mins elapsed.
+
+2023-11-14 06:37:25.751175 : se SRR13927735, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3813 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:37:25.757921 : Completed PeakMatrix : SRR13927735(3 of 4), 0.607 mins elapsed.
+2023-11-14 06:37:25.758317 : Reading PeakMatrix : SRR13927736(4 of 4), 0.607 mins elapsed.
+
+2023-11-14 06:37:25.769953 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:37:26.02523 : featureDF SRR13927736, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:37:26.065293 : Getting PeakMatrix from ArrowFile : SRR13927736.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:37:35.834568 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 210721, nCols = 3534
+mat SRR13927736: NonZeroEntries = 25583439, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:37:36.033768 : Organizing SE PeakMatrix from ArrowFile : SRR13927736.arrow, 0.171 mins elapsed.
+
+2023-11-14 06:37:36.303172 : se SRR13927736, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3534 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:37:36.309711 : Completed PeakMatrix : SRR13927736(4 of 4), 0.783 mins elapsed.
+2023-11-14 06:37:36.31054 : Organizing colData, 0.783 mins elapsed.
+2023-11-14 06:37:36.446 : Organizing rowData, 0.785 mins elapsed.
+2023-11-14 06:37:36.453816 : Organizing rowRanges, 0.785 mins elapsed.
+2023-11-14 06:37:36.464189 : Organizing Assays (1 of 1), 0.786 mins elapsed.
+2023-11-14 06:37:39.490331 : Constructing SummarizedExperiment, 0.836 mins elapsed.
+2023-11-14 06:37:52.395633 : Finished Matrix Creation, 1.051 mins elapsed.
+
+2023-11-14 06:58:06.962048 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:58:07.414514 : Reading GeneIntegrationMatrix : SRR13927737(1 of 4), 0.008 mins elapsed.
+
+2023-11-14 06:58:07.431345 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:58:07.689675 : featureDF SRR13927737, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:58:07.728291 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:58:40.570216 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 23525, nCols = 4439
+mat SRR13927737: NonZeroEntries = 50277774, EntryRange = [ 0.000148130054904683 , 376.345870564644 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                      .                             .         
+[2,]                      .                             .         
+[3,]                      0.1057576                     0.09630696
+[4,]                      .                             0.01806508
+[5,]                      .                             .         
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.09113499                     0.08396973
+[4,]                     0.02096304                     0.01727603
+[5,]                     .                              .         
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.08327649
+[4,]                     0.01368917
+[5,]                     .         
+
+
+2023-11-14 06:58:41.042058 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.56 mins elapsed.
+
+2023-11-14 06:58:41.606438 : se SRR13927737, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 4439 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:58:41.613993 : Completed GeneIntegrationMatrix : SRR13927737(1 of 4), 0.578 mins elapsed.
+2023-11-14 06:58:41.614496 : Reading GeneIntegrationMatrix : SRR13927738(2 of 4), 0.578 mins elapsed.
+
+2023-11-14 06:58:41.628477 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:58:41.850234 : featureDF SRR13927738, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:58:41.869217 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.004 mins elapsed.
+
+2023-11-14 06:58:59.45431 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 23525, nCols = 3736
+mat SRR13927738: NonZeroEntries = 41898897, EntryRange = [ 9.73975135001421e-05 , 758.763031303812 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                    .                                .        
+[2,]                    .                                .        
+[3,]                    0.002346352                      0.0084575
+[4,]                    0.005836413                      .        
+[5,]                    .                                .        
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     .                             0.004081077
+[4,]                     0.02001583                    .          
+[5,]                     .                             .          
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.007640877
+[4,]                    0.015048796
+[5,]                    .          
+
+
+2023-11-14 06:58:59.785673 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.303 mins elapsed.
+
+2023-11-14 06:59:00.796656 : se SRR13927738, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3736 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:59:00.801816 : Completed GeneIntegrationMatrix : SRR13927738(2 of 4), 0.897 mins elapsed.
+2023-11-14 06:59:00.802229 : Reading GeneIntegrationMatrix : SRR13927735(3 of 4), 0.897 mins elapsed.
+
+2023-11-14 06:59:00.814285 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:59:01.006088 : featureDF SRR13927735, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:59:01.020396 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.003 mins elapsed.
+
+2023-11-14 06:59:18.550255 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 23525, nCols = 3813
+mat SRR13927735: NonZeroEntries = 45535634, EntryRange = [ 7.20715653308254e-05 , 673.990433360078 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                    .                              .          
+[2,]                    .                              .          
+[3,]                    0.070892732                    0.057009268
+[4,]                    0.008800039                    0.002978408
+[5,]                    .                              .          
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                     .                               .        
+[2,]                     .                               .        
+[3,]                     0.05523011                      0.0248301
+[4,]                     .                               .        
+[5,]                     .                               .        
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.05384571
+[4,]                     0.01228688
+[5,]                     .         
+
+
+2023-11-14 06:59:18.910704 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.302 mins elapsed.
+
+2023-11-14 06:59:19.16346 : se SRR13927735, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3813 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:59:19.168503 : Completed GeneIntegrationMatrix : SRR13927735(3 of 4), 1.203 mins elapsed.
+2023-11-14 06:59:19.168909 : Reading GeneIntegrationMatrix : SRR13927736(4 of 4), 1.203 mins elapsed.
+
+2023-11-14 06:59:19.180782 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:59:19.466416 : featureDF SRR13927736, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 06:59:19.48014 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.005 mins elapsed.
+
+2023-11-14 06:59:34.923305 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 23525, nCols = 3534
+mat SRR13927736: NonZeroEntries = 39003616, EntryRange = [ 8.77627031078293e-05 , 770.387276519725 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     0.07845381                    0.028344539
+[4,]                     0.01395289                    0.008499189
+[5,]                     .                             .          
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.06535130                     0.06576222
+[4,]                     0.01810177                     0.01315728
+[5,]                     .                              .         
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.016229526
+[4,]                    0.003862592
+[5,]                    .          
+
+
+2023-11-14 06:59:35.239313 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.268 mins elapsed.
+
+2023-11-14 06:59:35.494564 : se SRR13927736, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3534 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:59:35.499233 : Completed GeneIntegrationMatrix : SRR13927736(4 of 4), 1.476 mins elapsed.
+2023-11-14 06:59:35.500133 : Organizing colData, 1.476 mins elapsed.
+2023-11-14 06:59:35.640486 : Organizing rowData, 1.478 mins elapsed.
+2023-11-14 06:59:35.643708 : Organizing rowRanges, 1.478 mins elapsed.
+2023-11-14 06:59:35.64958 : Organizing Assays (1 of 1), 1.478 mins elapsed.
+2023-11-14 06:59:41.920555 : Constructing SummarizedExperiment, 1.583 mins elapsed.
+2023-11-14 06:59:42.635093 : Finished Matrix Creation, 1.595 mins elapsed.
+
+2023-11-14 06:59:42.637406 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 06:59:43.608027 : Reading PeakMatrix : SRR13927737(1 of 4), 0.016 mins elapsed.
+
+2023-11-14 06:59:43.634446 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:59:44.062055 : featureDF SRR13927737, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:59:44.128192 : Getting PeakMatrix from ArrowFile : SRR13927737.arrow, 0.008 mins elapsed.
+
+2023-11-14 06:59:56.385721 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 210721, nCols = 4439
+mat SRR13927737: NonZeroEntries = 29963541, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                              .                              .
+[2,]                              .                              2
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              2                              .
+[4,]                              .                              .
+[5,]                              4                              .
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 06:59:56.577961 : Organizing SE PeakMatrix from ArrowFile : SRR13927737.arrow, 0.216 mins elapsed.
+
+2023-11-14 06:59:56.878696 : se SRR13927737, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 4439 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 06:59:56.887922 : Completed PeakMatrix : SRR13927737(1 of 4), 0.238 mins elapsed.
+2023-11-14 06:59:56.888318 : Reading PeakMatrix : SRR13927738(2 of 4), 0.238 mins elapsed.
+
+2023-11-14 06:59:56.900238 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 06:59:57.136898 : featureDF SRR13927738, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 06:59:57.179601 : Getting PeakMatrix from ArrowFile : SRR13927738.arrow, 0.005 mins elapsed.
+
+2023-11-14 07:00:08.485265 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 210721, nCols = 3736
+mat SRR13927738: NonZeroEntries = 30165921, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                              2                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              2                              .
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                              .
+[2,]                              .
+[3,]                              2
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 07:00:08.711497 : Organizing SE PeakMatrix from ArrowFile : SRR13927738.arrow, 0.197 mins elapsed.
+
+2023-11-14 07:00:08.992138 : se SRR13927738, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3736 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 07:00:08.999252 : Completed PeakMatrix : SRR13927738(2 of 4), 0.439 mins elapsed.
+2023-11-14 07:00:08.999668 : Reading PeakMatrix : SRR13927735(3 of 4), 0.439 mins elapsed.
+
+2023-11-14 07:00:09.012646 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 07:00:09.259805 : featureDF SRR13927735, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 07:00:09.300091 : Getting PeakMatrix from ArrowFile : SRR13927735.arrow, 0.005 mins elapsed.
+
+2023-11-14 07:00:19.063619 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 210721, nCols = 3813
+mat SRR13927735: NonZeroEntries = 26038084, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                              2
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 07:00:19.266016 : Organizing SE PeakMatrix from ArrowFile : SRR13927735.arrow, 0.171 mins elapsed.
+
+2023-11-14 07:00:19.536166 : se SRR13927735, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3813 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 07:00:19.543207 : Completed PeakMatrix : SRR13927735(3 of 4), 0.615 mins elapsed.
+2023-11-14 07:00:19.543627 : Reading PeakMatrix : SRR13927736(4 of 4), 0.615 mins elapsed.
+
+2023-11-14 07:00:19.555483 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 07:00:19.869977 : featureDF SRR13927736, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 07:00:19.908096 : Getting PeakMatrix from ArrowFile : SRR13927736.arrow, 0.006 mins elapsed.
+
+2023-11-14 07:00:29.731047 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 210721, nCols = 3534
+mat SRR13927736: NonZeroEntries = 25583439, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 07:00:29.938278 : Organizing SE PeakMatrix from ArrowFile : SRR13927736.arrow, 0.173 mins elapsed.
+
+2023-11-14 07:00:30.214436 : se SRR13927736, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3534 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 07:00:30.221404 : Completed PeakMatrix : SRR13927736(4 of 4), 0.793 mins elapsed.
+2023-11-14 07:00:30.222328 : Organizing colData, 0.793 mins elapsed.
+2023-11-14 07:00:30.359165 : Organizing rowData, 0.795 mins elapsed.
+2023-11-14 07:00:30.367418 : Organizing rowRanges, 0.795 mins elapsed.
+2023-11-14 07:00:30.377984 : Organizing Assays (1 of 1), 0.796 mins elapsed.
+2023-11-14 07:00:33.563509 : Constructing SummarizedExperiment, 0.849 mins elapsed.
+2023-11-14 07:00:46.585763 : Finished Matrix Creation, 1.066 mins elapsed.
+
+2023-11-14 08:19:05.970704 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 08:19:10.016611 : Reading GeneIntegrationMatrix : SRR13927737(1 of 4), 0.07 mins elapsed.
+
+2023-11-14 08:19:10.047739 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:19:10.462971 : featureDF SRR13927737, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 08:19:10.485398 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.007 mins elapsed.
+
+2023-11-14 08:19:31.321422 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 23525, nCols = 4439
+mat SRR13927737: NonZeroEntries = 50277774, EntryRange = [ 0.000148130054904683 , 376.345870564644 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                      .                             .         
+[2,]                      .                             .         
+[3,]                      0.1057576                     0.09630696
+[4,]                      .                             0.01806508
+[5,]                      .                             .         
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.09113499                     0.08396973
+[4,]                     0.02096304                     0.01727603
+[5,]                     .                              .         
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.08327649
+[4,]                     0.01368917
+[5,]                     .         
+
+
+2023-11-14 08:19:31.799916 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927737.arrow, 0.363 mins elapsed.
+
+2023-11-14 08:19:32.668782 : se SRR13927737, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 4439 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:19:32.68269 : Completed GeneIntegrationMatrix : SRR13927737(1 of 4), 0.447 mins elapsed.
+2023-11-14 08:19:32.683653 : Reading GeneIntegrationMatrix : SRR13927738(2 of 4), 0.447 mins elapsed.
+
+2023-11-14 08:19:32.709244 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:19:33.022253 : featureDF SRR13927738, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 08:19:33.046858 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.006 mins elapsed.
+
+2023-11-14 08:19:52.6369 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 23525, nCols = 3736
+mat SRR13927738: NonZeroEntries = 41898897, EntryRange = [ 9.73975135001421e-05 , 758.763031303812 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                    .                                .        
+[2,]                    .                                .        
+[3,]                    0.002346352                      0.0084575
+[4,]                    0.005836413                      .        
+[5,]                    .                                .        
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     .                             0.004081077
+[4,]                     0.02001583                    .          
+[5,]                     .                             .          
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.007640877
+[4,]                    0.015048796
+[5,]                    .          
+
+
+2023-11-14 08:19:52.970758 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927738.arrow, 0.338 mins elapsed.
+
+2023-11-14 08:19:53.227532 : se SRR13927738, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3736 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:19:53.23263 : Completed GeneIntegrationMatrix : SRR13927738(2 of 4), 0.79 mins elapsed.
+2023-11-14 08:19:53.233045 : Reading GeneIntegrationMatrix : SRR13927735(3 of 4), 0.79 mins elapsed.
+
+2023-11-14 08:19:53.245229 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:19:53.430932 : featureDF SRR13927735, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 08:19:53.44502 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.003 mins elapsed.
+
+2023-11-14 08:20:13.49085 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 23525, nCols = 3813
+mat SRR13927735: NonZeroEntries = 45535634, EntryRange = [ 7.20715653308254e-05 , 673.990433360078 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                    .                              .          
+[2,]                    .                              .          
+[3,]                    0.070892732                    0.057009268
+[4,]                    0.008800039                    0.002978408
+[5,]                    .                              .          
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                     .                               .        
+[2,]                     .                               .        
+[3,]                     0.05523011                      0.0248301
+[4,]                     .                               .        
+[5,]                     .                               .        
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                     .         
+[2,]                     .         
+[3,]                     0.05384571
+[4,]                     0.01228688
+[5,]                     .         
+
+
+2023-11-14 08:20:13.795937 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927735.arrow, 0.343 mins elapsed.
+
+2023-11-14 08:20:14.215464 : se SRR13927735, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3813 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:20:14.221046 : Completed GeneIntegrationMatrix : SRR13927735(3 of 4), 1.14 mins elapsed.
+2023-11-14 08:20:14.221506 : Reading GeneIntegrationMatrix : SRR13927736(4 of 4), 1.14 mins elapsed.
+
+2023-11-14 08:20:14.234202 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "GeneIntegrationMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:20:14.448937 : featureDF SRR13927736, Class = DFrame
+DataFrame with 23525 rows and 6 columns
+      seqnames     start       end    strand        name       idx
+         <Rle> <integer> <integer> <integer> <character> <integer>
+1         chr1     69091     70008         1       OR4F5         1
+2         chr1    817371    819837         1      FAM87B         2
+3         chr1    825138    859446         1   LINC01128         3
+4         chr1    827522    826206         2   LINC00115         4
+5         chr1    876903    868071         2      FAM41C         5
+...        ...       ...       ...       ...         ...       ...
+23521     chrX 155264589 155258241         2      RAB39B       923
+23522     chrX 155334657 155276211         2       CLIC2       924
+23523     chrX 155380787 155381134         1      H2AFB1       925
+23524     chrX 155382115 155383230         1        F8A2       926
+23525     chrX 155669944 155490115         2       TMLHE       927
+
+2023-11-14 08:20:14.467012 : Getting GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.004 mins elapsed.
+
+2023-11-14 08:20:31.891275 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 23525, nCols = 3534
+mat SRR13927736: NonZeroEntries = 39003616, EntryRange = [ 8.77627031078293e-05 , 770.387276519725 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                     .                             .          
+[2,]                     .                             .          
+[3,]                     0.07845381                    0.028344539
+[4,]                     0.01395289                    0.008499189
+[5,]                     .                             .          
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                     .                              .         
+[2,]                     .                              .         
+[3,]                     0.06535130                     0.06576222
+[4,]                     0.01810177                     0.01315728
+[5,]                     .                              .         
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                    .          
+[2,]                    .          
+[3,]                    0.016229526
+[4,]                    0.003862592
+[5,]                    .          
+
+
+2023-11-14 08:20:32.208107 : Organizing SE GeneIntegrationMatrix from ArrowFile : SRR13927736.arrow, 0.3 mins elapsed.
+
+2023-11-14 08:20:32.478863 : se SRR13927736, Class = SummarizedExperiment
+class: SummarizedExperiment 
+dim: 23525 3534 
+metadata(0):
+assays(1): GeneIntegrationMatrix
+rownames: NULL
+rowData names(6): seqnames start ... name idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:20:32.483757 : Completed GeneIntegrationMatrix : SRR13927736(4 of 4), 1.444 mins elapsed.
+2023-11-14 08:20:32.484817 : Organizing colData, 1.444 mins elapsed.
+2023-11-14 08:20:32.62989 : Organizing rowData, 1.447 mins elapsed.
+2023-11-14 08:20:32.633138 : Organizing rowRanges, 1.447 mins elapsed.
+2023-11-14 08:20:32.638663 : Organizing Assays (1 of 1), 1.447 mins elapsed.
+2023-11-14 08:20:41.927447 : Constructing SummarizedExperiment, 1.602 mins elapsed.
+2023-11-14 08:20:44.655792 : Finished Matrix Creation, 1.647 mins elapsed.
+
+2023-11-14 08:20:44.668539 : getMatrixFromProject Input-Parameters, Class = list
+
+getMatrixFromProject Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromProject Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromProject Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromProject Input-Parameters$verbose: length = 1
+[1] TRUE
+
+
+getMatrixFromProject Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromProject Input-Parameters$threads: length = 1
+[1] 1
+
+
+getMatrixFromProject Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+2023-11-14 08:20:46.811227 : Reading PeakMatrix : SRR13927737(1 of 4), 0.036 mins elapsed.
+
+2023-11-14 08:20:46.839305 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927737 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927737.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 4439
+[1] "SRR13927737#GTCACGGGTCAACAGG-1" "SRR13927737#TGCCTGTTCTTACTCA-1"
+[3] "SRR13927737#TTGCGGGTCAGGTCTA-1" "SRR13927737#GGTTGCGCAAAGCTTC-1"
+[5] "SRR13927737#CTTAATCTCGCGCTGA-1" "SRR13927737#TGTACGATCGGAAAGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:20:47.370255 : featureDF SRR13927737, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 08:20:47.442056 : Getting PeakMatrix from ArrowFile : SRR13927737.arrow, 0.01 mins elapsed.
+
+2023-11-14 08:21:00.364377 : mat SRR13927737, Class = dgCMatrix
+mat SRR13927737: nRows = 210721, nCols = 4439
+mat SRR13927737: NonZeroEntries = 29963541, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927737#GTCACGGGTCAACAGG-1 SRR13927737#TGCCTGTTCTTACTCA-1
+[1,]                              .                              .
+[2,]                              .                              2
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927737#TTGCGGGTCAGGTCTA-1 SRR13927737#GGTTGCGCAAAGCTTC-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              2                              .
+[4,]                              .                              .
+[5,]                              4                              .
+     SRR13927737#CTTAATCTCGCGCTGA-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 08:21:00.605284 : Organizing SE PeakMatrix from ArrowFile : SRR13927737.arrow, 0.229 mins elapsed.
+
+2023-11-14 08:21:00.905508 : se SRR13927737, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 4439 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(4439): SRR13927737#GTCACGGGTCAACAGG-1
+  SRR13927737#TGCCTGTTCTTACTCA-1 ... SRR13927737#TTGCTATAGATGTTCC-1
+  SRR13927737#GCTCACTAGTTAGCGG-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:21:00.938643 : Completed PeakMatrix : SRR13927737(1 of 4), 0.271 mins elapsed.
+2023-11-14 08:21:00.939086 : Reading PeakMatrix : SRR13927738(2 of 4), 0.271 mins elapsed.
+
+2023-11-14 08:21:00.95168 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927738 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927738.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3736
+[1] "SRR13927738#TAGCATGAGGCTAAAT-1" "SRR13927738#TGTTAGGTCGGTCAGC-1"
+[3] "SRR13927738#CTCTCAGCATGTCCCT-1" "SRR13927738#ACTATTCGTCCAACCG-1"
+[5] "SRR13927738#TGGTCCTTCTACTGCC-1" "SRR13927738#ATTGTCTAGACTAGGC-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:21:01.278755 : featureDF SRR13927738, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 08:21:01.319089 : Getting PeakMatrix from ArrowFile : SRR13927738.arrow, 0.006 mins elapsed.
+
+2023-11-14 08:21:25.02217 : mat SRR13927738, Class = dgCMatrix
+mat SRR13927738: nRows = 210721, nCols = 3736
+mat SRR13927738: NonZeroEntries = 30165921, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927738#TAGCATGAGGCTAAAT-1 SRR13927738#TGTTAGGTCGGTCAGC-1
+[1,]                              2                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927738#CTCTCAGCATGTCCCT-1 SRR13927738#ACTATTCGTCCAACCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              2                              .
+     SRR13927738#TGGTCCTTCTACTGCC-1
+[1,]                              .
+[2,]                              .
+[3,]                              2
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 08:21:25.267001 : Organizing SE PeakMatrix from ArrowFile : SRR13927738.arrow, 0.405 mins elapsed.
+
+2023-11-14 08:21:25.555339 : se SRR13927738, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3736 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3736): SRR13927738#TAGCATGAGGCTAAAT-1
+  SRR13927738#TGTTAGGTCGGTCAGC-1 ... SRR13927738#GCTCCTATCCGTGCGA-1
+  SRR13927738#GGCACGTAGTCGATAA-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:21:25.562651 : Completed PeakMatrix : SRR13927738(2 of 4), 0.682 mins elapsed.
+2023-11-14 08:21:25.563078 : Reading PeakMatrix : SRR13927735(3 of 4), 0.682 mins elapsed.
+
+2023-11-14 08:21:25.576284 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927735 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927735.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3813
+[1] "SRR13927735#TTATGTCTCCAGGTAT-1" "SRR13927735#TATTGCTCATCAGAAA-1"
+[3] "SRR13927735#TTCGATTGTAGGGTTG-1" "SRR13927735#CATTCATTCGGATGTT-1"
+[5] "SRR13927735#ACGTTAGGTCAACTGT-1" "SRR13927735#AAATGCCCAGCAATGG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:21:25.840976 : featureDF SRR13927735, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 08:21:25.884959 : Getting PeakMatrix from ArrowFile : SRR13927735.arrow, 0.005 mins elapsed.
+
+2023-11-14 08:21:37.088665 : mat SRR13927735, Class = dgCMatrix
+mat SRR13927735: nRows = 210721, nCols = 3813
+mat SRR13927735: NonZeroEntries = 26038084, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927735#TTATGTCTCCAGGTAT-1 SRR13927735#TATTGCTCATCAGAAA-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#TTCGATTGTAGGGTTG-1 SRR13927735#CATTCATTCGGATGTT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927735#ACGTTAGGTCAACTGT-1
+[1,]                              2
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 08:21:37.264688 : Organizing SE PeakMatrix from ArrowFile : SRR13927735.arrow, 0.195 mins elapsed.
+
+2023-11-14 08:21:37.553277 : se SRR13927735, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3813 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3813): SRR13927735#TTATGTCTCCAGGTAT-1
+  SRR13927735#TATTGCTCATCAGAAA-1 ... SRR13927735#GATCATGGTGTTGTTG-1
+  SRR13927735#GTCCATCCATTTCACT-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:21:37.5606 : Completed PeakMatrix : SRR13927735(3 of 4), 0.882 mins elapsed.
+2023-11-14 08:21:37.561035 : Reading PeakMatrix : SRR13927736(4 of 4), 0.882 mins elapsed.
+
+2023-11-14 08:21:37.573837 : getMatrixFromArrow Input-Parameters, Class = list
+
+getMatrixFromArrow Input-Parameters$ArrowFile: length = 1
+                                                                              SRR13927736 
+"/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/ArrowFiles/SRR13927736.arrow" 
+
+
+getMatrixFromArrow Input-Parameters$useMatrix: length = 1
+[1] "PeakMatrix"
+
+
+getMatrixFromArrow Input-Parameters$useSeqnames: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$excludeChr: length = 0
+NULL
+
+
+getMatrixFromArrow Input-Parameters$cellNames: length = 3534
+[1] "SRR13927736#GCTGTTCTCCTTGACC-1" "SRR13927736#AGTTACGAGTAGGTCG-1"
+[3] "SRR13927736#AGTTTGGAGCATTCCA-1" "SRR13927736#GCACGGTTCGGCAATT-1"
+[5] "SRR13927736#TCAGCTCTCTCTATTG-1" "SRR13927736#CCTTAATTCTACTTTG-1"
+
+
+getMatrixFromArrow Input-Parameters$ArchRProj: length = 1
+
+getMatrixFromArrow Input-Parameters$verbose: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$binarize: length = 1
+[1] FALSE
+
+
+getMatrixFromArrow Input-Parameters$logFile: length = 1
+[1] "x"
+
+
+
+2023-11-14 08:21:37.854557 : featureDF SRR13927736, Class = DFrame
+DataFrame with 210721 rows and 4 columns
+       seqnames       idx     start       end
+          <Rle> <integer> <integer> <integer>
+1          chr1         1    804677    805177
+2          chr1         2    811866    812366
+3          chr1         3    817090    817590
+4          chr1         4    818831    819331
+5          chr1         5    826543    827043
+...         ...       ...       ...       ...
+210717     chrX      5777 155898525 155899025
+210718     chrX      5778 155899804 155900304
+210719     chrX      5779 155956608 155957108
+210720     chrX      5780 155966827 155967327
+210721     chrX      5781 155971625 155972125
+
+2023-11-14 08:21:37.897677 : Getting PeakMatrix from ArrowFile : SRR13927736.arrow, 0.005 mins elapsed.
+
+2023-11-14 08:21:48.07122 : mat SRR13927736, Class = dgCMatrix
+mat SRR13927736: nRows = 210721, nCols = 3534
+mat SRR13927736: NonZeroEntries = 25583439, EntryRange = [ 1 , 4 ]
+5 x 5 sparse Matrix of class "dgCMatrix"
+     SRR13927736#GCTGTTCTCCTTGACC-1 SRR13927736#AGTTACGAGTAGGTCG-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              .                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#AGTTTGGAGCATTCCA-1 SRR13927736#GCACGGTTCGGCAATT-1
+[1,]                              .                              .
+[2,]                              .                              .
+[3,]                              1                              .
+[4,]                              .                              .
+[5,]                              .                              .
+     SRR13927736#TCAGCTCTCTCTATTG-1
+[1,]                              .
+[2,]                              .
+[3,]                              .
+[4,]                              .
+[5,]                              .
+
+
+2023-11-14 08:21:48.274805 : Organizing SE PeakMatrix from ArrowFile : SRR13927736.arrow, 0.178 mins elapsed.
+
+2023-11-14 08:21:48.548519 : se SRR13927736, Class = RangedSummarizedExperiment
+class: RangedSummarizedExperiment 
+dim: 210721 3534 
+metadata(0):
+assays(1): PeakMatrix
+rownames: NULL
+rowData names(1): idx
+colnames(3534): SRR13927736#GCTGTTCTCCTTGACC-1
+  SRR13927736#AGTTACGAGTAGGTCG-1 ... SRR13927736#TAAACCGCAAGTCTGT-1
+  SRR13927736#TGCATTTGTTCTACCC-1
+colData names(21): BlacklistRatio NucleosomeRatio ... ReadsInPeaks FRIP
+
+2023-11-14 08:21:48.555337 : Completed PeakMatrix : SRR13927736(4 of 4), 1.065 mins elapsed.
+2023-11-14 08:21:48.556258 : Organizing colData, 1.065 mins elapsed.
+2023-11-14 08:21:48.700895 : Organizing rowData, 1.067 mins elapsed.
+2023-11-14 08:21:48.709363 : Organizing rowRanges, 1.067 mins elapsed.
+2023-11-14 08:21:48.720807 : Organizing Assays (1 of 1), 1.068 mins elapsed.
+2023-11-14 08:21:52.051728 : Constructing SummarizedExperiment, 1.123 mins elapsed.
+2023-11-14 08:22:08.945223 : Finished Matrix Creation, 1.405 mins elapsed.

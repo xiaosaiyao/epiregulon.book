@@ -2,23 +2,6 @@
 
 This tutorial walks through an example of TF activity inference in unpaired scATACseq/scRNAseq of parental LNCaP cells treated with DMSO, Enzalutamide and Enza resistant cells. The dataset was taken from [Taavitsainen et al](https://www.nature.com/articles/s41467-021-25624-1) [GSE168667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168667) and [GSE168668](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168668).
 
-## Installation
-
-Epiregulon is currently available on R/dev
-
-```{r, results = "hide", warning = FALSE, message = FALSE, echo = FALSE}
-library(epiregulon)
-library(ArchR, quietly = TRUE)
-```
-
-Alternatively, you could install from gitlab
-
-```{r setup_prostate, message=FALSE, eval=FALSE}
-devtools::install_github(repo='xiaosaiyao/epiregulon')
-
-library(epiregulon)
-```
-
 ## Data preparation
 
 
@@ -34,6 +17,7 @@ b. For multiome data, use addGeneExpressionMatrix. See [multiome](https://greenl
 ### Load ArchR project
 Copy this ArchR project into your own directory
 ```{r, message = FALSE}
+library(ArchR, quietly = TRUE)
 archR_project_path <- "/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/"
 proj <- loadArchRProject(path = archR_project_path, showLogo = FALSE)
 
@@ -81,6 +65,7 @@ If we extract the gene expression from matrix, it will be in the form of RangedS
 We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to SingleCellExperiment object.
 It's also important to note that gene expression from ArchR is library size normalized. We further transform it to logcounts by adding a pseudocount of 1 and taking log2.
 ```{r}
+library(epiregulon)
 GeneExpressionMatrix <- ArchRMatrix2SCE(GeneExpressionMatrix)
 rownames(GeneExpressionMatrix) <- rowData(GeneExpressionMatrix)$name
 assay(GeneExpressionMatrix) <- as(log2(assay(GeneExpressionMatrix)+1), "CsparseMatrix")
@@ -168,7 +153,7 @@ head(regulon)
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                peakMatrix = PeakMatrix,
                                exp_assay = "counts",
-                               peak_assay = "PeakMatrix",
+                               peak_assay = "counts",
                                test = "chi.sq",
                                regulon = regulon,
                                clusters = GeneExpressionMatrix$Sample,
@@ -224,14 +209,14 @@ regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
                         exp_assay = "counts",
                         peakMatrix = PeakMatrix,
-                        peak_assay = "PeakMatrix",
+                        peak_assay = "counts",
                         clusters = GeneExpressionMatrix$Sample,
                         method = "wilcoxon")
 regulon.w.corr <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
                         exp_assay = "counts",
                         peakMatrix = PeakMatrix,
-                        peak_assay = "PeakMatrix",
+                        peak_assay = "counts",
                         clusters = GeneExpressionMatrix$Sample,
                         method = "corr")
 
@@ -239,7 +224,7 @@ regulon.w.corr.re <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
                         exp_assay = "counts",
                         peakMatrix = PeakMatrix,
-                        peak_assay = "PeakMatrix",
+                        peak_assay = "counts",
                         clusters = GeneExpressionMatrix$Sample,
                         method = "corr",
                         tf_re.merge = TRUE)
@@ -361,7 +346,7 @@ plotHeatmapRegulon(sce=GeneExpressionMatrix,
                    downsample=1000,
                    cell_attributes="label",
                    col_gap="label",
-                   exprs_values="logcounts",
+                   exprs_values="counts",
                    name="regulon heatmap")
 ```
 
@@ -426,4 +411,10 @@ plotGseaNetwork(tf = names(enrichresults),
                 enrichresults = enrichresults, 
                 p.adj_cutoff = 0.1, 
                 ntop_pathways = 10)
+```
+
+## Session Info
+
+```{r}
+sessionInfo()
 ```
