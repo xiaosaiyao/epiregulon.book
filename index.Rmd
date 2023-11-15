@@ -7,9 +7,9 @@ documentclass: book
 bibliography:
 - book.bib
 - packages.bib
-description: |
-  This book presents the Epiregulon package. We provide the tutorials showing different
-  scenarions in which the package can be usd to analyse single-cell data. 
+description: "This book presents the Epiregulon package. We provide the tutorials
+  showing different\nscenarions in which the package can be usd to analyse single-cell
+  data. \n"
 link-citations: yes
 github-repo: "rstudio/bookdown-demo"
 ---
