@@ -1,4 +1,6 @@
-delete_merged_file: true
-language:
-  ui:
-    chapter_name: "Chapter "
+book_filename: "Epiregulon documentation"
+rmd_files: ["index.Rmd",
+    "multiome.mae.Rmd",
+    "hematopoeisis.mae.Rmd",
+    "prostate.ENZ.archr.Rmd",
+    "scRNAseq.only.Rmd"]
