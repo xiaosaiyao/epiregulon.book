@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Multiome - ArchR workflow | Epiregulon documentation</title>
+  <meta name="description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Multiome - ArchR workflow | Epiregulon documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Multiome - ArchR workflow | Epiregulon documentation" />
+  
+  <meta name="twitter:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  
+
+<meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
+
+
+<meta name="date" content="2023-11-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="installation.html"/>
+<link rel="next" href="hematopoeisis-tutorial---mae.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Epiregulon documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a></li>
+<li class="chapter" data-level="2" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html"><i class="fa fa-check"></i><b>2</b> Multiome - ArchR workflow</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#data-preparation"><i class="fa fa-check"></i><b>2.1</b> Data preparation</a></li>
+<li class="chapter" data-level="2.2" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#quick-start"><i class="fa fa-check"></i><b>2.2</b> Quick start</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#retrieve-bulk-tf-chip-seq-binding-sites"><i class="fa fa-check"></i><b>2.2.1</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="2.2.2" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#link-atac-seq-peaks-to-target-genes"><i class="fa fa-check"></i><b>2.2.2</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="2.2.3" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#add-tf-motif-binding-to-peaks"><i class="fa fa-check"></i><b>2.2.3</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="2.2.4" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#generate-regulons"><i class="fa fa-check"></i><b>2.2.4</b> Generate regulons</a></li>
+<li class="chapter" data-level="2.2.5" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#network-pruning-highly-recommended"><i class="fa fa-check"></i><b>2.2.5</b> Network pruning (highly recommended)</a></li>
+<li class="chapter" data-level="2.2.6" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#add-weights"><i class="fa fa-check"></i><b>2.2.6</b> Add Weights</a></li>
+<li class="chapter" data-level="2.2.7" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>2.2.7</b> (Optional) Annotate with TF motifs</a></li>
+<li class="chapter" data-level="2.2.8" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#calculate-tf-activity"><i class="fa fa-check"></i><b>2.2.8</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="2.2.9" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#perform-differential-activity"><i class="fa fa-check"></i><b>2.2.9</b> Perform differential activity</a></li>
+<li class="chapter" data-level="2.2.10" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#visualize-the-results"><i class="fa fa-check"></i><b>2.2.10</b> Visualize the results</a></li>
+<li class="chapter" data-level="2.2.11" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#differential-networks"><i class="fa fa-check"></i><b>2.2.11</b> Differential networks</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="multiome---archr-workflow.html"><a href="multiome---archr-workflow.html#session-info"><i class="fa fa-check"></i><b>2.3</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html"><i class="fa fa-check"></i><b>3</b> Hematopoeisis tutorial - MAE</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#data-preparation-1"><i class="fa fa-check"></i><b>3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="3.2" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#quick-start-1"><i class="fa fa-check"></i><b>3.2</b> Quick start</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>3.2.1</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="3.2.2" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#link-atacseq-peaks-to-target-genes"><i class="fa fa-check"></i><b>3.2.2</b> Link ATACseq peaks to target genes</a></li>
+<li class="chapter" data-level="3.2.3" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>3.2.3</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="3.2.4" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#generate-regulons-1"><i class="fa fa-check"></i><b>3.2.4</b> Generate regulons</a></li>
+<li class="chapter" data-level="3.2.5" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#prune-network"><i class="fa fa-check"></i><b>3.2.5</b> Prune network</a></li>
+<li class="chapter" data-level="3.2.6" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#add-weights-1"><i class="fa fa-check"></i><b>3.2.6</b> Add Weights</a></li>
+<li class="chapter" data-level="3.2.7" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#calculate-tf-activity-1"><i class="fa fa-check"></i><b>3.2.7</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="3.2.8" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#differential-tf-activity-test"><i class="fa fa-check"></i><b>3.2.8</b> Differential TF activity test</a></li>
+<li class="chapter" data-level="3.2.9" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#visualizing-tf-activities"><i class="fa fa-check"></i><b>3.2.9</b> Visualizing TF activities</a></li>
+<li class="chapter" data-level="3.2.10" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#geneset-enrichment"><i class="fa fa-check"></i><b>3.2.10</b> Geneset enrichment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#differential-network-analysis"><i class="fa fa-check"></i><b>3.3</b> Differential Network analysis</a></li>
+<li class="chapter" data-level="3.4" data-path="hematopoeisis-tutorial---mae.html"><a href="hematopoeisis-tutorial---mae.html#session-info-1"><i class="fa fa-check"></i><b>3.4</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html"><i class="fa fa-check"></i><b>4</b> Prostate cancer cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#data-preparation-2"><i class="fa fa-check"></i><b>4.1</b> Data preparation</a></li>
+<li class="chapter" data-level="4.2" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#quick-start-2"><i class="fa fa-check"></i><b>4.2</b> Quick start</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#retrieve-bulk-tf-chip-seq-binding-sites-2"><i class="fa fa-check"></i><b>4.2.1</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="4.2.2" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>4.2.2</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="4.2.3" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#add-tf-motif-binding-to-peaks-2"><i class="fa fa-check"></i><b>4.2.3</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="4.2.4" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#generate-regulons-2"><i class="fa fa-check"></i><b>4.2.4</b> Generate regulons</a></li>
+<li class="chapter" data-level="4.2.5" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#calculate-tf-activity-2"><i class="fa fa-check"></i><b>4.2.5</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="4.2.6" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>4.2.6</b> Perform differential activity</a></li>
+<li class="chapter" data-level="4.2.7" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#visualize-the-results-1"><i class="fa fa-check"></i><b>4.2.7</b> Visualize the results</a></li>
+<li class="chapter" data-level="4.2.8" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#geneset-enrichment-1"><i class="fa fa-check"></i><b>4.2.8</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="4.2.9" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#network-analysis"><i class="fa fa-check"></i><b>4.2.9</b> Network analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="prostate-cancer-cells.html"><a href="prostate-cancer-cells.html#session-info-2"><i class="fa fa-check"></i><b>4.3</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html"><i class="fa fa-check"></i><b>5</b> Single modality: gene expression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html#load-regulon"><i class="fa fa-check"></i><b>5.1</b> Load regulon</a></li>
+<li class="chapter" data-level="5.2" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>5.2</b> Load scRNA-seq data</a></li>
+<li class="chapter" data-level="5.3" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html#calculate-activity"><i class="fa fa-check"></i><b>5.3</b> Calculate activity</a></li>
+<li class="chapter" data-level="5.4" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html#perform-differential-activity-2"><i class="fa fa-check"></i><b>5.4</b> Perform differential activity</a></li>
+<li class="chapter" data-level="5.5" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html#visualize-activity"><i class="fa fa-check"></i><b>5.5</b> Visualize activity</a></li>
+<li class="chapter" data-level="5.6" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html#pathway-enrichment"><i class="fa fa-check"></i><b>5.6</b> Pathway enrichment</a></li>
+<li class="chapter" data-level="5.7" data-path="single-modality-gene-expression.html"><a href="single-modality-gene-expression.html#session-info-3"><i class="fa fa-check"></i><b>5.7</b> Session Info</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Epiregulon documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multiome---archr-workflow" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Multiome - ArchR workflow<a href="multiome---archr-workflow.html#multiome---archr-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter we are going to walk through the same dataset used in the “multiome tutorial - archR workflow”. This is a dataset generated by infecting LNCaP cells with NKX2-1 and GATA6 to examine the effects of these TFs on AR activity.</p>
+<div id="data-preparation" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Data preparation<a href="multiome---archr-workflow.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Single cell preprocessing needs to performed by user’s favorite methods prior to using Epiregulon. The following components are required: <br>
+1. Peak matrix from scATAC-seq <br>
+2. Gene expression matrix from either paired or unpaired scRNA-seq. RNA-seq integration needs to be performed for unpaired dataset. <br>
+3. Dimensionality reduction matrix from with either single modalities or joint scRNA-seq and scATAC-seq <br></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="multiome---archr-workflow.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the MAE object</span></span>
+<span id="cb3-2"><a href="multiome---archr-workflow.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scMultiome)</span>
+<span id="cb3-3"><a href="multiome---archr-workflow.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="multiome---archr-workflow.html#cb3-4" aria-hidden="true" tabindex="-1"></a>mae <span class="ot">&lt;-</span> scMultiome<span class="sc">::</span><span class="fu">reprogramSeq</span>()</span></code></pre></div>
+<pre><code>## snapshotDate(): 2023-10-24</code></pre>
+<pre><code>## see ?scMultiome and browseVignettes(&#39;scMultiome&#39;) for documentation</code></pre>
+<pre><code>## loading from cache</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="multiome---archr-workflow.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># peak matrix</span></span>
+<span id="cb7-2"><a href="multiome---archr-workflow.html#cb7-2" aria-hidden="true" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;PeakMatrix&quot;</span>]]</span>
+<span id="cb7-3"><a href="multiome---archr-workflow.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="multiome---archr-workflow.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># expression matrix</span></span>
+<span id="cb7-5"><a href="multiome---archr-workflow.html#cb7-5" aria-hidden="true" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;GeneExpressionMatrix&quot;</span>]]</span>
+<span id="cb7-6"><a href="multiome---archr-workflow.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(GeneExpressionMatrix)<span class="sc">$</span>name</span>
+<span id="cb7-7"><a href="multiome---archr-workflow.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">assay</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">as</span>(<span class="fu">log2</span>(<span class="fu">assay</span>(GeneExpressionMatrix)<span class="sc">+</span><span class="dv">1</span>), <span class="st">&quot;CsparseMatrix&quot;</span>)</span>
+<span id="cb7-8"><a href="multiome---archr-workflow.html#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="multiome---archr-workflow.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># dimensional reduction matrix</span></span>
+<span id="cb7-10"><a href="multiome---archr-workflow.html#cb7-10" aria-hidden="true" tabindex="-1"></a>reducedDimMatrix <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(mae[[<span class="st">&#39;TileMatrix500&#39;</span>]], <span class="st">&quot;LSI_ATAC&quot;</span>)</span></code></pre></div>
+<p>Visualize singleCellExperiment by UMAP</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="multiome---archr-workflow.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transfer UMAP_combined from TileMatrix to GeneExpressionMatrix</span></span>
+<span id="cb8-2"><a href="multiome---archr-workflow.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;UMAP_Combined&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(mae[[<span class="st">&#39;TileMatrix500&#39;</span>]], <span class="st">&quot;UMAP_Combined&quot;</span>)</span>
+<span id="cb8-3"><a href="multiome---archr-workflow.html#cb8-3" aria-hidden="true" tabindex="-1"></a>scater<span class="sc">::</span><span class="fu">plotReducedDim</span>(GeneExpressionMatrix, </span>
+<span id="cb8-4"><a href="multiome---archr-workflow.html#cb8-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dimred =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb8-5"><a href="multiome---archr-workflow.html#cb8-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">text_by =</span> <span class="st">&quot;Clusters&quot;</span>, </span>
+<span id="cb8-6"><a href="multiome---archr-workflow.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">colour_by =</span> <span class="st">&quot;Clusters&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="quick-start" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Quick start<a href="multiome---archr-workflow.html#quick-start" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="retrieve-bulk-tf-chip-seq-binding-sites" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Retrieve bulk TF ChIP-seq binding sites<a href="multiome---archr-workflow.html#retrieve-bulk-tf-chip-seq-binding-sites" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq, which are hosted on Genomitory. Currently, human genomes HG19 and HG38 and mouse mm10 are available.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="multiome---archr-workflow.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiregulon)</span>
+<span id="cb9-2"><a href="multiome---archr-workflow.html#cb9-2" aria-hidden="true" tabindex="-1"></a>grl <span class="ot">&lt;-</span> <span class="fu">getTFMotifInfo</span>(<span class="at">genome =</span> <span class="st">&quot;hg38&quot;</span>)</span></code></pre></div>
+<pre><code>## snapshotDate(): 2023-10-24</code></pre>
+<pre><code>## see ?scMultiome and browseVignettes(&#39;scMultiome&#39;) for documentation</code></pre>
+<pre><code>## loading from cache</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="multiome---archr-workflow.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(grl)</span></code></pre></div>
+<pre><code>## GRangesList object of length 6:
+## $`5-hmC`
+## GRanges object with 24048 ranges and 0 metadata columns:
+##           seqnames            ranges strand
+##              &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt;
+##       [1]     chr1       10000-10685      *
+##       [2]     chr1       13362-13694      *
+##       [3]     chr1       29631-29989      *
+##       [4]     chr1       40454-40754      *
+##       [5]     chr1     135395-135871      *
+##       ...      ...               ...    ...
+##   [24044]     chrY 56864377-56864627      *
+##   [24045]     chrY 56876124-56876182      *
+##   [24046]     chrM           84-2450      *
+##   [24047]     chrM       13613-14955      *
+##   [24048]     chrM       15134-16490      *
+##   -------
+##   seqinfo: 25 sequences from an unspecified genome; no seqlengths
+## 
+## ...
+## &lt;5 more elements&gt;</code></pre>
+</div>
+<div id="link-atac-seq-peaks-to-target-genes" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Link ATAC-seq peaks to target genes<a href="multiome---archr-workflow.html#link-atac-seq-peaks-to-target-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Next, we compute peak to gene correlations using a custom algorithm that has similar performance to ArchR’s P2G function.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="multiome---archr-workflow.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1010</span>)</span>
+<span id="cb15-2"><a href="multiome---archr-workflow.html#cb15-2" aria-hidden="true" tabindex="-1"></a>p2g <span class="ot">&lt;-</span> <span class="fu">calculateP2G</span>(<span class="at">peakMatrix =</span> PeakMatrix, </span>
+<span id="cb15-3"><a href="multiome---archr-workflow.html#cb15-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">expMatrix =</span> GeneExpressionMatrix, </span>
+<span id="cb15-4"><a href="multiome---archr-workflow.html#cb15-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">reducedDim =</span> reducedDimMatrix,</span>
+<span id="cb15-5"><a href="multiome---archr-workflow.html#cb15-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>)</span></code></pre></div>
+<pre><code>## Using epiregulon to compute peak to gene links...</code></pre>
+<pre><code>## performing k means clustering to form metacells</code></pre>
+<pre><code>## Computing correlation</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="multiome---archr-workflow.html#cb19-1" aria-hidden="true" tabindex="-1"></a>p2g</span></code></pre></div>
+<pre><code>## DataFrame with 30181 rows and 8 columns
+##         idxATAC         chr     start       end    idxRNA     target Correlation  distance
+##       &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;    &lt;array&gt;    &lt;matrix&gt; &lt;integer&gt;
+## 1             2        chr1    818831    819331        14 AL669831.2    0.521484     57721
+## 2             5        chr1    858735    859235        17  LINC01128    0.649037     30938
+## 3             5        chr1    858735    859235        22 AL645608.4    0.559331     52934
+## 4            10        chr1    920987    921487        28      PERM1    0.528659     57540
+## 5            17        chr1    942448    942948        28      PERM1    0.689034     36079
+## ...         ...         ...       ...       ...       ...        ...         ...       ...
+## 30177    126568        chrX 154534816 154535316     36407      IKBKG    0.622140      4926
+## 30178    126570        chrX 154541878 154542378     36406       G6PD    0.560829      2466
+## 30179    126571        chrX 154542392 154542892     36407      IKBKG    0.556282         0
+## 30180    126590        chrX 155228844 155229344     36426      CLIC2    0.627319    103268
+## 30181    126590        chrX 155228844 155229344     36427 AC234781.1    0.613156    120580</code></pre>
+</div>
+<div id="add-tf-motif-binding-to-peaks" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Add TF motif binding to peaks<a href="multiome---archr-workflow.html#add-tf-motif-binding-to-peaks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The next step is to add the TF binding information by overlapping regions of the peak matrix with the bulk chip-seq database loaded in 2. The user can supply either an archR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a Granges object or RangedSummarizedExperiment.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="multiome---archr-workflow.html#cb21-1" aria-hidden="true" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">addTFMotifInfo</span>(<span class="at">grl =</span> grl, <span class="at">p2g =</span> p2g, <span class="at">peakMatrix =</span> PeakMatrix)</span></code></pre></div>
+<pre><code>## Computing overlap...</code></pre>
+<pre><code>## Success!</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="multiome---archr-workflow.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(overlap)</span></code></pre></div>
+<pre><code>##     idxATAC idxTF           tf
+## 145       2     2         5-mC
+## 146       2    25           AR
+## 147       2   260 Epitope tags
+## 148       2   710         NFYB
+## 149       2   743        NR3C1
+## 150       2   798          PGR</code></pre>
+</div>
+<div id="generate-regulons" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Generate regulons<a href="multiome---archr-workflow.html#generate-regulons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A long format dataframe, representing the inferred regulons, is then generated. The dataframe consists of three columns:</p>
+<ul>
+<li>tf (transcription factor)</li>
+<li>target gene</li>
+<li>peak to gene correlation between tf and target gene</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="multiome---archr-workflow.html#cb26-1" aria-hidden="true" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> <span class="fu">getRegulon</span>(<span class="at">p2g =</span> p2g, <span class="at">overlap =</span> overlap, <span class="at">aggregate =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-2"><a href="multiome---archr-workflow.html#cb26-2" aria-hidden="true" tabindex="-1"></a>regulon</span></code></pre></div>
+<pre><code>## DataFrame with 4402893 rows and 10 columns
+##           idxATAC         chr     start       end    idxRNA      target  distance     idxTF           tf     corr
+##         &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt;  &lt;character&gt; &lt;matrix&gt;
+## 1               2        chr1    818831    819331        14  AL669831.2     57721         2         5-mC 0.521484
+## 2               2        chr1    818831    819331        14  AL669831.2     57721        25           AR 0.521484
+## 3               2        chr1    818831    819331        14  AL669831.2     57721       260 Epitope tags 0.521484
+## 4               2        chr1    818831    819331        14  AL669831.2     57721       710         NFYB 0.521484
+## 5               2        chr1    818831    819331        14  AL669831.2     57721       743        NR3C1 0.521484
+## ...           ...         ...       ...       ...       ...         ...       ...       ...          ...      ...
+## 4402889    126590        chrX 155228844 155229344     36426       CLIC2    103268       329        GATA2 0.627319
+## 4402890    126590        chrX 155228844 155229344     36426       CLIC2    103268      1044        SUMO2 0.627319
+## 4402891    126590        chrX 155228844 155229344     36427  AC234781.1    120580       296        FOXA1 0.613156
+## 4402892    126590        chrX 155228844 155229344     36427  AC234781.1    120580       329        GATA2 0.613156
+## 4402893    126590        chrX 155228844 155229344     36427  AC234781.1    120580      1044        SUMO2 0.613156</code></pre>
+</div>
+<div id="network-pruning-highly-recommended" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Network pruning (highly recommended)<a href="multiome---archr-workflow.html#network-pruning-highly-recommended" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor (TF), regulatory element (RE) and target gene (TG) vs the expected number of cells if TF/RE and TG are independently expressed. We implement two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is P(TF, RE) * P(TG), and the number of trials is the total number of cells, and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also P(TF, RE) * P(TG) and the probability otherwise is 1- P(TF, RE) * P(TG). The observed cell count for the active category is the number of cells jointly expressing all three elements, and the cell count for the inactive category is n - n_triple.</p>
+<p>We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="multiome---archr-workflow.html#cb28-1" aria-hidden="true" tabindex="-1"></a>pruned.regulon <span class="ot">&lt;-</span> <span class="fu">pruneRegulon</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb28-2"><a href="multiome---archr-workflow.html#cb28-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb28-3"><a href="multiome---archr-workflow.html#cb28-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb28-4"><a href="multiome---archr-workflow.html#cb28-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb28-5"><a href="multiome---archr-workflow.html#cb28-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">test =</span> <span class="st">&quot;chi.sq&quot;</span>,</span>
+<span id="cb28-6"><a href="multiome---archr-workflow.html#cb28-6" aria-hidden="true" tabindex="-1"></a>                               regulon,</span>
+<span id="cb28-7"><a href="multiome---archr-workflow.html#cb28-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters,</span>
+<span id="cb28-8"><a href="multiome---archr-workflow.html#cb28-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">prune_value =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb28-9"><a href="multiome---archr-workflow.html#cb28-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">regulon_cutoff =</span> <span class="fl">0.05</span></span>
+<span id="cb28-10"><a href="multiome---archr-workflow.html#cb28-10" aria-hidden="true" tabindex="-1"></a>                               )</span>
+<span id="cb28-11"><a href="multiome---archr-workflow.html#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="multiome---archr-workflow.html#cb28-12" aria-hidden="true" tabindex="-1"></a>pruned.regulon</span></code></pre></div>
+</div>
+<div id="add-weights" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Add Weights<a href="multiome---archr-workflow.html#add-weights" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While the `pruneRegulon’ function provides statistics on the joint occurrence of TF-RE-TG, we would like to further estimate the strength of regulation. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity. Epiregulon estimates the regulatory potential using one of the four measures: 1) correlation between TF and target gene expression, 2) mutual information between the TF and target gene expression, 3) Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs cells that do not, or 4) log 2 fold difference of target gene expression in cells jointly expressing all 3 elements vs cells that do not.</p>
+<p>Three measures (correlation, Wilcoxon statistics and log 2 fold difference) give both the magnitude and directionality of changes whereas mutational information is always positive. The correlation and mutual information statistics are computed on the grouped pseudobulks by user-supplied cluster labels, whereas the Wilcoxon and log fold change group cells based on the joint expression of TF, RE and TG in each single cell.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="multiome---archr-workflow.html#cb29-1" aria-hidden="true" tabindex="-1"></a>regulon.w <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb29-2"><a href="multiome---archr-workflow.html#cb29-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">expMatrix  =</span> GeneExpressionMatrix,</span>
+<span id="cb29-3"><a href="multiome---archr-workflow.html#cb29-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">exp_assay  =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb29-4"><a href="multiome---archr-workflow.html#cb29-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb29-5"><a href="multiome---archr-workflow.html#cb29-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb29-6"><a href="multiome---archr-workflow.html#cb29-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters,</span>
+<span id="cb29-7"><a href="multiome---archr-workflow.html#cb29-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">block_factor =</span> <span class="cn">NULL</span>,</span>
+<span id="cb29-8"><a href="multiome---archr-workflow.html#cb29-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">tf_re.merge =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-9"><a href="multiome---archr-workflow.html#cb29-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;corr&quot;</span>)</span>
+<span id="cb29-10"><a href="multiome---archr-workflow.html#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="multiome---archr-workflow.html#cb29-11" aria-hidden="true" tabindex="-1"></a>regulon.w</span></code></pre></div>
+</div>
+<div id="optional-annotate-with-tf-motifs" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> (Optional) Annotate with TF motifs<a href="multiome---archr-workflow.html#optional-annotate-with-tf-motifs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far the gene regulatory network was constructed from TF ChIP-seq exclusively. Some users would prefer to further annotate the regulatory elements with the presence of motifs. We provide an option to annotate peaks with motifs from the Cisbp database. If no motifs are present for this particular factor (as in the case of co-factors or chromatin modifiers), we return NA. If motifs are available for a factor and the RE contains a motif, we return 1. If motifs are available and the RE does not contain a motif, we return 0.</p>
+<p>If the user has already performed motif annotation with ArchR, we could also retrieve the results directly. See <code>?addMotifScore</code></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="multiome---archr-workflow.html#cb30-1" aria-hidden="true" tabindex="-1"></a>regulon.w.motif <span class="ot">&lt;-</span> <span class="fu">addMotifScore</span>(<span class="at">regulon =</span> regulon.w,</span>
+<span id="cb30-2"><a href="multiome---archr-workflow.html#cb30-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">peaks =</span> <span class="fu">rowRanges</span>(PeakMatrix),</span>
+<span id="cb30-3"><a href="multiome---archr-workflow.html#cb30-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">species =</span> <span class="st">&quot;human&quot;</span>,</span>
+<span id="cb30-4"><a href="multiome---archr-workflow.html#cb30-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">genome =</span> <span class="st">&quot;hg38&quot;</span>)</span></code></pre></div>
+<pre><code>## annotating peaks with motifs</code></pre>
+<pre><code>## 
+## Attaching package: &#39;XVector&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:plyr&#39;:
+## 
+##     compact</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Biostrings&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:grid&#39;:
+## 
+##     pattern</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     strsplit</code></pre>
+<pre><code>## 
+## Attaching package: &#39;rtracklayer&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:BiocIO&#39;:
+## 
+##     FileForFormat</code></pre>
+<pre><code>## The following object is masked from &#39;package:AnnotationHub&#39;:
+## 
+##     hubUrl</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="multiome---archr-workflow.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if desired, set weight to 0 if no motif is found</span></span>
+<span id="cb40-2"><a href="multiome---archr-workflow.html#cb40-2" aria-hidden="true" tabindex="-1"></a>regulon.w.motif<span class="sc">$</span>weight[regulon.w.motif<span class="sc">$</span>motif <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
+</div>
+<div id="calculate-tf-activity" class="section level3 hasAnchor" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> Calculate TF activity<a href="multiome---archr-workflow.html#calculate-tf-activity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Finally, the activities for a specific TF in each cell are computed by averaging expressions of target genes linked to the TF weighted by the test statistics of choice, chosen from either correlation, mutual information, Wilcoxon test statistics or log fold change.
+<span class="math display">\[y=\frac{1}{n}\sum_{i=1}^{n} x_i * weights_i\]</span>
+where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
+<span class="math inline">\(n\)</span> is the total number of targets for a TF
+<span class="math inline">\(x_i\)</span> is the log count expression of target i where i in {1,2,…,n}
+<span class="math inline">\(weights_i\)</span> is the weight of TF and target i</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="multiome---archr-workflow.html#cb41-1" aria-hidden="true" tabindex="-1"></a>score.combine <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb41-2"><a href="multiome---archr-workflow.html#cb41-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w, </span>
+<span id="cb41-3"><a href="multiome---archr-workflow.html#cb41-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>, </span>
+<span id="cb41-4"><a href="multiome---archr-workflow.html#cb41-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>, </span>
+<span id="cb41-5"><a href="multiome---archr-workflow.html#cb41-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb41-6"><a href="multiome---archr-workflow.html#cb41-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## calculating TF activity from regulon using weightedmean</code></pre>
+<pre><code>## aggregating regulons...</code></pre>
+<pre><code>## creating weight matrix...</code></pre>
+<pre><code>## calculating activity scores...</code></pre>
+<pre><code>## normalize by the number of targets...</code></pre>
+</div>
+<div id="perform-differential-activity" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Perform differential activity<a href="multiome---archr-workflow.html#perform-differential-activity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="multiome---archr-workflow.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiregulon.extra)</span>
+<span id="cb47-2"><a href="multiome---archr-workflow.html#cb47-2" aria-hidden="true" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findDifferentialActivity</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb47-3"><a href="multiome---archr-workflow.html#cb47-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">groups =</span> GeneExpressionMatrix<span class="sc">$</span>hash_assignment, </span>
+<span id="cb47-4"><a href="multiome---archr-workflow.html#cb47-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb47-5"><a href="multiome---archr-workflow.html#cb47-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
+<span id="cb47-6"><a href="multiome---archr-workflow.html#cb47-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<p>Take the top TFs</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="multiome---archr-workflow.html#cb48-1" aria-hidden="true" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">topgenes =</span> <span class="dv">5</span> )</span></code></pre></div>
+<pre><code>## Using a logFC cutoff of 0.1 for class HTO10_GATA6_UTR</code></pre>
+<pre><code>## Using a logFC cutoff of 0 for class HTO1_FOXA2_v2</code></pre>
+<pre><code>## Using a logFC cutoff of 0.1 for class HTO2_GATA6_v2</code></pre>
+<pre><code>## Using a logFC cutoff of 0 for class HTO3_NKX2.1_v2</code></pre>
+<pre><code>## Using a logFC cutoff of 0 for class HTO4_mFOXA1_v2</code></pre>
+<pre><code>## Using a logFC cutoff of 0 for class HTO5_NeonG_v2</code></pre>
+<pre><code>## Using a logFC cutoff of 0 for class HTO6_hFOXA1_UTR</code></pre>
+<pre><code>## Using a logFC cutoff of 0 for class HTO8_NKX2.1_UTR</code></pre>
+</div>
+<div id="visualize-the-results" class="section level3 hasAnchor" number="2.2.10">
+<h3><span class="header-section-number">2.2.10</span> Visualize the results<a href="multiome---archr-workflow.html#visualize-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First visualize the known differential TFs by bubble plot</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="multiome---archr-workflow.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb57-2"><a href="multiome---archr-workflow.html#cb57-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;NKX2-1&quot;</span>,<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;FOXA2&quot;</span>, <span class="st">&quot;AR&quot;</span>), </span>
+<span id="cb57-3"><a href="multiome---archr-workflow.html#cb57-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>hash_assignment)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/visualization-1.png" width="672" /></p>
+<p>Then visualize the most differential TFs by clusters</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="multiome---archr-workflow.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb58-2"><a href="multiome---archr-workflow.html#cb58-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
+<span id="cb58-3"><a href="multiome---archr-workflow.html#cb58-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>hash_assignment)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Visualize the known differential TFs by violin plot. Note there is no activity calculated for SOX2 because the expression of SOX2 is 0 in all cells.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="multiome---archr-workflow.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb59-2"><a href="multiome---archr-workflow.html#cb59-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;NKX2-1&quot;</span>,<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;FOXA2&quot;</span>, <span class="st">&quot;AR&quot;</span>), </span>
+<span id="cb59-3"><a href="multiome---archr-workflow.html#cb59-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>hash_assignment)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Visualize the known differential TFs by UMAP</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="multiome---archr-workflow.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix, </span>
+<span id="cb60-2"><a href="multiome---archr-workflow.html#cb60-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb60-3"><a href="multiome---archr-workflow.html#cb60-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;NKX2-1&quot;</span>,<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;FOXA2&quot;</span>, <span class="st">&quot;AR&quot;</span>), </span>
+<span id="cb60-4"><a href="multiome---archr-workflow.html#cb60-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb60-5"><a href="multiome---archr-workflow.html#cb60-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;Clusters&quot;</span>, </span>
+<span id="cb60-6"><a href="multiome---archr-workflow.html#cb60-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>, </span>
+<span id="cb60-7"><a href="multiome---archr-workflow.html#cb60-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-7-1.png" width="1152" /></p>
+<p>In contrast, the gene expression of the TFs is very sparse</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="multiome---archr-workflow.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix, </span>
+<span id="cb61-2"><a href="multiome---archr-workflow.html#cb61-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">counts</span>(GeneExpressionMatrix), </span>
+<span id="cb61-3"><a href="multiome---archr-workflow.html#cb61-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;NKX2-1&quot;</span>,<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;FOXA2&quot;</span>, <span class="st">&quot;AR&quot;</span>), </span>
+<span id="cb61-4"><a href="multiome---archr-workflow.html#cb61-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb61-5"><a href="multiome---archr-workflow.html#cb61-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;Clusters&quot;</span>, </span>
+<span id="cb61-6"><a href="multiome---archr-workflow.html#cb61-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>, </span>
+<span id="cb61-7"><a href="multiome---archr-workflow.html#cb61-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb61-8"><a href="multiome---archr-workflow.html#cb61-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">limit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>),</span>
+<span id="cb61-9"><a href="multiome---archr-workflow.html#cb61-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb61-10"><a href="multiome---archr-workflow.html#cb61-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;GEX&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-8-1.png" width="1152" /></p>
+<p>Visualize the gene expression of the regulons by heatmap</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="multiome---archr-workflow.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmapRegulon</span>(<span class="at">sce=</span>GeneExpressionMatrix,</span>
+<span id="cb62-2"><a href="multiome---archr-workflow.html#cb62-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">tfs=</span><span class="fu">c</span>(<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;NKX2-1&quot;</span>),</span>
+<span id="cb62-3"><a href="multiome---archr-workflow.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">regulon=</span>regulon.w,</span>
+<span id="cb62-4"><a href="multiome---archr-workflow.html#cb62-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">regulon_cutoff=</span><span class="fl">0.1</span>,</span>
+<span id="cb62-5"><a href="multiome---archr-workflow.html#cb62-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">downsample=</span><span class="dv">1000</span>,</span>
+<span id="cb62-6"><a href="multiome---archr-workflow.html#cb62-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cell_attributes=</span><span class="st">&quot;Clusters&quot;</span>,</span>
+<span id="cb62-7"><a href="multiome---archr-workflow.html#cb62-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_gap=</span><span class="st">&quot;Clusters&quot;</span>,</span>
+<span id="cb62-8"><a href="multiome---archr-workflow.html#cb62-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">exprs_values=</span><span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb62-9"><a href="multiome---archr-workflow.html#cb62-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">name=</span><span class="st">&quot;regulon heatmap&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="multiome---archr-workflow.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotHeatmapActivity</span>(<span class="at">activity=</span>score.combine,</span>
+<span id="cb63-2"><a href="multiome---archr-workflow.html#cb63-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sce=</span>GeneExpressionMatrix,</span>
+<span id="cb63-3"><a href="multiome---archr-workflow.html#cb63-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tfs=</span><span class="fu">rownames</span>(score.combine),</span>
+<span id="cb63-4"><a href="multiome---archr-workflow.html#cb63-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">downsample=</span><span class="dv">5000</span>,</span>
+<span id="cb63-5"><a href="multiome---archr-workflow.html#cb63-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">cell_attributes=</span><span class="st">&quot;Clusters&quot;</span>,</span>
+<span id="cb63-6"><a href="multiome---archr-workflow.html#cb63-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_gap=</span><span class="st">&quot;Clusters&quot;</span>,</span>
+<span id="cb63-7"><a href="multiome---archr-workflow.html#cb63-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;Activity&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+### Geneset enrichment</p>
+<p>Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from <a href="http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html">clusterProfiler</a>.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="multiome---archr-workflow.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#retrieve genesets</span></span>
+<span id="cb64-2"><a href="multiome---archr-workflow.html#cb64-2" aria-hidden="true" tabindex="-1"></a>H <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
+<span id="cb64-3"><a href="multiome---archr-workflow.html#cb64-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb64-4"><a href="multiome---archr-workflow.html#cb64-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;H&quot;</span>, </span>
+<span id="cb64-5"><a href="multiome---archr-workflow.html#cb64-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span></code></pre></div>
+<pre><code>## Using cached version from 2023-11-17 18:29:09</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="multiome---archr-workflow.html#cb66-1" aria-hidden="true" tabindex="-1"></a>C2 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
+<span id="cb66-2"><a href="multiome---archr-workflow.html#cb66-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb66-3"><a href="multiome---archr-workflow.html#cb66-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;C2&quot;</span>,</span>
+<span id="cb66-4"><a href="multiome---archr-workflow.html#cb66-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span></code></pre></div>
+<pre><code>## Using cached version from 2023-11-12 20:06:04</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="multiome---archr-workflow.html#cb68-1" aria-hidden="true" tabindex="-1"></a>C6 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
+<span id="cb68-2"><a href="multiome---archr-workflow.html#cb68-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb68-3"><a href="multiome---archr-workflow.html#cb68-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;C6&quot;</span>,</span>
+<span id="cb68-4"><a href="multiome---archr-workflow.html#cb68-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span></code></pre></div>
+<pre><code>## Using cached version from 2023-11-17 18:29:14</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="multiome---archr-workflow.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
+<span id="cb70-2"><a href="multiome---archr-workflow.html#cb70-2" aria-hidden="true" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(H, C2, C6)</span>
+<span id="cb70-3"><a href="multiome---archr-workflow.html#cb70-3" aria-hidden="true" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), <span class="cf">function</span>(x) </span>
+<span id="cb70-4"><a href="multiome---archr-workflow.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">data.frame</span>(<span class="at">gs=</span>x, <span class="at">genes=</span>gs[[x]])}))</span>
+<span id="cb70-5"><a href="multiome---archr-workflow.html#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="multiome---archr-workflow.html#cb70-6" aria-hidden="true" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(<span class="at">TF =</span> <span class="fu">c</span>(<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;NKX2-1&quot;</span>), </span>
+<span id="cb70-7"><a href="multiome---archr-workflow.html#cb70-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.w, </span>
+<span id="cb70-8"><a href="multiome---archr-workflow.html#cb70-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
+<span id="cb70-9"><a href="multiome---archr-workflow.html#cb70-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="dv">0</span>, </span>
+<span id="cb70-10"><a href="multiome---archr-workflow.html#cb70-10" aria-hidden="true" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span></code></pre></div>
+<pre><code>## GATA6</code></pre>
+<pre><code>## NKX2-1</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="multiome---archr-workflow.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot results</span></span>
+<span id="cb73-2"><a href="multiome---archr-workflow.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">enrichPlot</span>(<span class="at">results =</span> enrichresults )</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/enrichment-1.png" width="1152" />
+### Network analysis</p>
+<p>We can visualize the genesets as a network</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="multiome---archr-workflow.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGseaNetwork</span>(<span class="at">tf =</span> <span class="fu">names</span>(enrichresults), </span>
+<span id="cb74-2"><a href="multiome---archr-workflow.html#cb74-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">enrichresults =</span> enrichresults,</span>
+<span id="cb74-3"><a href="multiome---archr-workflow.html#cb74-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">p.adj_cutoff =</span> <span class="fl">0.1</span>,</span>
+<span id="cb74-4"><a href="multiome---archr-workflow.html#cb74-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">ntop_pathways =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/plot%20gsea%20network-1.png" width="672" /></p>
+</div>
+<div id="differential-networks" class="section level3 hasAnchor" number="2.2.11">
+<h3><span class="header-section-number">2.2.11</span> Differential networks<a href="multiome---archr-workflow.html#differential-networks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We are interested in understanding the differential networks between two conditions and determining which transcription factors account for the differences in the topology of networks. The pruned regulons with cluster-specific test statistics computed by <code>pruneRegulon</code> can be used to generate cluster-specific networks based on user-defined cutoffs and to visualize differential networks for transcription factors of interest. In this dataset, the GATA6 gene was only expressed in cluster 1 (C1) and NKX2-1 was only expressed in cluster 3 (C3). If we visualize the target genes of GATA6, we can see that C1 has many more target genes of GATA6 compared to C5, a cluster that does not express GATA6. Similarly, NKX2-1 target genes are confined to C3 which is the only cluster that exogenously expresses NKX2-1.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="multiome---archr-workflow.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDiffNetwork</span>(pruned.regulon,</span>
+<span id="cb75-2"><a href="multiome---archr-workflow.html#cb75-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">cutoff =</span> <span class="dv">1</span>,</span>
+<span id="cb75-3"><a href="multiome---archr-workflow.html#cb75-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;GATA6&quot;</span>),</span>
+<span id="cb75-4"><a href="multiome---archr-workflow.html#cb75-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">weight =</span> <span class="st">&quot;stats&quot;</span>,</span>
+<span id="cb75-5"><a href="multiome---archr-workflow.html#cb75-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">clusters =</span> <span class="fu">c</span>(<span class="st">&quot;C1&quot;</span>,<span class="st">&quot;C5&quot;</span>),</span>
+<span id="cb75-6"><a href="multiome---archr-workflow.html#cb75-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">layout =</span> <span class="st">&quot;stress&quot;</span>)</span></code></pre></div>
+<pre><code>## Building graph using weight as edge weights</code></pre>
+<p><img src="Epiregulon-documentation_files/figure-html/differential%20networks-1.png" width="672" /></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="multiome---archr-workflow.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDiffNetwork</span>(pruned.regulon,</span>
+<span id="cb77-2"><a href="multiome---archr-workflow.html#cb77-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">cutoff =</span> <span class="dv">1</span>,</span>
+<span id="cb77-3"><a href="multiome---archr-workflow.html#cb77-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;NKX2-1&quot;</span>),</span>
+<span id="cb77-4"><a href="multiome---archr-workflow.html#cb77-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">weight =</span> <span class="st">&quot;stats&quot;</span>,</span>
+<span id="cb77-5"><a href="multiome---archr-workflow.html#cb77-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">clusters =</span> <span class="fu">c</span>(<span class="st">&quot;C3&quot;</span>,<span class="st">&quot;C5&quot;</span>),</span>
+<span id="cb77-6"><a href="multiome---archr-workflow.html#cb77-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">layout =</span> <span class="st">&quot;stress&quot;</span>)</span></code></pre></div>
+<pre><code>## Building graph using weight as edge weights</code></pre>
+<p><img src="Epiregulon-documentation_files/figure-html/differential%20networks-2.png" width="672" /></p>
+<p>We can also visualize how transcription factors relate to other transcription factors in each cluster.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="multiome---archr-workflow.html#cb79-1" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> <span class="fu">which</span>(pruned.regulon<span class="sc">$</span>stats[,<span class="st">&quot;C1&quot;</span>]<span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb79-2"><a href="multiome---archr-workflow.html#cb79-2" aria-hidden="true" tabindex="-1"></a>                    pruned.regulon<span class="sc">$</span>tf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;AR&quot;</span>))</span>
+<span id="cb79-3"><a href="multiome---archr-workflow.html#cb79-3" aria-hidden="true" tabindex="-1"></a>C1_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(pruned.regulon[selected,], </span>
+<span id="cb79-4"><a href="multiome---archr-workflow.html#cb79-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">weights =</span> <span class="st">&quot;stats&quot;</span>, </span>
+<span id="cb79-5"><a href="multiome---archr-workflow.html#cb79-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">cluster =</span> <span class="st">&quot;C1&quot;</span>)</span></code></pre></div>
+<pre><code>## Building graph using stats as edge weights</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="multiome---archr-workflow.html#cb81-1" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> <span class="fu">which</span>(pruned.regulon<span class="sc">$</span>stats[,<span class="st">&quot;C5&quot;</span>]<span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb81-2"><a href="multiome---archr-workflow.html#cb81-2" aria-hidden="true" tabindex="-1"></a>                    pruned.regulon<span class="sc">$</span>tf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;AR&quot;</span>))</span>
+<span id="cb81-3"><a href="multiome---archr-workflow.html#cb81-3" aria-hidden="true" tabindex="-1"></a>C5_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(pruned.regulon[selected,], </span>
+<span id="cb81-4"><a href="multiome---archr-workflow.html#cb81-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">weights =</span> <span class="st">&quot;stats&quot;</span>, </span>
+<span id="cb81-5"><a href="multiome---archr-workflow.html#cb81-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">cluster =</span> <span class="st">&quot;C5&quot;</span>)</span></code></pre></div>
+<pre><code>## Building graph using stats as edge weights</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="multiome---archr-workflow.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotEpiregulonNetwork</span>(C1_network,</span>
+<span id="cb83-2"><a href="multiome---archr-workflow.html#cb83-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">layout =</span> <span class="st">&quot;sugiyama&quot;</span>,</span>
+<span id="cb83-3"><a href="multiome---archr-workflow.html#cb83-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tfs_to_highlight =</span> <span class="fu">c</span>(<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;AR&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb83-4"><a href="multiome---archr-workflow.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span> (<span class="st">&quot;C1&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="multiome---archr-workflow.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotEpiregulonNetwork</span>(C5_network,</span>
+<span id="cb84-2"><a href="multiome---archr-workflow.html#cb84-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">layout =</span> <span class="st">&quot;sugiyama&quot;</span>,</span>
+<span id="cb84-3"><a href="multiome---archr-workflow.html#cb84-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">tfs_to_highlight =</span> <span class="fu">c</span>(<span class="st">&quot;GATA6&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>,<span class="st">&quot;AR&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb84-4"><a href="multiome---archr-workflow.html#cb84-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span> (<span class="st">&quot;C5&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-11-2.png" width="672" />
+To systematically examine the differential network topology between two clusters, we perform an edge subtraction between two graphs, using weights computed by <code>pruneRegulon</code>. We then calculate the degree centrality of the weighted differential graphs and if desired, normalize the differential centrality against the total number of edges. The default normalization function is <code>sqrt</code> as it preserves both the difference in the number of edges (but scaled by sqrt) and the differences in the weights. If the user only wants to examine the differences in the averaged weights, the <code>FUN</code> argument can be changed to <code>identity</code>. Finally, we rank the transcription factors by (normalized) differential centrality.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="multiome---archr-workflow.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rank by differential centrality</span></span>
+<span id="cb85-2"><a href="multiome---archr-workflow.html#cb85-2" aria-hidden="true" tabindex="-1"></a>C1_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(pruned.regulon, <span class="at">weights =</span> <span class="st">&quot;stats&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;C1&quot;</span>)</span></code></pre></div>
+<pre><code>## Building graph using stats as edge weights</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="multiome---archr-workflow.html#cb87-1" aria-hidden="true" tabindex="-1"></a>C5_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(pruned.regulon, <span class="at">weights =</span> <span class="st">&quot;stats&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;C5&quot;</span>)</span></code></pre></div>
+<pre><code>## Building graph using stats as edge weights</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="multiome---archr-workflow.html#cb89-1" aria-hidden="true" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">buildDiffGraph</span>(C1_network, C5_network)</span>
+<span id="cb89-2"><a href="multiome---archr-workflow.html#cb89-2" aria-hidden="true" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">addCentrality</span>(diff_graph)</span>
+<span id="cb89-3"><a href="multiome---archr-workflow.html#cb89-3" aria-hidden="true" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">normalizeCentrality</span>(diff_graph)</span>
+<span id="cb89-4"><a href="multiome---archr-workflow.html#cb89-4" aria-hidden="true" tabindex="-1"></a>rank_table <span class="ot">&lt;-</span> <span class="fu">rankTfs</span>(diff_graph)</span>
+<span id="cb89-5"><a href="multiome---archr-workflow.html#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-6"><a href="multiome---archr-workflow.html#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb89-7"><a href="multiome---archr-workflow.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rank_table, <span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> centrality)) <span class="sc">+</span></span>
+<span id="cb89-8"><a href="multiome---archr-workflow.html#cb89-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb89-9"><a href="multiome---archr-workflow.html#cb89-9" aria-hidden="true" tabindex="-1"></a>    ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="at">data =</span> <span class="fu">head</span>(rank_table, <span class="dv">5</span>), <span class="fu">aes</span>(<span class="at">label =</span> tf)) <span class="sc">+</span></span>
+<span id="cb89-10"><a href="multiome---archr-workflow.html#cb89-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+<div id="session-info" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Session Info<a href="multiome---archr-workflow.html#session-info" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="multiome---archr-workflow.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.3.0 (2023-04-21)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 18.04.6 LTS
+## 
+## Matrix products: default
+## BLAS:   /usr/local/lib/R/lib/libRblas.so 
+## LAPACK: /usr/local/lib/R/lib/libRlapack.so;  LAPACK version 3.11.0
+## 
+## Random number generation:
+##  RNG:     L&#39;Ecuyer-CMRG 
+##  Normal:  Inversion 
+##  Sample:  Rejection 
+##  
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8 LC_NUMERIC=C         LC_TIME=C            LC_COLLATE=C         LC_MONETARY=C       
+##  [6] LC_MESSAGES=C        LC_PAPER=C           LC_NAME=C            LC_ADDRESS=C         LC_TELEPHONE=C      
+## [11] LC_MEASUREMENT=C     LC_IDENTIFICATION=C 
+## 
+## time zone: Etc/UTC
+## tzcode source: system (glibc)
+## 
+## attached base packages:
+## [1] grid      stats4    stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] BSgenome.Hsapiens.UCSC.hg38_1.4.5 BSgenome_1.69.1                   rtracklayer_1.61.2               
+##  [4] BiocIO_1.11.0                     Biostrings_2.69.2                 XVector_0.41.2                   
+##  [7] org.Hs.eg.db_3.18.0               AnnotationDbi_1.63.2              msigdbr_7.5.1                    
+## [10] DelayedArray_0.27.10              epiregulon.extra_0.99.0           rhdf5_2.45.1                     
+## [13] RcppArmadillo_0.12.6.4.0          Rcpp_1.0.11                       sparseMatrixStats_1.13.4         
+## [16] data.table_1.14.8                 stringr_1.5.0                     plyr_1.8.9                       
+## [19] magrittr_2.0.3                    ggplot2_3.4.4                     gtable_0.3.4                     
+## [22] gtools_3.9.4                      gridExtra_2.3                     devtools_2.4.5                   
+## [25] usethis_2.1.6                     ArchR_1.0.3                       Matrix_1.6-3                     
+## [28] HDF5Array_1.29.3                  scMultiome_1.1.2                  MultiAssayExperiment_1.27.5      
+## [31] ExperimentHub_2.9.1               AnnotationHub_3.9.2               BiocFileCache_2.9.1              
+## [34] dbplyr_2.3.4                      epiregulon_1.0.36                 SingleCellExperiment_1.23.0      
+## [37] SummarizedExperiment_1.31.1       Biobase_2.61.0                    GenomicRanges_1.53.3             
+## [40] GenomeInfoDb_1.37.7               IRanges_2.35.3                    S4Vectors_0.39.3                 
+## [43] BiocGenerics_0.47.1               MatrixGenerics_1.13.2             matrixStats_1.0.0                
+## [46] rmarkdown_2.25                    bookdown_0.36                    
+## 
+## loaded via a namespace (and not attached):
+##   [1] R.methodsS3_1.8.2             GSEABase_1.63.0               urlchecker_1.0.1             
+##   [4] poweRlaw_0.70.6               vctrs_0.6.3                   digest_0.6.31                
+##   [7] png_0.1-8                     shape_1.4.6                   ggrepel_0.9.4                
+##  [10] magick_2.8.1                  MASS_7.3-60                   reshape2_1.4.4               
+##  [13] httpuv_1.6.11                 foreach_1.5.2                 qvalue_2.33.0                
+##  [16] withr_2.5.0                   xfun_0.39                     ggfun_0.1.3                  
+##  [19] ellipsis_0.3.2                memoise_2.0.1                 ggbeeswarm_0.7.2             
+##  [22] clusterProfiler_4.9.5         gson_0.1.0                    profvis_0.3.8                
+##  [25] tidytree_0.4.5                GlobalOptions_0.1.2           KEGGgraph_1.61.0             
+##  [28] R.oo_1.25.0                   prettyunits_1.1.1             KEGGREST_1.41.4              
+##  [31] promises_1.2.0.1              httr_1.4.6                    restfulr_0.0.15              
+##  [34] rhdf5filters_1.13.5           ps_1.7.5                      rstudioapi_0.15.0            
+##  [37] miniUI_0.1.1.1                generics_0.1.3                DOSE_3.27.3                  
+##  [40] processx_3.8.1                babelgene_22.9                curl_5.0.0                   
+##  [43] zlibbioc_1.47.0               ScaledMatrix_1.9.1            ggraph_2.1.0                 
+##  [46] polyclip_1.10-6               GenomeInfoDbData_1.2.11       SparseArray_1.1.12           
+##  [49] interactiveDisplayBase_1.39.0 xtable_1.8-4                  pracma_2.4.2                 
+##  [52] doParallel_1.0.17             evaluate_0.21                 S4Arrays_1.1.6               
+##  [55] hms_1.1.3                     irlba_2.3.5.1                 colorspace_2.1-0             
+##  [58] filelock_1.0.2                readr_2.1.4                   Rgraphviz_2.45.0             
+##  [61] later_1.3.1                   viridis_0.6.4                 ggtree_3.9.1                 
+##  [64] lattice_0.22-5                XML_3.99-0.14                 scuttle_1.11.3               
+##  [67] shadowtext_0.1.2              cowplot_1.1.1                 pillar_1.9.0                 
+##  [70] nlme_3.1-163                  iterators_1.0.14              caTools_1.18.2               
+##  [73] compiler_4.3.0                beachmat_2.17.17              stringi_1.7.12               
+##  [76] GenomicAlignments_1.37.0      MPO.db_0.99.7                 crayon_1.5.2                 
+##  [79] abind_1.4-5                   scater_1.29.4                 gridGraphics_0.5-1           
+##  [82] locfit_1.5-9.8                graphlayouts_1.0.1            bit_4.0.5                    
+##  [85] dplyr_1.1.3                   fastmatch_1.1-4               codetools_0.2-19             
+##  [88] BiocSingular_1.17.1           bslib_0.5.1                   GetoptLong_1.0.5             
+##  [91] mime_0.12                     splines_4.3.0                 circlize_0.4.15              
+##  [94] HDO.db_0.99.1                 EnrichmentBrowser_2.31.5      knitr_1.44                   
+##  [97] blob_1.2.4                    utf8_1.2.3                    clue_0.3-65                  
+## [100] BiocVersion_3.18.0            seqLogo_1.67.0                fs_1.6.2                     
+## [103] checkmate_2.2.0               DelayedMatrixStats_1.23.9     pkgbuild_1.4.0               
+## [106] ggplotify_0.1.2               tibble_3.2.1                  callr_3.7.3                  
+## [109] statmod_1.5.0                 tzdb_0.4.0                    tweenr_2.0.2                 
+## [112] pkgconfig_2.0.3               tools_4.3.0                   cachem_1.0.8                 
+## [115] RSQLite_2.3.1                 viridisLite_0.4.2             DBI_1.1.3                    
+## [118] fastmap_1.1.1                 scales_1.2.1                  Rsamtools_2.17.0             
+## [121] sass_0.4.6                    patchwork_1.1.3               BiocManager_1.30.22          
+## [124] graph_1.79.4                  farver_2.1.1                  tidygraph_1.2.3              
+## [127] scatterpie_0.2.1              yaml_2.3.7                    cli_3.6.1                    
+## [130] purrr_1.0.2                   motifmatchr_1.23.0            lifecycle_1.0.3              
+## [133] bluster_1.11.4                sessioninfo_1.2.2             backports_1.4.1              
+## [136] BiocParallel_1.35.4           annotate_1.79.0               rjson_0.2.21                 
+## [139] parallel_4.3.0                ape_5.7-1                     limma_3.57.11                
+## [142] jsonlite_1.8.7                edgeR_3.99.6                  TFBSTools_1.40.0             
+## [145] bitops_1.0-7                  HPO.db_0.99.2                 bit64_4.0.5                  
+## [148] yulab.utils_0.1.0             BiocNeighbors_1.19.0          CNEr_1.37.0                  
+## [151] jquerylib_0.1.4               metapod_1.9.0                 GOSemSim_2.27.3              
+## [154] dqrng_0.3.1                   R.utils_2.12.2                lazyeval_0.2.2               
+## [157] shiny_1.7.5.1                 htmltools_0.5.5               enrichplot_1.21.3            
+## [160] GO.db_3.18.0                  rappdirs_0.3.3                glue_1.6.2                   
+## [163] TFMPvalue_0.0.9               RCurl_1.98-1.12               treeio_1.25.4                
+## [166] scran_1.29.3                  igraph_1.5.1                  R6_2.5.1                     
+## [169] tidyr_1.3.0                   labeling_0.4.3                cluster_2.1.4                
+## [172] pkgload_1.3.2                 Rhdf5lib_1.23.2               aplot_0.2.2                  
+## [175] DirichletMultinomial_1.43.0   tidyselect_1.2.0              vipor_0.4.5                  
+## [178] ggforce_0.4.1                 rsvd_1.0.5                    munsell_0.5.0                
+## [181] BiocStyle_2.29.2              htmlwidgets_1.6.2             fgsea_1.27.1                 
+## [184] ComplexHeatmap_2.17.0         RColorBrewer_1.1-3            rlang_1.1.1                  
+## [187] remotes_2.4.2                 fansi_1.0.4                   Cairo_1.6-1                  
+## [190] beeswarm_0.4.0</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hematopoeisis-tutorial---mae.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/multiome.mae.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Epiregulon documentation.pdf", "Epiregulon documentation.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
