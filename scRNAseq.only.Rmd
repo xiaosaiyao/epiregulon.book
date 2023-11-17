@@ -48,7 +48,8 @@ library(epiregulon)
 regulon.ms <- addWeights(regulon = regulon,
                          expMatrix = sce,
                          clusters = sce$label,
-                         BPPARAM = BiocParallel::MulticoreParam())
+                         BPPARAM = BiocParallel::MulticoreParam(),
+                         method="corr")
 
 #Calculate activity
 score.combine <- calculateActivity(sce, 
@@ -62,14 +63,14 @@ score.combine <- calculateActivity(sce,
 ```{r differential_singlemodality}
 
 markers <- findDifferentialActivity(activity_matrix = score.combine, 
-                                    groups = sce$label, 
+                                    clusters = sce$label, 
                                     pval.type = "some", 
                                     direction = "up", 
                                     test.type = "t")
 ```
 
 Take the top TFs
-```{r}
+```{r message=FALSE}
 markers.sig <- getSigGenes(markers, topgenes = 5 )
 
 ```

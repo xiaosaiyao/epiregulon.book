@@ -1,7 +1,5 @@
-introduction
 installation
 multiome---archr-workflow
-installation-1
 data-preparation
 quick-start
 retrieve-bulk-tf-chip-seq-binding-sites
@@ -19,7 +17,6 @@ network-analysis
 differential-networks
 session-info
 hematopoeisis-tutorial---mae
-installation-2
 data-preparation-1
 quick-start-1
 retrieve-bulk-tf-chip-seq-binding-sites-1
@@ -36,8 +33,6 @@ differential-network-analysis
 session-info-1
 prostate-cancer-cells
 data-preparation-2
-load-archr-project
-retrieve-matrices-from-archr-project
 quick-start-2
 retrieve-bulk-tf-chip-seq-binding-sites-2
 link-atac-seq-peaks-to-target-genes-1
@@ -55,5 +50,5 @@ load-scrna-seq-data
 calculate-activity
 perform-differential-activity-2
 visualize-activity
-session-info-3
 pathway-enrichment
+session-info-3

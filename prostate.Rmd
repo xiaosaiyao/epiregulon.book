@@ -26,16 +26,20 @@ GeneExpressionMatrix$label <- factor(GeneExpressionMatrix$label,
                                      levels = c("LNCaP", "LNCaP–ENZ48", "LNCaP RES-A", "LNCaP RES-B"))
 
 rownames(GeneExpressionMatrix) <- rowData(GeneExpressionMatrix)$name
+
+# dimensional reduction matrix
+reducedDimMatrix <- reducedDim(GeneExpressionMatrix, "iLSI_Combined")
 ```
 
 Since gene expression is library size normalized we further transform it to logcounts by adding a pseudocount of 1 and taking log2.
 ```{r}
-assay(GeneExpressionMatrix) <- as(log2(assay(GeneExpressionMatrix)+1), "CsparseMatrix")
+assay(GeneExpressionMatrix, "logcounts") <- as(log2(assay(GeneExpressionMatrix)+1), "CsparseMatrix")
 ```
 
 
 Visualize singleCellExperiment by UMAP
 ```{r}
+library(epiregulon.extra)
 scater::plotReducedDim(GeneExpressionMatrix, 
                        dimred = "UMAP_Combined", 
                        text_by = "label", 
@@ -56,16 +60,13 @@ head(grl)
 
 ### Link ATAC-seq peaks to target genes
 
-Next, we compute peak to gene correlations using the `addPeak2GeneLinks` function from the ArchR package. The user would need 
-to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction. 
+Next, we compute peak to gene correlations using a custom algorithm that has similar performance to ArchR's P2G function.
 
 ```{r calculateP2G_prostate}
-# path to ArchR project
-p2g <- calculateP2G(ArchR_path = archR_project_path, 
-                    useDim = "iLSI_Combined", 
-                    useMatrix = "GeneIntegrationMatrix",
-                    threads = 1,
-                    exp_assay = "counts")
+p2g <- calculateP2G(peakMatrix = PeakMatrix, 
+                    expMatrix = GeneExpressionMatrix, 
+                    reducedDim = reducedDimMatrix,
+                    exp_assay = "normalizedCounts")
 head(p2g)
 ```
 
@@ -74,7 +75,7 @@ head(p2g)
 The next step is to add the TF motif binding information by overlapping the regions of the peak matrix with the bulk chip-seq database loaded in 2. The user can supply either an archR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a Granges object or RangedSummarizedExperiment.
 
 ```{r addTFMotifInfo_prostate}
-overlap <- addTFMotifInfo(archR_project_path = archR_project_path, grl = grl, p2g = p2g)
+overlap <- addTFMotifInfo(grl = grl, p2g = p2g, peakMatrix = PeakMatrix)
 ```
 
 ### Generate regulons
@@ -94,7 +95,7 @@ head(regulon)
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                peakMatrix = PeakMatrix,
-                               exp_assay = "counts",
+                               exp_assay = "logcounts",
                                peak_assay = "counts",
                                test = "chi.sq",
                                regulon = regulon,
@@ -112,7 +113,7 @@ First, we visualize the AR expression and observed that enzalutamide did not dec
 ```{r}
 
 plotActivityDim(sce = GeneExpressionMatrix,
-                activity_matrix = assay(GeneExpressionMatrix), 
+                activity_matrix = assay(GeneExpressionMatrix, "logcounts"), 
                 tf = "AR", 
                 dimtype = "UMAP_Combined", 
                 label = "label", 
@@ -121,9 +122,9 @@ plotActivityDim(sce = GeneExpressionMatrix,
 
 ```
 
-Then we extract the chromVarMatrix from ArchR project and then visualize the chromatin accessibility at AR bound sites. We can see that 48 hour of enzalutamide treatment reduced chromatin accessibility at AR bound sites
+Then we use the chromVarMatrix to visualize the chromatin accessibility at AR bound sites. We can see that 48 hour of enzalutamide treatment reduced chromatin accessibility at AR bound sites
 
-```{r}
+```{r, eval=FALSE}
 chromVarMatrix <- getMatrixFromProject(
     ArchRProj = proj,
     useMatrix = "MotifMatrix",
@@ -149,14 +150,14 @@ Therefore, we consider the choice of the `wilcoxon` test which compare target ge
 
 regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "logcounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$Sample,
                         method = "wilcoxon")
 regulon.w.corr <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "logcounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$Sample,
@@ -164,7 +165,7 @@ regulon.w.corr <- addWeights(regulon = pruned.regulon,
 
 regulon.w.corr.re <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "logcounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$Sample,
@@ -185,19 +186,19 @@ We calculate three different activities corresponding to the different weighted 
 
 ```{r calculateActivity_prostate, results = "hide"}
 score.combine.wilcox <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "logcounts",
                                    regulon = regulon.w.wilcox,
                                    normalize = TRUE,
                                    mode = "weight",
                                    method = "weightedMean")
 score.combine.corr <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "logcounts",
                                    regulon = regulon.w.corr,
                                    normalize = TRUE,
                                    mode = "weight",
                                    method = "weightedMean")
 score.combine.corr.re <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "logcounts",
                                    regulon = regulon.w.corr.re,
                                    normalize = TRUE,
                                    mode = "weight",
@@ -288,7 +289,7 @@ plotHeatmapRegulon(sce=GeneExpressionMatrix,
                    downsample=1000,
                    cell_attributes="label",
                    col_gap="label",
-                   exprs_values="counts",
+                   exprs_values="logcounts",
                    name="regulon heatmap")
 ```
 

@@ -1,6 +1,7 @@
 book_filename: "Epiregulon documentation"
 rmd_files: ["index.Rmd",
+    "installation.Rmd",
     "multiome.mae.Rmd",
     "hematopoeisis.mae.Rmd",
-    "prostate.ENZ.archr.Rmd",
+    "prostate.Rmd",
     "scRNAseq.only.Rmd"]

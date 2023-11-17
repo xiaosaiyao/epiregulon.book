@@ -1,23 +1,6 @@
 # Hematopoeisis tutorial - MAE
 
-In this vignette, we used a dataset from the ArchR [tutorial](https://www.archrproject.com/bookdown/index.html). Prior to using epiregulon, this dataset has been fully preprocessed in ArchR, and converted to a `MultiAssayExperiment` using `epireglon::archr2MAE`. The MAE object was uploaded to `scMultiome` for full reproducibility. In this dataset, scRNAseq and scATACseq were unpaired and integrated by the `ArchR::addGeneIntegrationMatrix` function. 
-
-
-## Installation
-
-Epiregulon is currently available on R/dev
-
-```{r, message=FALSE}
-library(epiregulon)
-#devtools::load_all("/gstore/project/lineage/xiaosai/epiregulon")
-```
-
-If you would like to install from gitlab, 
-
-```{r, message=FALSE, eval=FALSE}
-devtools::install_github(repo='xiaosaiyao/epiregulon')
-library(epiregulon)
-```
+In this chapter, we used a dataset from the ArchR [tutorial](https://www.archrproject.com/bookdown/index.html). Prior to using epiregulon, this dataset has been fully preprocessed in ArchR, and converted to a `MultiAssayExperiment` using `epireglon::archr2MAE`. The MAE object was uploaded to `scMultiome` for full reproducibility. In this dataset, scRNAseq and scATACseq were unpaired and integrated by the `ArchR::addGeneIntegrationMatrix` function. 
 
 ## Data preparation
 
@@ -62,6 +45,7 @@ scater::plotReducedDim(GeneExpressionMatrix,
 
 First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse genome mm10 are available
 ```{r}
+library(epiregulon)
 grl <- getTFMotifInfo(genome = "hg19")
 head(grl)
 
@@ -175,6 +159,7 @@ head(score.combine[1:5,1:5])
 We can next determine which TFs exhibit differential activities across cell clusters/groups via the `findDifferentialActivity` function. This function depends on `findMarkers` function from `r BiocStyle::Biocpkg("scran")` package. 
 
 ```{r}
+library(epiregulon.extra)
 markers  <- findDifferentialActivity(activity_matrix = score.combine, 
                                     groups = GeneExpressionMatrix$Clusters2, 
                                     pval.type = "some", 

@@ -1,6 +1,6 @@
 --- 
 title: "Epiregulon documentation"
-author: "Xiaosai Yao"
+author: "Xiaosai Yao, Tomasz Włodarczyk"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -14,7 +14,7 @@ link-citations: yes
 github-repo: "rstudio/bookdown-demo"
 ---
 
-# Introduction
+# Introduction {-}
 
 Gene regulatory networks model the underlying gene regulation hierarchies that drive gene expression and cell states. The main function of the epiregulon package is to construct gene regulatory networks and infer transcription factor (TF) activity in single cells by integration of scATAC-seq and scRNA-seq data and incorporation of public bulk TF ChIP-seq data.
 
@@ -26,27 +26,12 @@ After network pruning, we would like to further estimate the strength of regulat
  
 The target genes of TFs can be queried against known pathways to predict the functions of TFs. We can also perform differential network analysis between cluster-specific networks. Here we perform edge subtraction between two networks and the TFs are ranked by the degree centrality of the differential graphs. 
 
-
-![plot](images/epiregulon_schematics.svg)   
+```{r, out.width='100%', fig.align='center', echo=FALSE}
+knitr::include_graphics('images/epiregulon_schematics.svg')
+```
 
 Current prerequisites for running epiregulon include pre-computed peak matrix,  gene expression matrix and dimensionality reduction. Epiregulon offers seamless integration with ArchR. Alternately, users can analyze their data using their favorite analysis tools and package their matrices into `MultiAssayExperiment` (See `scMultiome` package). The scATAC-seq experiment can be either paired or unpaired with the scRNA-seq dataset as long as they were already integrated. The final output of epiregulon is a matrix of TF activities where rows are individual TFs and columns are single cell indexes.
 
-![plot](images/epiregulon_functions.svg)
-
-
-## Installation
-
-Epiregulon is currently available on R/dev
-
-```{r, results = "hide", warning = FALSE, message = FALSE, echo = FALSE}
-library(epiregulon)
-library(ArchR, quietly = TRUE)
-```
-
-Alternatively, you could install from gitlab
-
-```{r setup_prostate, message=FALSE, eval=FALSE}
-devtools::install_github(repo='xiaosaiyao/epiregulon')
-
-library(epiregulon)
+```{r, out.width='100%', fig.align='center', echo=FALSE}
+knitr::include_graphics('images/epiregulon_functions.svg')
 ```
