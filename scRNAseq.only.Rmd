@@ -1,4 +1,4 @@
-# Single modality: gene expression
+# Single modality: scRNA-seq only
 
 Epiregulon also supports transcription factor activity inference when users only have scRNA-seq. After all, multiome or scATAC-seq data is still relatively rare. To enable TF activity inference on scRNA-seq, users can supply a pre-constructed gene regulatory network. [Dorothea](https://saezlab.github.io/dorothea/articles/dorothea.html) provides both human and mouse pre-constructed gene regulatory networks based on curated experimental and computational data. In this vignette, we bypass the regulon construction step and go straight to calculate TF activity from a Dorothea GRN.
 
@@ -19,7 +19,7 @@ genes_to_plot <- c("Foxa1", "Neurod1","Pdx1","Arx")
 
 ## Load scRNA-seq data
 
-We download the raw counts of a mouse pancreas data set from [scRNAseq](https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html). We add normalized logcounts, perform dimension reduction and visualize the embeddings using [scater](https://bioconductor.org/packages/release/bioc/html/scater.html). 
+We download the raw counts of a mouse pancreas data set from  `r BiocPkg("scRNAseq")`. We add normalized logcounts, perform dimension reduction and visualize the embeddings using `r BiocPkg("scater")`. 
 
 ```{r load_scRNAseq_singlemodality, message = FALSE}
 
@@ -37,7 +37,7 @@ plotUMAP(sce, colour_by = "label", text_by = "label")
 
 ## Calculate activity
 
-Even though Dorothea provides weights under the mor column, we achieved superior performance if we recompute the weights based on the correlation between tf and target gene expression based on our own data. We performed 2 steps, the first step is to add weights to the Dorothea regulons and the second step is to estimate the TF activity by taking the weighted average of the target gene expression.
+Even though Dorothea provides weights under the mor column, we can achieve superior performance if we recompute the weights based on the correlation between tf and target gene expression based on our own data. We performed 2 steps, the first step is to add weights to the Dorothea regulons and the second step is to estimate the TF activity by taking the weighted average of the target gene expression.
 
 ``` {r activity_singlemodality, message=FALSE, warning=FALSE}
 
@@ -78,9 +78,7 @@ markers.sig <- getSigGenes(markers, topgenes = 5 )
 
 ## Visualize activity
 
-Finally we visualize the TF activity by either UMAP, violin plots or bubble plots.
-We confirm the activity of known lineage factors Pdx1 and Neurod1 in beta cells, 
-Arx in alpha cells and Foxa1 in ductal cells.
+Finally we visualize the TF activity by either UMAP, violin plots or bubble plots. We confirm the activity of known lineage factors Pdx1 and Neurod1 in beta cells, Arx in alpha cells and Foxa1 in ductal cells.
 
 ```{r visualization_singlemodality}
 
