@@ -1,4 +1,4 @@
-# Advanced tutorial with MultiAssayExperiment (Hematopoiesis)
+# Advanced workflow with MultiAssayExperiment
 
 In this chapter, we illustrate the epiregulon workflow starting from data in the form of `SingleCellExperiment` objects using the Wilcoxon weight estimation method.
 
