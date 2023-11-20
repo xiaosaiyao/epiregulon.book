@@ -7,7 +7,7 @@ Epiregulon also supports transcription factor activity inference when users only
 
 Dorothea assigns confidence level to its regulons with A being the most confident (i.e. supported by multiple lines of evidence) and E being the least confident. 
 
-```{r load_regulon_singlemodality}
+```{r load_regulon_singlemodality_scRNA_only}
 library(dorothea)
 data(dorothea_mm, package = "dorothea")
 regulon <- dorothea_mm 
@@ -19,9 +19,9 @@ genes_to_plot <- c("Foxa1", "Neurod1","Pdx1","Arx")
 
 ## Load scRNA-seq data
 
-We download the raw counts of a mouse pancreas data set from  `r BiocPkg("scRNAseq")`. We add normalized logcounts, perform dimension reduction and visualize the embeddings using `r BiocPkg("scater")`. 
+We download the raw counts of a mouse pancreas data set from  `r BiocStyle::Biocpkg("scRNAseq")`. We add normalized logcounts, perform dimension reduction and visualize the embeddings using `r BiocStyle::Biocpkg("scater")`. 
 
-```{r load_scRNAseq_singlemodality, message = FALSE}
+```{r load_scRNAseq_singlemodality_scRNA_only, message = FALSE}
 
 library(scRNAseq)
 library(scater)
@@ -39,7 +39,7 @@ plotUMAP(sce, colour_by = "label", text_by = "label")
 
 Even though Dorothea provides weights under the mor column, we can achieve superior performance if we recompute the weights based on the correlation between tf and target gene expression based on our own data. We performed 2 steps, the first step is to add weights to the Dorothea regulons and the second step is to estimate the TF activity by taking the weighted average of the target gene expression.
 
-``` {r activity_singlemodality, message=FALSE, warning=FALSE}
+``` {r activity_singlemodality_scRNA_only, message=FALSE, warning=FALSE}
 
 library(epiregulon)
 
@@ -60,7 +60,7 @@ score.combine <- calculateActivity(sce,
 ```
 
 ## Perform differential activity
-```{r differential_singlemodality}
+```{r differential_singlemodality_scRNA_only}
 library(epiregulon.extra)
 markers <- findDifferentialActivity(activity_matrix = score.combine, 
                                     clusters = sce$label, 
@@ -80,7 +80,7 @@ markers.sig <- getSigGenes(markers, topgenes = 5 )
 
 Finally we visualize the TF activity by either UMAP, violin plots or bubble plots. We confirm the activity of known lineage factors Pdx1 and Neurod1 in beta cells, Arx in alpha cells and Foxa1 in ductal cells.
 
-```{r visualization_singlemodality}
+```{r visualization_singlemodality_scRNA_only}
 
 # plot umap
 plotActivityDim(sce = sce, 
@@ -103,6 +103,7 @@ plotBubble(score.combine,
            tf = genes_to_plot, 
            clusters = sce$label)
 ```
+
 Plot bubble plot of differential TFs
 
 ```{r, fig.height=10}
@@ -110,10 +111,11 @@ plotBubble(score.combine,
            tf = markers.sig$tf, 
            clusters = sce$label)
 ```
+
 We can adapt the epiregulon package to plot gene expression. When compared against TF activity, gene expression of Foxa1 and Arx has noisy signals and high dropout rates. 
 Epiregulon enhances the signal to noise ratio of TF activity and better resolves lineage differences.
 
-```{r scRNAseq}
+```{r scRNAseq_scRNA_only}
 
 # plot umap
 plotActivityDim(sce = sce, 
@@ -163,11 +165,12 @@ plotHeatmapActivity(activity_matrix = score.combine,
                     name="regulon heatmap",
                     column_title_rot = 45)
 ```
+
 ## Pathway enrichment
 
 Sometimes it is useful to understand what pathways are enriched in the regulons. We take the highly correlated target genes of a regulon and perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
 
-```{r enrichment_singlemodality, warning=FALSE, fig.height = 14}
+```{r enrichment_singlemodality_scRNA_only, warning=FALSE, fig.height = 14}
 #retrieve genesets
 H <- EnrichmentBrowser::getGenesets(org = "mmu", 
                                     db = "msigdb", 

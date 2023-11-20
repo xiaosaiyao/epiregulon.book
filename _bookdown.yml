@@ -3,6 +3,6 @@ rmd_files: ["index.Rmd",
     "installation.Rmd",
     "multiome.mae.Rmd",
     "hematopoeisis.mae.Rmd",
-    "prostate.Rmd",
+    "prostate.ENZ.archr.Rmd",
     "scRNAseq.only.Rmd"]
 output_dir: "docs"

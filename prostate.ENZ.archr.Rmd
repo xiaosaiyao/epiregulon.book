@@ -4,7 +4,6 @@ In this chapter, we illustrate the epiregulon workflow starting from an ArchR pr
 
 The dataset consists of unpaired scATACseq/scRNAseq of parental LNCaP cells treated with DMSO, Enzalutamide and Enza resistant cells. The dataset was taken from [Taavitsainen et al](https://www.nature.com/articles/s41467-021-25624-1) [GSE168667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168667) and [GSE168668](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168668).
 
-
 ## Data preparation
 
 Please refer to the full ArchR [manual](https://www.archrproject.com/bookdown/index.html) for instructions 
@@ -105,7 +104,7 @@ scater::plotReducedDim(GeneExpressionMatrix,
 
 First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes HG19 and HG38 and mouse mm10 are available. 
 
-```{r getTFMotifInfo}
+```{r getTFMotifInfo_prostate}
 grl <- getTFMotifInfo(genome = "hg38")
 grl
 ```
@@ -115,7 +114,7 @@ grl
 Next, we compute peak to gene correlations using the `addPeak2GeneLinks` function from the ArchR package. The user would need 
 to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction. 
 
-```{r calculateP2G}
+```{r calculateP2G_prostate}
 # path to ArchR project
 p2g <- calculateP2G(ArchR_path = archR_project_path,
                     useDim = "iLSI_Combined", 
@@ -128,7 +127,7 @@ p2g
 
 The next step is to add the TF motif binding information by overlapping the regions of the peak matrix with the bulk chip-seq database. The user can supply an archR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a Granges object or RangedSummarizedExperiment.
 
-```{r addTFMotifInfo}
+```{r addTFMotifInfo_prostate}
 overlap <- addTFMotifInfo(archR_project_path = archR_project_path, grl = grl, p2g = p2g)
 ```
 
@@ -140,7 +139,7 @@ A long format data frame, representing the inferred regulons, is then generated.
 * target gene
 * peak to gene correlation between tf and target gene
 
-```{r getRegulon}
+```{r getRegulon_prostate}
 regulon <- getRegulon(p2g = p2g, overlap = overlap, aggregate = FALSE)
 regulon
 ```
@@ -155,7 +154,7 @@ If the user has not performed motif annotation with ArchR, we can also annotate 
 
 It is important to note that filtering for the presence of motifs removes a large fraction of the target genes. Motifs are often present in a small subset of the ChIP-seq peaks (can be as low as 10%). Second, indirect TF binding, possibly through its interaction partners, may have a true biological function. In this example, we continue with regulons containing the motifs, `regulon.motif`. However, if the user prefers to retain all target genes including REs without the TFs, they should proceed with `regulon`.
 
-```{r addMotifScore}
+```{r addMotifScore_prostate}
 
 regulon.motif <- addMotifScore(regulon = regulon, ArchProj = proj )
 
@@ -170,7 +169,7 @@ Epiregulon prunes the network by performing tests of independence on the observe
 
 We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.
 
-```{r pruning,  results = "hide", warning = FALSE, message = FALSE, echo = FALSE}
+```{r pruning_prostate,  results = "hide", warning = FALSE, message = FALSE, echo = FALSE}
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                exp_assay = "counts",
@@ -229,7 +228,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
 Next, we are going to compare 3 different weight methods. In the first method, the `wilcoxon` test compares target gene expression in cells meeting both the TF expression and accessibility cutoffs vs cells failing either the TF expression or/and accessibility cutoffs. Next, we try out the correlation method which comes in two flavors. When `tf_re.merge = FALSE`, weight is computed on the correlation of target gene expression vs TF gene expression. When `tf_re.merge = TRUE`, weight is computed on the correlation of target gene expression vs the product of TF expression and chromatin accessibility at TF-bound regulatory elements.
 
 
-```{r addWeights, results = "hide"}
+```{r addWeights_prostate, results = "hide"}
 
 regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
@@ -268,7 +267,7 @@ $weight_i$ is the weight of TF and target i
 
 We calculate three different activities corresponding to the different weighted regulons
 
-```{r calculateActivity, results = "hide"}
+```{r calculateActivity_prostate, results = "hide"}
 score.combine.wilcox <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    exp_assay = "counts",
                                    regulon = regulon.w.wilcox,
@@ -311,11 +310,10 @@ plotActivityViolin(activity_matrix = score.combine.corr.re,
                    clusters = GeneExpressionMatrix$label) + ggtitle ("AR activity by corr TF*RE vs TG")
 ```
 
-
 ## Perform differential activity
 
 For the remaining steps, we continue with activity derived from the `wilcoxon` method.
-```{r differential}
+```{r differential_prostate}
 markers <- findDifferentialActivity(activity_matrix = score.combine.wilcox, 
                                     clusters = GeneExpressionMatrix$label, 
                                     pval.type = "some", 
@@ -327,10 +325,11 @@ Take the top differential TFs
 ```{r}
 markers.sig <- getSigGenes(markers, topgenes = 5 )
 ```
+
 ## Visualize the results
 
 First visualize the known differential TFs by bubble plot
-```{r visualization}
+```{r visualization_prostate}
 plotBubble(activity_matrix = score.combine.wilcox, 
            tf = c("AR","FOXA1", "MYC","JUN"), 
            clusters = GeneExpressionMatrix$label)
@@ -402,7 +401,7 @@ plotHeatmapActivity(activity=score.combine.wilcox,
 ## Geneset enrichment
 Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
 
-```{r enrichment, fig.height = 10, fig.width = 12}
+```{r enrichment_prostate, fig.height = 10, fig.width = 12}
 #retrieve genesets
 H <- EnrichmentBrowser::getGenesets(org = "hsa", 
                                     db = "msigdb", 
@@ -455,7 +454,7 @@ plotGseaNetwork(tf = names(enrichresults),
 ## Differential network analysis
 In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that AR is downregulated in the Enzalutamide treated cells compared to parental LNCaP. 
 
-```{r differential networks hematopoeisis}
+```{r differential_networks_prostate}
 
 plotDiffNetwork(regulon.w.wilcox,
                 cutoff = 0,

@@ -28,7 +28,6 @@ reducedDim(GeneExpressionMatrix, "UMAP") <-
 
 ```
 
-
 Visualize the data
 ```{r}
 
@@ -40,7 +39,6 @@ scater::plotReducedDim(GeneExpressionMatrix,
                        point_alpha = 0.3)
 
 ```
-
 
 ## Retrieve bulk TF ChIP-seq binding sites 
 
@@ -171,6 +169,7 @@ getSigGenes compiles the different test results into a single dataframe and enab
 markers.sig <- getSigGenes(markers, topgenes = 3 )
 
 ```
+
 ## Visualizing TF activities
 
 Epiregulon also provides multiple options for visualizing the inferred TF activities by reduced dimensional space
@@ -188,6 +187,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
                 point_size=0.1,
                 rasterise = TRUE)
 ```
+
 We can compare the activity with gene expression of the same TFs.
 
 ```{r}
@@ -206,7 +206,6 @@ plotActivityDim(sce = GeneExpressionMatrix,
                 rasterise = TRUE)
 ```
 
-
 We can also plot violin plot to visualize TF activity.
 ```{r}
 plotActivityViolin(activity_matrix = score.combine, 
@@ -215,6 +214,7 @@ plotActivityViolin(activity_matrix = score.combine,
                    nrow=2,
                    ncol=2)
 ```
+
 We plot violin plot to visualize TF gene expression.
 
 ```{r}
@@ -236,12 +236,13 @@ plotBubble(activity_matrix = score.combine,
 
 We visualize the top differential TFs based on activity.
 
-```{r,fig.height=9}
+```{r fig.height=9}
 plotBubble(activity_matrix = score.combine, 
            tf = markers.sig$tf, 
            GeneExpressionMatrix$Clusters2, 
            bubblesize = "FDR")
 ```
+
 ## Geneset enrichment
 
 Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
@@ -274,6 +275,7 @@ enrichresults <- regulonEnrich(TF = tfs_interest,
 #plot results
 enrichPlot(results = enrichresults, ncol=2)
 ```
+
 ## Differential Network analysis
 
 In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that EBF1 is a B cell lineage factor. If we plot the differential network of EBF1 using the regulon with cluster-specific weights, we can see that EBF1 has many more targets in PreB cells than it has in CD4 memory cells. 
@@ -288,9 +290,11 @@ plotDiffNetwork(regulon.w,
                 layout = "stress")
 
 ```
+
 Sometimes, we are interested to identify interaction partners of the TFs of interest. This can be achieved by comparing the overlap of the targets genes for all the TFs and identify the most similar TFs by Jaccard similarity. To illustrate this function, we take a look at the top most similar 20 TFs to EBF1, and we successfully identify PAX5 as the most similar TF. Both PAX5 and EBF1 are important factors for B cell development (https://www.nature.com/articles/ni.2641).
 
 ```{r}
+library(ggplot2)
 # construct a graph of the preB cells
 preB_network <- buildGraph(regulon.w, weights = "weight", cluster="PreB")
 
@@ -316,7 +320,6 @@ topTFplot <- ggplot(similarity_df, aes(x=TF, y=similarity)) +
 print(topTFplot)
 
 ```
-
 
 In order to convince ourselves that our differential network is statistically significant, we permute the edges and obtain a background graph from averaging many iterations. Here, we plot the differential network graph subtracted by permuted graphs. 
 ```{r}
@@ -346,7 +349,6 @@ p_matrix <- rowMeans(apply(permute_matrix, 2, function(x) {x > similarity_score_
 p_matrix[names(head(sort(diff_matrix,decreasing = TRUE),20))]
 ```
 
-
 Next, we are interested to compare the networks of two cell types, in this case, CD4 memory cells (CD4.M) vs Monocytes (mono) cells. We build an edge subtracted graph and then calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in NK cells whereas the bottom 5 TFs present lineage factors enriched in CD4. We successfully identified the myeloid factor SPI1 to be associated with monocytes and Th1 factor TBX21 to be associated with CD4 cells.
 
 ```{r}
@@ -370,7 +372,6 @@ ggplot(rank_table, aes(x = rank, y = centrality)) +
     theme_classic() + ggtitle ("differential TFs (Mono-CD4.M) ranked by degree centrality")
 
 ```
-
 
 We can further explore interacting factors with the myeloid factor SPI1 using the same Jaccard similarity approach. We found CEBPA as the most similar TF as SPI1. SPI1 and CEBPA are known to be important for differentiation into myeloid cells (https://www.cell.com/cell-reports/pdfExtended/S2211-1247(18)30745-9).
 ```{r}

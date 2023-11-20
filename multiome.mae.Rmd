@@ -11,7 +11,7 @@ Single cell preprocessing needs to performed by user's favorite methods prior to
 2. Gene expression matrix from either paired or unpaired scRNA-seq. RNA-seq integration needs to be performed for unpaired dataset. <br>
 3. Dimensionality reduction matrix from with either single modalities or joint scRNA-seq and scATAC-seq <br>
 
-In this case, we have preprocessed the data and converted the archR project into a MAE object using the function `epiregulon.archr::archr2MAE` and made the data available through the `r Biocpkg("scMultiome")` package 
+In this case, we have preprocessed the data and converted the archR project into a MAE object using the function `epiregulon.archr::archr2MAE` and made the data available through the `r BiocStyle::Biocpkg("scMultiome")` package 
 
 
 ```{r}
@@ -43,12 +43,11 @@ scater::plotReducedDim(GeneExpressionMatrix,
 
 ```
 
-
 ## Retrieve bulk TF ChIP-seq binding sites 
 
-First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq, which are available through the `r Biocpkg("scMultiome")` package . Currently, human genomes hg19 and hg38 and mouse mm10 are available. 
+First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq, which are available through the `r BiocStyle::Biocpkg("scMultiome")` package . Currently, human genomes hg19 and hg38 and mouse mm10 are available. 
 
-```{r getTFMotifInfo}
+```{r getTFMotifInfo_multiome}
 library(epiregulon)
 grl <- getTFMotifInfo(genome = "hg38")
 grl
@@ -58,7 +57,7 @@ grl
 
 Next, we compute peak to gene correlations using a custom algorithm that has similar performance to ArchR's P2G function.
 
-```{r calculateP2G}
+```{r calculateP2G_multiome}
 set.seed(1010)
 p2g <- calculateP2G(peakMatrix = PeakMatrix, 
                     expMatrix = GeneExpressionMatrix, 
@@ -73,7 +72,7 @@ p2g
 
 The next step is to add the TF binding information by overlapping regions of the peak matrix with the bulk chip-seq database loaded in 2. The user can supply either an archR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a Granges object or RangedSummarizedExperiment.
 
-```{r addTFMotifInfo}
+```{r addTFMotifInfo_multiome}
 
 overlap <- addTFMotifInfo(grl = grl, p2g = p2g, peakMatrix = PeakMatrix)
 head(overlap)
@@ -87,7 +86,7 @@ A long format data frame, representing the inferred regulons, is then generated.
 * target gene
 * peak to gene correlation between tf and target gene
 
-```{r, warning=FALSE, getRegulon}
+```{r, warning=FALSE, getRegulon_multiome}
 
 regulon <- getRegulon(p2g = p2g, overlap = overlap, aggregate = FALSE)
 regulon
@@ -100,8 +99,7 @@ Epiregulon prunes the network by performing tests of independence on the observe
 
 We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.
 
-
-```{r network pruning, results = "hide", message = FALSE}
+```{r network_pruning_multiome, results = "hide", message = FALSE}
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                exp_assay = "normalizedCounts",
@@ -127,7 +125,7 @@ In this example, we illustrate weight estimation using the correlation method. W
 
 When `tf_re.merge` is set to `TRUE`, we compute weight based on the correlation between TG gene expression and the product of the TF gene expression and RE chromatin accessibility. If `tf_re.merge` is set to `FALSE`, we do not take into account the RE chromatin accessibility and the correlation is computed only based on the correlation between TG gene expression and TF gene expression. Here, we set `tf_re.merge` to `TRUE` because we are interested in target genes whose gene expression and chromatin accessibility at the regulatory elements change concordantly with the expression of their putative transcription factors.
 
-```{r addWeights, results = "hide", warning = FALSE, message = FALSE}
+```{r addWeights_multiome, results = "hide", warning = FALSE, message = FALSE}
 
 regulon.w <- addWeights(regulon = pruned.regulon,
                         expMatrix  = GeneExpressionMatrix,
@@ -149,7 +147,7 @@ So far the gene regulatory network was constructed from TF ChIP-seq exclusively.
 
 In this example, while we illustrate the possibility of annotating regulons with motifs, we contain the remaining workflow with the full regulons `regulon.w`. It is important to note that filtering for the presence of motifs removes a large fraction of the target genes because motifs are often present in a small subset of the ChIP-seq peaks (can be as low as 10%). Second, indirect TF binding, possibly through its interaction partners, may have a true biological function. However, if the user would prefer to retain only target genes with REs containing the motif of the TFs, they should proceed with `regulon.w.motif`.
 
-```{r addMotifScore}
+```{r addMotifScore_multiome}
 
 regulon.w.motif <- addMotifScore(regulon = regulon.w,
                                  peaks = rowRanges(PeakMatrix),
@@ -169,7 +167,7 @@ $n$ is the total number of targets for a TF
 $x_i$ is the log count expression of target i where i in {1,2,...,n}
 $weights_i$ is the weight of TF and target i
 
-```{r calculateActivity, results = "hide"}
+```{r calculateActivity_multiome, results = "hide"}
 score.combine <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    regulon = regulon.w, 
                                    mode = "weight", 
@@ -181,7 +179,7 @@ score.combine <- calculateActivity(expMatrix = GeneExpressionMatrix,
 
 ## Perform differential activity
 
-```{r differential}
+```{r differential_multiome}
 library(epiregulon.extra)
 markers <- findDifferentialActivity(activity_matrix = score.combine, 
                                     groups = GeneExpressionMatrix$hash_assignment, 
@@ -199,7 +197,7 @@ markers.sig <- getSigGenes(markers, topgenes = 5 )
 ## Visualize the results
 
 First visualize the known differential TFs by bubble plot
-```{r visualization}
+```{r visualization_multiome}
 plotBubble(activity_matrix = score.combine, 
            tf = c("NKX2-1","GATA6","FOXA1","FOXA2", "AR"), 
            clusters = GeneExpressionMatrix$hash_assignment)
@@ -275,7 +273,7 @@ plotHeatmapActivity(activity=score.combine,
 
 Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
 
-```{r enrichment, fig.height = 10, fig.width = 12}
+```{r enrichment_multiome, fig.height = 10, fig.width = 12}
 #retrieve genesets
 H <- EnrichmentBrowser::getGenesets(org = "hsa", 
                                     db = "msigdb", 
@@ -308,7 +306,7 @@ enrichPlot(results = enrichresults )
 ## Network analysis
 
 We can visualize the genesets as a network
-```{r plot gsea network}
+```{r plot_gsea_network_multiome}
 
 plotGseaNetwork(tf = names(enrichresults), 
                 enrichresults = enrichresults,
@@ -317,7 +315,6 @@ plotGseaNetwork(tf = names(enrichresults),
 
 
 ```
-
 
 ## Session Info
 
