@@ -44,7 +44,7 @@ Even though Dorothea provides weights under the mor column, we achieved superior
 library(epiregulon)
 
 
-#Add weights to regulon
+#Add weights to regulon. Default method (wilcoxon) cannot be used
 regulon.ms <- addWeights(regulon = regulon,
                          expMatrix = sce,
                          clusters = sce$label,
@@ -61,7 +61,7 @@ score.combine <- calculateActivity(sce,
 
 ## Perform differential activity
 ```{r differential_singlemodality}
-
+library(epiregulon.extra)
 markers <- findDifferentialActivity(activity_matrix = score.combine, 
                                     clusters = sce$label, 
                                     pval.type = "some", 
