@@ -14,7 +14,7 @@ Single cell preprocessing needs to performed by user's favorite methods prior to
 In this case, we have preprocessed the data and converted the archR project into a MAE object using the function `epiregulon.archr::archr2MAE` and made the data available through the `r BiocStyle::Biocpkg("scMultiome")` package 
 
 
-```{r}
+```{r, results = "hide", warning = FALSE, message = FALSE}
 # load the MAE object
 library(scMultiome)
 
@@ -99,7 +99,7 @@ Epiregulon prunes the network by performing tests of independence on the observe
 
 We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.
 
-```{r network_pruning_multiome, results = "hide", message = FALSE}
+```{r network_pruning_multiome}
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                exp_assay = "normalizedCounts",

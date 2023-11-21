@@ -121,7 +121,7 @@ Epiregulon enhances the signal to noise ratio of TF activity and better resolves
 plotActivityDim(sce = sce, 
                 activity_matrix = logcounts(sce),
                 tf = genes_to_plot, 
-                legend.label = "score",
+                legend.label = "gex",
                 point_size = 0.1,
                 dimtype = "UMAP", 
                 label = "label", 
@@ -133,14 +133,16 @@ plotActivityDim(sce = sce,
 # plot violin plot
 plotActivityViolin(logcounts(sce), 
                    tf = genes_to_plot,
-                   clusters = sce$label)
+                   clusters = sce$label,
+                   legend.label = "gex")
 ```
 
 ```{r, fig.height=10}
 # plot Bubble plot
 plotBubble(logcounts(sce), 
            tf = markers.sig$tf, 
-           clusters = sce$label)
+           clusters = sce$label,
+           legend.label = "gex")
 ```
 
 We can visualize the target genes for transcription factors of interest

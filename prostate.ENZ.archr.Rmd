@@ -11,8 +11,8 @@ Please refer to the full ArchR [manual](https://www.archrproject.com/bookdown/in
 Before running Epiregulon, the following analyses need to be completed:
 1. Obtain a peak matrix on scATACseq by using addGroupCoverages > addReproduciblePeakSet > addPeakMatrix. See chapter [10](https://www.archrproject.com/bookdown/calling-peaks-with-archr.html) from ArchR manual
 2. RNA-seq integration. 
-a. For unpaired scATAC-seq, use addGeneIntegrationMatrix. See chapter [8](https://www.archrproject.com/bookdown/defining-cluster-identity-with-scrna-seq.html) from ArchR manual
-b. For multiome data, use addGeneExpressionMatrix. See [multiome](https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html) tutorial
+    a. For unpaired scATAC-seq, use addGeneIntegrationMatrix. See chapter [8](https://www.archrproject.com/bookdown/defining-cluster-identity-with-scrna-seq.html) from ArchR manual
+    b. For multiome data, use addGeneExpressionMatrix. See [multiome](https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html) tutorial
 3. Perform dimensionality reduction from with either single modalities or joint scRNAseq and scATACseq using [addCombinedDims](https://www.archrproject.com/reference/addCombinedDims.html)
 
 ## Load ArchR project
@@ -152,7 +152,7 @@ If motifs are available for a factor and the RE contains a motif, we return 1. I
 
 If the user has not performed motif annotation with ArchR, we can also annotate the peaks with motifs using the Cisbp database (default) or user-provided PWMS. See `?addMotifScore`
 
-It is important to note that filtering for the presence of motifs removes a large fraction of the target genes. Motifs are often present in a small subset of the ChIP-seq peaks (can be as low as 10%). Second, indirect TF binding, possibly through its interaction partners, may have a true biological function. In this example, we continue with regulons containing the motifs, `regulon.motif`. However, if the user prefers to retain all target genes including REs without the TFs, they should proceed with `regulon`.
+It is important to note that filtering for the presence of motifs removes a large fraction of the target genes. Motifs are often present in a small subset of the ChIP-seq peaks (can be as low as 10%). Second, indirect TF binding, possibly through its interaction partners, may have a true biological function. In this example, we continue with regulons containing the motifs, `regulon.motif`. However, if the user prefers to retain all target genes including REs without the motifs, they should proceed with `regulon`.
 
 ```{r addMotifScore_prostate}
 
@@ -169,7 +169,7 @@ Epiregulon prunes the network by performing tests of independence on the observe
 
 We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.
 
-```{r pruning_prostate,  results = "hide", warning = FALSE, message = FALSE, echo = FALSE}
+```{r pruning_prostate,  results = "hide", warning = FALSE, message = FALSE}
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                exp_assay = "counts",
@@ -290,13 +290,6 @@ score.combine.corr.re <- calculateActivity(expMatrix = GeneExpressionMatrix,
 
 We visualize the different activities side by side.
 
-In this case, activity calculated from correlation based on TF and TG expression is clearly wrong because we see increased AR activity after Enzalutamide treatment despite it being an AR antagonist. Therefore, for drug treatment which often decouples TF gene expression and its activity, it is important to take into consideration both TF gene expression and RE chromatin accessibility; the latter may be a better indicator of TF function if the TF has an effect on the chromatin accessibility. In this case, the recommended methods are either `wilcox` or `corr` with `tf_re.merge = TRUE`. 
-
-The astute users could however detect a difference in the prediction of the AR activity in the resistant clones "RES-A" and "RES-B" with respect to the parental "LNCaP" between the two methods. For example, the `corr` with `tf_re.merge = TRUE` shows increased AR activity in "RES-B" compared to "LNCaP" because "RES-B" shows increased AR expression. In contrast, the `wilcoxon` method did not predict an increase in AR activity in "RES-B" because "RES-B" still shows reduced chromatin accessibility compared to "LNCaP". Since `wilcoxon` takes into account the co-occurrence of both TF gene expression and RE chromatin accessibility, this method does not predict an overall increase in AR activity.
-
-In the absence of the ground truth, it is difficult to judge which method is superior. Therefore, it is always crucial to validate key findings with additional empirical evidence. The most important disclaimer we wish to make is that all predictions by epiregulon should be robustly tested experimentally.  
-
-
 ```{r}
 library(epiregulon.extra)
 plotActivityViolin(activity_matrix = score.combine.wilcox, 
@@ -309,6 +302,13 @@ plotActivityViolin(activity_matrix = score.combine.corr.re,
                    tf = c( "AR"), 
                    clusters = GeneExpressionMatrix$label) + ggtitle ("AR activity by corr TF*RE vs TG")
 ```
+
+In this case, activity calculated from correlation based on TF and TG expression is clearly wrong because we see increased AR activity after Enzalutamide treatment despite it being an AR antagonist. Therefore, for drug treatment which often decouples TF gene expression and its activity, it is important to take into consideration both TF gene expression and RE chromatin accessibility; the latter may be a better indicator of TF function if the TF has an effect on the chromatin accessibility. In this case, the recommended methods are either `wilcox` or `corr` with `tf_re.merge = TRUE`. 
+
+The astute users could however detect a difference in the prediction of the AR activity in the resistant clones "RES-A" and "RES-B" with respect to the parental "LNCaP" between the two methods. For example, the `corr` with `tf_re.merge = TRUE` shows increased AR activity in "RES-B" compared to "LNCaP" because "RES-B" shows increased AR expression. In contrast, the `wilcoxon` method did not predict an increase in AR activity in "RES-B" because "RES-B" still shows reduced chromatin accessibility compared to "LNCaP". Since `wilcoxon` takes into account the co-occurrence of both TF gene expression and RE chromatin accessibility, this method does not predict an overall increase in AR activity.
+
+In the absence of the ground truth, it is difficult to judge which method is superior. Therefore, it is always crucial to validate key findings with additional empirical evidence. The most important disclaimer we wish to make is that all predictions by epiregulon should be robustly tested experimentally.  
+
 
 ## Perform differential activity
 
@@ -464,7 +464,9 @@ plotDiffNetwork(regulon.w.wilcox,
                 layout = "stress")
 
 ```
-We perform edge subtracted graph between two conditions and rank TFs by degree centrality. In this example, positive centrality indicates higher activity in parental LNCaP and negative centrality indicates higher activity in Enzalutamide treated cells. 
+
+We perform edge subtracted graph between two conditions and rank TFs by degree centrality. In this example, positive centrality indicates higher activity in parental LNCaP and negative centrality indicates higher activity in Enzalutamide treated cells.
+
 ```{r}
 # construct a graph of the parental and enzalutamide treated cells respectively
 LNCaP_network <- buildGraph(regulon.w.wilcox, weights = "weight", cluster="LNCaP")
@@ -546,8 +548,6 @@ print(topTFplot)
 p_matrix <- rowMeans(apply(permute_matrix, 2, function(x) {x > similarity_score_AR}))
 p_matrix[names(head(sort(diff_matrix,decreasing = TRUE),20))]
 ```
-
-
 
 
 ## Session Info

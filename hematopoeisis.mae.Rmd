@@ -8,7 +8,7 @@ This is a dataset of hematopoiesis from the ArchR [tutorial](https://www.archrpr
 
 Download the example dataset from `r BiocStyle::Biocpkg("scMultiome")` package
 
-```{r}
+```{r, results = "hide", warning = FALSE, message = FALSE}
 mae <- scMultiome::hematopoiesis()
 
 # Load peak matrix
@@ -46,7 +46,7 @@ First, we retrieve the information of TF binding sites collected from Cistrome a
 ```{r}
 library(epiregulon)
 grl <- getTFMotifInfo(genome = "hg19")
-head(grl)
+grl
 
 ```
 
@@ -83,7 +83,7 @@ A long format dataframe, representing the inferred regulons, is then generated. 
 
 ```{r}
 regulon <- getRegulon(p2g, overlap, aggregate=FALSE)
-head(regulon)
+regulon
 ```
 
 ## Prune network
@@ -103,21 +103,20 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                regulon = regulon,
                                prune_value = "pval",
                                regulon_cutoff = 0.05,
-                               clusters = GeneExpressionMatrix$Clusters2,
-                               exp_cutoff = NULL)
+                               clusters = GeneExpressionMatrix$Clusters2)
 
 ```
 
 ## Add Weights
 
-While the `pruneRegulon' function provides statistics on the joint occurrence of TF-RE-TG, we would like to further estimate the strength of regulation. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity. Epiregulon estimates the regulatory potential using one of the three measures: 1) correlation between TG and TF or between TG and the product of TF and RE, 2) mutual information between TG and TF expression or between TG and the product of TF and RE, or 3) Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs cells that do not.
+While the `pruneRegulon` function provides statistics on the joint occurrence of TF-RE-TG, we would like to further estimate the strength of regulation. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity. Epiregulon estimates the regulatory potential using one of the three measures: 1) correlation between TG and TF or between TG and the product of TF and RE, 2) mutual information between TG and TF expression or between TG and the product of TF and RE, or 3) Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs cells that do not.
 
 Two measures (correlation and Wilcoxon) give both the magnitude and directionality of changes whereas mutational information is always positive. The correlation and mutual information statistics are computed on grouped pseudobulks by user-supplied cluster labels and yield a single weight across all clusters per each TF-RE-target triplet. In contrast, the Wilcoxon method group cells based on the joint expression of TF, RE and TG in each single cell or in cell aggregates. If cell labels are provided, we calculate cluster-specific weights in addition to estimating weights from all the cells. Cell aggregation uses a default value of 10 cells and can help overcome sparsity and speed up computation. If cluster labels are provided, we can obtain weights of individual clusters and all cells combined. 
 
 In this example, we apply Wilcoxon test on cell aggregates of 10 cells. We use the Wilcoxon weight method because we are interested in computing cell type-specific weights.
  
 ```{r}
-
+set.seed(1010)
 regulon.w <- addWeights(regulon = pruned.regulon,
                         expMatrix  = GeneExpressionMatrix,
                         exp_assay  = "normalizedCounts",
@@ -127,6 +126,7 @@ regulon.w <- addWeights(regulon = pruned.regulon,
                         aggregateCells = TRUE,
                         method = "wilcox",
                         useDim = "IterativeLSI")
+
 
 regulon.w
 
@@ -157,7 +157,7 @@ We can next determine which TFs exhibit differential activities across cell clus
 ```{r}
 library(epiregulon.extra)
 markers  <- findDifferentialActivity(activity_matrix = score.combine, 
-                                    groups = GeneExpressionMatrix$Clusters2, 
+                                    clusters = GeneExpressionMatrix$Clusters2, 
                                     pval.type = "some", 
                                     direction = "up", 
                                     test.type = "t")
@@ -176,9 +176,9 @@ Epiregulon also provides multiple options for visualizing the inferred TF activi
 
 tSNE or UMAP plots:
 ```{r}
-
-tfs_interest <- c("EBF1","GATA3", "SPI1", "GATA2")
-plotActivityDim(sce = GeneExpressionMatrix, 
+options(ggrastr.default.dpi=300)
+tfs_interest <- c("EBF1","PAX5", "GATA3","SPI1")
+plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = score.combine[tfs_interest,], 
                 tf = tfs_interest, 
                 dimtype = "UMAP",
@@ -192,7 +192,6 @@ We can compare the activity with gene expression of the same TFs.
 
 ```{r}
 
-#options(ggrastr.default.dpi=300)
 plotActivityDim(sce = GeneExpressionMatrix, 
                 activity_matrix = assay(GeneExpressionMatrix, "normalizedCounts")[tfs_interest,], 
                 tf = tfs_interest, 
@@ -201,7 +200,6 @@ plotActivityDim(sce = GeneExpressionMatrix,
                 ncol=2,
                 legend.label = "Gex",
                 colors = c("grey","blue"),
-                #limit = c(0,2),
                 point_size=0.1,
                 rasterise = TRUE)
 ```
@@ -211,6 +209,7 @@ We can also plot violin plot to visualize TF activity.
 plotActivityViolin(activity_matrix = score.combine, 
                    tf = tfs_interest, 
                    clusters = GeneExpressionMatrix$Clusters2,
+                   legend.label = "Gex",
                    nrow=2,
                    ncol=2)
 ```
@@ -249,7 +248,7 @@ Sometimes we are interested to know what pathways are enriched in the regulon of
 
 Here we first download Hallmark and C2 signatures from hallmark and then perform gene set enrichment of the known lineage factors. As expected, EBF1 is consistent with a B cell lineage factor, GATA3 and RUNX3 with lymphoid lineage and SPI1 with myeloid lineage.
 
-```{r enrichment_hematopoeisis, fig.width=12}
+```{r enrichment_hematopoeisis, fig.width=12, fig.height=12}
 #retrieve genesets
 H <- EnrichmentBrowser::getGenesets(org = "hsa", 
                                     db = "msigdb", 
@@ -278,7 +277,7 @@ enrichPlot(results = enrichresults, ncol=2)
 
 ## Differential Network analysis
 
-In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that EBF1 is a B cell lineage factor. If we plot the differential network of EBF1 using the regulon with cluster-specific weights, we can see that EBF1 has many more targets in PreB cells than it has in CD4 memory cells. 
+In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that EBF1 is a B cell lineage factor. If we plot the differential network of EBF1 using the regulon with cluster-specific weights, we can see that EBF1 has many more targets in PreB cells than it has in CD4 memory T cells. 
 
 ```{r differential networks hematopoeisis}
 
@@ -349,15 +348,17 @@ p_matrix <- rowMeans(apply(permute_matrix, 2, function(x) {x > similarity_score_
 p_matrix[names(head(sort(diff_matrix,decreasing = TRUE),20))]
 ```
 
-Next, we are interested to compare the networks of two cell types, in this case, CD4 memory cells (CD4.M) vs Monocytes (mono) cells. We build an edge subtracted graph and then calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in NK cells whereas the bottom 5 TFs present lineage factors enriched in CD4. We successfully identified the myeloid factor SPI1 to be associated with monocytes and Th1 factor TBX21 to be associated with CD4 cells.
+Next, we are interested to compare the networks of two cell types, in this case, CD4 memory T cells (CD4.M) vs Monocytes (mono) cells. We build an edge subtracted graph and then calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in NK cells whereas the bottom 5 TFs present lineage factors enriched in CD4. We successfully identified the myeloid factor SPI1 to be associated with monocytes and Th1 factor TBX21 to be associated with CD4 T cells.
 
 ```{r}
+#regulon.w.2 <- regulon.w
+#regulon.w <- readRDS("/gstore/project/lineage/manuscript/epiregulon/OUTPUT/regulon.w.rds")
 # construct a graph of the CD4.M and NK cells respectively
 CD4.M_network <- buildGraph(regulon.w, weights = "weight", cluster="CD4.M")
 Mono_network <- buildGraph(regulon.w, weights = "weight", cluster="Mono")
 
 # construct a difference graph
-diff_graph <- buildDiffGraph( Mono_network,CD4.M_network, abs_diff = FALSE)
+diff_graph <- buildDiffGraph(Mono_network,CD4.M_network, abs_diff = FALSE)
 diff_graph <- addCentrality(diff_graph)
 diff_graph <- normalizeCentrality(diff_graph)
 rank_table <- rankTfs(diff_graph)
@@ -365,20 +366,22 @@ rank_table <- rankTfs(diff_graph)
 library(ggplot2)
 ggplot(rank_table, aes(x = rank, y = centrality)) +
     geom_point() +
-    ggrepel::geom_text_repel(data = rbind(head(rank_table, 5), 
-                                          tail(rank_table,5)), 
+    ggrepel::geom_text_repel(data = rbind(head(rank_table, 10), 
+                                          tail(rank_table, 10)), 
                              aes(label = tf), 
-                             nudge_x = 0, nudge_y = 0, box.padding = 0.5) +
+                             nudge_x = 0, nudge_y = 0, box.padding = 0.5, max.overlaps = Inf) +
     theme_classic() + ggtitle ("differential TFs (Mono-CD4.M) ranked by degree centrality")
 
 ```
 
 We can further explore interacting factors with the myeloid factor SPI1 using the same Jaccard similarity approach. We found CEBPA as the most similar TF as SPI1. SPI1 and CEBPA are known to be important for differentiation into myeloid cells (https://www.cell.com/cell-reports/pdfExtended/S2211-1247(18)30745-9).
-```{r}
+```{r, results = "hide", warning = FALSE, message = FALSE}
 library(igraph)
+```
+```{r}
 diff_graph_filter <- subgraph.edges(diff_graph, 
                                     E(diff_graph)[E(diff_graph)$weight>0], 
-                                    del=T)
+                                    del=TRUE)
 
 
 # compute a similarity matrix of all TFs
