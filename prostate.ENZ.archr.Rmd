@@ -9,6 +9,7 @@ The dataset consists of unpaired scATACseq/scRNAseq of parental LNCaP cells trea
 Please refer to the full ArchR [manual](https://www.archrproject.com/bookdown/index.html) for instructions 
 
 Before running Epiregulon, the following analyses need to be completed:
+
 1. Obtain a peak matrix on scATACseq by using addGroupCoverages > addReproduciblePeakSet > addPeakMatrix. See chapter [10](https://www.archrproject.com/bookdown/calling-peaks-with-archr.html) from ArchR manual
 2. RNA-seq integration. 
     a. For unpaired scATAC-seq, use addGeneIntegrationMatrix. See chapter [8](https://www.archrproject.com/bookdown/defining-cluster-identity-with-scrna-seq.html) from ArchR manual
@@ -548,7 +549,6 @@ print(topTFplot)
 p_matrix <- rowMeans(apply(permute_matrix, 2, function(x) {x > similarity_score_AR}))
 p_matrix[names(head(sort(diff_matrix,decreasing = TRUE),20))]
 ```
-
 
 ## Session Info
 
