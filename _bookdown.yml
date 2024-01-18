@@ -4,5 +4,6 @@ rmd_files: ["index.Rmd",
     "multiome.mae.Rmd",
     "hematopoeisis.mae.Rmd",
     "prostate.ENZ.archr.Rmd",
-    "scRNAseq.only.Rmd"]
+    "scRNAseq.only.Rmd",
+    "contact.Rmd"]
 output_dir: "docs"

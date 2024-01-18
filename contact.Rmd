@@ -1,0 +1,12 @@
+# Contact
+
+The issues related to `epiregulon` suite of packages can be reported on the package GitHub repository page.
+
+ - [`epiregulon`](https://github.com/xiaosaiyao/epiregulon/issues)
+ - [`epiregulon.extra`](https://github.com/xiaosaiyao/epiregulon.extra/issues)
+ - [`epiregulon.archr`](https://github.com/xiaosaiyao/epiregulon.archr/issues)
+
+If you need more information on the package usage you can contact authors directly:
+
+- Xiaosai Yao, yaox19@gene.com
+- Tomasz Włodarczy, tomwlo@gmail.com
