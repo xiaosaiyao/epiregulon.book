@@ -26,7 +26,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
 <meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
 
 
-<meta name="date" content="2024-01-18" />
+<meta name="date" content="2024-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,12 +283,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb168-7"><a href="archr-workflow-and-different-weight-methods.html#cb168-7" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span>,</span>
 <span id="cb168-8"><a href="archr-workflow-and-different-weight-methods.html#cb168-8" tabindex="-1"></a>    <span class="at">logFile =</span> <span class="st">&quot;x&quot;</span></span>
 <span id="cb168-9"><a href="archr-workflow-and-different-weight-methods.html#cb168-9" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## 2024-01-18 08:58:42.826726 : Organizing colData, 2.098 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 08:58:44.066056 : Organizing rowData, 2.119 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 08:58:44.075527 : Organizing rowRanges, 2.119 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 08:58:44.088615 : Organizing Assays (1 of 1), 2.119 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 08:58:56.338389 : Constructing SummarizedExperiment, 2.324 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 08:58:59.822042 : Finished Matrix Creation, 2.382 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:47:59.878191 : Organizing colData, 1.857 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:48:00.932976 : Organizing rowData, 1.875 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:48:00.942555 : Organizing rowRanges, 1.875 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:48:00.956437 : Organizing Assays (1 of 1), 1.875 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:48:14.431928 : Constructing SummarizedExperiment, 2.1 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:48:17.234764 : Finished Matrix Creation, 2.146 mins elapsed.</code></pre>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="archr-workflow-and-different-weight-methods.html#cb175-1" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(</span>
 <span id="cb175-2"><a href="archr-workflow-and-different-weight-methods.html#cb175-2" tabindex="-1"></a>    <span class="at">ArchRProj =</span> proj,</span>
 <span id="cb175-3"><a href="archr-workflow-and-different-weight-methods.html#cb175-3" tabindex="-1"></a>    <span class="at">useMatrix =</span> <span class="st">&quot;PeakMatrix&quot;</span>,</span>
@@ -298,12 +298,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb175-7"><a href="archr-workflow-and-different-weight-methods.html#cb175-7" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span>,</span>
 <span id="cb175-8"><a href="archr-workflow-and-different-weight-methods.html#cb175-8" tabindex="-1"></a>    <span class="at">logFile =</span> <span class="st">&quot;x&quot;</span></span>
 <span id="cb175-9"><a href="archr-workflow-and-different-weight-methods.html#cb175-9" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## 2024-01-18 09:00:30.519036 : Organizing colData, 1.501 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:00:31.458698 : Organizing rowData, 1.516 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:00:31.471586 : Organizing rowRanges, 1.517 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:00:31.490499 : Organizing Assays (1 of 1), 1.517 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:00:37.196249 : Constructing SummarizedExperiment, 1.612 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:01:04.439422 : Finished Matrix Creation, 2.066 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:49:39.984216 : Organizing colData, 1.369 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:49:40.871321 : Organizing rowData, 1.383 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:49:40.882951 : Organizing rowRanges, 1.384 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:49:40.898544 : Organizing Assays (1 of 1), 1.384 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:49:44.257088 : Constructing SummarizedExperiment, 1.44 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:50:05.839507 : Finished Matrix Creation, 1.799 mins elapsed.</code></pre>
 <p>If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of <code>ArchRMatrix2SCE</code> to convert gene expression matrix to SingleCellExperiment object. It’s also important to note that gene expression from ArchR is library size normalized (not logged)</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="archr-workflow-and-different-weight-methods.html#cb182-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.archr)</span></code></pre></div>
 <pre><code>## 
@@ -337,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.4</span> Retrieve bulk TF ChIP-seq binding sites<a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes HG19 and HG38 and mouse mm10 are available.</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="archr-workflow-and-different-weight-methods.html#cb189-1" tabindex="-1"></a>grl <span class="ot">&lt;-</span> <span class="fu">getTFMotifInfo</span>(<span class="at">genome =</span> <span class="st">&quot;hg38&quot;</span>)</span></code></pre></div>
-<pre><code>## snapshotDate(): 2024-01-17</code></pre>
+<pre><code>## snapshotDate(): 2024-02-22</code></pre>
 <pre><code>## see ?scMultiome and browseVignettes(&#39;scMultiome&#39;) for documentation</code></pre>
 <pre><code>## loading from cache</code></pre>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="archr-workflow-and-different-weight-methods.html#cb193-1" tabindex="-1"></a>grl</span></code></pre></div>
@@ -374,17 +374,17 @@ to supply a path to an ArchR project already containing peak and gene matrices, 
 <span id="cb195-5"><a href="archr-workflow-and-different-weight-methods.html#cb195-5" tabindex="-1"></a>                    <span class="at">threads =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Setting ArchRLogging = FALSE</code></pre>
 <pre><code>## Using ArchR to compute peak to gene links...</code></pre>
-<pre><code>## 2024-01-18 09:01:33.88343 : Getting Available Matrices, 0 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:01:36.258288 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.004 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:01:37.017846 : Computing KNN, 0.017 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:01:40.313764 : Identifying Non-Overlapping KNN pairs, 0.071 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:01:43.019485 : Identified 498 Groupings!, 0.117 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:01:43.08892 : Getting Group RNA Matrix, 0.118 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:07:11.918435 : Getting Group ATAC Matrix, 5.598 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:11:51.210142 : Normalizing Group Matrices, 10.253 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:12:02.985165 : Finding Peak Gene Pairings, 10.449 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:12:03.598349 : Computing Correlations, 10.46 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:12:15.0731 : Completed Peak2Gene Correlations!, 10.651 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:50:28.659413 : Getting Available Matrices, 0 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:50:30.834517 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.005 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:50:31.591285 : Computing KNN, 0.018 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:50:34.56495 : Identifying Non-Overlapping KNN pairs, 0.067 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:50:37.257167 : Identified 498 Groupings!, 0.112 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:50:37.318631 : Getting Group RNA Matrix, 0.113 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:53:58.584016 : Getting Group ATAC Matrix, 3.468 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:57:27.824984 : Normalizing Group Matrices, 6.955 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:57:38.115002 : Finding Peak Gene Pairings, 7.127 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:57:38.664318 : Computing Correlations, 7.136 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 09:57:48.103225 : Completed Peak2Gene Correlations!, 7.293 mins elapsed.</code></pre>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="archr-workflow-and-different-weight-methods.html#cb209-1" tabindex="-1"></a>p2g</span></code></pre></div>
 <pre><code>## DataFrame with 17979 rows and 8 columns
 ##         idxATAC      chr     start       end    idxRNA        target Correlation  distance
@@ -483,13 +483,13 @@ to supply a path to an ArchR project already containing peak and gene matrices, 
 <span id="cb222-6"><a href="archr-workflow-and-different-weight-methods.html#cb222-6" tabindex="-1"></a>    <span class="at">binarize =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb222-7"><a href="archr-workflow-and-different-weight-methods.html#cb222-7" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span></span>
 <span id="cb222-8"><a href="archr-workflow-and-different-weight-methods.html#cb222-8" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## 2024-01-18 09:14:47.284575 : Organizing colData, 0.321 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:14:47.483179 : Organizing rowData, 0.324 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:14:47.486655 : Organizing rowRanges, 0.325 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:14:47.497109 : Organizing Assays (1 of 2), 0.325 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:14:48.499297 : Organizing Assays (2 of 2), 0.341 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:14:48.657335 : Constructing SummarizedExperiment, 0.344 mins elapsed.</code></pre>
-<pre><code>## 2024-01-18 09:14:53.47981 : Finished Matrix Creation, 0.424 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 10:00:13.589199 : Organizing colData, 0.412 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 10:00:13.745511 : Organizing rowData, 0.414 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 10:00:13.748369 : Organizing rowRanges, 0.414 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 10:00:13.753636 : Organizing Assays (1 of 2), 0.415 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 10:00:14.033793 : Organizing Assays (2 of 2), 0.419 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 10:00:14.309042 : Constructing SummarizedExperiment, 0.424 mins elapsed.</code></pre>
+<pre><code>## 2024-02-23 10:00:17.726051 : Finished Matrix Creation, 0.481 mins elapsed.</code></pre>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="archr-workflow-and-different-weight-methods.html#cb230-1" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
 <span id="cb230-2"><a href="archr-workflow-and-different-weight-methods.html#cb230-2" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">assay</span>(chromVarMatrix, <span class="st">&quot;z&quot;</span>), </span>
 <span id="cb230-3"><a href="archr-workflow-and-different-weight-methods.html#cb230-3" tabindex="-1"></a>                <span class="at">tf =</span> <span class="st">&quot;AR_689&quot;</span>, </span>
@@ -545,8 +545,8 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <span id="cb241-5"><a href="archr-workflow-and-different-weight-methods.html#cb241-5" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>,</span>
 <span id="cb241-6"><a href="archr-workflow-and-different-weight-methods.html#cb241-6" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>)</span></code></pre></div>
 <pre><code>## calculating TF activity from regulon using weightedmean</code></pre>
-<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, exp_assay = &quot;counts&quot;, : The weight column contains multiple subcolumns but no
-## cluster information was provided. Using first column to compute activity...</code></pre>
+<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, exp_assay = &quot;counts&quot;, : The weight column contains multiple subcolumns
+## but no cluster information was provided. Using first column to compute activity...</code></pre>
 <pre><code>## aggregating regulons...</code></pre>
 <pre><code>## creating weight matrix...</code></pre>
 <pre><code>## calculating activity scores...</code></pre>
@@ -818,8 +818,10 @@ We can visualize the genesets of differential factors as a network</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="archr-workflow-and-different-weight-methods.html#cb315-1" tabindex="-1"></a><span class="co"># obtain empirical p-values</span></span>
 <span id="cb315-2"><a href="archr-workflow-and-different-weight-methods.html#cb315-2" tabindex="-1"></a>p_matrix <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(<span class="fu">apply</span>(permute_matrix, <span class="dv">2</span>, <span class="cf">function</span>(x) {x <span class="sc">&gt;</span> similarity_score_AR}))</span>
 <span id="cb315-3"><a href="archr-workflow-and-different-weight-methods.html#cb315-3" tabindex="-1"></a>p_matrix[<span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,<span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>))]</span></code></pre></div>
-<pre><code>##   JUND    MYC HOXB13  FOXA1   NFIC  CEBPB   XBP1    MAZ   ATF4   CTCF   REST  GATA2   ETV1  FOXP1    JUN  CEBPG    YY1   NFIB ZNF148   MXI1 
-##   0.00   0.00   0.01   0.00   0.00   0.00   0.01   0.01   0.00   0.00   0.01   0.01   0.01   0.00   0.00   0.02   0.01   0.02   0.01   0.01</code></pre>
+<pre><code>##   JUND    MYC HOXB13  FOXA1   NFIC  CEBPB   XBP1    MAZ   ATF4   CTCF   REST  GATA2   ETV1  FOXP1  CEBPG    JUN    YY1   NFIB ZNF148 
+##   0.00   0.00   0.00   0.01   0.03   0.01   0.00   0.03   0.01   0.00   0.01   0.01   0.03   0.01   0.01   0.03   0.00   0.00   0.00 
+##   USF2 
+##   0.01</code></pre>
 </div>
 <div id="session-info-2" class="section level2 hasAnchor" number="4.15">
 <h2><span class="header-section-number">4.15</span> Session Info<a href="archr-workflow-and-different-weight-methods.html#session-info-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -838,8 +840,9 @@ We can visualize the genesets of differential factors as a network</p>
 ##  Sample:  Rejection 
 ##  
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8 LC_NUMERIC=C         LC_TIME=C            LC_COLLATE=C         LC_MONETARY=C        LC_MESSAGES=C       
-##  [7] LC_PAPER=C           LC_NAME=C            LC_ADDRESS=C         LC_TELEPHONE=C       LC_MEASUREMENT=C     LC_IDENTIFICATION=C 
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## time zone: Etc/UTC
 ## tzcode source: system (glibc)
@@ -848,58 +851,71 @@ We can visualize the genesets of differential factors as a network</p>
 ##  [1] parallel  grid      stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] org.Hs.eg.db_3.18.0               AnnotationDbi_1.65.2              nabor_0.5.0                       epiregulon.archr_0.99.1          
-##  [5] rhdf5_2.47.2                      RcppArmadillo_0.12.6.6.1          Rcpp_1.0.12                       Matrix_1.6-4                     
-##  [9] sparseMatrixStats_1.15.0          data.table_1.14.10                stringr_1.5.1                     plyr_1.8.9                       
-## [13] magrittr_2.0.3                    gtable_0.3.4                      gtools_3.9.5                      gridExtra_2.3                    
-## [17] devtools_2.4.5                    usethis_2.2.2                     ArchR_1.0.3                       igraph_1.6.0                     
-## [21] ggplot2_3.4.4                     msigdbr_7.5.1                     epiregulon.extra_0.99.1           BSgenome.Hsapiens.UCSC.hg38_1.4.5
-## [25] BSgenome_1.71.1                   rtracklayer_1.63.0                BiocIO_1.13.0                     Biostrings_2.71.1                
-## [29] XVector_0.43.1                    epiregulon_1.0.38                 scMultiome_1.3.0                  SingleCellExperiment_1.25.0      
-## [33] MultiAssayExperiment_1.29.0       SummarizedExperiment_1.33.2       Biobase_2.63.0                    GenomicRanges_1.55.1             
-## [37] GenomeInfoDb_1.39.5               IRanges_2.37.0                    S4Vectors_0.41.3                  MatrixGenerics_1.15.0            
-## [41] matrixStats_1.2.0                 ExperimentHub_2.11.1              AnnotationHub_3.11.1              BiocFileCache_2.11.1             
-## [45] dbplyr_2.4.0                      BiocGenerics_0.49.1              
+##  [1] nabor_0.5.0                       epiregulon.archr_0.99.1           rhdf5_2.47.4                     
+##  [4] RcppArmadillo_0.12.8.0.0          Rcpp_1.0.12                       Matrix_1.6-4                     
+##  [7] sparseMatrixStats_1.15.0          data.table_1.15.0                 stringr_1.5.1                    
+## [10] plyr_1.8.9                        magrittr_2.0.3                    gtable_0.3.4                     
+## [13] gtools_3.9.5                      gridExtra_2.3                     devtools_2.4.5                   
+## [16] usethis_2.2.3                     ArchR_1.0.3                       igraph_2.0.2                     
+## [19] ggplot2_3.4.4                     org.Hs.eg.db_3.18.0               AnnotationDbi_1.65.2             
+## [22] msigdbr_7.5.1                     epiregulon.extra_0.99.1           BSgenome.Hsapiens.UCSC.hg38_1.4.5
+## [25] BSgenome_1.71.2                   rtracklayer_1.63.0                BiocIO_1.13.0                    
+## [28] Biostrings_2.71.2                 XVector_0.43.1                    epiregulon_0.99.2                
+## [31] scMultiome_1.3.0                  SingleCellExperiment_1.25.0       MultiAssayExperiment_1.29.1      
+## [34] SummarizedExperiment_1.33.3       Biobase_2.63.0                    GenomicRanges_1.55.3             
+## [37] GenomeInfoDb_1.39.6               IRanges_2.37.1                    S4Vectors_0.41.3                 
+## [40] MatrixGenerics_1.15.0             matrixStats_1.2.0                 ExperimentHub_2.11.1             
+## [43] AnnotationHub_3.11.1              BiocFileCache_2.11.1              dbplyr_2.4.0                     
+## [46] BiocGenerics_0.49.1              
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] fs_1.6.3                    bitops_1.0-7                enrichplot_1.23.1           DirichletMultinomial_1.45.0 TFBSTools_1.41.0           
-##   [6] HDO.db_0.99.1               httr_1.4.7                  RColorBrewer_1.1-3          doParallel_1.0.17           Rgraphviz_2.47.0           
-##  [11] profvis_0.3.8               tools_4.4.0                 backports_1.4.1             utf8_1.2.4                  R6_2.5.1                   
-##  [16] HDF5Array_1.31.1            lazyeval_0.2.2              rhdf5filters_1.15.1         GetoptLong_1.0.5            urlchecker_1.0.1           
-##  [21] withr_3.0.0                 cli_3.6.2                   Cairo_1.6-2                 scatterpie_0.2.1            labeling_0.4.3             
-##  [26] sass_0.4.8                  KEGGgraph_1.63.0            readr_2.1.5                 Rsamtools_2.19.2            yulab.utils_0.1.3          
-##  [31] gson_0.1.0                  DOSE_3.29.2                 R.utils_2.12.3              scater_1.31.1               sessioninfo_1.2.2          
-##  [36] limma_3.59.1                rstudioapi_0.15.0           RSQLite_2.3.4               gridGraphics_0.5-1          generics_0.1.3             
-##  [41] shape_1.4.6                 dplyr_1.1.4                 GO.db_3.18.0                ggbeeswarm_0.7.2            fansi_1.0.6                
-##  [46] abind_1.4-5                 R.methodsS3_1.8.2           lifecycle_1.0.4             yaml_2.3.8                  edgeR_4.1.10               
-##  [51] qvalue_2.35.0               SparseArray_1.3.3           blob_1.2.4                  promises_1.2.1              dqrng_0.3.2                
-##  [56] crayon_1.5.2                miniUI_0.1.1.1              lattice_0.22-5              beachmat_2.19.0             cowplot_1.1.2              
-##  [61] annotate_1.81.1             KEGGREST_1.43.0             magick_2.8.2                pillar_1.9.0                knitr_1.45                 
-##  [66] ComplexHeatmap_2.19.0       metapod_1.11.1              fgsea_1.29.0                rjson_0.2.21                codetools_0.2-19           
-##  [71] fastmatch_1.1-4             glue_1.7.0                  ggfun_0.1.3                 remotes_2.4.2.1             treeio_1.27.0              
-##  [76] vctrs_0.6.5                 png_0.1-8                   poweRlaw_0.70.6             cachem_1.0.8                xfun_0.41                  
-##  [81] S4Arrays_1.3.2              mime_0.12                   tidygraph_1.3.0             pracma_2.4.4                iterators_1.0.14           
-##  [86] statmod_1.5.0               bluster_1.13.0              ellipsis_0.3.2              nlme_3.1-164                ggtree_3.11.0              
-##  [91] bit64_4.0.5                 filelock_1.0.3              bslib_0.6.1                 irlba_2.3.5.1               vipor_0.4.7                
-##  [96] colorspace_2.1-0            seqLogo_1.69.0              DBI_1.2.1                   ggrastr_1.0.2               tidyselect_1.2.0           
-## [101] bit_4.0.5                   compiler_4.4.0              curl_5.2.0                  graph_1.81.0                BiocNeighbors_1.21.2       
-## [106] DelayedArray_0.29.0         shadowtext_0.1.2            bookdown_0.37               checkmate_2.3.1             scales_1.3.0               
-## [111] caTools_1.18.2              rappdirs_0.3.3              digest_0.6.34               motifmatchr_1.25.0          rmarkdown_2.25             
-## [116] htmltools_0.5.7             pkgconfig_2.0.3             highr_0.10                  fastmap_1.1.1               htmlwidgets_1.6.4          
-## [121] rlang_1.1.3                 GlobalOptions_0.1.2         shiny_1.8.0                 DelayedMatrixStats_1.25.1   farver_2.1.1               
-## [126] jquerylib_0.1.4             jsonlite_1.8.8              BiocParallel_1.37.0         GOSemSim_2.29.0             R.oo_1.25.0                
-## [131] BiocSingular_1.19.0         RCurl_1.98-1.14             ggplotify_0.1.2             scuttle_1.13.0              GenomeInfoDbData_1.2.11    
-## [136] patchwork_1.2.0             Rhdf5lib_1.25.1             munsell_0.5.0               ape_5.7-1                   babelgene_22.9             
-## [141] viridis_0.6.4               EnrichmentBrowser_2.33.1    stringi_1.8.3               ggraph_2.1.0                MASS_7.3-60.1              
-## [146] zlibbioc_1.49.0             pkgbuild_1.4.3              ggrepel_0.9.5               CNEr_1.39.0                 graphlayouts_1.0.2         
-## [151] splines_4.4.0               hms_1.1.3                   circlize_0.4.15             locfit_1.5-9.8              pkgload_1.3.4              
-## [156] reshape2_1.4.4              ScaledMatrix_1.11.0         TFMPvalue_0.0.9             BiocVersion_3.19.1          XML_3.99-0.16              
-## [161] evaluate_0.23               scran_1.31.0                BiocManager_1.30.22         httpuv_1.6.13               tweenr_2.0.2               
-## [166] tzdb_0.4.0                  foreach_1.5.2               polyclip_1.10-6             tidyr_1.3.0                 purrr_1.0.2                
-## [171] clue_0.3-65                 ggforce_0.4.1               rsvd_1.0.5                  xtable_1.8-4                restfulr_0.0.15            
-## [176] tidytree_0.4.6              later_1.3.2                 viridisLite_0.4.2           tibble_3.2.1                aplot_0.2.2                
-## [181] clusterProfiler_4.11.0      memoise_2.0.1               beeswarm_0.4.0              GenomicAlignments_1.39.2    cluster_2.1.6              
-## [186] GSEABase_1.65.1             BiocStyle_2.31.0</code></pre>
+##   [1] fs_1.6.3                    bitops_1.0-7                enrichplot_1.23.1           DirichletMultinomial_1.45.0
+##   [5] TFBSTools_1.41.0            HDO.db_0.99.1               httr_1.4.7                  RColorBrewer_1.1-3         
+##   [9] doParallel_1.0.17           Rgraphviz_2.47.0            profvis_0.3.8               tools_4.4.0                
+##  [13] backports_1.4.1             utf8_1.2.4                  R6_2.5.1                    HDF5Array_1.31.5           
+##  [17] lazyeval_0.2.2              rhdf5filters_1.15.2         GetoptLong_1.0.5            urlchecker_1.0.1           
+##  [21] withr_3.0.0                 cli_3.6.2                   Cairo_1.6-2                 scatterpie_0.2.1           
+##  [25] labeling_0.4.3              sass_0.4.8                  KEGGgraph_1.63.0            readr_2.1.5                
+##  [29] Rsamtools_2.19.3            yulab.utils_0.1.4           gson_0.1.0                  DOSE_3.29.2                
+##  [33] R.utils_2.12.3              scater_1.31.2               sessioninfo_1.2.2           limma_3.59.3               
+##  [37] rstudioapi_0.15.0           RSQLite_2.3.5               gridGraphics_0.5-1          generics_0.1.3             
+##  [41] shape_1.4.6                 dplyr_1.1.4                 GO.db_3.18.0                ggbeeswarm_0.7.2           
+##  [45] fansi_1.0.6                 abind_1.4-5                 R.methodsS3_1.8.2           lifecycle_1.0.4            
+##  [49] yaml_2.3.8                  edgeR_4.1.17                qvalue_2.35.0               SparseArray_1.3.4          
+##  [53] blob_1.2.4                  promises_1.2.1              dqrng_0.3.2                 crayon_1.5.2               
+##  [57] miniUI_0.1.1.1              lattice_0.22-5              beachmat_2.19.1             cowplot_1.1.3              
+##  [61] annotate_1.81.2             KEGGREST_1.43.0             magick_2.8.3                pillar_1.9.0               
+##  [65] knitr_1.45                  ComplexHeatmap_2.19.0       metapod_1.11.1              fgsea_1.29.0               
+##  [69] rjson_0.2.21                codetools_0.2-19            fastmatch_1.1-4             glue_1.7.0                 
+##  [73] ggfun_0.1.4                 remotes_2.4.2.1             treeio_1.27.0               vctrs_0.6.5                
+##  [77] png_0.1-8                   poweRlaw_0.80.0             cachem_1.0.8                xfun_0.42                  
+##  [81] S4Arrays_1.3.3              mime_0.12                   tidygraph_1.3.1             pracma_2.4.4               
+##  [85] iterators_1.0.14            statmod_1.5.0               bluster_1.13.0              ellipsis_0.3.2             
+##  [89] nlme_3.1-164                ggtree_3.11.0               bit64_4.0.5                 filelock_1.0.3             
+##  [93] bslib_0.6.1                 irlba_2.3.5.1               vipor_0.4.7                 colorspace_2.1-0           
+##  [97] seqLogo_1.69.0              DBI_1.2.2                   ggrastr_1.0.2               tidyselect_1.2.0           
+## [101] bit_4.0.5                   compiler_4.4.0              curl_5.2.0                  graph_1.81.0               
+## [105] BiocNeighbors_1.21.2        DelayedArray_0.29.4         shadowtext_0.1.3            bookdown_0.37              
+## [109] checkmate_2.3.1             scales_1.3.0                caTools_1.18.2              rappdirs_0.3.3             
+## [113] digest_0.6.34               motifmatchr_1.25.0          rmarkdown_2.25              htmltools_0.5.7            
+## [117] pkgconfig_2.0.3             highr_0.10                  fastmap_1.1.1               htmlwidgets_1.6.4          
+## [121] rlang_1.1.3                 GlobalOptions_0.1.2         shiny_1.8.0                 DelayedMatrixStats_1.25.1  
+## [125] farver_2.1.1                jquerylib_0.1.4             jsonlite_1.8.8              BiocParallel_1.37.0        
+## [129] GOSemSim_2.29.1             R.oo_1.26.0                 BiocSingular_1.19.0         RCurl_1.98-1.14            
+## [133] ggplotify_0.1.2             scuttle_1.13.0              GenomeInfoDbData_1.2.11     patchwork_1.2.0            
+## [137] Rhdf5lib_1.25.1             munsell_0.5.0               ape_5.7-1                   babelgene_22.9             
+## [141] viridis_0.6.5               EnrichmentBrowser_2.33.1    stringi_1.8.3               ggraph_2.1.0               
+## [145] MASS_7.3-60.1               zlibbioc_1.49.0             pkgbuild_1.4.3              ggrepel_0.9.5              
+## [149] CNEr_1.39.0                 graphlayouts_1.1.0          splines_4.4.0               hms_1.1.3                  
+## [153] circlize_0.4.16             locfit_1.5-9.8              pkgload_1.3.4               reshape2_1.4.4             
+## [157] ScaledMatrix_1.11.0         TFMPvalue_0.0.9             BiocVersion_3.19.1          XML_3.99-0.16.1            
+## [161] evaluate_0.23               scran_1.31.0                BiocManager_1.30.22         httpuv_1.6.14              
+## [165] tweenr_2.0.2                tzdb_0.4.0                  foreach_1.5.2               polyclip_1.10-6            
+## [169] tidyr_1.3.1                 purrr_1.0.2                 clue_0.3-65                 ggforce_0.4.2              
+## [173] rsvd_1.0.5                  xtable_1.8-4                restfulr_0.0.15             tidytree_0.4.6             
+## [177] later_1.3.2                 viridisLite_0.4.2           tibble_3.2.1                aplot_0.2.2                
+## [181] clusterProfiler_4.11.0      memoise_2.0.1               beeswarm_0.4.0              GenomicAlignments_1.39.4   
+## [185] cluster_2.1.6               GSEABase_1.65.1             BiocStyle_2.31.0</code></pre>
 
 </div>
 </div>

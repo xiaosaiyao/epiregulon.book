@@ -99,6 +99,8 @@ Epiregulon prunes the network by performing tests of independence on the observe
 
 We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.
 
+If you supply your cluster label make sure that the gene expression SingleCellExperiment contains matrix representing reduced dimension coordinates for cells. The name of this matrix should be passed in `useDim` parameter. It is also necessary if you want cells to be aggregated into pseudobulks, which can be done by specifying `aggregateCells=TRUE`.  
+
 ```{r network_pruning_multiome}
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,

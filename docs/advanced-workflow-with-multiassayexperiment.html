@@ -26,7 +26,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
 <meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
 
 
-<meta name="date" content="2024-01-18" />
+<meta name="date" content="2024-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -234,40 +234,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-preparation-1" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Data preparation<a href="advanced-workflow-with-multiassayexperiment.html#data-preparation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Download the example dataset from <em><a href="https://bioconductor.org/packages/3.19/scMultiome">scMultiome</a></em> package</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-1" tabindex="-1"></a>mae <span class="ot">&lt;-</span> scMultiome<span class="sc">::</span><span class="fu">hematopoiesis</span>()</span>
-<span id="cb76-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-2" tabindex="-1"></a></span>
-<span id="cb76-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-3" tabindex="-1"></a><span class="co"># Load peak matrix</span></span>
-<span id="cb76-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-4" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;PeakMatrix&quot;</span>]]</span>
-<span id="cb76-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-5" tabindex="-1"></a></span>
-<span id="cb76-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-6" tabindex="-1"></a><span class="co"># Load expression matrix</span></span>
-<span id="cb76-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-7" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;GeneIntegrationMatrix&quot;</span>]]</span>
-<span id="cb76-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-8" tabindex="-1"></a></span>
-<span id="cb76-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-9" tabindex="-1"></a><span class="co"># Add gene symbols to rownames</span></span>
-<span id="cb76-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-10" tabindex="-1"></a><span class="fu">rownames</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(GeneExpressionMatrix)<span class="sc">$</span>name</span>
-<span id="cb76-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-11" tabindex="-1"></a></span>
-<span id="cb76-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-12" tabindex="-1"></a><span class="co"># Transfer dimensionality reduction matrix to GeneExpression</span></span>
-<span id="cb76-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-13" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;IterativeLSI&quot;</span>) <span class="ot">&lt;-</span> </span>
-<span id="cb76-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-14" tabindex="-1"></a>  <span class="fu">reducedDim</span>(mae[[<span class="st">&#39;TileMatrix500&#39;</span>]], <span class="st">&quot;IterativeLSI&quot;</span>)</span>
-<span id="cb76-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-15" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;UMAP&quot;</span>) <span class="ot">&lt;-</span> </span>
-<span id="cb76-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb76-16" tabindex="-1"></a>  <span class="fu">reducedDim</span>(mae[[<span class="st">&#39;TileMatrix500&#39;</span>]], <span class="st">&quot;UMAP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-1" tabindex="-1"></a>mae <span class="ot">&lt;-</span> scMultiome<span class="sc">::</span><span class="fu">hematopoiesis</span>()</span>
+<span id="cb73-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-2" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-3" tabindex="-1"></a><span class="co"># Load peak matrix</span></span>
+<span id="cb73-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-4" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;PeakMatrix&quot;</span>]]</span>
+<span id="cb73-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-5" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-6" tabindex="-1"></a><span class="co"># Load expression matrix</span></span>
+<span id="cb73-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-7" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;GeneIntegrationMatrix&quot;</span>]]</span>
+<span id="cb73-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-8" tabindex="-1"></a></span>
+<span id="cb73-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-9" tabindex="-1"></a><span class="co"># Add gene symbols to rownames</span></span>
+<span id="cb73-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-10" tabindex="-1"></a><span class="fu">rownames</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(GeneExpressionMatrix)<span class="sc">$</span>name</span>
+<span id="cb73-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-11" tabindex="-1"></a></span>
+<span id="cb73-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-12" tabindex="-1"></a><span class="co"># Transfer dimensionality reduction matrix to GeneExpression</span></span>
+<span id="cb73-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-13" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;IterativeLSI&quot;</span>) <span class="ot">&lt;-</span> </span>
+<span id="cb73-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-14" tabindex="-1"></a>  <span class="fu">reducedDim</span>(mae[[<span class="st">&#39;TileMatrix500&#39;</span>]], <span class="st">&quot;IterativeLSI&quot;</span>)</span>
+<span id="cb73-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-15" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;UMAP&quot;</span>) <span class="ot">&lt;-</span> </span>
+<span id="cb73-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb73-16" tabindex="-1"></a>  <span class="fu">reducedDim</span>(mae[[<span class="st">&#39;TileMatrix500&#39;</span>]], <span class="st">&quot;UMAP&quot;</span>)</span></code></pre></div>
 <p>Visualize the data</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb77-1" tabindex="-1"></a>scater<span class="sc">::</span><span class="fu">plotReducedDim</span>(GeneExpressionMatrix, </span>
-<span id="cb77-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb77-2" tabindex="-1"></a>                       <span class="at">dimred =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
-<span id="cb77-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb77-3" tabindex="-1"></a>                       <span class="at">text_by =</span> <span class="st">&quot;Clusters2&quot;</span>, </span>
-<span id="cb77-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb77-4" tabindex="-1"></a>                       <span class="at">colour_by =</span> <span class="st">&quot;Clusters2&quot;</span>,</span>
-<span id="cb77-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb77-5" tabindex="-1"></a>                       <span class="at">point_size =</span> <span class="fl">0.3</span>,</span>
-<span id="cb77-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb77-6" tabindex="-1"></a>                       <span class="at">point_alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb74-1" tabindex="-1"></a>scater<span class="sc">::</span><span class="fu">plotReducedDim</span>(GeneExpressionMatrix, </span>
+<span id="cb74-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb74-2" tabindex="-1"></a>                       <span class="at">dimred =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
+<span id="cb74-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb74-3" tabindex="-1"></a>                       <span class="at">text_by =</span> <span class="st">&quot;Clusters2&quot;</span>, </span>
+<span id="cb74-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb74-4" tabindex="-1"></a>                       <span class="at">colour_by =</span> <span class="st">&quot;Clusters2&quot;</span>,</span>
+<span id="cb74-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb74-5" tabindex="-1"></a>                       <span class="at">point_size =</span> <span class="fl">0.3</span>,</span>
+<span id="cb74-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb74-6" tabindex="-1"></a>                       <span class="at">point_alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 <div id="retrieve-bulk-tf-chip-seq-binding-sites-1" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Retrieve bulk TF ChIP-seq binding sites<a href="advanced-workflow-with-multiassayexperiment.html#retrieve-bulk-tf-chip-seq-binding-sites-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse genome mm10 are available</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb78-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon)</span>
-<span id="cb78-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb78-2" tabindex="-1"></a>grl <span class="ot">&lt;-</span> <span class="fu">getTFMotifInfo</span>(<span class="at">genome =</span> <span class="st">&quot;hg19&quot;</span>)</span></code></pre></div>
-<pre><code>## snapshotDate(): 2024-01-17</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb75-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon)</span>
+<span id="cb75-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb75-2" tabindex="-1"></a>grl <span class="ot">&lt;-</span> <span class="fu">getTFMotifInfo</span>(<span class="at">genome =</span> <span class="st">&quot;hg19&quot;</span>)</span></code></pre></div>
+<pre><code>## snapshotDate(): 2024-02-22</code></pre>
 <pre><code>## see ?scMultiome and browseVignettes(&#39;scMultiome&#39;) for documentation</code></pre>
+<pre><code>## downloading 1 resources</code></pre>
+<pre><code>## retrieving 1 resource</code></pre>
 <pre><code>## loading from cache</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb82-1" tabindex="-1"></a>grl</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb81-1" tabindex="-1"></a>grl</span></code></pre></div>
 <pre><code>## GRangesList object of length 1558:
 ## $`5-hmC`
 ## GRanges object with 22860 ranges and 0 metadata columns:
@@ -293,15 +295,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="link-atacseq-peaks-to-target-genes" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Link ATACseq peaks to target genes<a href="advanced-workflow-with-multiassayexperiment.html#link-atacseq-peaks-to-target-genes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Next, we compute peak to gene correlations using a custom algorithm that has similar performance to ArchR’s P2G function. Wherever possible, use a multidimensional dimensionality reduction matrix such as LSI or PCA instead of UMAP or TSNE since the former provides a more accurate estimate of cell similarity.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb84-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1010</span>)</span>
-<span id="cb84-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb84-2" tabindex="-1"></a>p2g <span class="ot">&lt;-</span> <span class="fu">calculateP2G</span>(<span class="at">peakMatrix =</span> PeakMatrix, </span>
-<span id="cb84-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb84-3" tabindex="-1"></a>                    <span class="at">expMatrix =</span> GeneExpressionMatrix, </span>
-<span id="cb84-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb84-4" tabindex="-1"></a>                    <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb84-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb84-5" tabindex="-1"></a>                    <span class="at">reducedDim =</span> <span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;IterativeLSI&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb83-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1010</span>)</span>
+<span id="cb83-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb83-2" tabindex="-1"></a>p2g <span class="ot">&lt;-</span> <span class="fu">calculateP2G</span>(<span class="at">peakMatrix =</span> PeakMatrix, </span>
+<span id="cb83-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb83-3" tabindex="-1"></a>                    <span class="at">expMatrix =</span> GeneExpressionMatrix, </span>
+<span id="cb83-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb83-4" tabindex="-1"></a>                    <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb83-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb83-5" tabindex="-1"></a>                    <span class="at">reducedDim =</span> <span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;IterativeLSI&quot;</span>))</span></code></pre></div>
 <pre><code>## Using epiregulon to compute peak to gene links...</code></pre>
 <pre><code>## performing k means clustering to form metacells</code></pre>
 <pre><code>## Computing correlation</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb88-1" tabindex="-1"></a>p2g</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb87-1" tabindex="-1"></a>p2g</span></code></pre></div>
 <pre><code>## DataFrame with 23711 rows and 8 columns
 ##         idxATAC         chr     start       end    idxRNA    target Correlation  distance
 ##       &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;   &lt;array&gt;    &lt;matrix&gt; &lt;integer&gt;
@@ -320,10 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="add-tf-motif-binding-to-peaks-1" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Add TF motif binding to peaks<a href="advanced-workflow-with-multiassayexperiment.html#add-tf-motif-binding-to-peaks-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The next step is to add the TF motif binding information by overlapping the regions of the peak matrix with the bulk chip-seq database.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb90-1" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">addTFMotifInfo</span>(<span class="at">grl =</span> grl, <span class="at">p2g =</span> p2g, <span class="at">peakMatrix =</span> PeakMatrix)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb89-1" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">addTFMotifInfo</span>(<span class="at">grl =</span> grl, <span class="at">p2g =</span> p2g, <span class="at">peakMatrix =</span> PeakMatrix)</span></code></pre></div>
 <pre><code>## Computing overlap...</code></pre>
 <pre><code>## Success!</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb93-1" tabindex="-1"></a><span class="fu">head</span>(overlap)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb92-1" tabindex="-1"></a><span class="fu">head</span>(overlap)</span></code></pre></div>
 <pre><code>##      idxATAC idxTF      tf
 ## 1018       7    35    ARNT
 ## 1019       7    50    ATF2
@@ -340,8 +342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>target gene</li>
 <li>peak to gene correlation between tf and target gene</li>
 </ul>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb95-1" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> <span class="fu">getRegulon</span>(p2g, overlap, <span class="at">aggregate=</span><span class="cn">FALSE</span>)</span>
-<span id="cb95-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb95-2" tabindex="-1"></a>regulon</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb94-1" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> <span class="fu">getRegulon</span>(p2g, overlap, <span class="at">aggregate=</span><span class="cn">FALSE</span>)</span>
+<span id="cb94-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb94-2" tabindex="-1"></a>regulon</span></code></pre></div>
 <pre><code>## DataFrame with 3561693 rows and 10 columns
 ##           idxATAC         chr     start       end    idxRNA      target  distance     idxTF          tf     corr
 ##         &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;matrix&gt;
@@ -361,14 +363,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.6</span> Prune network<a href="advanced-workflow-with-multiassayexperiment.html#prune-network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor (TF), regulatory element (RE) and target gene (TG) vs the expected number of cells if TF/RE and TG are independently expressed. We implement two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is P(TF, RE) * P(TG), and the number of trials is the total number of cells, and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also P(TF, RE) * P(TG) and the probability otherwise is 1- P(TF, RE) * P(TG). The observed cell count for the active category is the number of cells jointly expressing all three elements, and the cell count for the inactive category is n - n_triple.</p>
 <p>We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-1" tabindex="-1"></a>pruned.regulon <span class="ot">&lt;-</span> <span class="fu">pruneRegulon</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb97-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-2" tabindex="-1"></a>                               <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb97-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-3" tabindex="-1"></a>                               <span class="at">peakMatrix =</span> PeakMatrix,</span>
-<span id="cb97-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-4" tabindex="-1"></a>                               <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
-<span id="cb97-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-5" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon,</span>
-<span id="cb97-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-6" tabindex="-1"></a>                               <span class="at">prune_value =</span> <span class="st">&quot;pval&quot;</span>,</span>
-<span id="cb97-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-7" tabindex="-1"></a>                               <span class="at">regulon_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb97-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb97-8" tabindex="-1"></a>                               <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-1" tabindex="-1"></a>pruned.regulon <span class="ot">&lt;-</span> <span class="fu">pruneRegulon</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb96-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-2" tabindex="-1"></a>                               <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb96-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-3" tabindex="-1"></a>                               <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb96-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-4" tabindex="-1"></a>                               <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb96-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-5" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon,</span>
+<span id="cb96-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-6" tabindex="-1"></a>                               <span class="at">prune_value =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb96-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-7" tabindex="-1"></a>                               <span class="at">regulon_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb96-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb96-8" tabindex="-1"></a>                               <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2)</span></code></pre></div>
 <pre><code>## pruning network with chi.sq tests using a regulon cutoff of pval&lt;0.05</code></pre>
 <pre><code>## pruning regulons</code></pre>
 </div>
@@ -377,46 +379,207 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>While the <code>pruneRegulon</code> function provides statistics on the joint occurrence of TF-RE-TG, we would like to further estimate the strength of regulation. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity. Epiregulon estimates the regulatory potential using one of the three measures: 1) correlation between TG and TF or between TG and the product of TF and RE, 2) mutual information between TG and TF expression or between TG and the product of TF and RE, or 3) Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs cells that do not.</p>
 <p>Two measures (correlation and Wilcoxon) give both the magnitude and directionality of changes whereas mutational information is always positive. The correlation and mutual information statistics are computed on grouped pseudobulks by user-supplied cluster labels and yield a single weight across all clusters per each TF-RE-target triplet. In contrast, the Wilcoxon method group cells based on the joint expression of TF, RE and TG in each single cell or in cell aggregates. If cell labels are provided, we calculate cluster-specific weights in addition to estimating weights from all the cells. Cell aggregation uses a default value of 10 cells and can help overcome sparsity and speed up computation. If cluster labels are provided, we can obtain weights of individual clusters and all cells combined.</p>
 <p>In this example, we apply Wilcoxon test on cell aggregates of 10 cells. We use the Wilcoxon weight method because we are interested in computing cell type-specific weights.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1010</span>)</span>
-<span id="cb100-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-2" tabindex="-1"></a>regulon.w <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
-<span id="cb100-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-3" tabindex="-1"></a>                        <span class="at">expMatrix  =</span> GeneExpressionMatrix,</span>
-<span id="cb100-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-4" tabindex="-1"></a>                        <span class="at">exp_assay  =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb100-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-5" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
-<span id="cb100-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-6" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
-<span id="cb100-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-7" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
-<span id="cb100-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-8" tabindex="-1"></a>                        <span class="at">aggregateCells =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb100-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-9" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;wilcox&quot;</span>,</span>
-<span id="cb100-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb100-10" tabindex="-1"></a>                        <span class="at">useDim =</span> <span class="st">&quot;IterativeLSI&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1010</span>)</span>
+<span id="cb99-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-2" tabindex="-1"></a>regulon.w <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb99-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-3" tabindex="-1"></a>                        <span class="at">expMatrix  =</span> GeneExpressionMatrix,</span>
+<span id="cb99-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-4" tabindex="-1"></a>                        <span class="at">exp_assay  =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb99-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-5" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb99-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-6" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb99-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-7" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
+<span id="cb99-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-8" tabindex="-1"></a>                        <span class="at">aggregateCells =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb99-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-9" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;wilcox&quot;</span>,</span>
+<span id="cb99-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb99-10" tabindex="-1"></a>                        <span class="at">useDim =</span> <span class="st">&quot;IterativeLSI&quot;</span>)</span></code></pre></div>
 <pre><code>## adding weights using wilcoxon...</code></pre>
 <pre><code>## performing pseudobulk using an average of 10 cells</code></pre>
+<pre><code>## 
+  |                                                                                                                                   
+  |                                                                                                                             |   0%
+  |                                                                                                                                   
+  |========                                                                                                                     |   7%
+  |                                                                                                                                   
+  |=================                                                                                                            |  13%
+  |                                                                                                                                   
+  |=========================                                                                                                    |  20%
+  |                                                                                                                                   
+  |=================================                                                                                            |  27%
+  |                                                                                                                                   
+  |==========================================                                                                                   |  33%
+  |                                                                                                                                   
+  |==================================================                                                                           |  40%
+  |                                                                                                                                   
+  |==========================================================                                                                   |  47%
+  |                                                                                                                                   
+  |===================================================================                                                          |  53%
+  |                                                                                                                                   
+  |===========================================================================                                                  |  60%
+  |                                                                                                                                   
+  |===================================================================================                                          |  67%
+  |                                                                                                                                   
+  |============================================================================================                                 |  73%
+  |                                                                                                                                   
+  |====================================================================================================                         |  80%
+  |                                                                                                                                   
+  |============================================================================================================                 |  87%
+  |                                                                                                                                   
+  |=====================================================================================================================        |  93%
+  |                                                                                                                                   
+  |=============================================================================================================================| 100%
+## 
+## 
+  |                                                                                                                                   
+  |                                                                                                                             |   0%
+  |                                                                                                                                   
+  |==                                                                                                                           |   2%
+  |                                                                                                                                   
+  |====                                                                                                                         |   3%
+  |                                                                                                                                   
+  |======                                                                                                                       |   5%
+  |                                                                                                                                   
+  |========                                                                                                                     |   6%
+  |                                                                                                                                   
+  |==========                                                                                                                   |   8%
+  |                                                                                                                                   
+  |============                                                                                                                 |  10%
+  |                                                                                                                                   
+  |==============                                                                                                               |  11%
+  |                                                                                                                                   
+  |================                                                                                                             |  13%
+  |                                                                                                                                   
+  |==================                                                                                                           |  15%
+  |                                                                                                                                   
+  |====================                                                                                                         |  16%
+  |                                                                                                                                   
+  |======================                                                                                                       |  18%
+  |                                                                                                                                   
+  |========================                                                                                                     |  19%
+  |                                                                                                                                   
+  |==========================                                                                                                   |  21%
+  |                                                                                                                                   
+  |============================                                                                                                 |  23%
+  |                                                                                                                                   
+  |==============================                                                                                               |  24%
+  |                                                                                                                                   
+  |================================                                                                                             |  26%
+  |                                                                                                                                   
+  |==================================                                                                                           |  27%
+  |                                                                                                                                   
+  |====================================                                                                                         |  29%
+  |                                                                                                                                   
+  |======================================                                                                                       |  31%
+  |                                                                                                                                   
+  |========================================                                                                                     |  32%
+  |                                                                                                                                   
+  |==========================================                                                                                   |  34%
+  |                                                                                                                                   
+  |============================================                                                                                 |  35%
+  |                                                                                                                                   
+  |==============================================                                                                               |  37%
+  |                                                                                                                                   
+  |================================================                                                                             |  39%
+  |                                                                                                                                   
+  |==================================================                                                                           |  40%
+  |                                                                                                                                   
+  |====================================================                                                                         |  42%
+  |                                                                                                                                   
+  |======================================================                                                                       |  44%
+  |                                                                                                                                   
+  |========================================================                                                                     |  45%
+  |                                                                                                                                   
+  |==========================================================                                                                   |  47%
+  |                                                                                                                                   
+  |============================================================                                                                 |  48%
+  |                                                                                                                                   
+  |==============================================================                                                               |  50%
+  |                                                                                                                                   
+  |=================================================================                                                            |  52%
+  |                                                                                                                                   
+  |===================================================================                                                          |  53%
+  |                                                                                                                                   
+  |=====================================================================                                                        |  55%
+  |                                                                                                                                   
+  |=======================================================================                                                      |  56%
+  |                                                                                                                                   
+  |=========================================================================                                                    |  58%
+  |                                                                                                                                   
+  |===========================================================================                                                  |  60%
+  |                                                                                                                                   
+  |=============================================================================                                                |  61%
+  |                                                                                                                                   
+  |===============================================================================                                              |  63%
+  |                                                                                                                                   
+  |=================================================================================                                            |  65%
+  |                                                                                                                                   
+  |===================================================================================                                          |  66%
+  |                                                                                                                                   
+  |=====================================================================================                                        |  68%
+  |                                                                                                                                   
+  |=======================================================================================                                      |  69%
+  |                                                                                                                                   
+  |=========================================================================================                                    |  71%
+  |                                                                                                                                   
+  |===========================================================================================                                  |  73%
+  |                                                                                                                                   
+  |=============================================================================================                                |  74%
+  |                                                                                                                                   
+  |===============================================================================================                              |  76%
+  |                                                                                                                                   
+  |=================================================================================================                            |  77%
+  |                                                                                                                                   
+  |===================================================================================================                          |  79%
+  |                                                                                                                                   
+  |=====================================================================================================                        |  81%
+  |                                                                                                                                   
+  |=======================================================================================================                      |  82%
+  |                                                                                                                                   
+  |=========================================================================================================                    |  84%
+  |                                                                                                                                   
+  |===========================================================================================================                  |  85%
+  |                                                                                                                                   
+  |=============================================================================================================                |  87%
+  |                                                                                                                                   
+  |===============================================================================================================              |  89%
+  |                                                                                                                                   
+  |=================================================================================================================            |  90%
+  |                                                                                                                                   
+  |===================================================================================================================          |  92%
+  |                                                                                                                                   
+  |=====================================================================================================================        |  94%
+  |                                                                                                                                   
+  |=======================================================================================================================      |  95%
+  |                                                                                                                                   
+  |=========================================================================================================================    |  97%
+  |                                                                                                                                   
+  |===========================================================================================================================  |  98%
+  |                                                                                                                                   
+  |=============================================================================================================================| 100%</code></pre>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb103-1" tabindex="-1"></a>regulon.w</span></code></pre></div>
 <pre><code>## DataFrame with 657594 rows and 14 columns
-##          idxATAC         chr     start       end    idxRNA      target  distance     idxTF          tf     corr                         pval
-##        &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;matrix&gt;                     &lt;matrix&gt;
-## 1            732        chr1   8021367   8021867        95        UTS2     46072         5        ADNP 0.611979 1.11552e-06:1:0.00021207:...
-## 2            891        chr1   9223922   9224422       107        H6PD     68440         5        ADNP 0.584584 2.42572e-53:1:1.00000000:...
-## 3           1153        chr1  11724014  11724514       135       FBXO6         0         5        ADNP 0.592732 4.93505e-07:1:0.96772981:...
-## 4           1154        chr1  11724524  11725024       135       FBXO6       174         5        ADNP 0.628880 1.70871e-07:1:0.96772981:...
-## 5           1476        chr1  16003338  16003838       181        DDI2     59185         5        ADNP 0.814973 2.50344e-04:1:1.00000000:...
-## ...          ...         ...       ...       ...       ...         ...       ...       ...         ...      ...                          ...
-## 657590    115554       chr16  47526755  47527255      6715        PHKB     31345      1554      ZSCAN9 0.677586            0.2147565:1:1:...
-## 657591    123738       chr17  57297651  57298151      7874        SKA2     62850      1554      ZSCAN9 0.579244            0.0222662:1:1:...
-## 657592    137124       chr20   5654865   5655365     11011      GPCPD1     61192      1554      ZSCAN9 0.567896            0.2157159:1:1:...
-## 657593    146371       chr22  50946298  50946798     12078        LMF2         0      1554      ZSCAN9 0.620394            0.0769296:1:1:...
-## 657594    146387       chr22  50977917  50978417     12078        LMF2     29781      1554      ZSCAN9 0.517633            0.0769296:1:1:...
-##                             stats                qval                           weight
-##                          &lt;matrix&gt;            &lt;matrix&gt;                         &lt;matrix&gt;
-## 1       23.7177:0:13.72100224:... 1.00000e+00:1:1:... 0.110121:-0.1840694:0.132197:...
-## 2      236.3764:0: 0.00000000:... 7.88534e-47:1:1:... 0.328729: 0.0954775:0.218160:...
-## 3       25.2890:0: 0.00163667:... 1.00000e+00:1:1:... 0.141786: 0.0000000:0.163860:...
-## 4       27.3374:0: 0.00163667:... 5.15668e-01:1:1:... 0.142351: 0.1861417:0.180140:...
-## 5       13.4096:0: 0.00000000:... 1.00000e+00:1:1:... 0.175202: 0.0000000:0.000000:...
-## ...                           ...                 ...                              ...
-## 657590            1.53907:0:0:...           1:1:1:...               0.05056956:0:0:...
-## 657591            5.22486:0:0:...           1:1:1:...               0.28572101:0:0:...
-## 657592            1.53265:0:0:...           1:1:1:...              -0.01610573:0:0:...
-## 657593            3.12860:0:0:...           1:1:1:...              -0.00410307:0:0:...
-## 657594            3.12860:0:0:...           1:1:1:...               0.02891813:0:0:...</code></pre>
+##          idxATAC         chr     start       end    idxRNA      target  distance     idxTF          tf     corr
+##        &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;matrix&gt;
+## 1            732        chr1   8021367   8021867        95        UTS2     46072         5        ADNP 0.611979
+## 2            891        chr1   9223922   9224422       107        H6PD     68440         5        ADNP 0.584584
+## 3           1153        chr1  11724014  11724514       135       FBXO6         0         5        ADNP 0.592732
+## 4           1154        chr1  11724524  11725024       135       FBXO6       174         5        ADNP 0.628880
+## 5           1476        chr1  16003338  16003838       181        DDI2     59185         5        ADNP 0.814973
+## ...          ...         ...       ...       ...       ...         ...       ...       ...         ...      ...
+## 657590    115554       chr16  47526755  47527255      6715        PHKB     31345      1554      ZSCAN9 0.677586
+## 657591    123738       chr17  57297651  57298151      7874        SKA2     62850      1554      ZSCAN9 0.579244
+## 657592    137124       chr20   5654865   5655365     11011      GPCPD1     61192      1554      ZSCAN9 0.567896
+## 657593    146371       chr22  50946298  50946798     12078        LMF2         0      1554      ZSCAN9 0.620394
+## 657594    146387       chr22  50977917  50978417     12078        LMF2     29781      1554      ZSCAN9 0.517633
+##                                pval                      stats                qval                           weight
+##                            &lt;matrix&gt;                   &lt;matrix&gt;            &lt;matrix&gt;                         &lt;matrix&gt;
+## 1      1.11552e-06:1:0.00021207:...  23.7177:0:13.72100224:... 1.00000e+00:1:1:... 0.110121:-0.1840694:0.132197:...
+## 2      2.42572e-53:1:1.00000000:... 236.3764:0: 0.00000000:... 7.88534e-47:1:1:... 0.328729: 0.0954775:0.218160:...
+## 3      4.93505e-07:1:0.96772981:...  25.2890:0: 0.00163667:... 1.00000e+00:1:1:... 0.141786: 0.0000000:0.163860:...
+## 4      1.70871e-07:1:0.96772981:...  27.3374:0: 0.00163667:... 5.15668e-01:1:1:... 0.142351: 0.1861417:0.180140:...
+## 5      2.50344e-04:1:1.00000000:...  13.4096:0: 0.00000000:... 1.00000e+00:1:1:... 0.175202: 0.0000000:0.000000:...
+## ...                             ...                        ...                 ...                              ...
+## 657590            0.2147565:1:1:...            1.53907:0:0:...           1:1:1:...               0.05056956:0:0:...
+## 657591            0.0222662:1:1:...            5.22486:0:0:...           1:1:1:...               0.28572101:0:0:...
+## 657592            0.2157159:1:1:...            1.53265:0:0:...           1:1:1:...              -0.01610573:0:0:...
+## 657593            0.0769296:1:1:...            3.12860:0:0:...           1:1:1:...              -0.00410307:0:0:...
+## 657594            0.0769296:1:1:...            3.12860:0:0:...           1:1:1:...               0.02891813:0:0:...</code></pre>
 </div>
 <div id="calculate-tf-activity-1" class="section level2 hasAnchor" number="3.8">
 <h2><span class="header-section-number">3.8</span> Calculate TF activity<a href="advanced-workflow-with-multiassayexperiment.html#calculate-tf-activity-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -432,26 +595,26 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <span id="cb105-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb105-4" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>, </span>
 <span id="cb105-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb105-5" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>)</span></code></pre></div>
 <pre><code>## calculating TF activity from regulon using weightedmean</code></pre>
-<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, regulon = regulon.w, : The weight column contains multiple subcolumns but no cluster
-## information was provided. Using first column to compute activity...</code></pre>
+<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, regulon = regulon.w, : The weight column contains multiple subcolumns
+## but no cluster information was provided. Using first column to compute activity...</code></pre>
 <pre><code>## aggregating regulons...</code></pre>
 <pre><code>## creating weight matrix...</code></pre>
 <pre><code>## calculating activity scores...</code></pre>
 <pre><code>## normalize by the number of targets...</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb112-1" tabindex="-1"></a><span class="fu">head</span>(score.combine[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
-##      scATAC_BMMC_R1#TTATGTCAGTGATTAG-1 scATAC_BMMC_R1#AAGATAGTCACCGCGA-1 scATAC_BMMC_R1#GCATTGAAGATTCCGT-1 scATAC_BMMC_R1#TATGTTCAGGGTTCCC-1
-## ADNP                        0.12540975                         0.1984176                         0.1406705                         0.1528068
-## AFF1                        0.17697747                         0.1920722                         0.4015928                         0.1837701
-## AFF4                        0.11773447                         0.3040020                         0.1335912                         0.1905391
-## AGO1                        0.14920749                         0.2183450                         0.1035857                         0.1647813
-## AGO2                        0.08608048                         0.3196278                         0.1104752                         0.1816408
-##      scATAC_BMMC_R1#AGTTACGAGAACGTCG-1
-## ADNP                        0.14890448
-## AFF1                        0.19387846
-## AFF4                        0.13224086
-## AGO1                        0.17582525
-## AGO2                        0.08222916</code></pre>
+##      scATAC_BMMC_R1#TTATGTCAGTGATTAG-1 scATAC_BMMC_R1#AAGATAGTCACCGCGA-1 scATAC_BMMC_R1#GCATTGAAGATTCCGT-1
+## ADNP                        0.12540975                         0.1984176                         0.1406705
+## AFF1                        0.17697747                         0.1920722                         0.4015928
+## AFF4                        0.11773447                         0.3040020                         0.1335912
+## AGO1                        0.14920749                         0.2183450                         0.1035857
+## AGO2                        0.08608048                         0.3196278                         0.1104752
+##      scATAC_BMMC_R1#TATGTTCAGGGTTCCC-1 scATAC_BMMC_R1#AGTTACGAGAACGTCG-1
+## ADNP                         0.1528068                        0.14890448
+## AFF1                         0.1837701                        0.19387846
+## AFF4                         0.1905391                        0.13224086
+## AGO1                         0.1647813                        0.17582525
+## AGO2                         0.1816408                        0.08222916</code></pre>
 </div>
 <div id="differential-tf-activity-test" class="section level2 hasAnchor" number="3.9">
 <h2><span class="header-section-number">3.9</span> Differential TF activity test<a href="advanced-workflow-with-multiassayexperiment.html#differential-tf-activity-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -472,9 +635,9 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <pre><code>## Using a logFC cutoff of 0.1 for class GMP</code></pre>
 <pre><code>## Using a logFC cutoff of 0.6 for class Mono</code></pre>
 <pre><code>## Using a logFC cutoff of 0.4 for class NK</code></pre>
+<pre><code>## Using a logFC cutoff of 0.1 for class pDC</code></pre>
 <pre><code>## Using a logFC cutoff of 0.2 for class PreB</code></pre>
 <pre><code>## Using a logFC cutoff of 0.1 for class Progenitor</code></pre>
-<pre><code>## Using a logFC cutoff of 0.1 for class pDC</code></pre>
 </div>
 <div id="visualizing-tf-activities" class="section level2 hasAnchor" number="3.10">
 <h2><span class="header-section-number">3.10</span> Visualizing TF activities<a href="advanced-workflow-with-multiassayexperiment.html#visualizing-tf-activities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -541,12 +704,12 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <span id="cb133-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb133-3" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
 <span id="cb133-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb133-4" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;H&quot;</span>, </span>
 <span id="cb133-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb133-5" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span></code></pre></div>
-<pre><code>## Using cached version from 2024-01-15 21:34:50</code></pre>
+<pre><code>## Using cached version from 2024-02-23 17:12:04</code></pre>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb135-1" tabindex="-1"></a>C2 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
 <span id="cb135-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb135-2" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
 <span id="cb135-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb135-3" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;C2&quot;</span>,</span>
 <span id="cb135-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb135-4" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span></code></pre></div>
-<pre><code>## Using cached version from 2024-01-15 21:34:58</code></pre>
+<pre><code>## Using cached version from 2024-02-23 17:12:12</code></pre>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb137-1" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
 <span id="cb137-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb137-2" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(H, C2)</span>
 <span id="cb137-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb137-3" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), <span class="cf">function</span>(x) </span>
@@ -627,8 +790,10 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb150-1" tabindex="-1"></a><span class="co"># obtain empirical p-values</span></span>
 <span id="cb150-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb150-2" tabindex="-1"></a>p_matrix <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(<span class="fu">apply</span>(permute_matrix, <span class="dv">2</span>, <span class="cf">function</span>(x) {x <span class="sc">&gt;</span> similarity_score_EBF1}))</span>
 <span id="cb150-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb150-3" tabindex="-1"></a>p_matrix[<span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,<span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>))]</span></code></pre></div>
-<pre><code>##   PAX5   IRF4   TCF3   RAG2  TCF12 POU2F2    RB1  NIPBL   TCF4 TRIM22   RAG1 BCL11A   RELB  MEF2A   CREM    MYB  EP300   EZH2   CDK9 CREBBP 
-##      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0</code></pre>
+<pre><code>##   PAX5   IRF4   TCF3   RAG2  TCF12 POU2F2    RB1  NIPBL   TCF4 TRIM22   RAG1  MEF2A BCL11A   RELB   CREM    MYB  EP300   EZH2   CDK9 
+##      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0      0 
+## CREBBP 
+##      0</code></pre>
 <p>Next, we are interested to compare the networks of two cell types, in this case, CD4 memory T cells (CD4.M) vs Monocytes (mono) cells. We build an edge subtracted graph and then calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in NK cells whereas the bottom 5 TFs present lineage factors enriched in CD4. We successfully identified the myeloid factor SPI1 to be associated with monocytes and Th1 factor TBX21 to be associated with CD4 T cells.</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb152-1" tabindex="-1"></a><span class="co">#regulon.w.2 &lt;- regulon.w</span></span>
 <span id="cb152-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb152-2" tabindex="-1"></a><span class="co">#regulon.w &lt;- readRDS(&quot;/gstore/project/lineage/manuscript/epiregulon/OUTPUT/regulon.w.rds&quot;)</span></span>
@@ -694,8 +859,9 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 ## LAPACK: /usr/local/lib/R/lib/libRlapack.so;  LAPACK version 3.11.0
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8 LC_NUMERIC=C         LC_TIME=C            LC_COLLATE=C         LC_MONETARY=C        LC_MESSAGES=C       
-##  [7] LC_PAPER=C           LC_NAME=C            LC_ADDRESS=C         LC_TELEPHONE=C       LC_MEASUREMENT=C     LC_IDENTIFICATION=C 
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## time zone: Etc/UTC
 ## tzcode source: system (glibc)
@@ -704,53 +870,65 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] igraph_1.6.0                      ggplot2_3.4.4                     msigdbr_7.5.1                     epiregulon.extra_0.99.1          
-##  [5] BSgenome.Hsapiens.UCSC.hg38_1.4.5 BSgenome_1.71.1                   rtracklayer_1.63.0                BiocIO_1.13.0                    
-##  [9] Biostrings_2.71.1                 XVector_0.43.1                    epiregulon_1.0.38                 scMultiome_1.3.0                 
-## [13] SingleCellExperiment_1.25.0       MultiAssayExperiment_1.29.0       SummarizedExperiment_1.33.2       Biobase_2.63.0                   
-## [17] GenomicRanges_1.55.1              GenomeInfoDb_1.39.5               IRanges_2.37.0                    S4Vectors_0.41.3                 
-## [21] MatrixGenerics_1.15.0             matrixStats_1.2.0                 ExperimentHub_2.11.1              AnnotationHub_3.11.1             
-## [25] BiocFileCache_2.11.1              dbplyr_2.4.0                      BiocGenerics_0.49.1              
+##  [1] igraph_2.0.2                      ggplot2_3.4.4                     org.Hs.eg.db_3.18.0              
+##  [4] AnnotationDbi_1.65.2              msigdbr_7.5.1                     epiregulon.extra_0.99.1          
+##  [7] BSgenome.Hsapiens.UCSC.hg38_1.4.5 BSgenome_1.71.2                   rtracklayer_1.63.0               
+## [10] BiocIO_1.13.0                     Biostrings_2.71.2                 XVector_0.43.1                   
+## [13] epiregulon_0.99.2                 scMultiome_1.3.0                  SingleCellExperiment_1.25.0      
+## [16] MultiAssayExperiment_1.29.1       SummarizedExperiment_1.33.3       Biobase_2.63.0                   
+## [19] GenomicRanges_1.55.3              GenomeInfoDb_1.39.6               IRanges_2.37.1                   
+## [22] S4Vectors_0.41.3                  MatrixGenerics_1.15.0             matrixStats_1.2.0                
+## [25] ExperimentHub_2.11.1              AnnotationHub_3.11.1              BiocFileCache_2.11.1             
+## [28] dbplyr_2.4.0                      BiocGenerics_0.49.1              
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] fs_1.6.3                    bitops_1.0-7                enrichplot_1.23.1           DirichletMultinomial_1.45.0 TFBSTools_1.41.0           
-##   [6] HDO.db_0.99.1               httr_1.4.7                  RColorBrewer_1.1-3          doParallel_1.0.17           Rgraphviz_2.47.0           
-##  [11] tools_4.4.0                 backports_1.4.1             utf8_1.2.4                  R6_2.5.1                    HDF5Array_1.31.1           
-##  [16] lazyeval_0.2.2              rhdf5filters_1.15.1         GetoptLong_1.0.5            withr_3.0.0                 gridExtra_2.3              
-##  [21] cli_3.6.2                   Cairo_1.6-2                 scatterpie_0.2.1            labeling_0.4.3              sass_0.4.8                 
-##  [26] KEGGgraph_1.63.0            readr_2.1.5                 Rsamtools_2.19.2            yulab.utils_0.1.3           gson_0.1.0                 
-##  [31] DOSE_3.29.2                 R.utils_2.12.3              scater_1.31.1               limma_3.59.1                rstudioapi_0.15.0          
-##  [36] RSQLite_2.3.4               gridGraphics_0.5-1          generics_0.1.3              shape_1.4.6                 gtools_3.9.5               
-##  [41] dplyr_1.1.4                 GO.db_3.18.0                Matrix_1.6-4                ggbeeswarm_0.7.2            fansi_1.0.6                
-##  [46] abind_1.4-5                 R.methodsS3_1.8.2           lifecycle_1.0.4             yaml_2.3.8                  edgeR_4.1.10               
-##  [51] rhdf5_2.47.2                qvalue_2.35.0               SparseArray_1.3.3           grid_4.4.0                  blob_1.2.4                 
-##  [56] dqrng_0.3.2                 crayon_1.5.2                lattice_0.22-5              beachmat_2.19.0             cowplot_1.1.2              
-##  [61] annotate_1.81.1             KEGGREST_1.43.0             magick_2.8.2                pillar_1.9.0                knitr_1.45                 
-##  [66] ComplexHeatmap_2.19.0       metapod_1.11.1              fgsea_1.29.0                rjson_0.2.21                codetools_0.2-19           
-##  [71] fastmatch_1.1-4             glue_1.7.0                  ggfun_0.1.3                 data.table_1.14.10          treeio_1.27.0              
-##  [76] vctrs_0.6.5                 png_0.1-8                   gtable_0.3.4                poweRlaw_0.70.6             cachem_1.0.8               
-##  [81] xfun_0.41                   S4Arrays_1.3.2              mime_0.12                   tidygraph_1.3.0             pracma_2.4.4               
-##  [86] iterators_1.0.14            statmod_1.5.0               bluster_1.13.0              nlme_3.1-164                ggtree_3.11.0              
-##  [91] bit64_4.0.5                 filelock_1.0.3              bslib_0.6.1                 irlba_2.3.5.1               vipor_0.4.7                
-##  [96] colorspace_2.1-0            seqLogo_1.69.0              DBI_1.2.1                   ggrastr_1.0.2               tidyselect_1.2.0           
-## [101] bit_4.0.5                   compiler_4.4.0              curl_5.2.0                  graph_1.81.0                BiocNeighbors_1.21.2       
-## [106] DelayedArray_0.29.0         shadowtext_0.1.2            bookdown_0.37               checkmate_2.3.1             scales_1.3.0               
-## [111] caTools_1.18.2              rappdirs_0.3.3              stringr_1.5.1               digest_0.6.34               motifmatchr_1.25.0         
-## [116] rmarkdown_2.25              htmltools_0.5.7             pkgconfig_2.0.3             sparseMatrixStats_1.15.0    highr_0.10                 
-## [121] fastmap_1.1.1               rlang_1.1.3                 GlobalOptions_0.1.2         DelayedMatrixStats_1.25.1   farver_2.1.1               
-## [126] jquerylib_0.1.4             jsonlite_1.8.8              BiocParallel_1.37.0         GOSemSim_2.29.0             R.oo_1.25.0                
-## [131] BiocSingular_1.19.0         RCurl_1.98-1.14             magrittr_2.0.3              ggplotify_0.1.2             scuttle_1.13.0             
-## [136] GenomeInfoDbData_1.2.11     patchwork_1.2.0             Rhdf5lib_1.25.1             munsell_0.5.0               Rcpp_1.0.12                
-## [141] ape_5.7-1                   babelgene_22.9              viridis_0.6.4               EnrichmentBrowser_2.33.1    stringi_1.8.3              
-## [146] ggraph_2.1.0                MASS_7.3-60.1               zlibbioc_1.49.0             plyr_1.8.9                  parallel_4.4.0             
-## [151] ggrepel_0.9.5               CNEr_1.39.0                 graphlayouts_1.0.2          splines_4.4.0               hms_1.1.3                  
-## [156] circlize_0.4.15             locfit_1.5-9.8              reshape2_1.4.4              ScaledMatrix_1.11.0         TFMPvalue_0.0.9            
-## [161] BiocVersion_3.19.1          XML_3.99-0.16               evaluate_0.23               scran_1.31.0                BiocManager_1.30.22        
-## [166] tweenr_2.0.2                tzdb_0.4.0                  foreach_1.5.2               polyclip_1.10-6             tidyr_1.3.0                
-## [171] purrr_1.0.2                 clue_0.3-65                 ggforce_0.4.1               rsvd_1.0.5                  xtable_1.8-4               
-## [176] restfulr_0.0.15             tidytree_0.4.6              viridisLite_0.4.2           tibble_3.2.1                aplot_0.2.2                
-## [181] clusterProfiler_4.11.0      memoise_2.0.1               beeswarm_0.4.0              AnnotationDbi_1.65.2        GenomicAlignments_1.39.2   
-## [186] cluster_2.1.6               GSEABase_1.65.1             BiocStyle_2.31.0</code></pre>
+##   [1] fs_1.6.3                    bitops_1.0-7                enrichplot_1.23.1           DirichletMultinomial_1.45.0
+##   [5] TFBSTools_1.41.0            HDO.db_0.99.1               httr_1.4.7                  RColorBrewer_1.1-3         
+##   [9] doParallel_1.0.17           Rgraphviz_2.47.0            tools_4.4.0                 backports_1.4.1            
+##  [13] utf8_1.2.4                  R6_2.5.1                    HDF5Array_1.31.5            lazyeval_0.2.2             
+##  [17] rhdf5filters_1.15.2         GetoptLong_1.0.5            withr_3.0.0                 gridExtra_2.3              
+##  [21] cli_3.6.2                   Cairo_1.6-2                 scatterpie_0.2.1            labeling_0.4.3             
+##  [25] sass_0.4.8                  KEGGgraph_1.63.0            readr_2.1.5                 Rsamtools_2.19.3           
+##  [29] yulab.utils_0.1.4           gson_0.1.0                  DOSE_3.29.2                 R.utils_2.12.3             
+##  [33] scater_1.31.2               limma_3.59.3                rstudioapi_0.15.0           RSQLite_2.3.5              
+##  [37] gridGraphics_0.5-1          generics_0.1.3              shape_1.4.6                 gtools_3.9.5               
+##  [41] dplyr_1.1.4                 GO.db_3.18.0                Matrix_1.6-4                ggbeeswarm_0.7.2           
+##  [45] fansi_1.0.6                 abind_1.4-5                 R.methodsS3_1.8.2           lifecycle_1.0.4            
+##  [49] yaml_2.3.8                  edgeR_4.1.17                qvalue_2.35.0               rhdf5_2.47.4               
+##  [53] SparseArray_1.3.4           grid_4.4.0                  blob_1.2.4                  dqrng_0.3.2                
+##  [57] crayon_1.5.2                lattice_0.22-5              beachmat_2.19.1             cowplot_1.1.3              
+##  [61] annotate_1.81.2             KEGGREST_1.43.0             magick_2.8.3                pillar_1.9.0               
+##  [65] knitr_1.45                  ComplexHeatmap_2.19.0       metapod_1.11.1              fgsea_1.29.0               
+##  [69] rjson_0.2.21                codetools_0.2-19            fastmatch_1.1-4             glue_1.7.0                 
+##  [73] ggfun_0.1.4                 data.table_1.15.0           treeio_1.27.0               vctrs_0.6.5                
+##  [77] png_0.1-8                   gtable_0.3.4                poweRlaw_0.80.0             cachem_1.0.8               
+##  [81] xfun_0.42                   S4Arrays_1.3.3              mime_0.12                   tidygraph_1.3.1            
+##  [85] pracma_2.4.4                iterators_1.0.14            statmod_1.5.0               bluster_1.13.0             
+##  [89] nlme_3.1-164                ggtree_3.11.0               bit64_4.0.5                 filelock_1.0.3             
+##  [93] bslib_0.6.1                 irlba_2.3.5.1               vipor_0.4.7                 colorspace_2.1-0           
+##  [97] seqLogo_1.69.0              DBI_1.2.2                   ggrastr_1.0.2               tidyselect_1.2.0           
+## [101] bit_4.0.5                   compiler_4.4.0              curl_5.2.0                  graph_1.81.0               
+## [105] BiocNeighbors_1.21.2        DelayedArray_0.29.4         shadowtext_0.1.3            bookdown_0.37              
+## [109] checkmate_2.3.1             scales_1.3.0                caTools_1.18.2              rappdirs_0.3.3             
+## [113] stringr_1.5.1               digest_0.6.34               motifmatchr_1.25.0          rmarkdown_2.25             
+## [117] htmltools_0.5.7             pkgconfig_2.0.3             sparseMatrixStats_1.15.0    highr_0.10                 
+## [121] fastmap_1.1.1               rlang_1.1.3                 GlobalOptions_0.1.2         DelayedMatrixStats_1.25.1  
+## [125] farver_2.1.1                jquerylib_0.1.4             jsonlite_1.8.8              BiocParallel_1.37.0        
+## [129] GOSemSim_2.29.1             R.oo_1.26.0                 BiocSingular_1.19.0         RCurl_1.98-1.14            
+## [133] magrittr_2.0.3              ggplotify_0.1.2             scuttle_1.13.0              GenomeInfoDbData_1.2.11    
+## [137] patchwork_1.2.0             Rhdf5lib_1.25.1             munsell_0.5.0               Rcpp_1.0.12                
+## [141] ape_5.7-1                   babelgene_22.9              viridis_0.6.5               EnrichmentBrowser_2.33.1   
+## [145] stringi_1.8.3               ggraph_2.1.0                MASS_7.3-60.1               zlibbioc_1.49.0            
+## [149] plyr_1.8.9                  parallel_4.4.0              ggrepel_0.9.5               CNEr_1.39.0                
+## [153] graphlayouts_1.1.0          splines_4.4.0               hms_1.1.3                   circlize_0.4.16            
+## [157] locfit_1.5-9.8              reshape2_1.4.4              ScaledMatrix_1.11.0         TFMPvalue_0.0.9            
+## [161] BiocVersion_3.19.1          XML_3.99-0.16.1             evaluate_0.23               scran_1.31.0               
+## [165] BiocManager_1.30.22         tweenr_2.0.2                tzdb_0.4.0                  foreach_1.5.2              
+## [169] polyclip_1.10-6             tidyr_1.3.1                 purrr_1.0.2                 clue_0.3-65                
+## [173] ggforce_0.4.2               rsvd_1.0.5                  xtable_1.8-4                restfulr_0.0.15            
+## [177] tidytree_0.4.6              viridisLite_0.4.2           tibble_3.2.1                aplot_0.2.2                
+## [181] clusterProfiler_4.11.0      memoise_2.0.1               beeswarm_0.4.0              GenomicAlignments_1.39.4   
+## [185] cluster_2.1.6               GSEABase_1.65.1             BiocStyle_2.31.0</code></pre>
 
 </div>
 </div>
