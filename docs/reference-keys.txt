@@ -1,6 +1,7 @@
 installation
 basic-workflow-with-multiassayexperiment
 data-preparation
+quick-start
 retrieve-bulk-tf-chip-seq-binding-sites
 link-atac-seq-peaks-to-target-genes
 add-tf-motif-binding-to-peaks
@@ -9,10 +10,6 @@ network-pruning-highly-recommended
 add-weights
 optional-annotate-with-tf-motifs
 calculate-tf-activity
-perform-differential-activity
-visualize-the-results
-geneset-enrichment
-network-analysis
 session-info
 advanced-workflow-with-multiassayexperiment
 data-preparation-1
@@ -25,7 +22,7 @@ add-weights-1
 calculate-tf-activity-1
 differential-tf-activity-test
 visualizing-tf-activities
-geneset-enrichment-1
+geneset-enrichment
 differential-network-analysis
 session-info-1
 archr-workflow-and-different-weight-methods
@@ -40,15 +37,15 @@ optional-annotate-with-tf-motifs-1
 prune-network-1
 add-weights-2
 calculate-tf-activity-2
-perform-differential-activity-1
-visualize-the-results-1
+perform-differential-activity
+visualize-the-results
 differential-network-analysis-1
 session-info-2
 single-modality-scrna-seq-only
 load-regulon
 load-scrna-seq-data
 calculate-activity
-perform-differential-activity-2
+perform-differential-activity-1
 visualize-activity
 pathway-enrichment
 session-info-3
