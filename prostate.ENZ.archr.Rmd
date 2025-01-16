@@ -40,7 +40,7 @@ head(getEmbedding(proj, embedding = "UMAP_Combined"))
 ## Retrieve matrices from ArchR project
 
 Retrieve gene expression and peak matrix from the ArchR project
-```{r}
+```{r, message=FALSE}
 GeneExpressionMatrix <- getMatrixFromProject(
     ArchRProj = proj,
     useMatrix = "GeneIntegrationMatrix",

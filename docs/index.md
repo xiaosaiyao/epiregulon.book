@@ -32,3 +32,10 @@ Current prerequisites for running epiregulon include pre-computed peak matrix,  
 
 <img src="images/epiregulon_functions.svg" width="100%" style="display: block; margin: auto;" />
 
+
+
+Check out our preprint
+
+Epiregulon: Inference of single-cell transcription factor activity to dissect mechanisms of lineage plasticity and drug response
+Tomasz Włodarczyk, Aaron Lun, Diana Wu, Shreya Menon, Shushan Toneyan, Kerstin Seidel, Liang Wang, Jenille Tan, Shang-Yang Chen, Timothy Keyes, Aleksander Chlebowski, Yu Guo, Ciara Metcalfe, Marc Hafner, Christian W. Siebel, M. Ryan Corces, Robert Yauch, Shiqi Xie, Xiaosai Yao
+bioRxiv 2023.11.27.568955; doi: [https://doi.org/10.1101/2023.11.27.568955](https://doi.org/10.1101/2023.11.27.568955)

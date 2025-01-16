@@ -35,7 +35,7 @@ devtools::install_github(repo='xiaosaiyao/scMultiome')
 
 ## Installing from Bioconductor
 
-Epiregulon is now available through [Bioconductor]("https://www.bioconductor.org/).
+Epiregulon is now available through [Bioconductor](https://www.bioconductor.org/).
 
 
 ``` r
@@ -47,10 +47,3 @@ BiocManager::install("epiregulon.extra")
 BiocManager::install("scMultiome")
 ```
 
-## Citation
-
-Check out our preprint
-
-Epiregulon: Inference of single-cell transcription factor activity to dissect mechanisms of lineage plasticity and drug response
-Tomasz Włodarczyk, Aaron Lun, Diana Wu, Shreya Menon, Shushan Toneyan, Kerstin Seidel, Liang Wang, Jenille Tan, Shang-Yang Chen, Timothy Keyes, Aleksander Chlebowski, Yu Guo, Ciara Metcalfe, Marc Hafner, Christian W. Siebel, M. Ryan Corces, Robert Yauch, Shiqi Xie, Xiaosai Yao
-bioRxiv 2023.11.27.568955; doi: [https://doi.org/10.1101/2023.11.27.568955]("https://www.biorxiv.org/content/10.1101/2023.11.27.568955v3")

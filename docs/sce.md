@@ -74,19 +74,19 @@ rowRanges(GeneExpressionMatrix)
 
 ```
 ## GRanges object with 100 ranges and 2 metadata columns:
-##         seqnames       ranges strand |        name          ID
-##            <Rle>    <IRanges>  <Rle> | <character> <character>
-##     [1]     chr1 99727-100177      * |      Gene-1         ID1
-##     [2]     chr2    9362-9700      + |      Gene-2         ID2
-##     [3]     chr2  15287-15674      + |      Gene-3         ID3
-##     [4]     chr2    7816-8139      * |      Gene-4         ID4
-##     [5]     chr1  54227-54387      * |      Gene-5         ID5
-##     ...      ...          ...    ... .         ...         ...
-##    [96]     chr1  36777-37191      + |     Gene-96        ID96
-##    [97]     chr1  63321-63588      - |     Gene-97        ID97
-##    [98]     chr2  26599-27032      + |     Gene-98        ID98
-##    [99]     chr1  82008-82259      * |     Gene-99        ID99
-##   [100]     chr2  11651-12071      * |    Gene-100       ID100
+##         seqnames      ranges strand |        name          ID
+##            <Rle>   <IRanges>  <Rle> | <character> <character>
+##     [1]     chr2 78037-78301      - |      Gene-1         ID1
+##     [2]     chr1 98640-99070      - |      Gene-2         ID2
+##     [3]     chr1 50743-50946      + |      Gene-3         ID3
+##     [4]     chr1 14336-14511      - |      Gene-4         ID4
+##     [5]     chr2 53117-53532      + |      Gene-5         ID5
+##     ...      ...         ...    ... .         ...         ...
+##    [96]     chr1 52310-52704      * |     Gene-96        ID96
+##    [97]     chr2 66603-66908      + |     Gene-97        ID97
+##    [98]     chr1 44113-44406      + |     Gene-98        ID98
+##    [99]     chr1 28535-28985      - |     Gene-99        ID99
+##   [100]     chr1 17917-18021      + |    Gene-100       ID100
 ##   -------
 ##   seqinfo: 2 sequences from an unspecified genome; no seqlengths
 ```

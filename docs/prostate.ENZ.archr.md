@@ -94,33 +94,7 @@ GeneExpressionMatrix <- getMatrixFromProject(
     threads = 1,
     logFile = "x"
 )
-```
 
-```
-## 2025-01-15 21:37:51.062452 : Organizing colData, 1.289 mins elapsed.
-```
-
-```
-## 2025-01-15 21:37:51.157048 : Organizing rowData, 1.291 mins elapsed.
-```
-
-```
-## 2025-01-15 21:37:51.159779 : Organizing rowRanges, 1.291 mins elapsed.
-```
-
-```
-## 2025-01-15 21:37:51.164071 : Organizing Assays (1 of 1), 1.291 mins elapsed.
-```
-
-```
-## 2025-01-15 21:37:53.187938 : Constructing SummarizedExperiment, 1.325 mins elapsed.
-```
-
-```
-## 2025-01-15 21:37:53.589763 : Finished Matrix Creation, 1.331 mins elapsed.
-```
-
-``` r
 PeakMatrix <- getMatrixFromProject(
     ArchRProj = proj,
     useMatrix = "PeakMatrix",
@@ -130,30 +104,6 @@ PeakMatrix <- getMatrixFromProject(
     threads = 1,
     logFile = "x"
 )
-```
-
-```
-## 2025-01-15 21:38:46.653223 : Organizing colData, 0.884 mins elapsed.
-```
-
-```
-## 2025-01-15 21:38:46.733814 : Organizing rowData, 0.886 mins elapsed.
-```
-
-```
-## 2025-01-15 21:38:46.739844 : Organizing rowRanges, 0.886 mins elapsed.
-```
-
-```
-## 2025-01-15 21:38:46.747126 : Organizing Assays (1 of 1), 0.886 mins elapsed.
-```
-
-```
-## 2025-01-15 21:38:48.030901 : Constructing SummarizedExperiment, 0.907 mins elapsed.
-```
-
-```
-## 2025-01-15 21:38:53.871474 : Finished Matrix Creation, 1.005 mins elapsed.
 ```
 If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to SingleCellExperiment object. It's also important to note that gene expression from ArchR is library size normalized (not logged)
 
@@ -289,47 +239,47 @@ p2g <- calculateP2G(ArchR_path = archR_project_path,
 ```
 
 ```
-## 2025-01-15 21:39:12.122448 : Getting Available Matrices, 0 mins elapsed.
+## 2025-01-15 22:36:34.979475 : Getting Available Matrices, 0 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:39:23.46454 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.005 mins elapsed.
+## 2025-01-15 22:36:48.491436 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.005 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:39:23.712829 : Computing KNN, 0.009 mins elapsed.
+## 2025-01-15 22:36:48.754723 : Computing KNN, 0.009 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:39:24.190222 : Identifying Non-Overlapping KNN pairs, 0.017 mins elapsed.
+## 2025-01-15 22:36:49.202162 : Identifying Non-Overlapping KNN pairs, 0.016 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:39:25.611178 : Identified 497 Groupings!, 0.04 mins elapsed.
+## 2025-01-15 22:36:50.565071 : Identified 497 Groupings!, 0.039 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:39:25.705274 : Getting Group RNA Matrix, 0.042 mins elapsed.
+## 2025-01-15 22:36:50.623938 : Getting Group RNA Matrix, 0.04 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:45:14.646696 : Getting Group ATAC Matrix, 5.858 mins elapsed.
+## 2025-01-15 22:42:28.4399 : Getting Group ATAC Matrix, 5.67 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:50:50.157397 : Normalizing Group Matrices, 11.449 mins elapsed.
+## 2025-01-15 22:48:07.318852 : Normalizing Group Matrices, 11.318 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:50:54.47578 : Finding Peak Gene Pairings, 11.521 mins elapsed.
+## 2025-01-15 22:48:11.787014 : Finding Peak Gene Pairings, 11.393 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:50:54.935735 : Computing Correlations, 11.529 mins elapsed.
+## 2025-01-15 22:48:12.186549 : Computing Correlations, 11.4 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:51:01.94743 : Completed Peak2Gene Correlations!, 11.646 mins elapsed.
+## 2025-01-15 22:48:18.672235 : Completed Peak2Gene Correlations!, 11.508 mins elapsed.
 ```
 
 ``` r
@@ -514,31 +464,31 @@ chromVarMatrix <- getMatrixFromProject(
 ```
 
 ```
-## 2025-01-15 21:52:46.665782 : Organizing colData, 0.533 mins elapsed.
+## 2025-01-15 22:50:00.205308 : Organizing colData, 0.536 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:52:46.756924 : Organizing rowData, 0.535 mins elapsed.
+## 2025-01-15 22:50:00.291774 : Organizing rowData, 0.538 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:52:46.758936 : Organizing rowRanges, 0.535 mins elapsed.
+## 2025-01-15 22:50:00.293599 : Organizing rowRanges, 0.538 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:52:46.764063 : Organizing Assays (1 of 2), 0.535 mins elapsed.
+## 2025-01-15 22:50:00.297103 : Organizing Assays (1 of 2), 0.538 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:52:46.887342 : Organizing Assays (2 of 2), 0.537 mins elapsed.
+## 2025-01-15 22:50:00.396369 : Organizing Assays (2 of 2), 0.539 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:52:47.010216 : Constructing SummarizedExperiment, 0.539 mins elapsed.
+## 2025-01-15 22:50:00.496636 : Constructing SummarizedExperiment, 0.541 mins elapsed.
 ```
 
 ```
-## 2025-01-15 21:52:48.035363 : Finished Matrix Creation, 0.556 mins elapsed.
+## 2025-01-15 22:50:01.285378 : Finished Matrix Creation, 0.554 mins elapsed.
 ```
 
 ``` r
