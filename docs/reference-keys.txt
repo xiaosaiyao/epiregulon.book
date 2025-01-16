@@ -1,6 +1,16 @@
 installation
-basic-workflow-with-multiassayexperiment
 data-preparation
+constructing-a-singlecellexperiment-object
+starting-from-an-archr-object
+starting-from-a-seuratsignac-object
+starting-from-anndata
+starting-from-10x-data-formats
+reading-from-.h5-file
+reading-directly-from-a-10x-directory
+reading-directly-from-csv
+important-points
+basic-workflow-with-multiassayexperiment
+data-preparation-1
 quick-start
 retrieve-bulk-tf-chip-seq-binding-sites
 link-atac-seq-peaks-to-target-genes
@@ -12,7 +22,7 @@ optional-annotate-with-tf-motifs
 calculate-tf-activity
 session-info
 advanced-workflow-with-multiassayexperiment
-data-preparation-1
+data-preparation-2
 retrieve-bulk-tf-chip-seq-binding-sites-1
 link-atacseq-peaks-to-target-genes
 add-tf-motif-binding-to-peaks-1
@@ -26,7 +36,7 @@ geneset-enrichment
 differential-network-analysis
 session-info-1
 archr-workflow-and-different-weight-methods
-data-preparation-2
+data-preparation-3
 load-archr-project
 retrieve-matrices-from-archr-project
 retrieve-bulk-tf-chip-seq-binding-sites-2

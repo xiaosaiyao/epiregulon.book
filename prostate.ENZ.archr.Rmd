@@ -73,7 +73,7 @@ rownames(GeneExpressionMatrix) <- rowData(GeneExpressionMatrix)$name
 We rename the assay name of the PeakMatrix as counts
 
 ```{r}
-assayNames(PeakMatrix)  <-  "counts"
+PeakMatrix <- ArchRMatrix2SCE(PeakMatrix, rename = "counts")
 ```
 
 Transfer embeddings from ArchR project to singleCellExperiment for visualization
