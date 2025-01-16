@@ -1,0 +1,345 @@
+# Data preparation
+
+Epiregulon operates on the `SingleCellExperiment` class. We assume that gene expression, chromatin accessibility and dimension reduction have been obtained by users' favorite packages prior to the use of Epiregulon. This chapter provides instructions on how to convert gene expression matrix and peak matrix into `SingleCellExperiment` objects from other formats including ArchR project, Seurat objects, AnnData and 10x genomics output. The first section provides a quick primer on the components of a `SingleCellExperiment` object necessary to run Epiregulon. It is thus recommended for all users to go through it. 
+
+## Constructing a SingleCellExperiment object
+
+Let's construct a GeneExpressionMatrix from scratch. First we will create the count matrix. 
+```{r message=FALSE, eval=TRUE}
+library(SingleCellExperiment)
+counts <- matrix(rpois(100000, lambda = 2), ncol=1000, nrow=100)
+GeneExpressionMatrix <- SingleCellExperiment(list(counts=counts))
+rownames(GeneExpressionMatrix) <- paste("Gene",1:100, sep="-")
+colnames(GeneExpressionMatrix) <- paste("Cell",1:1000, sep="-")
+```
+ 
+
+It is important (and efficient) to convert the count matrix to `dgCMatrix` format at the beginning of the workflow.
+
+```{r }
+library(Matrix)
+counts(GeneExpressionMatrix) <- as(counts(GeneExpressionMatrix), "dgCMatrix")
+```
+  
+ 
+Next we will add the cell information to `colData`
+```{r}
+colData(GeneExpressionMatrix) <- DataFrame(Cluster = paste("cluster", sample(1:3,1000, TRUE)))
+
+```
+
+
+For the purpose of Epiregulon, it is important to provide the start and end position of the genes so that we can link genes to the peak regions.
+
+```{r}
+seqnames <- paste0("chr", sample(1:2, 100, TRUE))
+start <- sample(1:100000, 100, TRUE)
+end <- start + sample(100:500, 100, TRUE)
+strand <- sample(c("+", "-", "*"), 100, TRUE)
+
+gr <- GRanges(
+    seqnames = seqnames,
+    ranges = IRanges(start = start, end = end),
+    strand = strand
+)
+
+```
+
+Next we provide additional information about the genes. We can add them into the `mcols` as `DataFrame`. The `GRanges` become the `rowRanges` of the GeneExpressionMatrix.
+
+```{r}
+mcols(gr) <- DataFrame(name = paste("Gene", 1:100, sep="-"),
+                       ID = paste0("ID", 1:100))
+
+rowRanges(GeneExpressionMatrix) <- gr
+rowRanges(GeneExpressionMatrix)
+```
+
+The additional information about the genes will also appear in `rowData`
+```{r}
+rowData(GeneExpressionMatrix)
+```
+
+Finally we add some reduced dimension data which is needed for clustering
+```{r}
+reducedDim(GeneExpressionMatrix, "PCA") <- matrix(data=rnorm(20000), nrow=1000, ncol=20)
+GeneExpressionMatrix
+```
+
+Repeat the process to create a `PeakMatrix`
+
+```{r message=FALSE, eval=TRUE}
+
+# add counts
+counts <- matrix(rpois(1000000, lambda = 1), ncol=1000, nrow=1000)
+PeakMatrix <- SingleCellExperiment(list(counts=counts))
+rownames(PeakMatrix) <- paste("Peak",1:1000, sep="-")
+colnames(PeakMatrix) <- paste("Cell",1:1000, sep="-")
+
+# convert count matrix to dgCMatrix
+counts(PeakMatrix) <- as(counts(PeakMatrix), "dgCMatrix")
+
+# add rowRanges
+seqnames <- paste0("chr", sample(1:2, 1000, TRUE))
+start <- sample(1:100000, 1000, TRUE)
+end <- start + sample(100:500, 1000, TRUE)
+strand <- sample(c("+", "-", "*"), 1000, TRUE)
+
+gr <- GRanges(
+    seqnames = seqnames,
+    ranges = IRanges(start = start, end = end),
+    strand = strand
+)
+
+# add rowData
+mcols(gr) <- DataFrame(name = paste("Peak", 1:1000, sep="-"))
+
+rowRanges(PeakMatrix) <- gr
+
+# add reduced dimensionality matrix
+
+reducedDim(PeakMatrix, "ATAC_LSI") <- matrix(data=rnorm(20000), nrow=1000, ncol=20)
+PeakMatrix
+
+```
+
+For more information on SingleCellExperiment, please refer to the [documentation]("https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html") on bioconductor.
+
+For a real example of a properly formatted `SingleCellExperiment` object, check out datasets from the [scMultiome](https://www.bioconductor.org/packages/release/data/experiment/html/scMultiome.html) package. Both the GeneExpressionMatrix and PeakMatrix are combined into a `MultiAssayExperiment` object.
+```{r}
+mae <- scMultiome::reprogramSeq()
+GeneExpressMatrix <- mae[["GeneExpressMatrix "]]
+GeneExpressMatrix
+PeakMatrix <- mae[["PeakMatrix"]]
+PeakMatrix
+```
+## Starting from an ArchR object
+
+Epiregulon is designed to work seamlessly with ArchR. GeneExpressionMatrix and PeakMatrix can be easily exported from ArchR using ArchR's build-in function.
+
+Download a test ArchR project
+```{r warning = FALSE, message = FALSE}
+library(ArchR)
+archr.proj <- getTestProject()
+```
+
+Check available matrices in ArchR project
+```{r}
+getAvailableMatrices(ArchRProj = archr.proj)
+```
+
+Export the GeneExpressionMatrix and PeakMatrix from the ArchR project.
+
+```{r warning = FALSE, message = FALSE}
+GeneExpressionMatrix <- getMatrixFromProject(ArchRProj = archr.proj, useMatrix = "GeneIntegrationMatrix")
+PeakMatrix <- getMatrixFromProject(ArchRProj = archr.proj, useMatrix = "PeakMatrix")
+GeneExpressionMatrix
+PeakMatrix
+```
+
+The GeneExpressionMatrix and PeakMatrix exported from ArchR project are in the form of `SummarizedExperiment` and `RangedSummarizedExperiment` respectively. We provide a helper function to convert both to `SingleCellExperiment` class. Furthermore, the genomic location of the genes are transferred from `rowData` in the `RangedSummarizedExperiment` to the `rowRanges` of the `SingleCellExperiment`.
+
+Please note that GeneExpressionMatrix extracted from ArchR project contain normalized counts (not logged) and for clarity, we rename the assay as "normalizedCounts"
+```{r}
+library(epiregulon.archr)
+GeneExpressionMatrix <- ArchRMatrix2SCE(rse = GeneExpressionMatrix, rename = "normalizedCounts")
+GeneExpressionMatrix
+```
+
+We can also transform the counts to logcounts. This will add a new assay and we name it as "logcounts".
+```{r}
+GeneExpressionMatrix <- ArchRMatrix2SCE(rse = GeneExpressionMatrix, transform = TRUE, transform_method = "log", log_name = "logcounts")
+GeneExpressionMatrix
+```
+
+Check that rowRanges have been transferred 
+```{r}
+rowRanges(GeneExpressionMatrix)
+```
+
+We next convert the PeakMatrix to  a `SingleCellExperiment` object. The counts exported from ArchR are raw counts and thus we rename the assay as "counts"
+```{r}
+PeakMatrix <- ArchRMatrix2SCE(PeakMatrix, rename = "counts")
+PeakMatrix
+```
+
+Neither SummarizedExperiment object or RangedSummarizedExperiment object contains reduced dimension, so we must extract the reduced dimensionality matrix from the ArchR project and add it to GeneExpressionMatrix and/or PeakMatrix
+
+```{r}
+reducedDim(PeakMatrix, "IterativeLSI") <- getReducedDims(ArchRProj = archr.proj, reducedDims = "IterativeLSI")
+
+```
+
+Refer to ArchR [manual](https://www.archrproject.com/bookdown/index.html) for full documentation.
+
+## Starting from a Seurat/Signac object
+
+We download an example multimodel dataset from [SeuratData](https://github.com/satijalab/seurat-data). 
+```{r, eval=FALSE}
+
+library(SeuratData)
+
+InstallData("pbmcMultiome")
+```
+
+This is a PBMC dataset consisting of both RNAseq and ATACseq data and we load each modality as a separate Seurat object
+```{r results='hide'}
+library(Seurat)
+library(Signac)
+library(SeuratData)
+pbmc.rna <- LoadData("pbmcMultiome", "pbmc.rna")
+pbmc.atac <- LoadData("pbmcMultiome", "pbmc.atac")
+```
+We first convert the RNA Seurat object to GeneExpressionMatrix `SingleCellExperiment` class. 
+```{r}
+GeneExpressionMatrix <- as.SingleCellExperiment(pbmc.rna, assay="RNA")
+```
+
+Because these genes are missing genomic positions, we must first annotate them with a genomic database, for example ensembl
+```{r}
+library(AnnotationHub)
+ah <- AnnotationHub()
+edb <- ah[["AH98047"]]  #"EnsDb.Hsapiens.v105"
+gr <- genes(edb, columns = c("gene_id", "gene_name"))
+```
+
+We retain only the genes that have genomic positions. The genomic positions are necessary to link peak positions to the nearby target genes.
+
+```{r}
+common_genes <- na.omit(intersect(gr$gene_name, rownames(GeneExpressionMatrix)))
+GeneExpressionMatrix <- GeneExpressionMatrix[common_genes,]
+rowRanges(GeneExpressionMatrix) <- gr[match(common_genes, gr$gene_name)]
+rowRanges(GeneExpressionMatrix)
+
+```
+
+We then convert ATAC matrix to PeakMatrix. After conversion to `SingleCellExperiment`, the peak positions appear as rownames and must be converted  to `GRanges`.
+
+```{r}
+PeakMatrix <- as.SingleCellExperiment(pbmc.atac, assay="ATAC")
+
+peak_position <- strsplit(rownames(PeakMatrix), split = "-")
+gr <- GRanges(
+    seqnames = sapply(peak_position,"[",1),
+    ranges = IRanges(start = as.numeric(sapply(peak_position,"[",2)), 
+                     end = as.numeric(sapply(peak_position,"[",3)))
+)
+rowRanges(PeakMatrix) <- gr
+PeakMatrix
+```
+
+For more information, refer to Signac [tutorial](https://stuartlab.org/signac/articles/overview)
+
+
+## Starting from AnnData
+
+We download an example PBMC anndata dataset from [scglue](https://scglue.readthedocs.io/en/latest/data.html).
+
+We first import the GeneExpressionMatrix.
+```{r}
+library(zellkonverter)
+library(GenomicRanges)
+library(SingleCellExperiment)
+url <- "http://download.gao-lab.org/GLUE/dataset/10x-Multiome-Pbmc10k-RNA.h5ad"
+destfile <- tempfile(fileext = ".h5ad")
+
+# Download the file
+download.file(url, destfile, mode = "wb")
+GeneExpressionMatrix <- readH5AD(destfile)
+
+```
+
+The field "chrom" "chromStart"  "chromEnd" correspond to genomic positions of the genes.
+```{r}
+rowData(GeneExpressionMatrix)
+```
+
+They must be renamed to "seqnames" "start" and "end" before conversion to `GRanges`
+```{r}
+index_to_rename <- match(c("chrom", "chromStart",  "chromEnd"), colnames(rowData(GeneExpressionMatrix)))
+colnames(rowData(GeneExpressionMatrix))[index_to_rename] <- c("seqnames", "start",   "end")
+rowRanges(GeneExpressionMatrix) <- GRanges(rowData(GeneExpressionMatrix))
+rowRanges(GeneExpressionMatrix)
+```
+We next import the PeakMatrix. The rownames are already in the format of seqnames:start-end, so rowRanges can be extracted directly from rowData.
+
+```{r}
+library(zellkonverter)
+url <- "http://download.gao-lab.org/GLUE/dataset/10x-Multiome-Pbmc10k-ATAC.h5ad"
+destfile <- tempfile(fileext = ".h5ad")
+
+# Download the file
+download.file(url, destfile, mode = "wb")
+
+PeakMatrix <- readH5AD(destfile)
+rowRanges(PeakMatrix) <- GRanges(rowData(PeakMatrix))
+rowRanges(PeakMatrix)
+```
+
+This example SingleCellExperiment dataset is missing the dimensionality reduction information. Users should have been this precalculated. Refer to the section on how to import from [csv files](### Reading directly from CSV),  or refer to [OSCA](https://bioconductor.org/books/3.20/OSCA.basic/dimensionality-reduction.html) book on how to perform dimensionality reduction. 
+
+## Starting from 10x data formats 
+### Reading from .h5 file 
+
+We first download the publicly available PBMC data from 10x Genomics
+
+```{r}
+url <- "https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5"
+destfile <- tempfile(fileext = ".h5")  
+
+# Download the file
+download.file(url, destfile, mode = "wb")
+
+```      
+This .h5 file contains both genes and peak regions as features, so we read in all the features into a single `SingleCellExperiment`, and we can specify "Gene Expression" as the main experiment and "Peaks" as the alternative experiment. We then split this single object into 2 separate  `SingleCellExperiment` objects for consistency with other sections.
+```{r}
+library(DropletUtils)
+sce10x <- read10xCounts(destfile)
+
+sce10x <- splitAltExps(sce10x, f=rowData(sce10x)$Type, ref="Gene Expression")
+
+peakMatrix <- altExp(sce10x)
+rowRanges(peakMatrix) <- GRanges(rownames(peakMatrix))
+
+GeneExpressionMatrix <- removeAltExps(sce10x)
+
+```
+
+### Reading directly from a 10x directory
+
+We can also create a `SingleCellExperiment` object from a directory containing "matrix.mtx.gz", "barcodes.tsv.gz" and "features.tsv.gz"
+```{r}
+example(write10xCounts)
+
+list.files(tmpdir)
+
+sce10x <- read10xCounts(tmpdir)
+
+```
+
+Follow the section on [Constructing a SingleCellExperiment object](## Starting from a SingleCellExperiment object) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions
+
+## Reading directly from CSV
+
+If the count matrices are in the form of csv files, read in the count matrix as a sparse matrix and convert it to a `dgCMatrix`. 
+
+```{r, eval= FALSE}
+library(SparseArray)
+counts <- readSparseCSV("counts.csv")
+counts <- as(counts, "dgCMatrix")
+```
+
+
+Then read in the genomic positions as data.frame and convert it to a `GRanges`.
+```{r, eval = FALSE}
+peak_position <- read.csv("peaks.csv")
+peak_position <- data.frame(peak_position)
+gr <- GenomicRanges::makeGRangesFromDataFrame(peak_position)
+
+```
+
+Refer to the section on [Constructing a SingleCellExperiment object](## Constructing a SingleCellExperiment object) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.
+
+## Important points
+
+Finally, we would like to emphasize again the importance of converting all count matrices to dgCMatrix for speed and compatibility. Both gene expression and peak matrices require `rowRanges` to indicate genomic positions of target gene position and peak position.
