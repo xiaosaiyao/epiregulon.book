@@ -1,5 +1,7 @@
 # Installation
 
+
+## Installing from github
 All the epiregulon components are available on [github](https://github.com/xiaosaiyao?tab=repositories). 
 There are three separate epiregulon packages. The core epiregulon package supports input in the form of `SingleCellExperiment` objects. If the users would like to start from `ArchR` projects, they may choose to use `epiregulon.archr` package, which allows for the seamless integration with `ArchR` package through accepting its output to be used in the downstream workflow. 
 
@@ -22,3 +24,33 @@ Moreover, we provide a suite of tools for the enrichment analysis, visualization
 # install extended version of epiregulon
 devtools::install_github(repo='xiaosaiyao/epiregulon.extra')
 ```
+
+The data package scMultiome is for storing TF ChIP-seq data and pre-processed datasets.
+
+
+``` r
+# install extended version of epiregulon
+devtools::install_github(repo='xiaosaiyao/scMultiome')
+```
+
+## Installing from Bioconductor
+
+Epiregulon is now available through [Bioconductor]("https://www.bioconductor.org/).
+
+
+``` r
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+ 
+BiocManager::install("epiregulon")
+BiocManager::install("epiregulon.extra")
+BiocManager::install("scMultiome")
+```
+
+## Citation
+
+Check out our preprint
+
+Epiregulon: Inference of single-cell transcription factor activity to dissect mechanisms of lineage plasticity and drug response
+Tomasz Włodarczyk, Aaron Lun, Diana Wu, Shreya Menon, Shushan Toneyan, Kerstin Seidel, Liang Wang, Jenille Tan, Shang-Yang Chen, Timothy Keyes, Aleksander Chlebowski, Yu Guo, Ciara Metcalfe, Marc Hafner, Christian W. Siebel, M. Ryan Corces, Robert Yauch, Shiqi Xie, Xiaosai Yao
+bioRxiv 2023.11.27.568955; doi: [https://doi.org/10.1101/2023.11.27.568955]("https://www.biorxiv.org/content/10.1101/2023.11.27.568955v3")

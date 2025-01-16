@@ -332,7 +332,9 @@ markers.sig <- getSigGenes(markers, topgenes = 5 )
 First visualize the known differential TFs by bubble plot
 ```{r visualization_prostate}
 plotBubble(activity_matrix = score.combine.wilcox, 
-           tf = c("AR","FOXA1", "MYC","JUN"), 
+           tf = c("AR","FOXA1", "MYC","JUN"),
+           pval.type = "some", 
+           direction = "up", 
            clusters = GeneExpressionMatrix$label)
 ```
 
@@ -340,6 +342,8 @@ Then visualize the most differential TFs by clusters
 ```{r}
 plotBubble(activity_matrix = score.combine.wilcox, 
            tf = markers.sig$tf, 
+           pval.type = "some", 
+           direction = "up", 
            clusters = GeneExpressionMatrix$label)
 
 ```

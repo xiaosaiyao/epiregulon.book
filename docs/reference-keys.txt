@@ -1,4 +1,7 @@
 installation
+installing-from-github
+installing-from-bioconductor
+citation
 data-preparation
 constructing-a-singlecellexperiment-object
 starting-from-an-archr-object

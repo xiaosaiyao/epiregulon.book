@@ -97,27 +97,27 @@ GeneExpressionMatrix <- getMatrixFromProject(
 ```
 
 ```
-## 2025-01-15 18:55:13.949134 : Organizing colData, 1.302 mins elapsed.
+## 2025-01-15 21:37:51.062452 : Organizing colData, 1.289 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:55:14.043101 : Organizing rowData, 1.303 mins elapsed.
+## 2025-01-15 21:37:51.157048 : Organizing rowData, 1.291 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:55:14.045793 : Organizing rowRanges, 1.304 mins elapsed.
+## 2025-01-15 21:37:51.159779 : Organizing rowRanges, 1.291 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:55:14.050055 : Organizing Assays (1 of 1), 1.304 mins elapsed.
+## 2025-01-15 21:37:51.164071 : Organizing Assays (1 of 1), 1.291 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:55:16.069376 : Constructing SummarizedExperiment, 1.337 mins elapsed.
+## 2025-01-15 21:37:53.187938 : Constructing SummarizedExperiment, 1.325 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:55:16.472333 : Finished Matrix Creation, 1.344 mins elapsed.
+## 2025-01-15 21:37:53.589763 : Finished Matrix Creation, 1.331 mins elapsed.
 ```
 
 ``` r
@@ -133,27 +133,27 @@ PeakMatrix <- getMatrixFromProject(
 ```
 
 ```
-## 2025-01-15 18:56:11.058719 : Organizing colData, 0.91 mins elapsed.
+## 2025-01-15 21:38:46.653223 : Organizing colData, 0.884 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:11.14605 : Organizing rowData, 0.911 mins elapsed.
+## 2025-01-15 21:38:46.733814 : Organizing rowData, 0.886 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:11.151361 : Organizing rowRanges, 0.911 mins elapsed.
+## 2025-01-15 21:38:46.739844 : Organizing rowRanges, 0.886 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:11.158613 : Organizing Assays (1 of 1), 0.911 mins elapsed.
+## 2025-01-15 21:38:46.747126 : Organizing Assays (1 of 1), 0.886 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:12.568397 : Constructing SummarizedExperiment, 0.935 mins elapsed.
+## 2025-01-15 21:38:48.030901 : Constructing SummarizedExperiment, 0.907 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:18.165227 : Finished Matrix Creation, 1.028 mins elapsed.
+## 2025-01-15 21:38:53.871474 : Finished Matrix Creation, 1.005 mins elapsed.
 ```
 If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to SingleCellExperiment object. It's also important to note that gene expression from ArchR is library size normalized (not logged)
 
@@ -289,47 +289,47 @@ p2g <- calculateP2G(ArchR_path = archR_project_path,
 ```
 
 ```
-## 2025-01-15 18:56:35.333216 : Getting Available Matrices, 0 mins elapsed.
+## 2025-01-15 21:39:12.122448 : Getting Available Matrices, 0 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:48.862244 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.004 mins elapsed.
+## 2025-01-15 21:39:23.46454 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.005 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:49.097962 : Computing KNN, 0.008 mins elapsed.
+## 2025-01-15 21:39:23.712829 : Computing KNN, 0.009 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:49.648034 : Identifying Non-Overlapping KNN pairs, 0.017 mins elapsed.
+## 2025-01-15 21:39:24.190222 : Identifying Non-Overlapping KNN pairs, 0.017 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:51.004872 : Identified 497 Groupings!, 0.04 mins elapsed.
+## 2025-01-15 21:39:25.611178 : Identified 497 Groupings!, 0.04 mins elapsed.
 ```
 
 ```
-## 2025-01-15 18:56:51.067842 : Getting Group RNA Matrix, 0.041 mins elapsed.
+## 2025-01-15 21:39:25.705274 : Getting Group RNA Matrix, 0.042 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:02:51.490451 : Getting Group ATAC Matrix, 6.048 mins elapsed.
+## 2025-01-15 21:45:14.646696 : Getting Group ATAC Matrix, 5.858 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:11:15.604362 : Normalizing Group Matrices, 14.45 mins elapsed.
+## 2025-01-15 21:50:50.157397 : Normalizing Group Matrices, 11.449 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:11:20.128944 : Finding Peak Gene Pairings, 14.525 mins elapsed.
+## 2025-01-15 21:50:54.47578 : Finding Peak Gene Pairings, 11.521 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:11:20.530691 : Computing Correlations, 14.532 mins elapsed.
+## 2025-01-15 21:50:54.935735 : Computing Correlations, 11.529 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:11:27.158303 : Completed Peak2Gene Correlations!, 14.642 mins elapsed.
+## 2025-01-15 21:51:01.94743 : Completed Peak2Gene Correlations!, 11.646 mins elapsed.
 ```
 
 ``` r
@@ -514,31 +514,31 @@ chromVarMatrix <- getMatrixFromProject(
 ```
 
 ```
-## 2025-01-15 19:13:11.007496 : Organizing colData, 0.552 mins elapsed.
+## 2025-01-15 21:52:46.665782 : Organizing colData, 0.533 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:13:11.101754 : Organizing rowData, 0.553 mins elapsed.
+## 2025-01-15 21:52:46.756924 : Organizing rowData, 0.535 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:13:11.103709 : Organizing rowRanges, 0.554 mins elapsed.
+## 2025-01-15 21:52:46.758936 : Organizing rowRanges, 0.535 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:13:11.108321 : Organizing Assays (1 of 2), 0.554 mins elapsed.
+## 2025-01-15 21:52:46.764063 : Organizing Assays (1 of 2), 0.535 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:13:11.23271 : Organizing Assays (2 of 2), 0.556 mins elapsed.
+## 2025-01-15 21:52:46.887342 : Organizing Assays (2 of 2), 0.537 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:13:11.359909 : Constructing SummarizedExperiment, 0.558 mins elapsed.
+## 2025-01-15 21:52:47.010216 : Constructing SummarizedExperiment, 0.539 mins elapsed.
 ```
 
 ```
-## 2025-01-15 19:13:12.730047 : Finished Matrix Creation, 0.581 mins elapsed.
+## 2025-01-15 21:52:48.035363 : Finished Matrix Creation, 0.556 mins elapsed.
 ```
 
 ``` r
@@ -808,18 +808,10 @@ First visualize the known differential TFs by bubble plot
 
 ``` r
 plotBubble(activity_matrix = score.combine.wilcox, 
-           tf = c("AR","FOXA1", "MYC","JUN"), 
+           tf = c("AR","FOXA1", "MYC","JUN"),
+           pval.type = "some", 
+           direction = "up", 
            clusters = GeneExpressionMatrix$label)
-```
-
-```
-## Warning in max(logpval[is.finite(logpval)]): no non-missing arguments to max;
-## returning -Inf
-```
-
-```
-## Warning: Removed 16 rows containing missing values or values outside the scale range
-## (`geom_point()`).
 ```
 
 <img src="prostate.ENZ.archr_files/figure-html/visualization_prostate-1.png" width="672" />
@@ -829,17 +821,9 @@ Then visualize the most differential TFs by clusters
 ``` r
 plotBubble(activity_matrix = score.combine.wilcox, 
            tf = markers.sig$tf, 
+           pval.type = "some", 
+           direction = "up", 
            clusters = GeneExpressionMatrix$label)
-```
-
-```
-## Warning in max(logpval[is.finite(logpval)]): no non-missing arguments to max;
-## returning -Inf
-```
-
-```
-## Warning: Removed 48 rows containing missing values or values outside the scale range
-## (`geom_point()`).
 ```
 
 <img src="prostate.ENZ.archr_files/figure-html/unnamed-chunk-13-1.png" width="672" />

@@ -14,7 +14,7 @@ Prior to using `epiregulon`, single cell preprocessing needs to performed by use
 2. Gene expression matrix from either paired or unpaired scRNA-seq. RNA-seq integration needs to be performed for unpaired dataset. <br>
 3. Dimensionality reduction matrix from with either single modalities or joint scRNA-seq and scATAC-seq <br>
 
-```{r}
+```{r, message=FALSE}
 # load the MAE object
 library(scMultiome)
 library(epiregulon)
@@ -158,7 +158,7 @@ regulon.w
 So far the gene regulatory network was constructed from TF ChIP-seq exclusively. Some users would prefer to further annotate regulatory elements with the presence of motifs. We provide an option to annotate peaks with motifs from the Cisbp database. If no motifs are present for this particular factor (as in the case of co-factors or chromatin modifiers), we return NA. If motifs are available for a factor and the RE contains a motif, we return 1. If motifs are available and the RE does not contain a motif, we return 0. 
 
 
-```{r addMotifScore}
+```{r addMotifScore, message=FALSE}
 
 regulon.w.motif <- addMotifScore(regulon = regulon.w,
                                  peaks = rowRanges(PeakMatrix),
