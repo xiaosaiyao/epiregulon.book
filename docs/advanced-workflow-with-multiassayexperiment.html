@@ -536,9 +536,12 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <span id="cb185-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb185-3" tabindex="-1"></a>                                    <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2, </span>
 <span id="cb185-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb185-4" tabindex="-1"></a>                                    <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
 <span id="cb185-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb185-5" tabindex="-1"></a>                                    <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
-<span id="cb185-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb185-6" tabindex="-1"></a>                                    <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<span id="cb185-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb185-6" tabindex="-1"></a>                                    <span class="at">logvalues =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb185-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb185-7" tabindex="-1"></a>markers</span></code></pre></div>
+<pre><code>## List of length 11
+## names(11): B CD4.M CD4.N CLP Erythroid GMP Mono NK pDC PreB Progenitor</code></pre>
 <p>getSigGenes compiles the different test results into a single dataframe and enables user to supply their desired cutoffs for significance and variable to order by.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb186-1" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">topgenes =</span> <span class="dv">3</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb187-1" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">topgenes =</span> <span class="dv">3</span> )</span></code></pre></div>
 <pre><code>## Using a cutoff of 0.21 for class B for direction equal to any</code></pre>
 <pre><code>## Using a cutoff of 0.43 for class CD4.M for direction equal to any</code></pre>
 <pre><code>## Using a cutoff of 0.42 for class CD4.N for direction equal to any</code></pre>
@@ -550,217 +553,257 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <pre><code>## Using a cutoff of 0.14 for class pDC for direction equal to any</code></pre>
 <pre><code>## Using a cutoff of 0.25 for class PreB for direction equal to any</code></pre>
 <pre><code>## Using a cutoff of 0.19 for class Progenitor for direction equal to any</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-1" tabindex="-1"></a>markers.sig </span></code></pre></div>
+<pre><code>##           p.value           FDR summary.diff      class      tf
+## 8    0.000000e+00  0.000000e+00    0.5742061          B   NFKB2
+## 5    0.000000e+00  0.000000e+00    0.4691837          B    RELB
+## 9    0.000000e+00  0.000000e+00    0.4664992          B  NFATC1
+## 13   0.000000e+00  0.000000e+00    0.8955789      CD4.M   TSHZ1
+## 20   0.000000e+00  0.000000e+00    0.8746484      CD4.M     MAF
+## 16   0.000000e+00  0.000000e+00    0.7291512      CD4.M    GPN1
+## 7    0.000000e+00  0.000000e+00    0.7749790      CD4.N   NCOA3
+## 51   0.000000e+00  0.000000e+00    0.6316421      CD4.N  HEXIM1
+## 10   0.000000e+00  0.000000e+00    0.6265538      CD4.N   TSHZ1
+## 2    0.000000e+00  0.000000e+00    0.3386415        CLP  ZNF189
+## 1    0.000000e+00  0.000000e+00    0.2383423        CLP     ERG
+## 3   1.363478e-195 3.757746e-194    0.2776740        CLP    ATF7
+## 11   0.000000e+00  0.000000e+00    0.5034554  Erythroid   DACH1
+## 52   0.000000e+00  0.000000e+00    0.4664371  Erythroid     DTL
+## 71   0.000000e+00  0.000000e+00    0.3999763  Erythroid    LDB1
+## 131  0.000000e+00  0.000000e+00    0.4562134        GMP     TBP
+## 101  0.000000e+00  0.000000e+00    0.3935184        GMP   HOXA9
+## 31   0.000000e+00  0.000000e+00    0.3344333        GMP  ZNF189
+## 34   0.000000e+00  0.000000e+00    4.9076907       Mono   NCOA3
+## 17   0.000000e+00  0.000000e+00    4.6506703       Mono   MATR3
+## 21   0.000000e+00  0.000000e+00    2.4419443       Mono    RARA
+## 132  0.000000e+00  0.000000e+00    1.0005003         NK   TSHZ1
+## 14   0.000000e+00  0.000000e+00    0.9053762         NK     MAF
+## 171  0.000000e+00  0.000000e+00    0.7572377         NK   FOXN3
+## 32   0.000000e+00  0.000000e+00    0.1969361        pDC CBFA2T3
+## 22   0.000000e+00  0.000000e+00    0.1877417        pDC  ZNF189
+## 15   0.000000e+00  0.000000e+00    0.1413879        pDC    NFIA
+## 18  4.382395e-226 7.548675e-224    0.9886831       PreB POU2AF1
+## 23  7.989647e-216 1.100973e-213    0.3167865       PreB   BACH2
+## 33  2.733268e-209 2.690317e-207    0.3248628       PreB    RAG1
+## 12   0.000000e+00  0.000000e+00    0.8025848 Progenitor   HOXA9
+## 19   0.000000e+00  0.000000e+00    0.4608621 Progenitor   DACH1
+## 24   0.000000e+00  0.000000e+00    0.4265633 Progenitor   MEIS1</code></pre>
 </div>
 <div id="visualizing-tf-activities" class="section level2 hasAnchor" number="4.10">
 <h2><span class="header-section-number">4.10</span> Visualizing TF activities<a href="advanced-workflow-with-multiassayexperiment.html#visualizing-tf-activities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Epiregulon also provides multiple options for visualizing the inferred TF activities by reduced dimensional space</p>
-<p>tSNE or UMAP plots:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">ggrastr.default.dpi=</span><span class="dv">300</span>)</span>
-<span id="cb198-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-2" tabindex="-1"></a>tfs_interest <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;EBF1&quot;</span>,<span class="st">&quot;PAX5&quot;</span>, <span class="st">&quot;GATA3&quot;</span>,<span class="st">&quot;SPI1&quot;</span>)</span>
-<span id="cb198-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-3" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
-<span id="cb198-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-4" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine[tfs_interest,], </span>
-<span id="cb198-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-5" tabindex="-1"></a>                <span class="at">tf =</span> tfs_interest, </span>
-<span id="cb198-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-6" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>,</span>
-<span id="cb198-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-7" tabindex="-1"></a>                <span class="at">nrow=</span><span class="dv">2</span>,</span>
-<span id="cb198-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-8" tabindex="-1"></a>                <span class="at">ncol=</span><span class="dv">2</span>,</span>
-<span id="cb198-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-9" tabindex="-1"></a>                <span class="at">point_size=</span><span class="fl">0.1</span>,</span>
-<span id="cb198-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb198-10" tabindex="-1"></a>                <span class="at">rasterise =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Epiregulon also provides the option for visualizing the inferred TF activities in reduced dimensions.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">ggrastr.default.dpi=</span><span class="dv">300</span>)</span>
+<span id="cb201-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-2" tabindex="-1"></a>tfs_interest <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;EBF1&quot;</span>,<span class="st">&quot;PAX5&quot;</span>, <span class="st">&quot;GATA3&quot;</span>,<span class="st">&quot;SPI1&quot;</span>)</span>
+<span id="cb201-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-3" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
+<span id="cb201-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-4" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine[tfs_interest,], </span>
+<span id="cb201-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-5" tabindex="-1"></a>                <span class="at">tf =</span> tfs_interest, </span>
+<span id="cb201-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-6" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>,</span>
+<span id="cb201-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-7" tabindex="-1"></a>                <span class="at">nrow=</span><span class="dv">2</span>,</span>
+<span id="cb201-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-8" tabindex="-1"></a>                <span class="at">ncol=</span><span class="dv">2</span>,</span>
+<span id="cb201-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-9" tabindex="-1"></a>                <span class="at">point_size=</span><span class="fl">0.1</span>,</span>
+<span id="cb201-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-10" tabindex="-1"></a>                <span class="at">rasterise =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>We can compare the activity with gene expression of the same TFs.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-1" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix, </span>
-<span id="cb199-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-2" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">assay</span>(GeneExpressionMatrix, <span class="st">&quot;normalizedCounts&quot;</span>)[tfs_interest,], </span>
-<span id="cb199-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-3" tabindex="-1"></a>                <span class="at">tf =</span> tfs_interest, </span>
-<span id="cb199-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-4" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>,</span>
-<span id="cb199-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-5" tabindex="-1"></a>                <span class="at">nrow=</span><span class="dv">2</span>,</span>
-<span id="cb199-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-6" tabindex="-1"></a>                <span class="at">ncol=</span><span class="dv">2</span>,</span>
-<span id="cb199-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-7" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;Gex&quot;</span>,</span>
-<span id="cb199-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-8" tabindex="-1"></a>                <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb199-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-9" tabindex="-1"></a>                <span class="at">point_size=</span><span class="fl">0.1</span>,</span>
-<span id="cb199-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb199-10" tabindex="-1"></a>                <span class="at">rasterise =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-1" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix, </span>
+<span id="cb202-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-2" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">assay</span>(GeneExpressionMatrix, <span class="st">&quot;normalizedCounts&quot;</span>)[tfs_interest,], </span>
+<span id="cb202-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-3" tabindex="-1"></a>                <span class="at">tf =</span> tfs_interest, </span>
+<span id="cb202-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-4" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>,</span>
+<span id="cb202-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-5" tabindex="-1"></a>                <span class="at">nrow=</span><span class="dv">2</span>,</span>
+<span id="cb202-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-6" tabindex="-1"></a>                <span class="at">ncol=</span><span class="dv">2</span>,</span>
+<span id="cb202-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-7" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;Gex&quot;</span>,</span>
+<span id="cb202-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-8" tabindex="-1"></a>                <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>,<span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb202-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-9" tabindex="-1"></a>                <span class="at">point_size=</span><span class="fl">0.1</span>,</span>
+<span id="cb202-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-10" tabindex="-1"></a>                <span class="at">rasterise =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>We can also plot violin plot to visualize TF activity.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb200-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine, </span>
-<span id="cb200-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb200-2" tabindex="-1"></a>                   <span class="at">tf =</span> tfs_interest, </span>
-<span id="cb200-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb200-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
-<span id="cb200-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb200-4" tabindex="-1"></a>                   <span class="at">legend.label =</span> <span class="st">&quot;Gex&quot;</span>,</span>
-<span id="cb200-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb200-5" tabindex="-1"></a>                   <span class="at">nrow=</span><span class="dv">2</span>,</span>
-<span id="cb200-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb200-6" tabindex="-1"></a>                   <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb203-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-2" tabindex="-1"></a>                   <span class="at">tf =</span> tfs_interest, </span>
+<span id="cb203-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
+<span id="cb203-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-4" tabindex="-1"></a>                   <span class="at">legend.label =</span> <span class="st">&quot;Gex&quot;</span>,</span>
+<span id="cb203-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-5" tabindex="-1"></a>                   <span class="at">nrow=</span><span class="dv">2</span>,</span>
+<span id="cb203-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-6" tabindex="-1"></a>                   <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>We plot violin plot to visualize TF gene expression.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> <span class="fu">assay</span>(GeneExpressionMatrix, <span class="st">&quot;normalizedCounts&quot;</span>)[tfs_interest,],  </span>
-<span id="cb201-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-2" tabindex="-1"></a>                   <span class="at">tf =</span> tfs_interest, </span>
-<span id="cb201-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
-<span id="cb201-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-4" tabindex="-1"></a>                   <span class="at">nrow=</span><span class="dv">2</span>,</span>
-<span id="cb201-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-5" tabindex="-1"></a>                   <span class="at">ncol=</span><span class="dv">2</span>,</span>
-<span id="cb201-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb201-6" tabindex="-1"></a>                   <span class="at">legend.label =</span> <span class="st">&quot;gene expression&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> <span class="fu">assay</span>(GeneExpressionMatrix, <span class="st">&quot;normalizedCounts&quot;</span>)[tfs_interest,],  </span>
+<span id="cb204-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-2" tabindex="-1"></a>                   <span class="at">tf =</span> tfs_interest, </span>
+<span id="cb204-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
+<span id="cb204-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-4" tabindex="-1"></a>                   <span class="at">nrow=</span><span class="dv">2</span>,</span>
+<span id="cb204-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-5" tabindex="-1"></a>                   <span class="at">ncol=</span><span class="dv">2</span>,</span>
+<span id="cb204-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-6" tabindex="-1"></a>                   <span class="at">legend.label =</span> <span class="st">&quot;gene expression&quot;</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>We can visualize the different TFs in a bubble plot:</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
-<span id="cb202-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-2" tabindex="-1"></a>           <span class="at">tf =</span> tfs_interest, </span>
-<span id="cb202-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb205-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb205-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb205-2" tabindex="-1"></a>           <span class="at">tf =</span> tfs_interest,</span>
+<span id="cb205-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb205-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
+<span id="cb205-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb205-4" tabindex="-1"></a>           <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb205-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb205-5" tabindex="-1"></a>           <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
+<span id="cb205-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb205-6" tabindex="-1"></a>           <span class="at">logvalues =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>We visualize the top differential TFs based on activity.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
-<span id="cb203-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-2" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
-<span id="cb203-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb206-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb206-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb206-2" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
+<span id="cb206-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb206-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2,</span>
+<span id="cb206-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb206-4" tabindex="-1"></a>           <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb206-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb206-5" tabindex="-1"></a>           <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
+<span id="cb206-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb206-6" tabindex="-1"></a>           <span class="at">logvalues =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="geneset-enrichment" class="section level2 hasAnchor" number="4.11">
 <h2><span class="header-section-number">4.11</span> Geneset enrichment<a href="advanced-workflow-with-multiassayexperiment.html#geneset-enrichment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from <a href="http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html">clusterProfiler</a>.</p>
 <p>Here we first download Hallmark and C2 signatures from hallmark and then perform gene set enrichment of the known lineage factors. As expected, EBF1 is consistent with a B cell lineage factor, GATA3 and RUNX3 with lymphoid lineage and SPI1 with myeloid lineage.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-1" tabindex="-1"></a><span class="co">#retrieve genesets</span></span>
-<span id="cb204-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-2" tabindex="-1"></a>H <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
-<span id="cb204-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-3" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
-<span id="cb204-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-4" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;H&quot;</span>, </span>
-<span id="cb204-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-5" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span>
-<span id="cb204-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-6" tabindex="-1"></a>C2 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
-<span id="cb204-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-7" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
-<span id="cb204-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-8" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;C2&quot;</span>,</span>
-<span id="cb204-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-9" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span>
-<span id="cb204-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-10" tabindex="-1"></a></span>
-<span id="cb204-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-11" tabindex="-1"></a></span>
-<span id="cb204-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-12" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
-<span id="cb204-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-13" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(H, C2)</span>
-<span id="cb204-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-14" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), <span class="cf">function</span>(x) </span>
-<span id="cb204-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-15" tabindex="-1"></a>  {<span class="fu">data.frame</span>(<span class="at">gs=</span>x, <span class="at">genes=</span>gs[[x]])}))</span>
-<span id="cb204-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-16" tabindex="-1"></a></span>
-<span id="cb204-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-17" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(<span class="at">TF =</span> tfs_interest, </span>
-<span id="cb204-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-18" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.w, </span>
-<span id="cb204-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-19" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb204-20"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-20" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="dv">0</span>, </span>
-<span id="cb204-21"><a href="advanced-workflow-with-multiassayexperiment.html#cb204-21" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-1" tabindex="-1"></a><span class="co">#retrieve genesets</span></span>
+<span id="cb207-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-2" tabindex="-1"></a>H <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
+<span id="cb207-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-3" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb207-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-4" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;H&quot;</span>, </span>
+<span id="cb207-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-5" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span>
+<span id="cb207-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-6" tabindex="-1"></a>C2 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
+<span id="cb207-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-7" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb207-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-8" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;C2&quot;</span>,</span>
+<span id="cb207-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-9" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span> )</span>
+<span id="cb207-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-10" tabindex="-1"></a></span>
+<span id="cb207-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-11" tabindex="-1"></a></span>
+<span id="cb207-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-12" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
+<span id="cb207-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-13" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(H, C2)</span>
+<span id="cb207-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-14" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), <span class="cf">function</span>(x) </span>
+<span id="cb207-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-15" tabindex="-1"></a>  {<span class="fu">data.frame</span>(<span class="at">gs=</span>x, <span class="at">genes=</span>gs[[x]])}))</span>
+<span id="cb207-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-16" tabindex="-1"></a></span>
+<span id="cb207-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-17" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(<span class="at">TF =</span> tfs_interest, </span>
+<span id="cb207-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-18" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.w, </span>
+<span id="cb207-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-19" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
+<span id="cb207-20"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-20" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="dv">0</span>, </span>
+<span id="cb207-21"><a href="advanced-workflow-with-multiassayexperiment.html#cb207-21" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span></code></pre></div>
 <pre><code>## EBF1</code></pre>
 <pre><code>## </code></pre>
 <pre><code>## PAX5</code></pre>
 <pre><code>## GATA3</code></pre>
 <pre><code>## SPI1</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb210-1" tabindex="-1"></a><span class="co">#plot results</span></span>
-<span id="cb210-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb210-2" tabindex="-1"></a><span class="fu">enrichPlot</span>(<span class="at">results =</span> enrichresults, <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb213-1" tabindex="-1"></a><span class="co">#plot results</span></span>
+<span id="cb213-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb213-2" tabindex="-1"></a><span class="fu">enrichPlot</span>(<span class="at">results =</span> enrichresults, <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/enrichment_hematopoeisis-1.png" width="1152" /></p>
 </div>
 <div id="differential-network-analysis" class="section level2 hasAnchor" number="4.12">
 <h2><span class="header-section-number">4.12</span> Differential Network analysis<a href="advanced-workflow-with-multiassayexperiment.html#differential-network-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that EBF1 is a B cell lineage factor. If we plot the differential network of EBF1 using the regulon with cluster-specific weights, we can see that EBF1 has many more targets in PreB cells than it has in CD4 memory T cells.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb211-1" tabindex="-1"></a><span class="fu">plotDiffNetwork</span>(regulon.w,</span>
-<span id="cb211-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb211-2" tabindex="-1"></a>                <span class="at">cutoff =</span> <span class="dv">0</span>,</span>
-<span id="cb211-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb211-3" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;EBF1&quot;</span>),</span>
-<span id="cb211-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb211-4" tabindex="-1"></a>                <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb211-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb211-5" tabindex="-1"></a>                <span class="at">clusters =</span> <span class="fu">c</span>(<span class="st">&quot;PreB&quot;</span>,<span class="st">&quot;CD4.M&quot;</span>),</span>
-<span id="cb211-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb211-6" tabindex="-1"></a>                <span class="at">layout =</span> <span class="st">&quot;stress&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-1" tabindex="-1"></a><span class="fu">plotDiffNetwork</span>(regulon.w,</span>
+<span id="cb214-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-2" tabindex="-1"></a>                <span class="at">cutoff =</span> <span class="dv">0</span>,</span>
+<span id="cb214-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-3" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;EBF1&quot;</span>),</span>
+<span id="cb214-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-4" tabindex="-1"></a>                <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
+<span id="cb214-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-5" tabindex="-1"></a>                <span class="at">clusters =</span> <span class="fu">c</span>(<span class="st">&quot;PreB&quot;</span>,<span class="st">&quot;CD4.M&quot;</span>),</span>
+<span id="cb214-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-6" tabindex="-1"></a>                <span class="at">layout =</span> <span class="st">&quot;stress&quot;</span>)</span></code></pre></div>
 <pre><code>## Replacement of na values for weights with 0</code></pre>
 <pre><code>## Building graph using weight as edge weights</code></pre>
 <p><img src="hematopoeisis.mae_files/figure-html/differential%20networks%20hematopoeisis-1.png" width="672" /></p>
 <p>Sometimes, we are interested to identify interaction partners of the TFs of interest. This can be achieved by comparing the overlap of the targets genes for all the TFs and identify the most similar TFs by Jaccard similarity. To illustrate this function, we take a look at the top most similar 20 TFs to EBF1, and we successfully identify PAX5 as the most similar TF. Both PAX5 and EBF1 are important factors for B cell development (<a href="https://www.nature.com/articles/ni.2641" class="uri">https://www.nature.com/articles/ni.2641</a>).</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb214-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-2" tabindex="-1"></a><span class="co"># construct a graph of the preB cells</span></span>
-<span id="cb214-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb214-3" tabindex="-1"></a>preB_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;PreB&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb217-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-2" tabindex="-1"></a><span class="co"># construct a graph of the preB cells</span></span>
+<span id="cb217-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-3" tabindex="-1"></a>preB_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;PreB&quot;</span>)</span></code></pre></div>
 <pre><code>## Building graph using weight as edge weights</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-1" tabindex="-1"></a><span class="co"># compute a similarity matrix of all TFs</span></span>
-<span id="cb216-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-2" tabindex="-1"></a>similarity_score <span class="ot">&lt;-</span> <span class="fu">calculateJaccardSimilarity</span>(preB_network)</span>
-<span id="cb216-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-3" tabindex="-1"></a></span>
-<span id="cb216-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-4" tabindex="-1"></a><span class="co"># Focus on EBF1</span></span>
-<span id="cb216-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-5" tabindex="-1"></a>similarity_score_EBF1 <span class="ot">&lt;-</span> similarity_score[, <span class="st">&quot;EBF1&quot;</span>]</span>
-<span id="cb216-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-6" tabindex="-1"></a>similarity_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_EBF1, </span>
-<span id="cb216-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-7" tabindex="-1"></a>                                                   <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
-<span id="cb216-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-8" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_EBF1,</span>
-<span id="cb216-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-9" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
-<span id="cb216-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-10" tabindex="-1"></a></span>
-<span id="cb216-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-11" tabindex="-1"></a>similarity_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(similarity_df<span class="sc">$</span>TF, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(similarity_df<span class="sc">$</span>TF)))</span>
-<span id="cb216-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-12" tabindex="-1"></a></span>
-<span id="cb216-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-13" tabindex="-1"></a><span class="co"># plot top TFs most similar to EBF1</span></span>
-<span id="cb216-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-14" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(similarity_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
-<span id="cb216-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-15" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb216-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-16" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb216-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-17" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;EBF1 similarity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb216-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-18" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb216-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-19" tabindex="-1"></a></span>
-<span id="cb216-20"><a href="advanced-workflow-with-multiassayexperiment.html#cb216-20" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-1" tabindex="-1"></a><span class="co"># compute a similarity matrix of all TFs</span></span>
+<span id="cb219-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-2" tabindex="-1"></a>similarity_score <span class="ot">&lt;-</span> <span class="fu">calculateJaccardSimilarity</span>(preB_network)</span>
+<span id="cb219-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-3" tabindex="-1"></a></span>
+<span id="cb219-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-4" tabindex="-1"></a><span class="co"># Focus on EBF1</span></span>
+<span id="cb219-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-5" tabindex="-1"></a>similarity_score_EBF1 <span class="ot">&lt;-</span> similarity_score[, <span class="st">&quot;EBF1&quot;</span>]</span>
+<span id="cb219-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-6" tabindex="-1"></a>similarity_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_EBF1, </span>
+<span id="cb219-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-7" tabindex="-1"></a>                                                   <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
+<span id="cb219-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-8" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_EBF1,</span>
+<span id="cb219-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-9" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
+<span id="cb219-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-10" tabindex="-1"></a></span>
+<span id="cb219-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-11" tabindex="-1"></a>similarity_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(similarity_df<span class="sc">$</span>TF, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(similarity_df<span class="sc">$</span>TF)))</span>
+<span id="cb219-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-12" tabindex="-1"></a></span>
+<span id="cb219-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-13" tabindex="-1"></a><span class="co"># plot top TFs most similar to EBF1</span></span>
+<span id="cb219-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-14" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(similarity_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
+<span id="cb219-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-15" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb219-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-16" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb219-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-17" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;EBF1 similarity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb219-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-18" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb219-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-19" tabindex="-1"></a></span>
+<span id="cb219-20"><a href="advanced-workflow-with-multiassayexperiment.html#cb219-20" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>In order to convince ourselves that our differential network is statistically significant, we permute the edges and obtain a background graph from averaging many iterations. Here, we plot the differential network graph subtracted by permuted graphs.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-1" tabindex="-1"></a><span class="co"># create a permuted graph by rewiring the edges 100 times</span></span>
-<span id="cb217-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-2" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> <span class="fu">permuteGraph</span>(preB_network, <span class="st">&quot;EBF1&quot;</span>, <span class="dv">100</span>, <span class="at">p=</span><span class="dv">1</span>)</span>
-<span id="cb217-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-3" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> permute_matrix[<span class="fu">names</span>(similarity_score_EBF1),]</span>
-<span id="cb217-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-4" tabindex="-1"></a>diff_matrix <span class="ot">&lt;-</span> similarity_score_EBF1<span class="sc">-</span><span class="fu">rowMeans</span>(permute_matrix)</span>
-<span id="cb217-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-5" tabindex="-1"></a></span>
-<span id="cb217-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-6" tabindex="-1"></a>diff_matrix_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix, </span>
-<span id="cb217-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-7" tabindex="-1"></a>                                                    <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
-<span id="cb217-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-8" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,</span>
-<span id="cb217-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-9" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
-<span id="cb217-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-10" tabindex="-1"></a></span>
-<span id="cb217-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-11" tabindex="-1"></a>diff_matrix_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(diff_matrix_df<span class="sc">$</span>TF, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(diff_matrix_df<span class="sc">$</span>TF)))</span>
-<span id="cb217-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-12" tabindex="-1"></a></span>
-<span id="cb217-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-13" tabindex="-1"></a><span class="co"># plot top TFs most similar to EBF1</span></span>
-<span id="cb217-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-14" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diff_matrix_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
-<span id="cb217-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-15" tabindex="-1"></a>            <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb217-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-16" tabindex="-1"></a>            <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb217-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-17" tabindex="-1"></a>            <span class="fu">ggtitle</span>(<span class="st">&quot;background subtracted EBF1 similarity &quot;</span>) <span class="sc">+</span></span>
-<span id="cb217-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-18" tabindex="-1"></a>            <span class="fu">theme_classic</span>()</span>
-<span id="cb217-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb217-19" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-1" tabindex="-1"></a><span class="co"># create a permuted graph by rewiring the edges 100 times</span></span>
+<span id="cb220-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-2" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> <span class="fu">permuteGraph</span>(preB_network, <span class="st">&quot;EBF1&quot;</span>, <span class="dv">100</span>, <span class="at">p=</span><span class="dv">1</span>)</span>
+<span id="cb220-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-3" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> permute_matrix[<span class="fu">names</span>(similarity_score_EBF1),]</span>
+<span id="cb220-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-4" tabindex="-1"></a>diff_matrix <span class="ot">&lt;-</span> similarity_score_EBF1<span class="sc">-</span><span class="fu">rowMeans</span>(permute_matrix)</span>
+<span id="cb220-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-5" tabindex="-1"></a></span>
+<span id="cb220-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-6" tabindex="-1"></a>diff_matrix_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix, </span>
+<span id="cb220-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-7" tabindex="-1"></a>                                                    <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
+<span id="cb220-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-8" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,</span>
+<span id="cb220-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-9" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
+<span id="cb220-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-10" tabindex="-1"></a></span>
+<span id="cb220-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-11" tabindex="-1"></a>diff_matrix_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(diff_matrix_df<span class="sc">$</span>TF, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(diff_matrix_df<span class="sc">$</span>TF)))</span>
+<span id="cb220-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-12" tabindex="-1"></a></span>
+<span id="cb220-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-13" tabindex="-1"></a><span class="co"># plot top TFs most similar to EBF1</span></span>
+<span id="cb220-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-14" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diff_matrix_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
+<span id="cb220-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-15" tabindex="-1"></a>            <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb220-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-16" tabindex="-1"></a>            <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb220-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-17" tabindex="-1"></a>            <span class="fu">ggtitle</span>(<span class="st">&quot;background subtracted EBF1 similarity &quot;</span>) <span class="sc">+</span></span>
+<span id="cb220-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-18" tabindex="-1"></a>            <span class="fu">theme_classic</span>()</span>
+<span id="cb220-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-19" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb218-1" tabindex="-1"></a><span class="co"># obtain empirical p-values</span></span>
-<span id="cb218-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb218-2" tabindex="-1"></a>p_matrix <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(<span class="fu">apply</span>(permute_matrix, <span class="dv">2</span>, <span class="cf">function</span>(x) {x <span class="sc">&gt;</span> similarity_score_EBF1}))</span>
-<span id="cb218-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb218-3" tabindex="-1"></a>p_matrix[<span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,<span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>))]</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb221-1" tabindex="-1"></a><span class="co"># obtain empirical p-values</span></span>
+<span id="cb221-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb221-2" tabindex="-1"></a>p_matrix <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(<span class="fu">apply</span>(permute_matrix, <span class="dv">2</span>, <span class="cf">function</span>(x) {x <span class="sc">&gt;</span> similarity_score_EBF1}))</span>
+<span id="cb221-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb221-3" tabindex="-1"></a>p_matrix[<span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,<span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>))]</span></code></pre></div>
 <pre><code>##   PAX5   IRF4   TCF3   RAG2  TCF12 POU2F2  NIPBL    RB1   TCF4   RAG1 TRIM22 
 ##      0      0      0      0      0      0      0      0      0      0      0 
 ##    MYB  CREB1   EZH2  KDM2B  FOXP1   CREM  EP300 CREBBP  FOXO1 
 ##      0      0      0      0      0      0      0      0      0</code></pre>
 <p>Next, we are interested to compare the networks of two cell types, in this case, CD4 memory T cells (CD4.M) vs Monocytes (mono) cells. We build an edge subtracted graph and then calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in NK cells whereas the bottom 5 TFs present lineage factors enriched in CD4. We successfully identified the myeloid factor SPI1 to be associated with monocytes and Th1 factor TBX21 to be associated with CD4 T cells.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-1" tabindex="-1"></a><span class="co">#regulon.w.2 &lt;- regulon.w</span></span>
-<span id="cb220-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-2" tabindex="-1"></a><span class="co">#regulon.w &lt;- readRDS(&quot;/gstore/project/lineage/manuscript/epiregulon/OUTPUT/regulon.w.rds&quot;)</span></span>
-<span id="cb220-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-3" tabindex="-1"></a><span class="co"># construct a graph of the CD4.M and NK cells respectively</span></span>
-<span id="cb220-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb220-4" tabindex="-1"></a>CD4.M_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;CD4.M&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb223-1" tabindex="-1"></a><span class="co">#regulon.w.2 &lt;- regulon.w</span></span>
+<span id="cb223-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb223-2" tabindex="-1"></a><span class="co">#regulon.w &lt;- readRDS(&quot;/gstore/project/lineage/manuscript/epiregulon/OUTPUT/regulon.w.rds&quot;)</span></span>
+<span id="cb223-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb223-3" tabindex="-1"></a><span class="co"># construct a graph of the CD4.M and NK cells respectively</span></span>
+<span id="cb223-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb223-4" tabindex="-1"></a>CD4.M_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;CD4.M&quot;</span>)</span></code></pre></div>
 <pre><code>## Building graph using weight as edge weights</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb222-1" tabindex="-1"></a>Mono_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;Mono&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb225-1" tabindex="-1"></a>Mono_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;Mono&quot;</span>)</span></code></pre></div>
 <pre><code>## Building graph using weight as edge weights</code></pre>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-1" tabindex="-1"></a><span class="co"># construct a difference graph</span></span>
-<span id="cb224-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-2" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">buildDiffGraph</span>(Mono_network,CD4.M_network, <span class="at">abs_diff =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb224-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-3" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">addCentrality</span>(diff_graph)</span>
-<span id="cb224-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-4" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">normalizeCentrality</span>(diff_graph)</span>
-<span id="cb224-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-5" tabindex="-1"></a>rank_table <span class="ot">&lt;-</span> <span class="fu">rankTfs</span>(diff_graph)</span>
-<span id="cb224-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-6" tabindex="-1"></a></span>
-<span id="cb224-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb224-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-8" tabindex="-1"></a><span class="fu">ggplot</span>(rank_table, <span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> centrality)) <span class="sc">+</span></span>
-<span id="cb224-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-9" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb224-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-10" tabindex="-1"></a>    ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="at">data =</span> <span class="fu">rbind</span>(<span class="fu">head</span>(rank_table, <span class="dv">10</span>), </span>
-<span id="cb224-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-11" tabindex="-1"></a>                                          <span class="fu">tail</span>(rank_table, <span class="dv">10</span>)), </span>
-<span id="cb224-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-12" tabindex="-1"></a>                             <span class="fu">aes</span>(<span class="at">label =</span> tf), </span>
-<span id="cb224-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-13" tabindex="-1"></a>                             <span class="at">nudge_x =</span> <span class="dv">0</span>, <span class="at">nudge_y =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> <span class="fl">0.5</span>, <span class="at">max.overlaps =</span> <span class="cn">Inf</span>) <span class="sc">+</span></span>
-<span id="cb224-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb224-14" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;differential TFs (Mono-CD4.M) ranked by degree centrality&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-1" tabindex="-1"></a><span class="co"># construct a difference graph</span></span>
+<span id="cb227-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-2" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">buildDiffGraph</span>(Mono_network,CD4.M_network, <span class="at">abs_diff =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb227-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-3" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">addCentrality</span>(diff_graph)</span>
+<span id="cb227-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-4" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">normalizeCentrality</span>(diff_graph)</span>
+<span id="cb227-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-5" tabindex="-1"></a>rank_table <span class="ot">&lt;-</span> <span class="fu">rankTfs</span>(diff_graph)</span>
+<span id="cb227-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-6" tabindex="-1"></a></span>
+<span id="cb227-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb227-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-8" tabindex="-1"></a><span class="fu">ggplot</span>(rank_table, <span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> centrality)) <span class="sc">+</span></span>
+<span id="cb227-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-9" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb227-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-10" tabindex="-1"></a>    ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="at">data =</span> <span class="fu">rbind</span>(<span class="fu">head</span>(rank_table, <span class="dv">10</span>), </span>
+<span id="cb227-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-11" tabindex="-1"></a>                                          <span class="fu">tail</span>(rank_table, <span class="dv">10</span>)), </span>
+<span id="cb227-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-12" tabindex="-1"></a>                             <span class="fu">aes</span>(<span class="at">label =</span> tf), </span>
+<span id="cb227-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-13" tabindex="-1"></a>                             <span class="at">nudge_x =</span> <span class="dv">0</span>, <span class="at">nudge_y =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> <span class="fl">0.5</span>, <span class="at">max.overlaps =</span> <span class="cn">Inf</span>) <span class="sc">+</span></span>
+<span id="cb227-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-14" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;differential TFs (Mono-CD4.M) ranked by degree centrality&quot;</span>)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>We can further explore interacting factors with the myeloid factor SPI1 using the same Jaccard similarity approach. We found CEBPA as the most similar TF as SPI1. SPI1 and CEBPA are known to be important for differentiation into myeloid cells (<a href="https://www.cell.com/cell-reports/pdfExtended/S2211-1247(18)30745-9" class="uri">https://www.cell.com/cell-reports/pdfExtended/S2211-1247(18)30745-9</a>).</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb225-1" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code></pre></div>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-1" tabindex="-1"></a>diff_graph_filter <span class="ot">&lt;-</span> <span class="fu">subgraph.edges</span>(diff_graph, </span>
-<span id="cb226-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-2" tabindex="-1"></a>                                    <span class="fu">E</span>(diff_graph)[<span class="fu">E</span>(diff_graph)<span class="sc">$</span>weight<span class="sc">&gt;</span><span class="dv">0</span>], </span>
-<span id="cb226-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-3" tabindex="-1"></a>                                    <span class="at">del=</span><span class="cn">TRUE</span>)</span>
-<span id="cb226-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-4" tabindex="-1"></a></span>
-<span id="cb226-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-5" tabindex="-1"></a></span>
-<span id="cb226-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-6" tabindex="-1"></a><span class="co"># compute a similarity matrix of all TFs</span></span>
-<span id="cb226-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-7" tabindex="-1"></a>similarity_score <span class="ot">&lt;-</span> <span class="fu">calculateJaccardSimilarity</span>(diff_graph_filter)</span>
-<span id="cb226-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-8" tabindex="-1"></a></span>
-<span id="cb226-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-9" tabindex="-1"></a><span class="co"># Focus on SPI1</span></span>
-<span id="cb226-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-10" tabindex="-1"></a>similarity_score_SPI1 <span class="ot">&lt;-</span> similarity_score[, <span class="st">&quot;SPI1&quot;</span>]</span>
-<span id="cb226-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-11" tabindex="-1"></a>similarity_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_SPI1, </span>
-<span id="cb226-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-12" tabindex="-1"></a>                                                   <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
-<span id="cb226-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-13" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_SPI1,</span>
-<span id="cb226-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-14" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
-<span id="cb226-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-15" tabindex="-1"></a></span>
-<span id="cb226-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-16" tabindex="-1"></a>similarity_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(similarity_df<span class="sc">$</span>TF, </span>
-<span id="cb226-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-17" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(similarity_df<span class="sc">$</span>TF)))</span>
-<span id="cb226-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-18" tabindex="-1"></a></span>
-<span id="cb226-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-19" tabindex="-1"></a><span class="co"># plot top TFs most similar to SPI1</span></span>
-<span id="cb226-20"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-20" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(similarity_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
-<span id="cb226-21"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-21" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb226-22"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-22" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb226-23"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-23" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;SPI1 similarity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb226-24"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-24" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb226-25"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-25" tabindex="-1"></a></span>
-<span id="cb226-26"><a href="advanced-workflow-with-multiassayexperiment.html#cb226-26" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb228-1" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-1" tabindex="-1"></a>diff_graph_filter <span class="ot">&lt;-</span> <span class="fu">subgraph.edges</span>(diff_graph, </span>
+<span id="cb229-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-2" tabindex="-1"></a>                                    <span class="fu">E</span>(diff_graph)[<span class="fu">E</span>(diff_graph)<span class="sc">$</span>weight<span class="sc">&gt;</span><span class="dv">0</span>], </span>
+<span id="cb229-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-3" tabindex="-1"></a>                                    <span class="at">del=</span><span class="cn">TRUE</span>)</span>
+<span id="cb229-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-4" tabindex="-1"></a></span>
+<span id="cb229-5"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-5" tabindex="-1"></a></span>
+<span id="cb229-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-6" tabindex="-1"></a><span class="co"># compute a similarity matrix of all TFs</span></span>
+<span id="cb229-7"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-7" tabindex="-1"></a>similarity_score <span class="ot">&lt;-</span> <span class="fu">calculateJaccardSimilarity</span>(diff_graph_filter)</span>
+<span id="cb229-8"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-8" tabindex="-1"></a></span>
+<span id="cb229-9"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-9" tabindex="-1"></a><span class="co"># Focus on SPI1</span></span>
+<span id="cb229-10"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-10" tabindex="-1"></a>similarity_score_SPI1 <span class="ot">&lt;-</span> similarity_score[, <span class="st">&quot;SPI1&quot;</span>]</span>
+<span id="cb229-11"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-11" tabindex="-1"></a>similarity_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_SPI1, </span>
+<span id="cb229-12"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-12" tabindex="-1"></a>                                                   <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
+<span id="cb229-13"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-13" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_SPI1,</span>
+<span id="cb229-14"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-14" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
+<span id="cb229-15"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-15" tabindex="-1"></a></span>
+<span id="cb229-16"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-16" tabindex="-1"></a>similarity_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(similarity_df<span class="sc">$</span>TF, </span>
+<span id="cb229-17"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-17" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(similarity_df<span class="sc">$</span>TF)))</span>
+<span id="cb229-18"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-18" tabindex="-1"></a></span>
+<span id="cb229-19"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-19" tabindex="-1"></a><span class="co"># plot top TFs most similar to SPI1</span></span>
+<span id="cb229-20"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-20" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(similarity_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
+<span id="cb229-21"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-21" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb229-22"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-22" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb229-23"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-23" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;SPI1 similarity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb229-24"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-24" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb229-25"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-25" tabindex="-1"></a></span>
+<span id="cb229-26"><a href="advanced-workflow-with-multiassayexperiment.html#cb229-26" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="session-info-1" class="section level2 hasAnchor" number="4.13">
 <h2><span class="header-section-number">4.13</span> Session Info<a href="advanced-workflow-with-multiassayexperiment.html#session-info-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb227-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb230-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.4.0 (2024-04-24)
 ## Platform: x86_64-pc-linux-gnu
 ## Running under: Red Hat Enterprise Linux 8.6 (Ootpa)

@@ -418,7 +418,13 @@ markers  <- findDifferentialActivity(activity_matrix = score.combine,
                                     clusters = GeneExpressionMatrix$Clusters2, 
                                     pval.type = "some", 
                                     direction = "up", 
-                                    test.type = "t")
+                                    logvalues = FALSE)
+markers
+```
+
+```
+## List of length 11
+## names(11): B CD4.M CD4.N CLP Erythroid GMP Mono NK pDC PreB Progenitor
 ```
 
 getSigGenes compiles the different test results into a single dataframe and enables user to supply their desired cutoffs for significance and variable to order by.
@@ -472,11 +478,50 @@ markers.sig <- getSigGenes(markers, topgenes = 3 )
 ## Using a cutoff of 0.19 for class Progenitor for direction equal to any
 ```
 
+``` r
+markers.sig 
+```
+
+```
+##           p.value           FDR summary.diff      class      tf
+## 8    0.000000e+00  0.000000e+00    0.5742061          B   NFKB2
+## 5    0.000000e+00  0.000000e+00    0.4691837          B    RELB
+## 9    0.000000e+00  0.000000e+00    0.4664992          B  NFATC1
+## 13   0.000000e+00  0.000000e+00    0.8955789      CD4.M   TSHZ1
+## 20   0.000000e+00  0.000000e+00    0.8746484      CD4.M     MAF
+## 16   0.000000e+00  0.000000e+00    0.7291512      CD4.M    GPN1
+## 7    0.000000e+00  0.000000e+00    0.7749790      CD4.N   NCOA3
+## 51   0.000000e+00  0.000000e+00    0.6316421      CD4.N  HEXIM1
+## 10   0.000000e+00  0.000000e+00    0.6265538      CD4.N   TSHZ1
+## 2    0.000000e+00  0.000000e+00    0.3386415        CLP  ZNF189
+## 1    0.000000e+00  0.000000e+00    0.2383423        CLP     ERG
+## 3   1.363478e-195 3.757746e-194    0.2776740        CLP    ATF7
+## 11   0.000000e+00  0.000000e+00    0.5034554  Erythroid   DACH1
+## 52   0.000000e+00  0.000000e+00    0.4664371  Erythroid     DTL
+## 71   0.000000e+00  0.000000e+00    0.3999763  Erythroid    LDB1
+## 131  0.000000e+00  0.000000e+00    0.4562134        GMP     TBP
+## 101  0.000000e+00  0.000000e+00    0.3935184        GMP   HOXA9
+## 31   0.000000e+00  0.000000e+00    0.3344333        GMP  ZNF189
+## 34   0.000000e+00  0.000000e+00    4.9076907       Mono   NCOA3
+## 17   0.000000e+00  0.000000e+00    4.6506703       Mono   MATR3
+## 21   0.000000e+00  0.000000e+00    2.4419443       Mono    RARA
+## 132  0.000000e+00  0.000000e+00    1.0005003         NK   TSHZ1
+## 14   0.000000e+00  0.000000e+00    0.9053762         NK     MAF
+## 171  0.000000e+00  0.000000e+00    0.7572377         NK   FOXN3
+## 32   0.000000e+00  0.000000e+00    0.1969361        pDC CBFA2T3
+## 22   0.000000e+00  0.000000e+00    0.1877417        pDC  ZNF189
+## 15   0.000000e+00  0.000000e+00    0.1413879        pDC    NFIA
+## 18  4.382395e-226 7.548675e-224    0.9886831       PreB POU2AF1
+## 23  7.989647e-216 1.100973e-213    0.3167865       PreB   BACH2
+## 33  2.733268e-209 2.690317e-207    0.3248628       PreB    RAG1
+## 12   0.000000e+00  0.000000e+00    0.8025848 Progenitor   HOXA9
+## 19   0.000000e+00  0.000000e+00    0.4608621 Progenitor   DACH1
+## 24   0.000000e+00  0.000000e+00    0.4265633 Progenitor   MEIS1
+```
+
 ## Visualizing TF activities
 
-Epiregulon also provides multiple options for visualizing the inferred TF activities by reduced dimensional space
-
-tSNE or UMAP plots:
+Epiregulon also provides the option for visualizing the inferred TF activities in reduced dimensions.
 
 ``` r
 options(ggrastr.default.dpi=300)
@@ -542,8 +587,11 @@ We can visualize the different TFs in a bubble plot:
 
 ``` r
 plotBubble(activity_matrix = score.combine, 
-           tf = tfs_interest, 
-           GeneExpressionMatrix$Clusters2)
+           tf = tfs_interest,
+           GeneExpressionMatrix$Clusters2,
+           pval.type = "some", 
+           direction = "up", 
+           logvalues = FALSE)
 ```
 
 <img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-16-1.png" width="672" />
@@ -554,7 +602,10 @@ We visualize the top differential TFs based on activity.
 ``` r
 plotBubble(activity_matrix = score.combine, 
            tf = markers.sig$tf, 
-           GeneExpressionMatrix$Clusters2)
+           GeneExpressionMatrix$Clusters2,
+           pval.type = "some", 
+           direction = "up", 
+           logvalues = FALSE)
 ```
 
 <img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-17-1.png" width="672" />

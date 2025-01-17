@@ -62,15 +62,15 @@ PeakMatrix <- getMatrixFromProject(
 )
 
 ```
-If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to SingleCellExperiment object. It's also important to note that gene expression from ArchR is library size normalized (not logged)
+If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to a SingleCellExperiment object. It's also important to note that gene expression from ArchR is library size normalized (not logged).
 ```{r}
 library(epiregulon.archr)
-GeneExpressionMatrix <- ArchRMatrix2SCE(GeneExpressionMatrix)
+GeneExpressionMatrix <- ArchRMatrix2SCE(GeneExpressionMatrix, rename = "normalizedCounts")
 rownames(GeneExpressionMatrix) <- rowData(GeneExpressionMatrix)$name
 
 ```
 
-We rename the assay name of the PeakMatrix as counts
+We rename the assay name of the PeakMatrix as counts.
 
 ```{r}
 PeakMatrix <- ArchRMatrix2SCE(PeakMatrix, rename = "counts")
@@ -103,7 +103,7 @@ scater::plotReducedDim(GeneExpressionMatrix,
 
 ## Retrieve bulk TF ChIP-seq binding sites 
 
-First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes HG19 and HG38 and mouse mm10 are available. 
+First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse mm10 are available. 
 
 ```{r getTFMotifInfo_prostate}
 grl <- getTFMotifInfo(genome = "hg38")
@@ -116,7 +116,7 @@ Next, we compute peak to gene correlations using the `addPeak2GeneLinks` functio
 to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction. 
 
 ```{r calculateP2G_prostate}
-# path to ArchR project
+
 p2g <- calculateP2G(ArchR_path = archR_project_path,
                     useDim = "iLSI_Combined", 
                     useMatrix = "GeneIntegrationMatrix",
@@ -134,7 +134,7 @@ overlap <- addTFMotifInfo(archR_project_path = archR_project_path, grl = grl, p2
 
 ## Generate regulons
 
-A long format data frame, representing the inferred regulons, is then generated. The data frame consists of three columns:
+A long format data frame, representing the inferred regulons, is then generated. Three columns are important:
 
 * tf (transcription factor)
 * target gene
@@ -173,7 +173,7 @@ We calculate cluster-specific p-values if users supply cluster labels. This is u
 ```{r pruning_prostate,  results = "hide", warning = FALSE, message = FALSE}
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
-                               exp_assay = "counts",
+                               exp_assay = "normalizedCounts",
                                peakMatrix = PeakMatrix,
                                peak_assay = "counts",
                                test = "chi.sq",
@@ -233,7 +233,7 @@ Next, we are going to compare 3 different weight methods. In the first method, t
 
 regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "normalizedCounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$label,
@@ -241,7 +241,7 @@ regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
 
 regulon.w.corr <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "normalizedCounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$label,
@@ -249,7 +249,7 @@ regulon.w.corr <- addWeights(regulon = pruned.regulon,
 
 regulon.w.corr.re <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "normalizedCounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$label,
@@ -270,19 +270,19 @@ We calculate three different activities corresponding to the different weighted 
 
 ```{r calculateActivity_prostate, results = "hide"}
 score.combine.wilcox <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "normalizedCounts",
                                    regulon = regulon.w.wilcox,
                                    normalize = TRUE,
                                    mode = "weight",
                                    method = "weightedMean")
 score.combine.corr <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "normalizedCounts",
                                    regulon = regulon.w.corr,
                                    normalize = TRUE,
                                    mode = "weight",
                                    method = "weightedMean")
 score.combine.corr.re <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "normalizedCounts",
                                    regulon = regulon.w.corr.re,
                                    normalize = TRUE,
                                    mode = "weight",
@@ -318,13 +318,16 @@ For the remaining steps, we continue with activity derived from the `wilcoxon` m
 markers <- findDifferentialActivity(activity_matrix = score.combine.wilcox, 
                                     clusters = GeneExpressionMatrix$label, 
                                     pval.type = "some", 
-                                    direction = "up", 
-                                    test.type = "t")
+                                    direction = "any", 
+                                    test.type = "t",
+                                    logvalues = FALSE  )
+markers
 ```
 
-Take the top differential TFs
+Take the top differential TFs. Summary represents comparison of cells in the indicated class vs all the remaining cells.
 ```{r}
-markers.sig <- getSigGenes(markers, topgenes = 5 )
+markers.sig <- getSigGenes(markers, direction = "any", topgenes = 2 )
+markers.sig
 ```
 
 ## Visualize the results
@@ -335,16 +338,18 @@ plotBubble(activity_matrix = score.combine.wilcox,
            tf = c("AR","FOXA1", "MYC","JUN"),
            pval.type = "some", 
            direction = "up", 
-           clusters = GeneExpressionMatrix$label)
+           clusters = GeneExpressionMatrix$label,
+           logvalues = FALSE)
 ```
 
 Then visualize the most differential TFs by clusters
 ```{r}
 plotBubble(activity_matrix = score.combine.wilcox, 
-           tf = markers.sig$tf, 
+           tf = unique(markers.sig$tf), 
            pval.type = "some", 
-           direction = "up", 
-           clusters = GeneExpressionMatrix$label)
+           direction = "any", 
+           clusters = GeneExpressionMatrix$label,
+           logvalues = FALSE)
 
 ```
 
@@ -366,7 +371,7 @@ Visualize the newly discovered differential TFs by UMAP
 ```{r}
 plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = score.combine.wilcox, 
-                tf = c("SPDEF","HES4","ATF5","NR2F2"), 
+                tf = markers.sig$tf[1:4], 
                 dimtype = "UMAP_Combined", 
                 label = "label", 
                 point_size = 1, 
@@ -388,7 +393,7 @@ plotHeatmapRegulon(sce=GeneExpressionMatrix,
                    downsample=1000,
                    cell_attributes="label",
                    col_gap="label",
-                   exprs_values="counts",
+                   exprs_values="normalizedCounts",
                    name="regulon heatmap",
                    column_title_rot = 45)
 ```

@@ -105,7 +105,7 @@ PeakMatrix <- getMatrixFromProject(
     logFile = "x"
 )
 ```
-If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to SingleCellExperiment object. It's also important to note that gene expression from ArchR is library size normalized (not logged)
+If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to a SingleCellExperiment object. It's also important to note that gene expression from ArchR is library size normalized (not logged).
 
 ``` r
 library(epiregulon.archr)
@@ -131,11 +131,11 @@ library(epiregulon.archr)
 ```
 
 ``` r
-GeneExpressionMatrix <- ArchRMatrix2SCE(GeneExpressionMatrix)
+GeneExpressionMatrix <- ArchRMatrix2SCE(GeneExpressionMatrix, rename = "normalizedCounts")
 rownames(GeneExpressionMatrix) <- rowData(GeneExpressionMatrix)$name
 ```
 
-We rename the assay name of the PeakMatrix as counts
+We rename the assay name of the PeakMatrix as counts.
 
 
 ``` r
@@ -173,7 +173,7 @@ scater::plotReducedDim(GeneExpressionMatrix,
 
 ## Retrieve bulk TF ChIP-seq binding sites 
 
-First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes HG19 and HG38 and mouse mm10 are available. 
+First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse mm10 are available. 
 
 
 ``` r
@@ -223,7 +223,6 @@ to supply a path to an ArchR project already containing peak and gene matrices, 
 
 
 ``` r
-# path to ArchR project
 p2g <- calculateP2G(ArchR_path = archR_project_path,
                     useDim = "iLSI_Combined", 
                     useMatrix = "GeneIntegrationMatrix",
@@ -239,47 +238,47 @@ p2g <- calculateP2G(ArchR_path = archR_project_path,
 ```
 
 ```
-## 2025-01-16 20:01:48.440884 : Getting Available Matrices, 0 mins elapsed.
+## 2025-01-16 23:00:50.300344 : Getting Available Matrices, 0 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:02:07.016704 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.004 mins elapsed.
+## 2025-01-16 23:01:06.689893 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.006 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:02:07.28259 : Computing KNN, 0.008 mins elapsed.
+## 2025-01-16 23:01:06.966586 : Computing KNN, 0.01 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:02:07.745676 : Identifying Non-Overlapping KNN pairs, 0.016 mins elapsed.
+## 2025-01-16 23:01:07.422813 : Identifying Non-Overlapping KNN pairs, 0.018 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:02:09.153344 : Identified 497 Groupings!, 0.039 mins elapsed.
+## 2025-01-16 23:01:08.824723 : Identified 497 Groupings!, 0.041 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:02:09.21963 : Getting Group RNA Matrix, 0.04 mins elapsed.
+## 2025-01-16 23:01:08.881683 : Getting Group RNA Matrix, 0.042 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:09:17.767422 : Getting Group ATAC Matrix, 7.183 mins elapsed.
+## 2025-01-16 23:07:57.403158 : Getting Group ATAC Matrix, 6.851 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:17:13.273421 : Normalizing Group Matrices, 15.108 mins elapsed.
+## 2025-01-16 23:14:07.887422 : Normalizing Group Matrices, 13.026 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:17:17.731333 : Finding Peak Gene Pairings, 15.182 mins elapsed.
+## 2025-01-16 23:14:12.339466 : Finding Peak Gene Pairings, 13.1 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:17:18.129795 : Computing Correlations, 15.189 mins elapsed.
+## 2025-01-16 23:14:12.718873 : Computing Correlations, 13.106 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:17:25.450793 : Completed Peak2Gene Correlations!, 15.311 mins elapsed.
+## 2025-01-16 23:14:19.875984 : Completed Peak2Gene Correlations!, 13.225 mins elapsed.
 ```
 
 ``` r
@@ -339,7 +338,7 @@ overlap <- addTFMotifInfo(archR_project_path = archR_project_path, grl = grl, p2
 
 ## Generate regulons
 
-A long format data frame, representing the inferred regulons, is then generated. The data frame consists of three columns:
+A long format data frame, representing the inferred regulons, is then generated. Three columns are important:
 
 * tf (transcription factor)
 * target gene
@@ -415,7 +414,7 @@ We calculate cluster-specific p-values if users supply cluster labels. This is u
 
 ``` r
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
-                               exp_assay = "counts",
+                               exp_assay = "normalizedCounts",
                                peakMatrix = PeakMatrix,
                                peak_assay = "counts",
                                test = "chi.sq",
@@ -464,31 +463,31 @@ chromVarMatrix <- getMatrixFromProject(
 ```
 
 ```
-## 2025-01-16 20:19:17.008449 : Organizing colData, 0.681 mins elapsed.
+## 2025-01-16 23:16:11.032113 : Organizing colData, 0.661 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:19:17.095727 : Organizing rowData, 0.683 mins elapsed.
+## 2025-01-16 23:16:11.129559 : Organizing rowData, 0.662 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:19:17.097543 : Organizing rowRanges, 0.683 mins elapsed.
+## 2025-01-16 23:16:11.133726 : Organizing rowRanges, 0.662 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:19:17.10079 : Organizing Assays (1 of 2), 0.683 mins elapsed.
+## 2025-01-16 23:16:11.138995 : Organizing Assays (1 of 2), 0.662 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:19:17.199763 : Organizing Assays (2 of 2), 0.684 mins elapsed.
+## 2025-01-16 23:16:11.252333 : Organizing Assays (2 of 2), 0.664 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:19:17.299631 : Constructing SummarizedExperiment, 0.686 mins elapsed.
+## 2025-01-16 23:16:11.366081 : Constructing SummarizedExperiment, 0.666 mins elapsed.
 ```
 
 ```
-## 2025-01-16 20:19:18.063327 : Finished Matrix Creation, 0.699 mins elapsed.
+## 2025-01-16 23:16:12.520027 : Finished Matrix Creation, 0.685 mins elapsed.
 ```
 
 ``` r
@@ -510,7 +509,7 @@ Next, we are going to compare 3 different weight methods. In the first method, t
 ``` r
 regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "normalizedCounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$label,
@@ -524,7 +523,7 @@ regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
 ``` r
 regulon.w.corr <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "normalizedCounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$label,
@@ -546,7 +545,7 @@ regulon.w.corr <- addWeights(regulon = pruned.regulon,
 ``` r
 regulon.w.corr.re <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
-                        exp_assay = "counts",
+                        exp_assay = "normalizedCounts",
                         peakMatrix = PeakMatrix,
                         peak_assay = "counts",
                         clusters = GeneExpressionMatrix$label,
@@ -580,7 +579,7 @@ We calculate three different activities corresponding to the different weighted 
 
 ``` r
 score.combine.wilcox <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "normalizedCounts",
                                    regulon = regulon.w.wilcox,
                                    normalize = TRUE,
                                    mode = "weight",
@@ -593,8 +592,8 @@ score.combine.wilcox <- calculateActivity(expMatrix = GeneExpressionMatrix,
 
 ```
 ## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, exp_assay =
-## "counts", : The weight column contains multiple subcolumns but no cluster
-## information was provided. Using first column to compute activity...
+## "normalizedCounts", : The weight column contains multiple subcolumns but no
+## cluster information was provided. Using first column to compute activity...
 ```
 
 ```
@@ -619,7 +618,7 @@ score.combine.wilcox <- calculateActivity(expMatrix = GeneExpressionMatrix,
 
 ``` r
 score.combine.corr <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "normalizedCounts",
                                    regulon = regulon.w.corr,
                                    normalize = TRUE,
                                    mode = "weight",
@@ -652,7 +651,7 @@ score.combine.corr <- calculateActivity(expMatrix = GeneExpressionMatrix,
 
 ``` r
 score.combine.corr.re <- calculateActivity(expMatrix = GeneExpressionMatrix,
-                                   exp_assay = "counts",
+                                   exp_assay = "normalizedCounts",
                                    regulon = regulon.w.corr.re,
                                    normalize = TRUE,
                                    mode = "weight",
@@ -726,30 +725,53 @@ For the remaining steps, we continue with activity derived from the `wilcoxon` m
 markers <- findDifferentialActivity(activity_matrix = score.combine.wilcox, 
                                     clusters = GeneExpressionMatrix$label, 
                                     pval.type = "some", 
-                                    direction = "up", 
-                                    test.type = "t")
+                                    direction = "any", 
+                                    test.type = "t",
+                                    logvalues = FALSE  )
+markers
 ```
 
-Take the top differential TFs
+```
+## List of length 4
+## names(4): LNCaP LNCaP–ENZ48 LNCaP RES-A LNCaP RES-B
+```
+
+Take the top differential TFs. Summary represents comparison of cells in the indicated class vs all the remaining cells.
 
 ``` r
-markers.sig <- getSigGenes(markers, topgenes = 5 )
+markers.sig <- getSigGenes(markers, direction = "any", topgenes = 2 )
 ```
 
 ```
-## Using a cutoff of 0.049 for class LNCaP for direction equal to any
+## Using a cutoff of 0.046 for class LNCaP for direction equal to any
 ```
 
 ```
-## Using a cutoff of 0.034 for class LNCaP–ENZ48 for direction equal to any
+## Using a cutoff of 0.031 for class LNCaP–ENZ48 for direction equal to any
 ```
 
 ```
-## Using a cutoff of 0.05 for class LNCaP RES-A for direction equal to any
+## Using a cutoff of 0.04 for class LNCaP RES-A for direction equal to any
 ```
 
 ```
-## Using a cutoff of 0.048 for class LNCaP RES-B for direction equal to any
+## Using a cutoff of 0.04 for class LNCaP RES-B for direction equal to any
+```
+
+``` r
+markers.sig
+```
+
+```
+##    p.value FDR summary.diff       class    tf
+## 3        0   0   0.06499576       LNCaP  HES4
+## 2        0   0   0.05017633       LNCaP SPDEF
+## 31       0   0   0.05137746 LNCaP–ENZ48  HES4
+## 21       0   0  -0.03602301 LNCaP–ENZ48 NR2F6
+## 1        0   0   0.07346485 LNCaP RES-A  ATF5
+## 22       0   0  -0.04162267 LNCaP RES-A  ETV1
+## 11       0   0   0.04793834 LNCaP RES-B   JUN
+## 23       0   0   0.04482560 LNCaP RES-B NR2F2
 ```
 
 ## Visualize the results
@@ -761,7 +783,8 @@ plotBubble(activity_matrix = score.combine.wilcox,
            tf = c("AR","FOXA1", "MYC","JUN"),
            pval.type = "some", 
            direction = "up", 
-           clusters = GeneExpressionMatrix$label)
+           clusters = GeneExpressionMatrix$label,
+           logvalues = FALSE)
 ```
 
 <img src="prostate.ENZ.archr_files/figure-html/visualization_prostate-1.png" width="672" />
@@ -770,10 +793,11 @@ Then visualize the most differential TFs by clusters
 
 ``` r
 plotBubble(activity_matrix = score.combine.wilcox, 
-           tf = markers.sig$tf, 
+           tf = unique(markers.sig$tf), 
            pval.type = "some", 
-           direction = "up", 
-           clusters = GeneExpressionMatrix$label)
+           direction = "any", 
+           clusters = GeneExpressionMatrix$label,
+           logvalues = FALSE)
 ```
 
 <img src="prostate.ENZ.archr_files/figure-html/unnamed-chunk-13-1.png" width="672" />
@@ -798,7 +822,7 @@ Visualize the newly discovered differential TFs by UMAP
 ``` r
 plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = score.combine.wilcox, 
-                tf = c("SPDEF","HES4","ATF5","NR2F2"), 
+                tf = markers.sig$tf[1:4], 
                 dimtype = "UMAP_Combined", 
                 label = "label", 
                 point_size = 1, 
@@ -820,7 +844,7 @@ plotHeatmapRegulon(sce=GeneExpressionMatrix,
                    downsample=1000,
                    cell_attributes="label",
                    col_gap="label",
-                   exprs_values="counts",
+                   exprs_values="normalizedCounts",
                    name="regulon heatmap",
                    column_title_rot = 45)
 ```
@@ -930,7 +954,23 @@ enrichresults <- regulonEnrich(TF = markers.sig$tf,
 ```
 
 ```
+## NR2F6
+```
+
+```
 ## ATF5
+```
+
+```
+## ETV1
+```
+
+```
+## JUN
+```
+
+```
+## NR2F2
 ```
 
 ``` r

@@ -103,7 +103,7 @@ PeakMatrix
 
 ```
 
-For more information on SingleCellExperiment, please refer to the [documentation]("https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html") on bioconductor.
+For more information on SingleCellExperiment, please refer to the [documentation](https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html) on bioconductor.
 
 For a real example of a properly formatted `SingleCellExperiment` object, check out datasets from the [scMultiome](https://www.bioconductor.org/packages/release/data/experiment/html/scMultiome.html) package. Both the GeneExpressionMatrix and PeakMatrix are combined into a `MultiAssayExperiment` object.
 ```{r}
@@ -317,7 +317,7 @@ sce10x <- read10xCounts(tmpdir)
 
 ```
 
-Follow the section on [Constructing a SingleCellExperiment object](## Starting from a SingleCellExperiment object) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions
+Follow the section on [Constructing a SingleCellExperiment object]{## Starting from a SingleCellExperiment object} on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions
 
 ## Reading directly from CSV
 
@@ -338,7 +338,9 @@ gr <- GenomicRanges::makeGRangesFromDataFrame(peak_position)
 
 ```
 
-Refer to the section on [Constructing a SingleCellExperiment object](## Constructing a SingleCellExperiment object) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.
+Refer to the section on [Constructing a SingleCellExperiment object]{## Constructing a SingleCellExperiment object} on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.
+
+
 
 ## Important points
 

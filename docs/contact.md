@@ -8,5 +8,5 @@ The issues related to `epiregulon` suite of packages can be reported on the pack
 
 If you need more information on the package usage you can contact authors directly:
 
-- [Xiaosai Yao]("https://www.gene.com/scientists/our-scientists/xiaosai-yao), yao.xiaosai@gene.com
-- [Tomasz Włodarczy]("https://www.linkedin.com/in/dr-tomasz-wlodarczyk/"), tomwlo@gmail.com
+- [Xiaosai Yao](https://www.gene.com/scientists/our-scientists/xiaosai-yao), yao.xiaosai@gene.com
+- [Tomasz Włodarczy](https://www.linkedin.com/in/dr-tomasz-wlodarczyk/), tomwlo@gmail.com

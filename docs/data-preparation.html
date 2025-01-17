@@ -285,17 +285,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## GRanges object with 100 ranges and 2 metadata columns:
 ##         seqnames      ranges strand |        name          ID
 ##            &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt;
-##     [1]     chr1     350-556      + |      Gene-1         ID1
-##     [2]     chr2 70645-71002      - |      Gene-2         ID2
-##     [3]     chr2 13183-13323      + |      Gene-3         ID3
-##     [4]     chr2   3006-3489      * |      Gene-4         ID4
-##     [5]     chr2 20116-20518      * |      Gene-5         ID5
+##     [1]     chr2 80770-81107      + |      Gene-1         ID1
+##     [2]     chr1 74276-74684      - |      Gene-2         ID2
+##     [3]     chr1 49369-49545      * |      Gene-3         ID3
+##     [4]     chr2 52491-52728      + |      Gene-4         ID4
+##     [5]     chr1 56220-56715      - |      Gene-5         ID5
 ##     ...      ...         ...    ... .         ...         ...
-##    [96]     chr1 97104-97308      * |     Gene-96        ID96
-##    [97]     chr2 82299-82526      * |     Gene-97        ID97
-##    [98]     chr2 62701-62960      - |     Gene-98        ID98
-##    [99]     chr2 49840-50314      + |     Gene-99        ID99
-##   [100]     chr1 32332-32438      * |    Gene-100       ID100
+##    [96]     chr2 74126-74394      + |     Gene-96        ID96
+##    [97]     chr1 55225-55613      - |     Gene-97        ID97
+##    [98]     chr1 42771-43076      + |     Gene-98        ID98
+##    [99]     chr2 36750-37127      * |     Gene-99        ID99
+##   [100]     chr2   7136-7329      - |    Gene-100       ID100
 ##   -------
 ##   seqinfo: 2 sequences from an unspecified genome; no seqlengths</code></pre>
 <p>The additional information about the genes will also appear in <code>rowData</code></p>
@@ -370,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## reducedDimNames(1): ATAC_LSI
 ## mainExpName: NULL
 ## altExpNames(0):</code></pre>
-<p>For more information on SingleCellExperiment, please refer to the <a href="%22https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html%22">documentation</a> on bioconductor.</p>
+<p>For more information on SingleCellExperiment, please refer to the <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">documentation</a> on bioconductor.</p>
 <p>For a real example of a properly formatted <code>SingleCellExperiment</code> object, check out datasets from the <a href="https://www.bioconductor.org/packages/release/data/experiment/html/scMultiome.html">scMultiome</a> package. Both the GeneExpressionMatrix and PeakMatrix are combined into a <code>MultiAssayExperiment</code> object.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-preparation.html#cb20-1" tabindex="-1"></a>mae <span class="ot">&lt;-</span> scMultiome<span class="sc">::</span><span class="fu">reprogramSeq</span>()</span></code></pre></div>
 <pre><code>## see ?scMultiome and browseVignettes(&#39;scMultiome&#39;) for documentation</code></pre>
@@ -926,7 +926,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-preparation.html#cb108-1" tabindex="-1"></a><span class="fu">list.files</span>(tmpdir)</span></code></pre></div>
 <pre><code>## [1] &quot;barcodes.tsv&quot; &quot;genes.tsv&quot;    &quot;matrix.mtx&quot;</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-preparation.html#cb110-1" tabindex="-1"></a>sce10x <span class="ot">&lt;-</span> <span class="fu">read10xCounts</span>(tmpdir)</span></code></pre></div>
-<p>Follow the section on <a href="#id_#%20Starting%20from%20a%20SingleCellExperiment%20object">Constructing a SingleCellExperiment object</a> on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions</p>
+<p>Follow the section on <a href="data-preparation.html#constructing-a-singlecellexperiment-object">Constructing a SingleCellExperiment object</a>{## Starting from a SingleCellExperiment object} on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions</p>
 </div>
 </div>
 <div id="reading-directly-from-csv" class="section level2 hasAnchor" number="2.6">
@@ -939,7 +939,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-preparation.html#cb112-1" tabindex="-1"></a>peak_position <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;peaks.csv&quot;</span>)</span>
 <span id="cb112-2"><a href="data-preparation.html#cb112-2" tabindex="-1"></a>peak_position <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(peak_position)</span>
 <span id="cb112-3"><a href="data-preparation.html#cb112-3" tabindex="-1"></a>gr <span class="ot">&lt;-</span> GenomicRanges<span class="sc">::</span><span class="fu">makeGRangesFromDataFrame</span>(peak_position)</span></code></pre></div>
-<p>Refer to the section on <a href="#id_#%20Constructing%20a%20SingleCellExperiment%20object">Constructing a SingleCellExperiment object</a> on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.</p>
+<p>Refer to the section on <a href="data-preparation.html#constructing-a-singlecellexperiment-object">Constructing a SingleCellExperiment object</a>{## Constructing a SingleCellExperiment object} on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.</p>
 </div>
 <div id="important-points" class="section level2 hasAnchor" number="2.7">
 <h2><span class="header-section-number">2.7</span> Important points<a href="data-preparation.html#important-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>

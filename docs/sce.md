@@ -76,17 +76,17 @@ rowRanges(GeneExpressionMatrix)
 ## GRanges object with 100 ranges and 2 metadata columns:
 ##         seqnames      ranges strand |        name          ID
 ##            <Rle>   <IRanges>  <Rle> | <character> <character>
-##     [1]     chr1     350-556      + |      Gene-1         ID1
-##     [2]     chr2 70645-71002      - |      Gene-2         ID2
-##     [3]     chr2 13183-13323      + |      Gene-3         ID3
-##     [4]     chr2   3006-3489      * |      Gene-4         ID4
-##     [5]     chr2 20116-20518      * |      Gene-5         ID5
+##     [1]     chr2 80770-81107      + |      Gene-1         ID1
+##     [2]     chr1 74276-74684      - |      Gene-2         ID2
+##     [3]     chr1 49369-49545      * |      Gene-3         ID3
+##     [4]     chr2 52491-52728      + |      Gene-4         ID4
+##     [5]     chr1 56220-56715      - |      Gene-5         ID5
 ##     ...      ...         ...    ... .         ...         ...
-##    [96]     chr1 97104-97308      * |     Gene-96        ID96
-##    [97]     chr2 82299-82526      * |     Gene-97        ID97
-##    [98]     chr2 62701-62960      - |     Gene-98        ID98
-##    [99]     chr2 49840-50314      + |     Gene-99        ID99
-##   [100]     chr1 32332-32438      * |    Gene-100       ID100
+##    [96]     chr2 74126-74394      + |     Gene-96        ID96
+##    [97]     chr1 55225-55613      - |     Gene-97        ID97
+##    [98]     chr1 42771-43076      + |     Gene-98        ID98
+##    [99]     chr2 36750-37127      * |     Gene-99        ID99
+##   [100]     chr2   7136-7329      - |    Gene-100       ID100
 ##   -------
 ##   seqinfo: 2 sequences from an unspecified genome; no seqlengths
 ```
@@ -185,7 +185,7 @@ PeakMatrix
 ## altExpNames(0):
 ```
 
-For more information on SingleCellExperiment, please refer to the [documentation]("https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html") on bioconductor.
+For more information on SingleCellExperiment, please refer to the [documentation](https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html) on bioconductor.
 
 For a real example of a properly formatted `SingleCellExperiment` object, check out datasets from the [scMultiome](https://www.bioconductor.org/packages/release/data/experiment/html/scMultiome.html) package. Both the GeneExpressionMatrix and PeakMatrix are combined into a `MultiAssayExperiment` object.
 
@@ -1040,7 +1040,7 @@ list.files(tmpdir)
 sce10x <- read10xCounts(tmpdir)
 ```
 
-Follow the section on [Constructing a SingleCellExperiment object](## Starting from a SingleCellExperiment object) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions
+Follow the section on [Constructing a SingleCellExperiment object]{## Starting from a SingleCellExperiment object} on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions
 
 ## Reading directly from CSV
 
@@ -1062,7 +1062,9 @@ peak_position <- data.frame(peak_position)
 gr <- GenomicRanges::makeGRangesFromDataFrame(peak_position)
 ```
 
-Refer to the section on [Constructing a SingleCellExperiment object](## Constructing a SingleCellExperiment object) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.
+Refer to the section on [Constructing a SingleCellExperiment object]{## Constructing a SingleCellExperiment object} on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.
+
+
 
 ## Important points
 

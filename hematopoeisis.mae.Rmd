@@ -160,21 +160,20 @@ markers  <- findDifferentialActivity(activity_matrix = score.combine,
                                     clusters = GeneExpressionMatrix$Clusters2, 
                                     pval.type = "some", 
                                     direction = "up", 
-                                    test.type = "t")
+                                    logvalues = FALSE)
+markers
 ```
 
 getSigGenes compiles the different test results into a single dataframe and enables user to supply their desired cutoffs for significance and variable to order by.
 
 ```{r}
 markers.sig <- getSigGenes(markers, topgenes = 3 )
-
+markers.sig 
 ```
 
 ## Visualizing TF activities
 
-Epiregulon also provides multiple options for visualizing the inferred TF activities by reduced dimensional space
-
-tSNE or UMAP plots:
+Epiregulon also provides the option for visualizing the inferred TF activities in reduced dimensions.
 ```{r}
 options(ggrastr.default.dpi=300)
 tfs_interest <- c("EBF1","PAX5", "GATA3","SPI1")
@@ -228,8 +227,11 @@ plotActivityViolin(activity_matrix = assay(GeneExpressionMatrix, "normalizedCoun
 We can visualize the different TFs in a bubble plot:
 ```{r}
 plotBubble(activity_matrix = score.combine, 
-           tf = tfs_interest, 
-           GeneExpressionMatrix$Clusters2)
+           tf = tfs_interest,
+           GeneExpressionMatrix$Clusters2,
+           pval.type = "some", 
+           direction = "up", 
+           logvalues = FALSE)
 ```
 
 We visualize the top differential TFs based on activity.
@@ -237,7 +239,10 @@ We visualize the top differential TFs based on activity.
 ```{r fig.height=9}
 plotBubble(activity_matrix = score.combine, 
            tf = markers.sig$tf, 
-           GeneExpressionMatrix$Clusters2)
+           GeneExpressionMatrix$Clusters2,
+           pval.type = "some", 
+           direction = "up", 
+           logvalues = FALSE)
 ```
 
 ## Geneset enrichment
