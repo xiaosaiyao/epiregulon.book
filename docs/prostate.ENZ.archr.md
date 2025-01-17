@@ -239,47 +239,47 @@ p2g <- calculateP2G(ArchR_path = archR_project_path,
 ```
 
 ```
-## 2025-01-15 22:36:34.979475 : Getting Available Matrices, 0 mins elapsed.
+## 2025-01-16 20:01:48.440884 : Getting Available Matrices, 0 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:36:48.491436 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.005 mins elapsed.
+## 2025-01-16 20:02:07.016704 : Filtered Low Prediction Score Cells (0 of 15522, 0), 0.004 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:36:48.754723 : Computing KNN, 0.009 mins elapsed.
+## 2025-01-16 20:02:07.28259 : Computing KNN, 0.008 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:36:49.202162 : Identifying Non-Overlapping KNN pairs, 0.016 mins elapsed.
+## 2025-01-16 20:02:07.745676 : Identifying Non-Overlapping KNN pairs, 0.016 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:36:50.565071 : Identified 497 Groupings!, 0.039 mins elapsed.
+## 2025-01-16 20:02:09.153344 : Identified 497 Groupings!, 0.039 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:36:50.623938 : Getting Group RNA Matrix, 0.04 mins elapsed.
+## 2025-01-16 20:02:09.21963 : Getting Group RNA Matrix, 0.04 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:42:28.4399 : Getting Group ATAC Matrix, 5.67 mins elapsed.
+## 2025-01-16 20:09:17.767422 : Getting Group ATAC Matrix, 7.183 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:48:07.318852 : Normalizing Group Matrices, 11.318 mins elapsed.
+## 2025-01-16 20:17:13.273421 : Normalizing Group Matrices, 15.108 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:48:11.787014 : Finding Peak Gene Pairings, 11.393 mins elapsed.
+## 2025-01-16 20:17:17.731333 : Finding Peak Gene Pairings, 15.182 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:48:12.186549 : Computing Correlations, 11.4 mins elapsed.
+## 2025-01-16 20:17:18.129795 : Computing Correlations, 15.189 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:48:18.672235 : Completed Peak2Gene Correlations!, 11.508 mins elapsed.
+## 2025-01-16 20:17:25.450793 : Completed Peak2Gene Correlations!, 15.311 mins elapsed.
 ```
 
 ``` r
@@ -464,31 +464,31 @@ chromVarMatrix <- getMatrixFromProject(
 ```
 
 ```
-## 2025-01-15 22:50:00.205308 : Organizing colData, 0.536 mins elapsed.
+## 2025-01-16 20:19:17.008449 : Organizing colData, 0.681 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:50:00.291774 : Organizing rowData, 0.538 mins elapsed.
+## 2025-01-16 20:19:17.095727 : Organizing rowData, 0.683 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:50:00.293599 : Organizing rowRanges, 0.538 mins elapsed.
+## 2025-01-16 20:19:17.097543 : Organizing rowRanges, 0.683 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:50:00.297103 : Organizing Assays (1 of 2), 0.538 mins elapsed.
+## 2025-01-16 20:19:17.10079 : Organizing Assays (1 of 2), 0.683 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:50:00.396369 : Organizing Assays (2 of 2), 0.539 mins elapsed.
+## 2025-01-16 20:19:17.199763 : Organizing Assays (2 of 2), 0.684 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:50:00.496636 : Constructing SummarizedExperiment, 0.541 mins elapsed.
+## 2025-01-16 20:19:17.299631 : Constructing SummarizedExperiment, 0.686 mins elapsed.
 ```
 
 ```
-## 2025-01-15 22:50:01.285378 : Finished Matrix Creation, 0.554 mins elapsed.
+## 2025-01-16 20:19:18.063327 : Finished Matrix Creation, 0.699 mins elapsed.
 ```
 
 ``` r
@@ -737,19 +737,19 @@ markers.sig <- getSigGenes(markers, topgenes = 5 )
 ```
 
 ```
-## Using a logFC cutoff of 0 for class LNCaP for direction equal to any
+## Using a cutoff of 0.049 for class LNCaP for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0 for class LNCaP–ENZ48 for direction equal to any
+## Using a cutoff of 0.034 for class LNCaP–ENZ48 for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.1 for class LNCaP RES-A for direction equal to any
+## Using a cutoff of 0.05 for class LNCaP RES-A for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0 for class LNCaP RES-B for direction equal to any
+## Using a cutoff of 0.048 for class LNCaP RES-B for direction equal to any
 ```
 
 ## Visualize the results
@@ -926,51 +926,7 @@ enrichresults <- regulonEnrich(TF = markers.sig$tf,
 ```
 
 ```
-## NKX3-1
-```
-
-```
-## FOXP1
-```
-
-```
-## NFIB
-```
-
-```
 ## HES4
-```
-
-```
-## SPDEF
-```
-
-```
-## NFYB
-```
-
-```
-## NFIB
-```
-
-```
-## CREB1
-```
-
-```
-## JUN
-```
-
-```
-## NR2F2
-```
-
-```
-## SMARCC1
-```
-
-```
-## NR2F6
 ```
 
 ```
@@ -1207,7 +1163,7 @@ sessionInfo()
 ## other attached packages:
 ##  [1] igraph_2.0.3                org.Hs.eg.db_3.20.0        
 ##  [3] AnnotationDbi_1.67.0        msigdbr_7.5.1              
-##  [5] epiregulon.extra_1.1.4      nabor_0.5.0                
+##  [5] epiregulon.extra_1.3.1      nabor_0.5.0                
 ##  [7] scMultiome_1.5.7            MultiAssayExperiment_1.31.5
 ##  [9] ExperimentHub_2.13.1        AnnotationHub_3.13.3       
 ## [11] BiocFileCache_2.13.2        dbplyr_2.5.0               

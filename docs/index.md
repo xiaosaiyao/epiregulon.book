@@ -1,7 +1,7 @@
 --- 
 title: "Epiregulon documentation"
 author: "Xiaosai Yao, Tomasz Włodarczyk"
-date: "2025-01-15"
+date: "2025-01-16"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:

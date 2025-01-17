@@ -229,8 +229,7 @@ We can visualize the different TFs in a bubble plot:
 ```{r}
 plotBubble(activity_matrix = score.combine, 
            tf = tfs_interest, 
-           GeneExpressionMatrix$Clusters2, 
-           bubblesize = "FDR")
+           GeneExpressionMatrix$Clusters2)
 ```
 
 We visualize the top differential TFs based on activity.
@@ -238,8 +237,7 @@ We visualize the top differential TFs based on activity.
 ```{r fig.height=9}
 plotBubble(activity_matrix = score.combine, 
            tf = markers.sig$tf, 
-           GeneExpressionMatrix$Clusters2, 
-           bubblesize = "FDR")
+           GeneExpressionMatrix$Clusters2)
 ```
 
 ## Geneset enrichment

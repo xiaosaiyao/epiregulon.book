@@ -26,7 +26,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
 <meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
 
 
-<meta name="date" content="2025-01-15" />
+<meta name="date" content="2025-01-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -539,17 +539,17 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <span id="cb185-6"><a href="advanced-workflow-with-multiassayexperiment.html#cb185-6" tabindex="-1"></a>                                    <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
 <p>getSigGenes compiles the different test results into a single dataframe and enables user to supply their desired cutoffs for significance and variable to order by.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb186-1" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">topgenes =</span> <span class="dv">3</span> )</span></code></pre></div>
-<pre><code>## Using a logFC cutoff of 0.2 for class B for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.4 for class CD4.M for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.4 for class CD4.N for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.2 for class CLP for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.3 for class Erythroid for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.2 for class GMP for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.8 for class Mono for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.4 for class NK for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.1 for class pDC for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.3 for class PreB for direction equal to any</code></pre>
-<pre><code>## Using a logFC cutoff of 0.2 for class Progenitor for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.21 for class B for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.43 for class CD4.M for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.42 for class CD4.N for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.22 for class CLP for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.3 for class Erythroid for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.22 for class GMP for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.8 for class Mono for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.44 for class NK for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.14 for class pDC for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.25 for class PreB for direction equal to any</code></pre>
+<pre><code>## Using a cutoff of 0.19 for class Progenitor for direction equal to any</code></pre>
 </div>
 <div id="visualizing-tf-activities" class="section level2 hasAnchor" number="4.10">
 <h2><span class="header-section-number">4.10</span> Visualizing TF activities<a href="advanced-workflow-with-multiassayexperiment.html#visualizing-tf-activities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -597,14 +597,12 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <p>We can visualize the different TFs in a bubble plot:</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
 <span id="cb202-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-2" tabindex="-1"></a>           <span class="at">tf =</span> tfs_interest, </span>
-<span id="cb202-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2, </span>
-<span id="cb202-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-4" tabindex="-1"></a>           <span class="at">bubblesize =</span> <span class="st">&quot;FDR&quot;</span>)</span></code></pre></div>
+<span id="cb202-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb202-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>We visualize the top differential TFs based on activity.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine, </span>
 <span id="cb203-2"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-2" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
-<span id="cb203-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2, </span>
-<span id="cb203-4"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-4" tabindex="-1"></a>           <span class="at">bubblesize =</span> <span class="st">&quot;FDR&quot;</span>)</span></code></pre></div>
+<span id="cb203-3"><a href="advanced-workflow-with-multiassayexperiment.html#cb203-3" tabindex="-1"></a>           GeneExpressionMatrix<span class="sc">$</span>Clusters2)</span></code></pre></div>
 <p><img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="geneset-enrichment" class="section level2 hasAnchor" number="4.11">
@@ -788,7 +786,7 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 ## other attached packages:
 ##  [1] igraph_2.0.3                ggplot2_3.5.1              
 ##  [3] org.Hs.eg.db_3.20.0         AnnotationDbi_1.67.0       
-##  [5] msigdbr_7.5.1               epiregulon.extra_1.1.4     
+##  [5] msigdbr_7.5.1               epiregulon.extra_1.3.1     
 ##  [7] epiregulon_1.3.4            scMultiome_1.5.7           
 ##  [9] SingleCellExperiment_1.27.2 MultiAssayExperiment_1.31.5
 ## [11] SummarizedExperiment_1.35.4 Biobase_2.65.1             

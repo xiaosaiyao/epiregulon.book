@@ -288,7 +288,7 @@ sessionInfo()
 ## 
 ## other attached packages:
 ##  [1] org.Mm.eg.db_3.20.0         AnnotationDbi_1.67.0       
-##  [3] msigdbr_7.5.1               epiregulon.extra_1.1.4     
+##  [3] msigdbr_7.5.1               epiregulon.extra_1.3.1     
 ##  [5] epiregulon_1.3.4            scater_1.33.4              
 ##  [7] ggplot2_3.5.1               scuttle_1.15.4             
 ##  [9] scRNAseq_2.19.1             SingleCellExperiment_1.27.2

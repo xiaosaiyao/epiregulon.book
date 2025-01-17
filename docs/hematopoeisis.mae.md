@@ -429,47 +429,47 @@ markers.sig <- getSigGenes(markers, topgenes = 3 )
 ```
 
 ```
-## Using a logFC cutoff of 0.2 for class B for direction equal to any
+## Using a cutoff of 0.21 for class B for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.4 for class CD4.M for direction equal to any
+## Using a cutoff of 0.43 for class CD4.M for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.4 for class CD4.N for direction equal to any
+## Using a cutoff of 0.42 for class CD4.N for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.2 for class CLP for direction equal to any
+## Using a cutoff of 0.22 for class CLP for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.3 for class Erythroid for direction equal to any
+## Using a cutoff of 0.3 for class Erythroid for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.2 for class GMP for direction equal to any
+## Using a cutoff of 0.22 for class GMP for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.8 for class Mono for direction equal to any
+## Using a cutoff of 0.8 for class Mono for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.4 for class NK for direction equal to any
+## Using a cutoff of 0.44 for class NK for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.1 for class pDC for direction equal to any
+## Using a cutoff of 0.14 for class pDC for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.3 for class PreB for direction equal to any
+## Using a cutoff of 0.25 for class PreB for direction equal to any
 ```
 
 ```
-## Using a logFC cutoff of 0.2 for class Progenitor for direction equal to any
+## Using a cutoff of 0.19 for class Progenitor for direction equal to any
 ```
 
 ## Visualizing TF activities
@@ -543,8 +543,7 @@ We can visualize the different TFs in a bubble plot:
 ``` r
 plotBubble(activity_matrix = score.combine, 
            tf = tfs_interest, 
-           GeneExpressionMatrix$Clusters2, 
-           bubblesize = "FDR")
+           GeneExpressionMatrix$Clusters2)
 ```
 
 <img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-16-1.png" width="672" />
@@ -555,8 +554,7 @@ We visualize the top differential TFs based on activity.
 ``` r
 plotBubble(activity_matrix = score.combine, 
            tf = markers.sig$tf, 
-           GeneExpressionMatrix$Clusters2, 
-           bubblesize = "FDR")
+           GeneExpressionMatrix$Clusters2)
 ```
 
 <img src="hematopoeisis.mae_files/figure-html/unnamed-chunk-17-1.png" width="672" />
@@ -831,7 +829,7 @@ sessionInfo()
 ## other attached packages:
 ##  [1] igraph_2.0.3                ggplot2_3.5.1              
 ##  [3] org.Hs.eg.db_3.20.0         AnnotationDbi_1.67.0       
-##  [5] msigdbr_7.5.1               epiregulon.extra_1.1.4     
+##  [5] msigdbr_7.5.1               epiregulon.extra_1.3.1     
 ##  [7] epiregulon_1.3.4            scMultiome_1.5.7           
 ##  [9] SingleCellExperiment_1.27.2 MultiAssayExperiment_1.31.5
 ## [11] SummarizedExperiment_1.35.4 Biobase_2.65.1             
