@@ -1,0 +1,180 @@
+# Construction of the gene regulatory network {#construction}
+For detailed explanation of the `epiregulon` workflow we will make use of the PBMC data set from 10x Genomics. The MAE object was uploaded to `scMultiome` for full reproducibility.
+
+## Downloading and formatting data set
+
+Download the example dataset from `r BiocStyle::Biocpkg("scMultiome")` package.
+
+```{r, results = "hide", warning = FALSE, message = FALSE}
+mae <- scMultiome::PBMC_10x()
+
+# Load peak matrix
+PeakMatrix <- mae[["PeakMatrix"]]
+
+# Load expression matrix
+GeneExpressionMatrix <- mae[["GeneExpressionMatrix"]]
+```
+
+Visualize the data.
+```{r}
+
+scater::plotReducedDim(GeneExpressionMatrix, 
+                       dimred = "UMAP_RNA", 
+                       text_by = "cell_type", 
+                       colour_by = "cell_type",
+                       point_size = 0.3,
+                       point_alpha = 0.3)
+```
+
+Once we have prepared the input data for the analysis we are ready to infer the gene regulatory network architecture. The process combines two steps: one is the finding of links between regulatory elements of the genome and putative target genes and the second one is adding regulators of target genes leveraging the information about their binding sites.
+
+## Retrieve TF binding sites
+### ChIP-seq data
+First, we retrieve a `GRangesList` object containing the binding sites of all the transcription factors and co-regulators. These binding sites are derived from bulk ChIP-seq data in the [ChIP-Atlas](https://chip-atlas.org/) and [ENCODE](https://www.encodeproject.org/) databases. For the same transcription factor, multiple ChIP-seq files from different cell lines or tissues are merged. Currently, human genomes hg19 and hg38 and mouse mm10 are supported. 
+
+```{r}
+library(epiregulon)
+grl <- getTFMotifInfo(genome = "hg38")
+grl
+```
+
+For both [ChIP-Atlas](https://chip-atlas.org/) and [ENCODE](https://www.encodeproject.org/) data, we also provide compiled sample-specific TF binding sites which span across various cell lines and organs. The are retrieved in form of the list by specifying `atlas.sample` or `encode.sample` in `source` argument. Then we need to access a specific list element by providing the name of the sample of interest.
+
+```{r}
+grl_list_sample_atlas <- getTFMotifInfo(genome = "hg38", source = "atlas.sample")
+head(names(grl_list_sample_atlas))
+```
+
+From the list of the available `GRangesList` objects we can choose `"Peripheral blood mononuclear cells"` for this analysis. Alternatively, we might retrieve chip-seq data for `"K562"` cells present in the [ENCODE](https://www.encodeproject.org/) data base. 
+
+```{r}
+grl_list_sample_encode <- getTFMotifInfo(genome = "hg38", source = "encode.sample")
+head(grl_list_sample_encode[["K562"]])
+```
+
+The tissue-specific chip-seq data are also available. They were compiled based on [ChIP-Atlas](https://chip-atlas.org/) data base. 
+
+```{r}
+grl_list_tissue <- getTFMotifInfo(genome = "hg38", source = "atlas.tissue")
+```
+
+The advantage of using tissue- or sample-specific ChIP-seq data is that it more accurately reflects TF binding sites that are characteristic of a given cell type or cell line. The downside is the smaller number of peaks due to the limited number of experiments used to compile the data. Therefore, some of the TF binding sites might be absent in the more specific data sources.
+
+```{r}
+# calculate the total number of regions contained in each grl
+# bulk ChIP-seq
+format(sum(unlist(lapply(grl, length))), big.mark=",")
+# blood tissue
+format(sum(unlist(lapply(grl_list_tissue[["Blood"]], length))), big.mark=",")
+# Peripheral blood mononuclear cells sample
+format(sum(unlist(lapply(grl_list_sample_atlas[["Peripheral blood mononuclear cells"]], length))), big.mark=",")
+# K562 cell line sample
+format(sum(unlist(lapply(grl_list_sample_encode[["K562"]], length))), big.mark=",")
+```
+
+### Motif information
+While ChIP-seq data provide an experimentally confirmed data on TF biding sites, user might want to analyse specific cells that is not reliably covered by any of the provided data sets. One possibility is to use custom ChIP-seq data, read form example from BED files. Another way to circumvent this problem is to switch to using motif sequences promoting binding of transcription facors to the genome. If this option is chosen, `getTFMotifInfo` retrieves the motifs from `scMultiome` package and scans the peak regions for their enrichment. 
+
+```{r}
+grl_motif <- getTFMotifInfo(genome = "hg38", mode = "motif", peaks = rowRanges(PeakMatrix))
+```
+
+## Link ATACseq peaks to target genes
+
+Next, we try to link ATAC-seq peaks to their putative target genes. We assign a peak to a gene within a size window (default ±250kb) if the chromatin accessibility of the peak and expression of the target genes are highly correlated (default p-value threshold 0.05). To compute correlations, we first create cell aggregates by performing deterministic k-means clustering on the reduced dimensionality matrix (for an algorithm description, see [https://ltla.github.io/CppKmeans/classkmeans_1_1InitializeVariancePartition.html](https://ltla.github.io/CppKmeans/classkmeans_1_1InitializeVariancePartition.html). Then we aggregate the counts for the gene expression and peak matrices and average then across cells in each cluster. Correlations are computed on the averaged gene expression and chromatin accessibility. Furthermore, the p-value of the correlation is computed using a null distribution generated from correlations between randomly selected peaks and target genes. These target genes are ensured to be false by randomly selecting genes located on chromosomes different from the one where the regulatory element resides, thereby preventing any true regulatory relationship.  
+
+If cluster labels are provided, peak-to-gene correlations are computed on all cells and for each cluster. Peak-to-gene links are retained as long as any of the p-values pass the threshold; the longer list of peak-to-gene links capture both inter- and intra-cluster variations.
+
+### Optimization of the number of metacells (optional)
+
+It is critical to pick the correct value for the `cellNum` parameter, which controls the number of metacells created by multiome data aggregation. It is easy to imagine that a low number of metacells might result in the loss of some biologically relevant variation, reducing it to bulk-aggregated data. On the other hand, fine-grained aggregation might fail to effectively stabilize the signal, retaining significant noise resulting from data sparsity, technical bias, or biologically irrelevant variation. Intuitively, we need to balance these factors, trying to find the optimum metacell number somewhere in between. This is the motivation behind the introduction of the new function `optimizeMetacellNumber`, released with `epiregulon v2.0.0`. The function calculates the mean empirical p-values across different numbers of metacells. Next, these values are regressed using a quadratic model against the square root of the mean number of cells per metacell. If we take a square of $x_{min}$, we will get the estimated optimal mean number of cells per metacell.
+
+```{r}
+set.seed(1010)
+cellNum <- optimizeMetacellNumber(expMatrix = GeneExpressionMatrix,
+                                  peakMatrix = PeakMatrix,
+                                  exp_assay = "normalizedCounts",
+                                  peak_assay = "counts",
+                                  reducedDim = reducedDim(GeneExpressionMatrix, "LSI_RNA"),
+                                  BPPARAM = BiocParallel::SerialParam(progressbar = FALSE))
+
+cellNum
+```
+
+We can check specifically the estimated optimal number of cells per cluster (mean metacell size) by computation square of the `solution` slot.
+```{r}
+cellNum@solution^2
+```
+
+Plot function allows for visualization of the function performance at different evaluation points. The estimated optimum is marked by a red dashed line.
+
+```{r}
+plot(cellNum)
+```
+
+The object returned by `optimizeMetacellNumber` can be passed to `calculateP2G` as `cellNum` parameter. User might also provide numeric to set directly a specific mean number of cells per cluster.
+
+### Finding peak-target gene links within a defined distance {#distance_window}
+The default method for determining links between regulatory elements and target genes is correlation at level of metacells, described in the introductory part of this chapter. Correlations are evaluated between all peak–target gene pairs located within a specified distance of one another. By default, only the links with a p-value < 0.05 are kept. This behavior can be overridden by the modification of `cutoff_sig` argument.
+
+Even though a deterministic algorithm is used to find clusters that make up metacells, for reproducibility we still need to set the random number generator’s seed, since the null distribution of correlations is calculated between randomly selected pairs of target genes and peaks from other chromosomes, ensuring no regulatory effect on them. To reduce stochasticity of the results generated by random sampling, user might want to increase the `nRandConn` parameter which controls for the sample size. 
+
+```{r}
+set.seed(1010)
+p2g <- calculateP2G(peakMatrix = PeakMatrix, 
+                    expMatrix = GeneExpressionMatrix, 
+                    exp_assay = "normalizedCounts",
+                    reducedDim = reducedDim(GeneExpressionMatrix, "LSI_RNA"),
+                    cellNum = cellNum,
+                    BPPARAM = BiocParallel::SerialParam(progressbar = FALSE))
+
+p2g
+```
+
+### Linking peaks to the nearest genes
+
+Alternatively, we might determine the downstream targets associated with each regulatory region by looking for the nearest gene. Additionally, the threshold specified by the `maxDist` argument allows links to be made between genomic elements that are separated by up to the specified distance. As before, correlation is calculated and compared to the threshold.
+
+```{r}
+set.seed(1010)
+p2g_nearest <- calculateP2G(peakMatrix = PeakMatrix, 
+                            expMatrix = GeneExpressionMatrix, 
+                            exp_assay = "normalizedCounts",
+                            reducedDim = reducedDim(GeneExpressionMatrix, "LSI_RNA"),
+                            assignment_method = "nearest",
+                            BPPARAM = BiocParallel::SerialParam(progressbar = FALSE)
+)
+```
+
+## Add TF binding sites to peaks
+
+The next step is to add the TF binding information by overlapping the regions of the peak matrix with the bulk ChIP-seq database.
+```{r}
+overlap <- addTFMotifInfo(grl = grl, p2g = p2g, peakMatrix = PeakMatrix)
+head(overlap)
+```
+
+## Generate regulons
+
+A DataFrame, representing the inferred regulons, is then generated. The DataFrame consists of the following columns:
+
+1. `idxATAC` - index of the peak in the peak matrix
+2. `chr` - chromosome number
+3. `start` - start position of the peak
+4. `end` - end position of the peak
+5. `idxRNA` - index in the gene expression matrix corresponding to the target gene
+6. `target` - name of the target gene
+7. `corr` - correlation between target gene expression and the chromatin accessibility at the peak. If cluster labels are provided, 
+this field is a matrix with columns names corresponding to correlation across all cells and for each of the clusters.
+8. `p_val_peak_gene` - empirical p-value of the correlation between peak and target gene. If cluster labels are provided, 
+this field is a matrix with columns names corresponding to p-value for all cells and for each of the clusters.
+9. `FDR_peak_gene` - false discovery rates calculated based on the empirical p-value of the correlations between peaks and target genes. If cluster labels are provided, 
+this field is a matrix with columns names corresponding to FDR for all cells and for each of the clusters.
+10. `distance` - distance between the transcription start site of the target gene and the middle of the peak
+11. `idxTF` - index in the gene expression matrix corresponding to the transcription factor
+12. `tf` - name of the transcription factor
+
+```{r}
+regulon <- getRegulon(p2g, overlap, aggregate=FALSE)
+regulon
+```

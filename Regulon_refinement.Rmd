@@ -1,0 +1,85 @@
+# Gene regulatory network refinement
+The `regulon` object constructed in the previous [chapter](#construction) contains all possible links between transcription factors and target genes, as long as there are chromatin regions that permit regulatory interaction. As a result, the GRN might be large and contain some false or redundant connections. Therefore, we need to pass it through filters that keep only those connections for which we have support in our data set, because gene regulatory networks vary across cell types or even cell states. One such filter has already been applied—in the [`calculateP2G` function](#distance_window), which not only searches for regulatory elements up to a specified distance from the target gene, but also calculates the empirical p-value of the correlation for each target gene–regulatory element pair found in this way. Then, a pair is retained if its p-value is less than the threshold defined by the `cutoff_sig` argument. In this chapter, three other filters will be presented. One of these is implemented by the `pruneRegulon` function, and two others are set by the `addMotifScore` and `addLogFC` functions, which append additional columns allowing for manual data filtering by the user. 
+
+## Network pruning
+
+Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor ($TF$), regulatory element ($RE$) and target gene ($TG$) vs the expected number of cells if $TF\cdot{RE}$ and $TG$ are independently expressed. We implement two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is $P(TF, RE) \cdot P(TG)$, and the number of trials is the total number of cells (or metacells if we set ``), and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also $P(TF, RE) \cdot P(TG)$ and the probability otherwise is $1- P(TF, RE) \cdot P(TG)$. The observed cell count for the active category is the number of cells jointly expressing all three elements ($n_{triple}$), and the cell count for the inactive category is $n - n_{triple}$.
+
+
+We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks In the below code chunk we specify the `cellNum` which the average number of cells per metacell used to calculate the total number metacells which will be generated.
+
+```{r}
+pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
+                               exp_assay = "normalizedCounts",
+                               peakMatrix = PeakMatrix,
+                               peak_assay = "counts",
+                               regulon = regulon,
+                               prune_value = "pval",
+                               regulon_cutoff = 0.05,
+                               clusters = GeneExpressionMatrix$cell_type)
+
+pruned.regulon[,c("idxATAC", "target", "tf", "corr", "pval", "stats")]
+```
+### Cell aggregation
+
+The `pruneRegulon` function allows for the aggregation of cells into metacellls. This feature might be useful if the data set contains many similar cells with little relevant biological variation across them. In such cases aggregation helps to reduce noise in the data while maintaining the biological signal at a stable level. The `useDim` argument is used to specify the name of the low-dimensional representation of the single-cell data contained within the `SingleCellExperiment` object.
+
+```{r}
+pruned.regulon.aggr <- pruneRegulon(expMatrix = GeneExpressionMatrix,
+                               exp_assay = "normalizedCounts",
+                               peakMatrix = PeakMatrix,
+                               peak_assay = "counts",
+                               regulon = regulon,
+                               prune_value = "pval",
+                               regulon_cutoff = 0.05,
+                               clusters = GeneExpressionMatrix$cell_type,
+                               aggregateCells = TRUE,
+                               useDim = "LSI_RNA",
+                               cellNum = 10)
+```
+
+## Annotation with TF motifs
+
+So far, the gene regulatory network has been constructed from TF ChIP-seq exclusively. Some users may prefer to further annotate regulatory elements with the presence of motifs. We provide an option to annotate peaks with motifs from the [CIS_BP](https://cisbp.ccbr.utoronto.ca/) database. If no motifs are present for a particular factor (as in the case of co-factors or chromatin modifiers), we return NA. If motifs are available for a factor and the RE contains a motif, we return 1. If motifs are available and the RE does not contain a motif, we return 0. Users can also provide their own motif annotation through the `pwms` argument.
+
+
+```{r message=FALSE}
+pruned.regulon.motif <- addMotifScore(regulon = pruned.regulon,
+                                      peaks = rowRanges(PeakMatrix),
+                                      species = "human",
+                                      genome = "hg38")
+
+# filter out the rows where TF motif is not found in the peak region
+pruned.regulon.motif <- pruned.regulon.motif[which(pruned.regulon.motif$motif == 1),]
+
+pruned.regulon.motif[,c("idxATAC", "target", "tf", "corr", "p_val_peak_gene", "pval")]
+```
+
+
+## Annotate with log fold changes
+
+It is sometimes helpful to filter the regulons based on gene expression changes between two conditions. The `addLogFC` function is a wrapper around `scran::findMarkers` and adds extra columns of log changes to the regulon `DataFrame`. The users can specify the reference condition in `logFC_ref` and conditions for comparison in
+`logFC_condition`. If these are not provided, log fold changes are calculated for every condition in the cluster labels against the rest of the conditions.
+ 
+```{r}
+# create logcounts
+GeneExpressionMatrix <- scuttle::logNormCounts(GeneExpressionMatrix)
+
+# add log fold changes which are calculated by taking the difference of the log counts
+pruned.regulon <- addLogFC(regulon = pruned.regulon,
+                      clusters = GeneExpressionMatrix$cell_type,
+                      expMatrix  = GeneExpressionMatrix,
+                      assay.type  = "logcounts",
+                      pval.type = "any",
+                      logFC_condition = c("Memory CD4+ T", "Naive CD8+ T"),
+                      logFC_ref = "Naive CD4+ T")
+
+pruned.regulon[,c("idxATAC", "target", "tf", "Memory CD4+ T.vs.Naive CD4+ T.logFC", "Memory CD4+ T.vs.Naive CD4+ T.p.value")]
+```
+
+Show show how the new statistics may be used, we will apply the cutoff for FDR = 0.05 and logFC = 0.3.
+
+```{r}
+pruned.regulon.filtered <- pruned.regulon[pruned.regulon$"Memory CD4+ T.vs.Naive CD4+ T.FDR" < 0.05 & pruned.regulon$"Memory CD4+ T.vs.Naive CD4+ T.logFC" > 0.3, ]
+```
+
