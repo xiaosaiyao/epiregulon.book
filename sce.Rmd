@@ -16,7 +16,7 @@ colnames(GeneExpressionMatrix) <- paste("Cell",1:1000, sep="-")
 
 It is important (and efficient) to convert the count matrix to `dgCMatrix` format at the beginning of the workflow.
 
-```{r }
+```{r messages=FALSE, results='hide'}
 library(Matrix)
 counts(GeneExpressionMatrix) <- as(counts(GeneExpressionMatrix), "dgCMatrix")
 ```
@@ -106,10 +106,18 @@ PeakMatrix
 For more information on SingleCellExperiment, please refer to the [documentation](https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html) on bioconductor.
 
 For a real example of a properly formatted `SingleCellExperiment` object, check out datasets from the [scMultiome](https://www.bioconductor.org/packages/release/data/experiment/html/scMultiome.html) package. Both the GeneExpressionMatrix and PeakMatrix are combined into a `MultiAssayExperiment` object.
-```{r}
+```{r messages=FALSE results="hide"}
 mae <- scMultiome::reprogramSeq()
-GeneExpressMatrix <- mae[["GeneExpressMatrix "]]
+```
+
+Inspect the gene expression matrix
+```{r}
+GeneExpressMatrix <- mae[["GeneExpressionMatrix"]]
 GeneExpressMatrix
+```
+
+Inspect the peak matrix
+```{r}
 PeakMatrix <- mae[["PeakMatrix"]]
 PeakMatrix
 ```
@@ -183,7 +191,7 @@ InstallData("pbmcMultiome")
 ```
 
 This is a PBMC dataset consisting of both RNAseq and ATACseq data and we load each modality as a separate Seurat object
-```{r results='hide'}
+```{r messages=FALSE, results='hide'}
 library(Seurat)
 library(Signac)
 library(SeuratData)
@@ -191,12 +199,12 @@ pbmc.rna <- LoadData("pbmcMultiome", "pbmc.rna")
 pbmc.atac <- LoadData("pbmcMultiome", "pbmc.atac")
 ```
 We first convert the RNA Seurat object to GeneExpressionMatrix `SingleCellExperiment` class. 
-```{r}
+```{r messages=FALSE}
 GeneExpressionMatrix <- as.SingleCellExperiment(pbmc.rna, assay="RNA")
 ```
 
 Because these genes are missing genomic positions, we must first annotate them with a genomic database, for example ensembl
-```{r}
+```{r messages=FALSE}
 library(AnnotationHub)
 ah <- AnnotationHub()
 edb <- ah[["AH98047"]]  #"EnsDb.Hsapiens.v105"
@@ -236,7 +244,7 @@ For more information, refer to Signac [tutorial](https://stuartlab.org/signac/ar
 We download an example PBMC anndata dataset from [scglue](https://scglue.readthedocs.io/en/latest/data.html).
 
 We first import the GeneExpressionMatrix.
-```{r}
+```{r messages=FALSE}
 library(zellkonverter)
 library(GenomicRanges)
 library(SingleCellExperiment)
@@ -308,7 +316,7 @@ GeneExpressionMatrix <- removeAltExps(sce10x)
 ### Reading directly from a 10x directory
 
 We can also create a `SingleCellExperiment` object from a directory containing "matrix.mtx.gz", "barcodes.tsv.gz" and "features.tsv.gz"
-```{r}
+```{r messages=FALSE}
 example(write10xCounts)
 
 list.files(tmpdir)
