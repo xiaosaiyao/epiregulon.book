@@ -183,7 +183,7 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                regulon_cutoff = 0.05)
 ```
 
-## Add Weights
+## Add Weights {#weights_prostate}
 
 While the `pruneRegulon' function provides statistics on the joint occurrence of TF-RE-TG, we would like to further estimate the strength of regulation. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity. Epiregulon estimates the regulatory potential using one of the three measures: 1) correlation between TG and TF or between TG and the product of TF and RE, 2) mutual information between TG and TF expression or between TG and the product of TF and RE, or 3) Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs cells that do not.
 

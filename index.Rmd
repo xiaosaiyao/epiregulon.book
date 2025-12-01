@@ -36,10 +36,8 @@ Current prerequisites for running epiregulon include pre-computed peak matrix,  
 knitr::include_graphics('images/epiregulon_functions.svg')
 ```
 
+This documentation presents `epiregulon v2`. Review [NEWS](https://github.com/xiaosaiyao/epiregulon/blob/master/NEWS.md) file to learn about the changes introduced with the version 2. 
 
+Check out our publication:
 
-Check out our preprint
-
-Epiregulon: Inference of single-cell transcription factor activity to dissect mechanisms of lineage plasticity and drug response
-Tomasz Włodarczyk, Aaron Lun, Diana Wu, Shreya Menon, Shushan Toneyan, Kerstin Seidel, Liang Wang, Jenille Tan, Shang-Yang Chen, Timothy Keyes, Aleksander Chlebowski, Yu Guo, Ciara Metcalfe, Marc Hafner, Christian W. Siebel, M. Ryan Corces, Robert Yauch, Shiqi Xie, Xiaosai Yao
-bioRxiv 2023.11.27.568955; doi: [https://doi.org/10.1101/2023.11.27.568955](https://doi.org/10.1101/2023.11.27.568955)
+Włodarczyk T, Lun A, Wu D, Shi M, Ye X, Menon S, Toneyan S, Seidel K, Wang L, Tan J, Chen S-Y, Keyes T, Chlebowski A, Waddell A, Zhou W, Wang Y, Yuan Q, Guo Y, Chen L-F, Daniel B, Hafner A, He M, Chibly A, Liang Y, Duren Z, Metcalfe C, Hafner M, Siebel C, Corces M. R, Yauch R, Xie S, Yao X (2025) Epiregulon: Single-cell transcription factor activity inference to predict drug response and drivers of cell states. Nature Communications 16: 7118. [doi:10.1038/s41467-025-62252-5](https://doi.org/10.1038/s41467-025-62252-5)

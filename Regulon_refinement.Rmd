@@ -24,7 +24,7 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
 pruned.regulon[,c("idxATAC", "target", "tf", "corr", "pval", "stats")]
 ```
 
-### Cell aggregation
+### Cell aggregation {#cell_aggregation}
 
 The `pruneRegulon` function also supports aggregation of cells into metacells, which can be useful when a dataset contains many similar cells with little relevant biological variation. Aggregation reduces noise while preserving the underlying biological signal. The `useDim` argument specifies the name of the low-dimensional representation of the single-cell data stored in the `SingleCellExperiment` object.
 
