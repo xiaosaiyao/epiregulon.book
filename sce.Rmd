@@ -106,7 +106,7 @@ PeakMatrix
 For more information on SingleCellExperiment, please refer to the [documentation](https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html) on bioconductor.
 
 For a real example of a properly formatted `SingleCellExperiment` object, check out datasets from the [scMultiome](https://www.bioconductor.org/packages/release/data/experiment/html/scMultiome.html) package. Both the GeneExpressionMatrix and PeakMatrix are combined into a `MultiAssayExperiment` object.
-```{r messages=FALSE results="hide"}
+```{r messages=FALSE, results="hide"}
 mae <- scMultiome::reprogramSeq()
 ```
 
@@ -184,14 +184,14 @@ Refer to ArchR [manual](https://www.archrproject.com/bookdown/index.html) for fu
 
 We download an example multimodel dataset from [SeuratData](https://github.com/satijalab/seurat-data). 
 ```{r, eval=FALSE}
-
+devtools::install_github('satijalab/seurat-data')
 library(SeuratData)
 
 InstallData("pbmcMultiome")
 ```
 
 This is a PBMC dataset consisting of both RNAseq and ATACseq data and we load each modality as a separate Seurat object
-```{r messages=FALSE, results='hide'}
+```{r messages=FALSE, results='hide', warning=FALSE}
 library(Seurat)
 library(Signac)
 library(SeuratData)
@@ -199,7 +199,7 @@ pbmc.rna <- LoadData("pbmcMultiome", "pbmc.rna")
 pbmc.atac <- LoadData("pbmcMultiome", "pbmc.atac")
 ```
 We first convert the RNA Seurat object to GeneExpressionMatrix `SingleCellExperiment` class. 
-```{r messages=FALSE}
+```{r messages=FALSE, warning=FALSE}
 GeneExpressionMatrix <- as.SingleCellExperiment(pbmc.rna, assay="RNA")
 ```
 
@@ -253,7 +253,7 @@ destfile <- tempfile(fileext = ".h5ad")
 
 # Download the file
 download.file(url, destfile, mode = "wb")
-GeneExpressionMatrix <- readH5AD(destfile)
+GeneExpressionMatrix <- readH5AD(destfile, version="0.10.6")
 
 ```
 
@@ -279,7 +279,7 @@ destfile <- tempfile(fileext = ".h5ad")
 # Download the file
 download.file(url, destfile, mode = "wb")
 
-PeakMatrix <- readH5AD(destfile)
+PeakMatrix <- readH5AD(destfile, version="0.10.6")
 rowRanges(PeakMatrix) <- GRanges(rowData(PeakMatrix))
 rowRanges(PeakMatrix)
 ```
@@ -316,7 +316,7 @@ GeneExpressionMatrix <- removeAltExps(sce10x)
 ### Reading directly from a 10x directory
 
 We can also create a `SingleCellExperiment` object from a directory containing "matrix.mtx.gz", "barcodes.tsv.gz" and "features.tsv.gz"
-```{r messages=FALSE}
+```{r messages=FALSE, results="hide", warning=FALSE}
 example(write10xCounts)
 
 list.files(tmpdir)
