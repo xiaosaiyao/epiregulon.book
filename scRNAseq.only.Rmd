@@ -174,19 +174,19 @@ Sometimes it is useful to understand what pathways are enriched in the regulons.
 
 ```{r enrichment_singlemodality_scRNA_only, warning=FALSE, fig.height = 14}
 #retrieve genesets
-H <- EnrichmentBrowser::getGenesets(org = "mmu", 
+MH <- EnrichmentBrowser::getGenesets(org = "mmu", 
                                     db = "msigdb", 
-                                    cat = "H", 
+                                    cat = "MH", 
                                     gene.id.type = "SYMBOL", 
                                     cache = FALSE)
-C6 <- EnrichmentBrowser::getGenesets(org = "mmu", 
+M7 <- EnrichmentBrowser::getGenesets(org = "mmu", 
                                      db = "msigdb", 
-                                     cat = "C6", 
+                                     cat = "M7", 
                                      gene.id.type = "SYMBOL",  
                                      cache = FALSE)
 
 #combine genesets and convert genesets to be compatible with enricher
-gs <- c(H,C6)
+gs <- c(MH,M7)
 gs.list <- do.call(rbind,lapply(names(gs), function(x) 
   {data.frame(gs = x, genes = gs[[x]])}))
 
