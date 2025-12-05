@@ -1,11 +1,10 @@
 book_filename: "Epiregulon documentation"
 rmd_files: ["index.Rmd",
     "installation.Rmd",
-    "Regulon_construction.Rmd",
-    "Regulon_refinement.Rmd",
     "sce.Rmd",
     "Regulon_construction.Rmd",
     "Regulon_refinement.Rmd",
+    "TF_activity.Rmd",
     "multiome.mae.Rmd",
     "hematopoeisis.mae.Rmd",
     "prostate.ENZ.archr.Rmd",

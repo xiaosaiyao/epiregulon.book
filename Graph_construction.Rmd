@@ -1,10 +1,10 @@
-# Finding patterns of transcription factor activity
+# Analysis of TF activity and gene regulatory network
 
-The `epiregulon.extra` package provides tools for convenient downstream analysis of the transcription factor activity matrix. Users can easily identify transcription factors that differ in activity across cell groups, visualize these differences, construct differential graphs highlighting differences between cell groups in GRN topology, and find potential interaction partners by searching for transcription factors with overlapping regulons.
+The `epiregulon.extra` package provides tools for downstream analysis of gene regulatory networks (GRNs) and TF activity. It enables users to identify differential TF activity, visualize these differences, construct differential graphs that highlight changes in GRN topology, and discover potential interaction partners by identifying overlapping regulons.
 
-## Differential TF activity test
+## Differential TF activity
 
-We can next determine which TFs exhibit differential activities across cell clusters/groups via the `findDifferentialActivity` function. This function depends on `findMarkers` function from `r BiocStyle::Biocpkg("scran")` package. 
+We can determine which TFs exhibit differential activities across cell clusters/groups via the `findDifferentialActivity` function. This function is a wrapper around the `findMarkers` function from `r BiocStyle::Biocpkg("scran")` package. 
 
 ```{r}
 library(epiregulon.extra)
@@ -16,26 +16,27 @@ markers  <- findDifferentialActivity(activity_matrix = score.combine,
 markers
 ```
 
-getSigGenes compiles the different test results into a single dataframe and enables user to supply their desired cutoffs for significance and variable to order by.
+`getSigGenes` compiles the group-wise tests into a single dataframe and enables users to select the top differential TFs based on their desired cutoffs.
 
-```{r}
-markers.sig <- getSigGenes(markers, topgenes = 3 )
+```{r warning=FALSE, results='hide'}
+markers.sig <- getSigGenes(markers, topgenes = 5, direction = "up" )
 markers.sig 
 ```
 
 ## Visualizing TF activities
 
-Epiregulon also provides the option for visualizing the inferred TF activities in reduced dimensions.
+Epiregulon also provides the option for visualizing the inferred TF activities.
 ```{r}
 options(ggrastr.default.dpi=300)
-tfs_interest <- c("BCL11B", "KLF4", "IRF8", "EBF1")
+tfs_interest <- c( "EBF1","TBX21")
 plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = score.combine[tfs_interest,], 
-                tf = tfs_interest, 
+                tf = tfs_interest,
                 dimtype = "UMAP_RNA",
-                nrow=2,
+                nrow=1,
                 ncol=2,
                 point_size=0.1,
+                label = "cell_type",
                 rasterise = TRUE)
 ```
 
@@ -47,7 +48,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = assay(GeneExpressionMatrix, "normalizedCounts")[tfs_interest,], 
                 tf = tfs_interest, 
                 dimtype = "UMAP_RNA",
-                nrow=2,
+                nrow=1,
                 ncol=2,
                 legend.label = "Gex",
                 colors = c("grey","blue"),
@@ -61,8 +62,9 @@ plotActivityViolin(activity_matrix = score.combine,
                    tf = tfs_interest, 
                    clusters = GeneExpressionMatrix$cell_type,
                    legend.label = "Gex",
-                   nrow=2,
-                   ncol=2)
+                   nrow=1,
+                   ncol=2,
+                   boxplot = TRUE)
 ```
 
 We plot violin plot to visualize TF gene expression.
@@ -71,9 +73,10 @@ We plot violin plot to visualize TF gene expression.
 plotActivityViolin(activity_matrix = assay(GeneExpressionMatrix, "normalizedCounts")[tfs_interest,],  
                    tf = tfs_interest, 
                    clusters = GeneExpressionMatrix$cell_type,
-                   nrow=2,
+                   nrow=1,
                    ncol=2,
-                   legend.label = "gene expression")
+                   legend.label = "gene expression",
+                   boxplot=TRUE)
 ```
 
 We can visualize the different TFs in a bubble plot:
@@ -99,9 +102,9 @@ plotBubble(activity_matrix = score.combine,
 
 ## Geneset enrichment
 
-Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
+Sometimes we are interested in knowing what pathways are enriched in the regulon of a particular TF. We can perform gene set enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
 
-Here we first download Hallmark and C2 signatures from hallmark and then perform gene set enrichment of the known lineage factors. As expected, EBF1 is consistent with a B cell lineage factor, GATA3 and RUNX3 with lymphoid lineage and SPI1 with myeloid lineage.
+Here we first download Hallmark and C2 signatures from MSigDB and then perform gene set enrichment of the known lineage factors. As expected, EBF1 is consistent with a B cell lineage factor, and TBX21 with lymphoid lineage.
 
 ```{r fig.width=12, fig.height=12}
 #retrieve genesets
@@ -127,25 +130,54 @@ enrichresults <- regulonEnrich(TF = tfs_interest,
                                genesets = gs.list)
 
 #plot results
-enrichPlot(results = enrichresults, ncol=2)
+enrichPlot(results = enrichresults, ncol=2, nrow=1)
 ```
 
-## Differential Network analysis
+## Differential network analysis {#diffNetwork}
 
-In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that EBF1 is a B cell lineage factor. If we plot the differential network of EBF1 using the regulon with cluster-specific weights, we can see that EBF1 has many more targets in B cells than it has in CD4 memory T cells. 
+A second approach to investigate differential TF activity is to compare the weights of the target genes between groups. When performing this contrast, it helps to pre-filter the regulons. In this example, we are interested to compare the networks of B cells and CD4 memory T cells. Here we made use the logFC added to the regulons and keep only target genes that show differential expression.
 
 ```{r}
+regulon.w.filtered <- regulon.w[regulon.w$"B.vs.Memory.CD4..T.FDR" < 0.05 & abs(regulon.w$"B.vs.Memory.CD4..T.logFC") > 0.3, ]
 
-plotDiffNetwork(regulon.w,
+```
+Next, we build an edge subtracted graph and calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in B cells whereas the bottom 5 TFs present lineage factors enriched in CD4+ memory T cells. We successfully identified the B factors EBF1, PAX5 and IRF4. The putative CD4 memory T cells factors are less understood and remain to be validated.
+
+```{r}
+# construct a graph of the CD4.M and NK cells respectively
+CD4.M_network <- buildGraph(regulon.w.filtered, weights = "weight", cluster="Memory CD4+ T")
+B_network <- buildGraph(regulon.w.filtered, weights = "weight", cluster="B")
+
+# construct a difference graph
+diff_graph <- buildDiffGraph(B_network,CD4.M_network, abs_diff = FALSE)
+diff_graph <- addCentrality(diff_graph)
+diff_graph <- normalizeCentrality(diff_graph)
+rank_table <- rankTfs(diff_graph)
+
+library(ggplot2)
+ggplot(rank_table, aes(x = rank, y = centrality)) +
+    geom_point() +
+    ggrepel::geom_text_repel(data = rbind(head(rank_table, 10), 
+                                          tail(rank_table, 10)), 
+                             aes(label = tf), 
+                             nudge_x = 0, nudge_y = 0, box.padding = 0.5, max.overlaps = Inf) +
+    theme_classic() + ggtitle ("differential TFs (B-CD4.M) ranked by degree centrality")
+
+```
+We can visualize the differential network of selected TFs in the clusters of interest.
+
+```{r}
+plotDiffNetwork(regulon.w.filtered,
                 cutoff = 0,
                 tf = c("EBF1"),
                 weight = "weight",
                 clusters = c("Memory CD4+ T","B"),
                 layout = "stress")
+```                
 
-```
+## Finding interaction Partners
 
-Sometimes, we are interested to identify interaction partners of the TFs of interest. This can be achieved by comparing the overlap of the targets genes for all the TFs and identify the most similar TFs by Jaccard similarity. To illustrate this function, we take a look at the top most similar 20 TFs to EBF1, and we successfully identify PAX5 as the most similar TF. Both PAX5 and EBF1 are important factors for B cell development (https://www.nature.com/articles/ni.2641).
+Sometimes, we are interested to identify interaction partners of the TFs of interest. This can be achieved by comparing the overlap of regulons and identify the most similar TFs by Jaccard similarity. To illustrate this function, we take a look at the top most similar 20 TFs to EBF1, and we successfully identify PAX5 as the most similar TF. Both PAX5 and EBF1 are important factors for B cell development (https://www.nature.com/articles/ni.2641).
 
 ```{r}
 library(ggplot2)
@@ -157,10 +189,8 @@ similarity_score <- calculateJaccardSimilarity(B_network)
 
 # Focus on EBF1
 similarity_score_EBF1 <- similarity_score[, "EBF1"]
-similarity_df <- data.frame(similarity = head(sort(similarity_score_EBF1, 
-                                                   decreasing = TRUE),20),
-                            TF = names(head(sort(similarity_score_EBF1,
-                                                 decreasing = TRUE),20)))
+similarity_df <- data.frame(similarity = head(sort(similarity_score_EBF1, decreasing = TRUE),20),
+                            TF = names(head(sort(similarity_score_EBF1, decreasing = TRUE),20)))
 
 similarity_df$TF <- factor(similarity_df$TF, levels = rev(unique(similarity_df$TF)))
 
@@ -175,7 +205,7 @@ print(topTFplot)
 
 ```
 
-In order to convince ourselves that our differential network is statistically significant, we permute the edges and obtain a background graph from averaging many iterations. Here, we plot the differential network graph subtracted by permuted graphs. 
+In order to convince ourselves that our differential network is statistically significant, we permute the edges and obtain a background graph from averaging many iterations. Here, we plot the differential network graph subtracted by the average edge weights of the permuted graphs. 
 ```{r}
 
 # create a permuted graph by rewiring the edges 100 times
@@ -183,10 +213,8 @@ permute_matrix <- permuteGraph(B_network, "EBF1", 100, p=1)
 permute_matrix <- permute_matrix[names(similarity_score_EBF1),]
 diff_matrix <- similarity_score_EBF1-rowMeans(permute_matrix)
 
-diff_matrix_df <- data.frame(similarity = head(sort(diff_matrix, 
-                                                    decreasing = TRUE),20),
-                            TF = names(head(sort(diff_matrix,
-                                                 decreasing = TRUE),20)))
+diff_matrix_df <- data.frame(similarity = head(sort(diff_matrix, decreasing = TRUE),20),
+                             TF = names(head(sort(diff_matrix, decreasing = TRUE),20)))
 
 diff_matrix_df$TF <- factor(diff_matrix_df$TF, levels = rev(unique(diff_matrix_df$TF)))
 
@@ -203,59 +231,5 @@ p_matrix <- rowMeans(apply(permute_matrix, 2, function(x) {x > similarity_score_
 p_matrix[names(head(sort(diff_matrix,decreasing = TRUE),20))]
 ```
 
-Next, we are interested to compare the networks of two cell types, in this case, CD4 memory T cells  vs monocytes. We build an edge subtracted graph and then calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in monocytes whereas the bottom 5 TFs present lineage factors enriched in CD4. We successfully identified the myeloid factor SPI1 to be associated with monocytes and Th1 factor TBX21 to be associated with CD4 T cells.
-
-```{r}
-# construct a graph of the CD4.M and NK cells respectively
-CD4.M_network <- buildGraph(regulon.w, weights = "weight", cluster="Memory CD4+ T")
-Mono_network <- buildGraph(regulon.w, weights = "weight", cluster="CD14+ Mono")
-
-# construct a difference graph
-diff_graph <- buildDiffGraph(Mono_network,CD4.M_network, abs_diff = FALSE)
-diff_graph <- addCentrality(diff_graph)
-diff_graph <- normalizeCentrality(diff_graph)
-rank_table <- rankTfs(diff_graph)
-
-library(ggplot2)
-ggplot(rank_table, aes(x = rank, y = centrality)) +
-    geom_point() +
-    ggrepel::geom_text_repel(data = rbind(head(rank_table, 10), 
-                                          tail(rank_table, 10)), 
-                             aes(label = tf), 
-                             nudge_x = 0, nudge_y = 0, box.padding = 0.5, max.overlaps = Inf) +
-    theme_classic() + ggtitle ("differential TFs (Mono-CD4.M) ranked by degree centrality")
-
-```
-
-We can further explore interacting factors with the myeloid factor SPI1 using the same Jaccard similarity approach. We found CEBPA as the most similar TF as SPI1. SPI1 and CEBPA are known to be important for differentiation into myeloid cells (https://www.cell.com/cell-reports/pdfExtended/S2211-1247(18)30745-9).
-```{r, results = "hide", warning = FALSE, message = FALSE}
-library(igraph)
-```
-```{r}
-diff_graph_filter <- subgraph.edges(diff_graph, 
-                                    E(diff_graph)[E(diff_graph)$weight>0], 
-                                    del=TRUE)
 
 
-# compute a similarity matrix of all TFs
-similarity_score <- calculateJaccardSimilarity(diff_graph_filter)
-
-# Focus on SPI1
-similarity_score_SPI1 <- similarity_score[, "SPI1"]
-similarity_df <- data.frame(similarity = head(sort(similarity_score_SPI1, 
-                                                   decreasing = TRUE),20),
-                            TF = names(head(sort(similarity_score_SPI1,
-                                                 decreasing = TRUE),20)))
-
-similarity_df$TF <- factor(similarity_df$TF, 
-                           levels = rev(unique(similarity_df$TF)))
-
-# plot top TFs most similar to SPI1
-topTFplot <- ggplot(similarity_df, aes(x=TF, y=similarity)) +
-  geom_bar(stat="identity") +
-  coord_flip() +
-  ggtitle("SPI1 similarity") +
-  theme_classic()
-
-print(topTFplot)
-```

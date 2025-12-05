@@ -191,7 +191,7 @@ InstallData("pbmcMultiome")
 ```
 
 This is a PBMC dataset consisting of both RNAseq and ATACseq data and we load each modality as a separate Seurat object
-```{r messages=FALSE, results='hide', warning=FALSE}
+```{r echo=TRUE, results='hide', message=FALSE, warning=FALSE}
 library(Seurat)
 library(Signac)
 library(SeuratData)

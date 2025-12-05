@@ -1,4 +1,4 @@
-# Gene regulatory network refinement{#refinement}
+# Refinement of gene regulatory network {#refinement}
 The `regulon` object constructed in the previous [chapter](#construction) contains all possible links between transcription factors and target genes. As a result, the GRN can be large and may contain some false connections. To refine it, we need to apply filters that retain only those connections supported by our dataset. One such filter has already been applied in the [`calculateP2G` function](#distance_window), which not only searches for regulatory elements within a specified distance from each target gene, but also computes the empirical p-value of the correlation for each target gene–regulatory element pair. Pairs are retained if their p-value is below the threshold specified by the `cutoff_sig` argument.
 
 In this chapter, we introduce three additional filters. The `pruneRegulon` function filters the GRN based on the co-occurrence of TF gene expression, RE chromatin accessibility and target gene expression. The `addMotifScore` function annotates regulons for the presence of motifs and filter for regions that contain both ChIP-seq peaks and motifs. Lastly, the `addLogFC` function calculates changes in gene expression between conditions, so that only target genes showing gene expression changes are selected.
@@ -44,7 +44,7 @@ pruned.regulon.aggr <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                peak_cutoff = NULL)
 ```
 
-## Annotation with TF motifs
+## Annotating with TF motifs
 
 So far, the gene regulatory network has been constructed exclusively from TF ChIP-seq data. Some users may want to further annotate regulatory elements with motifs. We provide an option to annotate peaks with motifs from the [CIS_BP](https://cisbp.ccbr.utoronto.ca/) database. If no motifs are present for a particular factor (e.g., for co-factors or chromatin modifiers), `NA` is returned. If motifs exist for a factor and the regulatory element contains a motif, `1` is returned; if the regulatory element does not contain a motif, `0` is returned. Users can also provide their own motif annotation through the `pwms` argument.
 
@@ -62,7 +62,7 @@ pruned.regulon.motif[,c("idxATAC", "target", "tf", "corr", "p_val_peak_gene", "p
 ```
 
 
-## Annotate with log fold changes
+## Annotating with log fold changes
 
 It is sometimes helpful to filter the regulons based on gene expression changes between two conditions. The `addLogFC` function is a wrapper around `scran::findMarkers` and adds extra columns of log changes to the regulon `DataFrame`. The users can specify the reference condition in `logFC_ref` and conditions for comparison in `logFC_condition`. If these are not provided, log fold changes are calculated for every condition in the cluster labels against the rest of the conditions.
  
@@ -76,15 +76,15 @@ pruned.regulon <- addLogFC(regulon = pruned.regulon,
                            expMatrix  = GeneExpressionMatrix,
                            assay.type  = "logcounts",
                            pval.type = "any",
-                           logFC_condition = c("Memory CD4+ T", "Naive CD8+ T"),
-                           logFC_ref = "Naive CD4+ T")
+                           logFC_condition = c("Memory CD8+ T", "B"),
+                           logFC_ref = "Memory CD4+ T")
 
-pruned.regulon[,c("idxATAC", "target", "tf", "Memory CD4+ T.vs.Naive CD4+ T.logFC", "Memory CD4+ T.vs.Naive CD4+ T.p.value")]
+pruned.regulon[,c("idxATAC", "target", "tf", "Memory CD8+ T.vs.Memory CD4+ T.logFC", "B.vs.Memory CD4+ T.FDR")]
 ```
 
 Here we show to use these statistics to filter our regulons.
 
 ```{r}
-pruned.regulon.filtered <- pruned.regulon[pruned.regulon$"Memory CD4+ T.vs.Naive CD4+ T.FDR" < 0.05 & pruned.regulon$"Memory CD4+ T.vs.Naive CD4+ T.logFC" > 0.3, ]
+pruned.regulon.filtered <- pruned.regulon[pruned.regulon$"B.vs.Memory CD4+ T.FDR" < 0.05 & pruned.regulon$"B.vs.Memory CD4+ T.logFC" > 0.3, ]
 ```
 
