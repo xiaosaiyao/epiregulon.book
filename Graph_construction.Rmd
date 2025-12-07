@@ -1,4 +1,4 @@
-# Analysis of TF activity and gene regulatory network
+# Network analysis
 
 The `epiregulon.extra` package provides tools for downstream analysis of gene regulatory networks (GRNs) and TF activity. It enables users to identify differential TF activity, visualize these differences, construct differential graphs that highlight changes in GRN topology, and discover potential interaction partners by identifying overlapping regulons.
 
@@ -6,7 +6,7 @@ The `epiregulon.extra` package provides tools for downstream analysis of gene re
 
 We can determine which TFs exhibit differential activities across cell clusters/groups via the `findDifferentialActivity` function. This function is a wrapper around the `findMarkers` function from `r BiocStyle::Biocpkg("scran")` package. 
 
-```{r}
+```{r results='hide', warning=FALSE, message=FALSE}
 library(epiregulon.extra)
 markers  <- findDifferentialActivity(activity_matrix = score.combine, 
                                     clusters = GeneExpressionMatrix$cell_type, 
@@ -18,7 +18,7 @@ markers
 
 `getSigGenes` compiles the group-wise tests into a single dataframe and enables users to select the top differential TFs based on their desired cutoffs.
 
-```{r warning=FALSE, results='hide'}
+```{r warning=FALSE, results='hide', message=FALSE}
 markers.sig <- getSigGenes(markers, topgenes = 5, direction = "up" )
 markers.sig 
 ```
@@ -28,12 +28,12 @@ markers.sig
 Epiregulon also provides the option for visualizing the inferred TF activities.
 ```{r}
 options(ggrastr.default.dpi=300)
-tfs_interest <- c( "EBF1","TBX21")
+tfs_interest <- c( "EBF1","TBX21","EOMES","SPI1")
 plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = score.combine[tfs_interest,], 
                 tf = tfs_interest,
                 dimtype = "UMAP_RNA",
-                nrow=1,
+                nrow=2,
                 ncol=2,
                 point_size=0.1,
                 label = "cell_type",
@@ -48,7 +48,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = assay(GeneExpressionMatrix, "normalizedCounts")[tfs_interest,], 
                 tf = tfs_interest, 
                 dimtype = "UMAP_RNA",
-                nrow=1,
+                nrow=2,
                 ncol=2,
                 legend.label = "Gex",
                 colors = c("grey","blue"),
@@ -56,24 +56,24 @@ plotActivityDim(sce = GeneExpressionMatrix,
                 rasterise = TRUE)
 ```
 
-We can also plot violin plot to visualize TF activity.
+We can also generate violin plots to visualize TF activity.
 ```{r}
 plotActivityViolin(activity_matrix = score.combine, 
                    tf = tfs_interest, 
                    clusters = GeneExpressionMatrix$cell_type,
                    legend.label = "Gex",
-                   nrow=1,
+                   nrow=2,
                    ncol=2,
                    boxplot = TRUE)
 ```
 
-We plot violin plot to visualize TF gene expression.
+We generate violin plots to visualize TF gene expression.
 
 ```{r}
 plotActivityViolin(activity_matrix = assay(GeneExpressionMatrix, "normalizedCounts")[tfs_interest,],  
                    tf = tfs_interest, 
                    clusters = GeneExpressionMatrix$cell_type,
-                   nrow=1,
+                   nrow=2,
                    ncol=2,
                    legend.label = "gene expression",
                    boxplot=TRUE)
@@ -83,7 +83,7 @@ We can visualize the different TFs in a bubble plot:
 ```{r}
 plotBubble(activity_matrix = score.combine, 
            tf = tfs_interest,
-           GeneExpressionMatrix$cell_type,
+           clusters = GeneExpressionMatrix$cell_type,
            pval.type = "some", 
            direction = "up", 
            logvalues = FALSE)
@@ -102,11 +102,11 @@ plotBubble(activity_matrix = score.combine,
 
 ## Geneset enrichment
 
-Sometimes we are interested in knowing what pathways are enriched in the regulon of a particular TF. We can perform gene set enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
+Sometimes we are interested in knowing what pathways are enriched in the regulon of a particular TF. We can perform gene set enrichment using the enricher function from [clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html).
 
-Here we first download Hallmark and C2 signatures from MSigDB and then perform gene set enrichment of the known lineage factors. As expected, EBF1 is consistent with a B cell lineage factor, and TBX21 with lymphoid lineage.
+Here we first download Hallmark and C2 signatures from MSigDB and then perform gene set enrichment of the known lineage factors. As expected, EBF1 shows enrichment for pathways associated with B cells, and TBX21 with T cells, EOMES with NK cells, and SPI1 with myeloid cells.
 
-```{r fig.width=12, fig.height=12}
+```{r fig.width=15, fig.height=12, results='hide', warning=FALSE, message=FALSE}
 #retrieve genesets
 H <- EnrichmentBrowser::getGenesets(org = "hsa", 
                                     db = "msigdb", 
@@ -126,27 +126,21 @@ gs.list <- do.call(rbind,lapply(names(gs), function(x)
 enrichresults <- regulonEnrich(TF = tfs_interest, 
                                regulon = regulon.w, 
                                weight = "weight",
-                               weight_cutoff = 0, 
+                               weight_cutoff = 0.1, 
                                genesets = gs.list)
 
 #plot results
-enrichPlot(results = enrichresults, ncol=2, nrow=1)
+enrichPlot(results = enrichresults, ncol=2)
 ```
 
 ## Differential network analysis {#diffNetwork}
 
-A second approach to investigate differential TF activity is to compare the weights of the target genes between groups. When performing this contrast, it helps to pre-filter the regulons. In this example, we are interested to compare the networks of B cells and CD4 memory T cells. Here we made use the logFC added to the regulons and keep only target genes that show differential expression.
+A second approach to investigate differential TF activity is to compare the weights of the target genes between groups. In this example, we are interested to compare the networks of B cells and CD4 memory T cells. We build an edge subtracted graph and calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in B cells whereas the bottom 5 TFs present lineage factors enriched in CD4+ memory T cells. We successfully identified the B factors EBF1, PAX5 and IRF4. The putative CD4 memory T cells factors are less understood and remain to be validated.
 
-```{r}
-regulon.w.filtered <- regulon.w[regulon.w$"B.vs.Memory.CD4..T.FDR" < 0.05 & abs(regulon.w$"B.vs.Memory.CD4..T.logFC") > 0.3, ]
-
-```
-Next, we build an edge subtracted graph and calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in B cells whereas the bottom 5 TFs present lineage factors enriched in CD4+ memory T cells. We successfully identified the B factors EBF1, PAX5 and IRF4. The putative CD4 memory T cells factors are less understood and remain to be validated.
-
-```{r}
+```{r message=FALSE}
 # construct a graph of the CD4.M and NK cells respectively
-CD4.M_network <- buildGraph(regulon.w.filtered, weights = "weight", cluster="Memory CD4+ T")
-B_network <- buildGraph(regulon.w.filtered, weights = "weight", cluster="B")
+CD4.M_network <- buildGraph(regulon.w, weights = "weight", cluster="Memory CD4+ T")
+B_network <- buildGraph(regulon.w, weights = "weight", cluster="B")
 
 # construct a difference graph
 diff_graph <- buildDiffGraph(B_network,CD4.M_network, abs_diff = FALSE)
@@ -164,16 +158,6 @@ ggplot(rank_table, aes(x = rank, y = centrality)) +
     theme_classic() + ggtitle ("differential TFs (B-CD4.M) ranked by degree centrality")
 
 ```
-We can visualize the differential network of selected TFs in the clusters of interest.
-
-```{r}
-plotDiffNetwork(regulon.w.filtered,
-                cutoff = 0,
-                tf = c("EBF1"),
-                weight = "weight",
-                clusters = c("Memory CD4+ T","B"),
-                layout = "stress")
-```                
 
 ## Finding interaction Partners
 

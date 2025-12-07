@@ -11,13 +11,13 @@ Epiregulon estimates the regulatory potential using one of the three measures:
 2. Correlation between TG and TF, or between TG and the product of TF and RE. 
 3. Mutual information between TG and TF expression, or between TG and the product of TF and RE.
 
-Wilcoxon and correlation methods give both the magnitude and directionality of changes whereas mutual information is always positive. The correlation and mutual information statistics are computed on grouped pseudobulks following user-supplied cluster labels and yield a single weight across all clusters per each TF-RE-target triplet. In contrast, the Wilcoxon method can give a single weight across all cells or give cluster-specific weights if the users provide cluster labels. In general, we recommend computing a single weight across all cells because the data in totality provides the variability of target gene expression necessary for weights estimation. For example, we want to include both untreated and treated cells to gauge the effects of the treatment. Cluster-specific weights can be useful for inferring differential network connectivity (See section on [Differential Network Analysis] {#diffNetwork}).
+Wilcoxon and correlation methods give both the magnitude and directionality of changes whereas mutual information is always positive. The correlation and mutual information statistics are computed on grouped pseudobulks following user-supplied cluster labels and yield a single weight across all clusters per each TF-RE-target triplet. In contrast, the Wilcoxon method can give a single weight across all cells or give cluster-specific weights if the users provide cluster labels. In general, we recommend computing a single weight across all cells because the data in totality provides the variability of target gene expression necessary for weights estimation. For example, we want to include both untreated and treated cells to gauge the effects of the treatment. Cluster-specific weights can be useful for inferring differential network connectivity (See section on [Differential Network Analysis]({#diffNetwork})).
 
-The choice of weights method can have a profound effect on the estimate of TF activity. When the TF activity is directly correlated with TF expression, all methods tend to work quite well. However, there are scenarios such as drug treatment or CRISPR knockout when gene expression is detected despite inhibition of TF activity.  Epiregulon was designed to handle scenarios where TF expression is decoupled from TF activity. In such cases, `wilcox` is the preferred choice. For a specific use case, see the Section \@ref(weights_prostate) on a comparison between `"wilcox"` and `"corr"` methods. Refer to our [manuscript](https://www.nature.com/articles/s41467-025-62252-5) for a more in-depth discussion of the biological scenarios compatible with each weight method. 
+The choice of weights method can have a profound effect on the estimate of TF activity. When the TF activity is directly correlated with TF expression, all methods tend to work quite well. However, there are scenarios such as drug treatment or CRISPR knockout when TF continues to be expressed despite post-translational inhibition of TF activity.  Epiregulon was designed to handle scenarios where TF expression is decoupled from TF activity. In such cases, `wilcox` is the preferred choice. For a specific use case, see the Section \@ref(weights_prostate) on a comparison between `"wilcox"` and `"corr"` methods. Refer to our [manuscript](https://www.nature.com/articles/s41467-025-62252-5) for a more in-depth discussion of the biological scenarios compatible with each weight method. 
 
 
 ```{r}
-regulon.w <- addWeights(regulon = pruned.regulon,
+regulon.w <- addWeights(regulon = pruned.regulon.filtered,
                         expMatrix  = GeneExpressionMatrix,
                         exp_assay  = "normalizedCounts",
                         peakMatrix = PeakMatrix,
@@ -30,7 +30,7 @@ regulon.w
 
 ### Cell aggregation
 As with the `pruneRegulon function`, cells can be aggregated into metacells using the `aggregateCells` argument in `addWeights`. Use this option only with the Wilcoxon method, since the other two methods already incorporate cell aggregation. By default, the function generates aggregates containing an average of 10 cells. However, the exact number may vary across metacells, depending on how single cells are distributed in the reduced dimensionality space. Refer to the cell aggregation section in Regulation Refinement for additional information (Section \@ref(cell_aggregation)).
-```{r}
+```{r eval=FALSE}
 regulon.w.aggr <- addWeights(regulon = pruned.regulon,
                              expMatrix  = GeneExpressionMatrix,
                              exp_assay  = "normalizedCounts",
@@ -53,11 +53,10 @@ $n$ is the total number of targets for a TF,
 $x_i$ is the log count expression of target $i$ where $i$ in {1,2,...,n} and
 $weights_i$ is the weight of TF - target $i$
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 score.combine <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    regulon = regulon.w, 
                                    mode = "weight", 
-                                   method = "weightedMean", 
                                    exp_assay = "normalizedCounts")
 
 score.combine[1:5,1:5]

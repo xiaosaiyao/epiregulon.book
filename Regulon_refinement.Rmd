@@ -1,15 +1,13 @@
 # Refinement of gene regulatory network {#refinement}
 The `regulon` object constructed in the previous [chapter](#construction) contains all possible links between transcription factors and target genes. As a result, the GRN can be large and may contain some false connections. To refine it, we need to apply filters that retain only those connections supported by our dataset. One such filter has already been applied in the [`calculateP2G` function](#distance_window), which not only searches for regulatory elements within a specified distance from each target gene, but also computes the empirical p-value of the correlation for each target gene–regulatory element pair. Pairs are retained if their p-value is below the threshold specified by the `cutoff_sig` argument.
 
-In this chapter, we introduce three additional filters. The `pruneRegulon` function filters the GRN based on the co-occurrence of TF gene expression, RE chromatin accessibility and target gene expression. The `addMotifScore` function annotates regulons for the presence of motifs and filter for regions that contain both ChIP-seq peaks and motifs. Lastly, the `addLogFC` function calculates changes in gene expression between conditions, so that only target genes showing gene expression changes are selected.
+In this chapter, we introduce three additional filters. The `pruneRegulon` function filters the GRN based on the co-occurrence of TF gene expression, RE chromatin accessibility and target gene expression. The `addMotifScore` function annotates regulons for the presence of motifs. Lastly, the `addLogFC` function calculates changes in gene expression between conditions, so that only target genes showing differential expression are selected.
 
 
 ## Network pruning {#pruning}
 
-Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor ($TF$), regulatory element ($RE$) and target gene ($TG$) vs the expected number of cells if $TF\cdot{RE}$ and $TG$ are independently expressed. The thresholds at which the features are considered expressed are defined by the `peak_cutoff` and `exp_cutoff` arguments. We implement two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is $P(TF, RE) \cdot P(TG)$, and the number of trials is the total number of cells (or metacells if we set ``), and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also $P(TF, RE) \cdot P(TG)$ and the probability otherwise is $1- P(TF, RE) \cdot P(TG)$. The observed cell count for the active category is the number of cells jointly expressing all three elements ($n_{triple}$), and the cell count for the inactive category is $n - n_{triple}$.
+Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor ($TF$), regulatory element ($RE$) and target gene ($TG$). The thresholds at which the features are considered expressed are defined by the `peak_cutoff` and `exp_cutoff` arguments. We implement two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is $P(TF, RE) \cdot P(TG)$, and the number of trials is the total number of cells (or metacells if we set `aggregateCells=TRUE`), and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also $P(TF, RE) \cdot P(TG)$. The observed cell count for the active category is the number of cells jointly expressing all three elements ($n_{triple}$).
 
-
-We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.
 
 ```{r}
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
@@ -18,17 +16,16 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                peak_assay = "counts",
                                regulon = regulon,
                                prune_value = "pval",
-                               regulon_cutoff = 0.05,
-                               clusters = GeneExpressionMatrix$cell_type)
+                               regulon_cutoff = 0.05)
 
 pruned.regulon[,c("idxATAC", "target", "tf", "corr", "pval", "stats")]
 ```
 
 ### Cell aggregation {#cell_aggregation}
 
-The `pruneRegulon` function also supports aggregation of cells into metacells. This can substantially speed up GRN refinement if the dataset is large (>100K cells). Ideally, cell aggregation should also reduce noise while still maintaining the underlying biological signals. Since the data is less sparse after aggregation, users may want to adjust the feature cutoffs to better differentiate between cell aggregates with low and high expression. Setting `exp_cutoff` and `peak_cutoff` to `NULL` allows `pruneRegulon` to calculate the mean values for each feature and use that as the thresholds.
+The `pruneRegulon` function also supports aggregation of cells into metacells. This can substantially speed up GRN refinement if the dataset is large (>100K cells). Ideally, cell aggregation should also reduce noise while still maintaining the underlying biological signals. Since the data is less sparse after aggregation, users may want to adjust the feature cutoffs to better differentiate between cell aggregates with low and high expression. Setting `exp_cutoff` and `peak_cutoff` to `NULL` allows `pruneRegulon` to calculate the mean values for each feature and use these as the thresholds.
 
-```{r}
+```{r eval=FALSE}
 pruned.regulon.aggr <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                exp_assay = "normalizedCounts",
                                peakMatrix = PeakMatrix,
@@ -36,11 +33,10 @@ pruned.regulon.aggr <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                regulon = regulon,
                                prune_value = "pval",
                                regulon_cutoff = 0.05,
-                               clusters = GeneExpressionMatrix$cell_type,
                                aggregateCells = TRUE,
                                useDim = "LSI_RNA",
                                cellNum = 10,
-                               exp_cutoff=NULL,
+                               exp_cutoff = NULL,
                                peak_cutoff = NULL)
 ```
 
@@ -64,7 +60,7 @@ pruned.regulon.motif[,c("idxATAC", "target", "tf", "corr", "p_val_peak_gene", "p
 
 ## Annotating with log fold changes
 
-It is sometimes helpful to filter the regulons based on gene expression changes between two conditions. The `addLogFC` function is a wrapper around `scran::findMarkers` and adds extra columns of log changes to the regulon `DataFrame`. The users can specify the reference condition in `logFC_ref` and conditions for comparison in `logFC_condition`. If these are not provided, log fold changes are calculated for every condition in the cluster labels against the rest of the conditions.
+It is sometimes helpful to filter the regulons based on gene expression changes between two conditions. The `addLogFC` function is a wrapper around `scran::findMarkers` and adds extra columns of log changes to the regulon `DataFrame`. Users can specify the reference group in `logFC_ref` and comparison groups in `logFC_condition`. If these are not provided, log fold changes are calculated for every condition in the cluster labels against the rest of the conditions.
  
 ```{r}
 # create logcounts
@@ -76,15 +72,27 @@ pruned.regulon <- addLogFC(regulon = pruned.regulon,
                            expMatrix  = GeneExpressionMatrix,
                            assay.type  = "logcounts",
                            pval.type = "any",
-                           logFC_condition = c("Memory CD8+ T", "B"),
-                           logFC_ref = "Memory CD4+ T")
+                           logFC_condition = unique(GeneExpressionMatrix$cell_type))
 
-pruned.regulon[,c("idxATAC", "target", "tf", "Memory CD8+ T.vs.Memory CD4+ T.logFC", "B.vs.Memory CD4+ T.FDR")]
+pruned.regulon[,c("idxATAC", "target", "tf", "Memory CD8+ T.vs.rest.logFC", "B.vs.rest.FDR")]
 ```
 
-Here we show to use these statistics to filter our regulons.
+TFs do not necessarily alter the expression of the genes next to where they bind, and thus filtering for target genes that do show differential expression can help refine the regulons. Since we do not have a defined experimental setup in this dataset, we retain target genes that show differential expression in any cell types vs. the rest.
 
 ```{r}
-pruned.regulon.filtered <- pruned.regulon[pruned.regulon$"B.vs.Memory CD4+ T.FDR" < 0.05 & pruned.regulon$"B.vs.Memory CD4+ T.logFC" > 0.3, ]
+FDR <- pruned.regulon[,grep("rest.FDR", colnames(pruned.regulon ))]
+FDR <- as.matrix(FDR) < 0.05
+FDR <- apply(FDR,2, as.numeric)
+
+logFC <- pruned.regulon[,grep("rest.logFC", colnames(pruned.regulon ))]
+logFC <- abs(as.matrix(logFC)) > 0.3
+logFC <- apply(logFC,2, as.numeric)
+
+logFC_FDR <- FDR*logFC
+
+```
+
+```{r}
+pruned.regulon.filtered <- pruned.regulon[which(rowSums(logFC_FDR) > 0), ]
 ```
 
