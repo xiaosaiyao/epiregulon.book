@@ -18,17 +18,16 @@ Before running Epiregulon, the following analyses need to be completed:
 
 ## Load ArchR project
 
+The data processed in `ArchR` is available at as compressed file containing `ArchR` project. 
+
 ```{r, message = FALSE}
 library(ArchR)
-archR_project_path <- "/gstore/project/lineage/prostate/GSE168667/OUTPUT/multiome/"
+temp_path <- tempdir() 
+download.file("http://research-pub.gene.com/oncbx/yaox/Epiregulon/GSE168667.tar.gz",
+              file.path(temp_path, "GSE168667.tar.gz"))
+untar(tarfile=file.path(temp_path, "GSE168667.tar.gz"), exdir = temp_path)
+archR_project_path <- file.path(temp_path, "multiome")
 proj <- loadArchRProject(path = archR_project_path, showLogo = FALSE)
-
-```
-
-We verify that "GeneExpressionMatrix" and "PeakMatrix" are present for this tutorial. 
-
-```{r}
-getAvailableMatrices(proj)
 ```
 
 We will use the joint reducedDims - "LSI_Combined" and  joint embeddings - "UMAP_Combined"
@@ -62,7 +61,7 @@ PeakMatrix <- getMatrixFromProject(
 )
 
 ```
-If we extract the gene expression from matrix, it will be in the form of RangedSummarizedExperiment. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to a SingleCellExperiment object. It's also important to note that gene expression from ArchR is library size normalized (not logged).
+If we extract the gene expression from matrix, it will be in the form of `RangedSummarizedExperiment`. We can make use of `ArchRMatrix2SCE` to convert gene expression matrix to a `SingleCellExperiment` object. It's also important to note that gene expression from ArchR is library size normalized (not logged).
 ```{r}
 library(epiregulon.archr)
 GeneExpressionMatrix <- ArchRMatrix2SCE(GeneExpressionMatrix, rename = "normalizedCounts")
@@ -76,13 +75,12 @@ We rename the assay name of the PeakMatrix as counts.
 PeakMatrix <- ArchRMatrix2SCE(PeakMatrix, rename = "counts")
 ```
 
-Transfer embeddings from ArchR project to singleCellExperiment for visualization
+Transfer embeddings from ArchR project to `SingleCellExperiment` for visualization
 
 ```{r}
 reducedDim(GeneExpressionMatrix, "UMAP_Combined") <- getEmbedding(ArchRProj = proj, 
                                                                   embedding = "UMAP_Combined", 
                                                                   returnDF = TRUE)[colnames(GeneExpressionMatrix),]
-
 
 # add cell label
 GeneExpressionMatrix$label <- GeneExpressionMatrix$Cells
@@ -98,8 +96,6 @@ scater::plotReducedDim(GeneExpressionMatrix,
                        text_by = "label", 
                        colour_by = "label")
 ```
-
-
 
 ## Retrieve bulk TF ChIP-seq binding sites 
 
@@ -126,7 +122,7 @@ p2g
 
 ## Add TF motif binding to peaks
 
-The next step is to add the TF motif binding information by overlapping the regions of the peak matrix with the bulk chip-seq database. The user can supply an archR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a Granges object or RangedSummarizedExperiment.
+The next step is to add the TF motif binding information by overlapping the regions of the peak matrix with the bulk chip-seq database. The user can supply an ArchR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a `Granges` object or `RangedSummarizedExperiment`.
 
 ```{r addTFMotifInfo_prostate}
 overlap <- addTFMotifInfo(archR_project_path = archR_project_path, grl = grl, p2g = p2g)
@@ -136,9 +132,9 @@ overlap <- addTFMotifInfo(archR_project_path = archR_project_path, grl = grl, p2
 
 A long format data frame, representing the inferred regulons, is then generated. Three columns are important:
 
-* tf (transcription factor)
-* target gene
-* peak to gene correlation between tf and target gene
+* transcription factors (tf)
+* target genes (target)
+* peak to gene correlation between tf and target gene (corr)
 
 ```{r getRegulon_prostate}
 regulon <- getRegulon(p2g = p2g, overlap = overlap, aggregate = FALSE)
@@ -147,13 +143,7 @@ regulon
 
 ## (Optional) Annotate with TF motifs
 
-So far the gene regulatory network was constructed from TF ChIP-seq exclusively. Some users would prefer to further annotate the regulatory elements with the presence of motifs. If motif annotation has been previously performed by ArchR, `addMotifScore` can retrieve this annotation from the ArchR project. 
-
-If motifs are available for a factor and the RE contains a motif, we return 1. If motifs are available and the RE does not contain a motif, we return 0. If no motifs are known for this particular factor (as in the case of co-factors or chromatin modifiers), we return NA.
-
-If the user has not performed motif annotation with ArchR, we can also annotate the peaks with motifs using the Cisbp database (default) or user-provided PWMS. See `?addMotifScore`
-
-It is important to note that filtering for the presence of motifs removes a large fraction of the target genes. Motifs are often present in a small subset of the ChIP-seq peaks (can be as low as 10%). Second, indirect TF binding, possibly through its interaction partners, may have a true biological function. In this example, we continue with regulons containing the motifs, `regulon.motif`. However, if the user prefers to retain all target genes including REs without the motifs, they should proceed with `regulon`.
+In this example, we will filter the regulon for the presence of transcription factor motifs in a peak (see Section \@ref(motif_score)) and continue the workflow with the `regulon.motif` object. However, if the user prefers to retain all target genes, including REs without motifs, they may proceed with `regulon`.
 
 ```{r addMotifScore_prostate}
 
@@ -165,10 +155,7 @@ regulon.motif <- regulon.motif[which(regulon.motif$motif ==1),]
 
 ## Prune network
 
-Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor (TF), regulatory element (RE) and target gene (TG) vs the expected number of cells if TF/RE and TG are independently expressed. We implement two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is P(TF, RE) * P(TG), and the number of trials is the total number of cells, and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also P(TF, RE) * P(TG) and the probability otherwise is 1- P(TF, RE) * P(TG). The observed cell count for the active category is the number of cells jointly expressing all three elements, and the cell count for the inactive category is n - n_triple.
-
-
-We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section on differential networks.
+We will use `pruneRegulon` function to restict the downstream analysis to more reliable GRN connections. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section \@ref(diff_network) to learn more on the differential networks.
 
 ```{r pruning_prostate,  results = "hide", warning = FALSE, message = FALSE}
 
@@ -185,13 +172,7 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
 
 ## Add Weights {#weights_prostate}
 
-While the `pruneRegulon' function provides statistics on the joint occurrence of TF-RE-TG, we would like to further estimate the strength of regulation. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity. Epiregulon estimates the regulatory potential using one of the three measures: 1) correlation between TG and TF or between TG and the product of TF and RE, 2) mutual information between TG and TF expression or between TG and the product of TF and RE, or 3) Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs cells that do not.
-
-Two measures (correlation and Wilcoxon) give both the magnitude and directionality of changes whereas mutational information is always positive. The correlation and mutual information statistics are computed on grouped pseudobulks by user-supplied cluster labels and yield a single weight across all clusters per each TF-RE-target triplet. In contrast, the Wilcoxon method group cells based on the joint expression of TF, RE and TG in each single cell or in cell aggregates. If cell labels are provided, we calculate cluster-specific weights in addition to estimating weights from all the cells. Cell aggregation uses a default value of 10 cells and can help overcome sparsity and speed up computation. If cluster labels are provided, we can obtain weights of individual clusters and all cells combined. 
-
-In the case of drug treatment, however, the activity of TF is suppressed often not by downregulation of the TF gene expression, but by direct interference of the TF protein function. In this dataset, the drug enzalutamide blocks the ligand binding domain of the androgen receptor and prevents it from binding to the chromatin. As a result, while the AR gene expression stays the same, the chromatin accessibility of AR, as computed by chromVar in the ArchR package, is greatly reduced by 48 hour treatment of enzalutamide. 
-
-First, we visualize the AR expression and show that enzalutamide does not decrease AR expression.
+Before we calculate AR activity, we will first visualize its expression and show that enzalutamide does not decrease AR expression.
 
 ```{r}
 library(epiregulon.extra)
@@ -461,7 +442,7 @@ plotGseaNetwork(tf = names(enrichresults),
                 ntop_pathways = 10)
 ```
 
-## Differential network analysis
+## Differential network analysis {diff_network}
 In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that AR is downregulated in the Enzalutamide treated cells compared to parental LNCaP. 
 
 ```{r differential_networks_prostate}

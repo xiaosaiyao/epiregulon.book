@@ -23,7 +23,7 @@ markers.sig <- getSigGenes(markers, topgenes = 5, direction = "up" )
 markers.sig 
 ```
 
-## Visualizing TF activities
+## Visualizing TF activities {#diff_activity_vis}
 
 Epiregulon also provides the option for visualizing the inferred TF activities.
 ```{r}

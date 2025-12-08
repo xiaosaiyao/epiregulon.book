@@ -1,15 +1,13 @@
 ```{r echo=FALSE}
 library(BiocStyle)
 ```
-# Basic workflow with MultiAssayExperiment
+# Quick start
 
-In this chapter, we illustrate the epiregulon workflow starting from data in the form of `SingleCellExperiment` objects using the correlation weight estimation method.
-
-This tutorial demonstrates the basic functions of `epiregulon`, using the reprogram-seq dataset which can be downloaded from the `r Biocpkg("scMultiome")` package. In this example, prostate cancer cells (LNCaP) were infected in separate wells with viruses encoding 4 transcription factors (NKX2-1, GATA6, FOXA1 and FOXA2) and a positive control (mNeonGreen) before pooling. The identity of the infected transcription factors was tracked through cell hashing (available in the field `hash_assignment` of the `colData`) and serves as the ground truth.
+In this chapter, we illustrate the epiregulon workflow, using the reprogram-seq dataset which can be downloaded from the `r Biocpkg("scMultiome")` package. In this example, prostate cancer cells (LNCaP) were infected in separate wells with viruses encoding 4 transcription factors (NKX2-1, GATA6, FOXA1 and FOXA2) and a positive control (mNeonGreen) before pooling. The identity of the infected transcription factors was tracked through cell hashing (available in the field `hash_assignment` of the `colData`) and serves as the ground truth.
 
 ## Data preparation
 
-Prior to using `epiregulon`, single cell preprocessing needs to performed by user's favorite methods. The following components are required: <br>
+Prior to using `epiregulon`, single cell preprocessing needs to be performed by user's favorite methods. The following components are required: <br>
 1. Peak matrix from scATAC-seq containing the chromatin accessibility information <br>
 2. Gene expression matrix from either paired or unpaired scRNA-seq. RNA-seq integration needs to be performed for unpaired dataset. <br>
 3. Dimensionality reduction matrix from with either single modalities or joint scRNA-seq and scATAC-seq <br>
@@ -48,9 +46,7 @@ scater::plotReducedDim(GeneExpressionMatrix,
                        colour_by = "Clusters")
 ```
 
-## Quick start
-
-### Retrieve bulk TF ChIP-seq binding sites 
+## Retrieve bulk TF ChIP-seq binding sites 
 
 First, we retrieve a `GRangesList` object containing the binding sites of all the transcription factors and co-regulators. These binding sites are derived from bulk ChIP-seq data in the [ChIP-Atlas](https://chip-atlas.org/) and [ENCODE](https://www.encodeproject.org/) databases. For the same transcription factor, multiple ChIP-seq files from different cell lines or tissues are merged. For further information on how these peaks are derived, please refer to `?epiregulon::getTFMotifInfo`. Currently, human genomes hg19 and hg38 and mouse mm10 are supported. 
 
@@ -61,9 +57,22 @@ grl
 
 ### Link ATAC-seq peaks to target genes
 
-Next, we try to link ATAC-seq peaks to their putative target genes. We assign a peak to a gene within a size window (default ±250kb) if the chromatin accessibility of the peak and expression of the target genes are highly correlated (default threshold 0.5). To compute correlations, we first create cell aggregates by performing k-means clustering on the reduced dimensionality matrix. Then we aggregate the counts of the gene expression and peak matrix and average across the number of cells. Correlations are computed on the averaged gene expression and chromatin accessibility.
+Next, we try to link ATAC-seq peaks to their putative target genes. We assign a peak to a gene within a size window (default ±250kb) if the chromatin accessibility of the peak and expression of the target genes are highly correlated (default threshold 0.5). To compute correlations, we first create cell aggregates by performing k-means clustering on the reduced dimensionality matrix. To estimate the optimal number of cells per cluster we will run the function `optimizeMetacellNumber`.
 
-If cluster labels are provided, peak-to-gene correlations are computed on all the cells and for each cluster. Peak-to-gene links are retained as long as any of the correlations pass the threshold; the longer list of peak-to-gene links capture both inter- and intra-cluster variations.
+```{r}
+set.seed(1010)
+cellNum <- optimizeMetacellNumber(expMatrix = GeneExpressionMatrix,
+                                  peakMatrix = PeakMatrix,
+                                  exp_assay = "normalizedCounts",
+                                  peak_assay = "counts",
+                                  reducedDim = reducedDim(GeneExpressionMatrix, "UMAP_Combined"),
+                                  BPPARAM = BiocParallel::SerialParam(progressbar = FALSE))
+
+cellNum
+```
+
+`cellNum` object is now provided as an argument to `calculateP2G`.
+
 ```{r calculateP2G}
 set.seed(1010)
 p2g <- calculateP2G(peakMatrix = PeakMatrix, 
@@ -91,31 +100,16 @@ head(overlap)
 
 ### Generate regulons
 
-A DataFrame, representing the inferred regulons, is then generated. The DataFrame consists of ten columns:
-
-1. `idxATAC` - index of the peak in the peak matrix
-2. `chr` - chromosome number
-3. `start` - start position of the peak
-4. `end` - end position of the peak
-5. `idxRNA` - index in the gene expression matrix corresponding to the target gene
-6. `target` - name of the target gene
-7. `distance` - distance between the transcription start site of the target gene and the middle of the peak
-8. `idxTF` - index in the gene expression matrix corresponding to the transcription factor
-9. `tf` - name of the transcription factor
-10. `corr` - correlation between target gene expression and the chromatin accessibility at the peak. if cluster labels are provided, 
-this field is a matrix with columns names corresponding to correlation across all cells and for each of the clusters.
+A data frame representing the inferred regulons is then generated. The data frame consists of several columns, including those indicating target genes, transcription factors, and regulatory elements indexed by their corresponding rows in the `PeakMatrix`.
 
 ```{r, warning=FALSE, getRegulon}
 regulon <- getRegulon(p2g = p2g, overlap = overlap, aggregate = FALSE)
 regulon
 ```
 
-### Network pruning (highly recommended)
+### Network pruning (recommended)
 
-Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor (TF), regulatory element (RE) and target gene (TG) vs the expected number of cells if TF/RE and TG are independently expressed. The users can choose between two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is P(TF, RE) * P(TG), and the number of trials is the total number of cells, and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also P(TF, RE) * P(TG) and the probability otherwise is 1- P(TF, RE) * P(TG). The observed cell count for the category of "active TF" is the number of cells jointly expressing all three elements, and the cell count for the inactive category is n - n_triple.
-
-We calculate cluster-specific p-values if users supply cluster labels. This is useful if we are interested in cluster-specific networks. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. 
-
+Since our regulon is quite large, and likely contains many false connections, we will pass it through the pruning function.
 
 ```{r network pruning, results = "hide", message = FALSE}
 
@@ -133,15 +127,18 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
 pruned.regulon
 ```
 
-### Add Weights
+### Calculate TF activity 
 
-While the `pruneRegulon` function provides statistics on the joint occurrence of TF-RE-TG, we would like to further estimate the strength of regulation. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity. Epiregulon estimates the regulatory potential using one of the three measures: 1) correlation between TF and target gene expression, 2) mutual information between the TF and target gene expression and 3) Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs cells that do not.
+Finally, the activities for a specific TF in each cell are computed by averaging expressions of target genes linked to the TF weighted by the test statistics of choice, chosen from either correlation, mutual information or the Wilcoxon test statistics. 
+$$y=\frac{1}{n}\sum_{i=1}^{n} x_i * weights_i$$
+where $y$ is the activity of a TF for a cell,
+$n$ is the total number of targets for a TF,
+$x_i$ is the log count expression of target $i$ where $i$ in {1,2,...,n} and
+$weights_i$ is the weight of TF - target $i$, calculated by running `addWeights` function.
 
-Two of the measures (correlation and Wilcoxon statistics) give both the magnitude and directionality of changes whereas mutual information is always positive. The correlation and mutual information statistics are computed on pseudobulks aggregated by user-supplied cluster labels, whereas the Wilcoxon method groups cells into two categories: 1) the active category of cells jointly expressing TF, RE and TG and 2) the inactive category consisting of the remaining cells. 
 
-We calculate cluster-specific weights if users supply cluster labels.
 
-```{r addWeights, results = "hide", warning = FALSE, message = FALSE}
+```{r calculateActivity}
 regulon.w <- addWeights(regulon = pruned.regulon,
                         expMatrix  = GeneExpressionMatrix,
                         exp_assay  = "normalizedCounts",
@@ -150,37 +147,7 @@ regulon.w <- addWeights(regulon = pruned.regulon,
                         clusters = GeneExpressionMatrix$Clusters,
                         method = "wilcox")
 
-regulon.w
-```
 
-### (Optional) Annotate with TF motifs
-
-So far the gene regulatory network was constructed from TF ChIP-seq exclusively. Some users would prefer to further annotate regulatory elements with the presence of motifs. We provide an option to annotate peaks with motifs from the Cisbp database. If no motifs are present for this particular factor (as in the case of co-factors or chromatin modifiers), we return NA. If motifs are available for a factor and the RE contains a motif, we return 1. If motifs are available and the RE does not contain a motif, we return 0. 
-
-
-```{r addMotifScore, message=FALSE}
-
-regulon.w.motif <- addMotifScore(regulon = regulon.w,
-                                 peaks = rowRanges(PeakMatrix),
-                                 species = "human",
-                                 genome = "hg38")
-
-# if desired, set weight to 0 if no motif is found
-regulon.w.motif$weight[regulon.w.motif$motif == 0] <- 0
-
-regulon.w.motif
-```
-
-### Calculate TF activity 
-
-Finally, the activities for a specific TF in each cell are computed by averaging expressions of target genes linked to the TF weighted by the test statistics of choice, chosen from either correlation, mutual information or the Wilcoxon test statistics. 
-$$y=\frac{1}{n}\sum_{i=1}^{n} x_i * weights_i$$
-where $y$ is the activity of a TF for a cell,
-$n$ is the total number of targets for a TF,
-$x_i$ is the log count expression of target $i$ where $i$ in {1,2,...,n} and
-$weights_i$ is the weight of TF - target $i$
-
-```{r calculateActivity}
 score.combine <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    regulon = regulon.w, 
                                    mode = "weight", 

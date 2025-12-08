@@ -40,9 +40,11 @@ pruned.regulon.aggr <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                peak_cutoff = NULL)
 ```
 
-## Annotating with TF motifs
+## Annotation with TF motifs {#motif_score}
 
 So far, the gene regulatory network has been constructed exclusively from TF ChIP-seq data. Some users may want to further annotate regulatory elements with motifs. We provide an option to annotate peaks with motifs from the [CIS_BP](https://cisbp.ccbr.utoronto.ca/) database. If no motifs are present for a particular factor (e.g., for co-factors or chromatin modifiers), `NA` is returned. If motifs exist for a factor and the regulatory element contains a motif, `1` is returned; if the regulatory element does not contain a motif, `0` is returned. Users can also provide their own motif annotation through the `pwms` argument.
+
+It is important to note that filtering for the presence of motifs removes a large fraction of the target genes. Motifs are often present in a small subset of the ChIP-seq peaks (can be as low as 10%). Second, indirect TF binding, possibly through its interaction partners, may have a true biological function.
 
 
 ```{r message=FALSE}
