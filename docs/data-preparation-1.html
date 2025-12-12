@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Data preparation | Epiregulon documentation</title>
+  <meta name="description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Data preparation | Epiregulon documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Data preparation | Epiregulon documentation" />
+  
+  <meta name="twitter:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  
+
+<meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
+
+
+<meta name="date" content="2025-12-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="quick-start.html"/>
+<link rel="next" href="construction.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Epiregulon documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="installation.html"><a href="installation.html#installing-from-github"><i class="fa fa-check"></i><b>1.1</b> Installing from github</a></li>
+<li class="chapter" data-level="1.2" data-path="installation.html"><a href="installation.html#installing-from-bioconductor"><i class="fa fa-check"></i><b>1.2</b> Installing from Bioconductor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>2</b> Quick start</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="quick-start.html"><a href="quick-start.html#data-preparation"><i class="fa fa-check"></i><b>2.1</b> Data preparation</a></li>
+<li class="chapter" data-level="2.2" data-path="quick-start.html"><a href="quick-start.html#retrieve-bulk-tf-chip-seq-binding-sites"><i class="fa fa-check"></i><b>2.2</b> Retrieve bulk TF ChIP-seq binding sites</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="quick-start.html"><a href="quick-start.html#link-atac-seq-peaks-to-target-genes"><i class="fa fa-check"></i><b>2.2.1</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="quick-start.html"><a href="quick-start.html#add-tf-motif-binding-to-peaks"><i class="fa fa-check"></i><b>2.2.2</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="2.2.3" data-path="quick-start.html"><a href="quick-start.html#generate-regulons"><i class="fa fa-check"></i><b>2.2.3</b> Generate regulons</a></li>
+<li class="chapter" data-level="2.2.4" data-path="quick-start.html"><a href="quick-start.html#network-pruning-recommended"><i class="fa fa-check"></i><b>2.2.4</b> Network pruning (recommended)</a></li>
+<li class="chapter" data-level="2.2.5" data-path="quick-start.html"><a href="quick-start.html#calculate-tf-activity"><i class="fa fa-check"></i><b>2.2.5</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="quick-start.html"><a href="quick-start.html#session-info"><i class="fa fa-check"></i><b>2.3</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-preparation-1.html"><a href="data-preparation-1.html"><i class="fa fa-check"></i><b>3</b> Data preparation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-preparation-1.html"><a href="data-preparation-1.html#constructing-a-singlecellexperiment-object"><i class="fa fa-check"></i><b>3.1</b> Constructing a SingleCellExperiment object</a></li>
+<li class="chapter" data-level="3.2" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-an-archr-object"><i class="fa fa-check"></i><b>3.2</b> Starting from an ArchR object</a></li>
+<li class="chapter" data-level="3.3" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-a-seuratsignac-object"><i class="fa fa-check"></i><b>3.3</b> Starting from a Seurat/Signac object</a></li>
+<li class="chapter" data-level="3.4" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-anndata"><i class="fa fa-check"></i><b>3.4</b> Starting from AnnData</a></li>
+<li class="chapter" data-level="3.5" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-10x-data-formats"><i class="fa fa-check"></i><b>3.5</b> Starting from 10x data formats</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-preparation-1.html"><a href="data-preparation-1.html#reading-from-.h5-file"><i class="fa fa-check"></i><b>3.5.1</b> Reading from .h5 file</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-preparation-1.html"><a href="data-preparation-1.html#reading-directly-from-a-10x-directory"><i class="fa fa-check"></i><b>3.5.2</b> Reading directly from a 10x directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-preparation-1.html"><a href="data-preparation-1.html#reading-directly-from-csv"><i class="fa fa-check"></i><b>3.6</b> Reading directly from CSV</a></li>
+<li class="chapter" data-level="3.7" data-path="data-preparation-1.html"><a href="data-preparation-1.html#important-points"><i class="fa fa-check"></i><b>3.7</b> Important points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>4</b> Construction of the gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="construction.html"><a href="construction.html#downloading-and-formatting-dataset"><i class="fa fa-check"></i><b>4.1</b> Downloading and formatting dataset</a></li>
+<li class="chapter" data-level="4.2" data-path="construction.html"><a href="construction.html#retrieving-tf-occupancy-data"><i class="fa fa-check"></i><b>4.2</b> Retrieving TF occupancy data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="construction.html"><a href="construction.html#chip-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> ChIP-seq data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="construction.html"><a href="construction.html#motif-information"><i class="fa fa-check"></i><b>4.2.2</b> Motif information</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="construction.html"><a href="construction.html#linking-atacseq-peaks-to-target-genes"><i class="fa fa-check"></i><b>4.3</b> Linking ATACseq peaks to target genes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="construction.html"><a href="construction.html#optimizating-the-number-of-metacells-optional"><i class="fa fa-check"></i><b>4.3.1</b> Optimizating the number of metacells (optional)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="construction.html"><a href="construction.html#distance_window"><i class="fa fa-check"></i><b>4.3.2</b> Finding peak-target gene links within a defined distance</a></li>
+<li class="chapter" data-level="4.3.3" data-path="construction.html"><a href="construction.html#linking-peaks-to-the-nearest-genes"><i class="fa fa-check"></i><b>4.3.3</b> Linking peaks to the nearest genes</a></li>
+<li class="chapter" data-level="4.3.4" data-path="construction.html"><a href="construction.html#filtering-peak-target-gene-links"><i class="fa fa-check"></i><b>4.3.4</b> Filtering peak-target gene links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="construction.html"><a href="construction.html#adding-tf-occupancy-to-peaks"><i class="fa fa-check"></i><b>4.4</b> Adding TF occupancy to peaks</a></li>
+<li class="chapter" data-level="4.5" data-path="construction.html"><a href="construction.html#generating-regulons"><i class="fa fa-check"></i><b>4.5</b> Generating regulons</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="refinement.html"><a href="refinement.html"><i class="fa fa-check"></i><b>5</b> Refinement of gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Network pruning</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="refinement.html"><a href="refinement.html#cell_aggregation"><i class="fa fa-check"></i><b>5.1.1</b> Cell aggregation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="refinement.html"><a href="refinement.html#motif_score"><i class="fa fa-check"></i><b>5.2</b> Annotation with TF motifs</a></li>
+<li class="chapter" data-level="5.3" data-path="refinement.html"><a href="refinement.html#annotating-with-log-fold-changes"><i class="fa fa-check"></i><b>5.3</b> Annotating with log fold changes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html"><i class="fa fa-check"></i><b>6</b> Calculation of the TF activity</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#addWeights"><i class="fa fa-check"></i><b>6.1</b> Adding weights</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#cell-aggregation"><i class="fa fa-check"></i><b>6.1.1</b> Cell aggregation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#calculating-tf-activity"><i class="fa fa-check"></i><b>6.2</b> Calculating TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>7</b> Network analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Differential TF activity</a></li>
+<li class="chapter" data-level="7.2" data-path="network-analysis.html"><a href="network-analysis.html#diff_activity_vis"><i class="fa fa-check"></i><b>7.2</b> Visualizing TF activities</a></li>
+<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Differential network analysis</a></li>
+<li class="chapter" data-level="7.5" data-path="network-analysis.html"><a href="network-analysis.html#finding-interaction-partners"><i class="fa fa-check"></i><b>7.5</b> Finding interaction Partners</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>8</b> ArchR workflow and different weight methods</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#data-preparation-2"><i class="fa fa-check"></i><b>8.1</b> Data preparation</a></li>
+<li class="chapter" data-level="8.2" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#load-archr-project"><i class="fa fa-check"></i><b>8.2</b> Load ArchR project</a></li>
+<li class="chapter" data-level="8.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>8.3</b> Retrieve matrices from ArchR project</a></li>
+<li class="chapter" data-level="8.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>8.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="8.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>8.5</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>8.6</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="8.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-1"><i class="fa fa-check"></i><b>8.7</b> Generate regulons</a></li>
+<li class="chapter" data-level="8.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>8.8</b> (Optional) Annotate with TF motifs</a></li>
+<li class="chapter" data-level="8.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network"><i class="fa fa-check"></i><b>8.9</b> Prune network</a></li>
+<li class="chapter" data-level="8.10" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#weights_prostate"><i class="fa fa-check"></i><b>8.10</b> Add Weights</a></li>
+<li class="chapter" data-level="8.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-1"><i class="fa fa-check"></i><b>8.11</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="8.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>8.12</b> Perform differential activity</a></li>
+<li class="chapter" data-level="8.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>8.13</b> Visualize the results</a></li>
+<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network"><i class="fa fa-check"></i><b>8.14</b> Differential network analysis {diff_network}</a></li>
+<li class="chapter" data-level="8.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#session-info-1"><i class="fa fa-check"></i><b>8.15</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>9</b> Single modality: scRNA-seq only</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>9.1</b> Load regulon</a></li>
+<li class="chapter" data-level="9.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>9.2</b> Load scRNA-seq data</a></li>
+<li class="chapter" data-level="9.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>9.3</b> Calculate activity</a></li>
+<li class="chapter" data-level="9.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>9.4</b> Perform differential activity</a></li>
+<li class="chapter" data-level="9.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>9.5</b> Visualize activity</a></li>
+<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Pathway enrichment</a></li>
+<li class="chapter" data-level="9.7" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#session-info-2"><i class="fa fa-check"></i><b>9.7</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="session-info-3.html"><a href="session-info-3.html"><i class="fa fa-check"></i><b>10</b> Session Info</a></li>
+<li class="chapter" data-level="11" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>11</b> Contact</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Epiregulon documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-preparation-1" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Data preparation<a href="data-preparation-1.html#data-preparation-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Epiregulon operates on the <code>SingleCellExperiment</code> class. We assume that gene expression, chromatin accessibility and dimension reduction have been obtained by users’ favorite packages prior to the use of Epiregulon. This chapter provides instructions on how to convert gene expression matrix and peak matrix into <code>SingleCellExperiment</code> objects from other formats including ArchR project, Seurat objects, AnnData and 10x genomics output. The first section provides a quick primer on the components of a <code>SingleCellExperiment</code> object necessary to run Epiregulon. It is thus recommended for all users to go through it.</p>
+<div id="constructing-a-singlecellexperiment-object" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Constructing a SingleCellExperiment object<a href="data-preparation-1.html#constructing-a-singlecellexperiment-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s construct a GeneExpressionMatrix from scratch. First we will create the count matrix.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-preparation-1.html#cb47-1" tabindex="-1"></a><span class="fu">library</span>(SingleCellExperiment)</span>
+<span id="cb47-2"><a href="data-preparation-1.html#cb47-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rpois</span>(<span class="dv">100000</span>, <span class="at">lambda =</span> <span class="dv">2</span>), <span class="at">ncol=</span><span class="dv">1000</span>, <span class="at">nrow=</span><span class="dv">100</span>)</span>
+<span id="cb47-3"><a href="data-preparation-1.html#cb47-3" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">SingleCellExperiment</span>(<span class="fu">list</span>(<span class="at">counts=</span>counts))</span>
+<span id="cb47-4"><a href="data-preparation-1.html#cb47-4" tabindex="-1"></a><span class="fu">rownames</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Gene&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">sep=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb47-5"><a href="data-preparation-1.html#cb47-5" tabindex="-1"></a><span class="fu">colnames</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Cell&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">sep=</span><span class="st">&quot;-&quot;</span>)</span></code></pre></div>
+<p>It is important (and efficient) to convert the count matrix to <code>dgCMatrix</code> format at the beginning of the workflow.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-preparation-1.html#cb48-1" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:S4Vectors&#39;:
+## 
+##     expand</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-preparation-1.html#cb51-1" tabindex="-1"></a><span class="fu">counts</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">as</span>(<span class="fu">counts</span>(GeneExpressionMatrix), <span class="st">&quot;dgCMatrix&quot;</span>)</span></code></pre></div>
+<p>Next we will add the cell information to <code>colData</code></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-preparation-1.html#cb52-1" tabindex="-1"></a><span class="fu">colData</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">DataFrame</span>(<span class="at">Cluster =</span> <span class="fu">paste</span>(<span class="st">&quot;cluster&quot;</span>, <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1000</span>, <span class="cn">TRUE</span>)))</span></code></pre></div>
+<p>For the purpose of Epiregulon, it is important to provide the start and end position of the genes so that we can link genes to the peak regions.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="data-preparation-1.html#cb53-1" tabindex="-1"></a>seqnames <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;chr&quot;</span>, <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">100</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb53-2"><a href="data-preparation-1.html#cb53-2" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>, <span class="dv">100</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb53-3"><a href="data-preparation-1.html#cb53-3" tabindex="-1"></a>end <span class="ot">&lt;-</span> start <span class="sc">+</span> <span class="fu">sample</span>(<span class="dv">100</span><span class="sc">:</span><span class="dv">500</span>, <span class="dv">100</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb53-4"><a href="data-preparation-1.html#cb53-4" tabindex="-1"></a>strand <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;+&quot;</span>, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;*&quot;</span>), <span class="dv">100</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb53-5"><a href="data-preparation-1.html#cb53-5" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="data-preparation-1.html#cb53-6" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(</span>
+<span id="cb53-7"><a href="data-preparation-1.html#cb53-7" tabindex="-1"></a>    <span class="at">seqnames =</span> seqnames,</span>
+<span id="cb53-8"><a href="data-preparation-1.html#cb53-8" tabindex="-1"></a>    <span class="at">ranges =</span> <span class="fu">IRanges</span>(<span class="at">start =</span> start, <span class="at">end =</span> end),</span>
+<span id="cb53-9"><a href="data-preparation-1.html#cb53-9" tabindex="-1"></a>    <span class="at">strand =</span> strand</span>
+<span id="cb53-10"><a href="data-preparation-1.html#cb53-10" tabindex="-1"></a>)</span></code></pre></div>
+<p>Next we provide additional information about the genes. We can add them into the <code>mcols</code> as <code>DataFrame</code>. The <code>GRanges</code> become the <code>rowRanges</code> of the GeneExpressionMatrix.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-preparation-1.html#cb54-1" tabindex="-1"></a><span class="fu">mcols</span>(gr) <span class="ot">&lt;-</span> <span class="fu">DataFrame</span>(<span class="at">name =</span> <span class="fu">paste</span>(<span class="st">&quot;Gene&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">sep=</span><span class="st">&quot;-&quot;</span>),</span>
+<span id="cb54-2"><a href="data-preparation-1.html#cb54-2" tabindex="-1"></a>                       <span class="at">ID =</span> <span class="fu">paste0</span>(<span class="st">&quot;ID&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>))</span>
+<span id="cb54-3"><a href="data-preparation-1.html#cb54-3" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="data-preparation-1.html#cb54-4" tabindex="-1"></a><span class="fu">rowRanges</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> gr</span>
+<span id="cb54-5"><a href="data-preparation-1.html#cb54-5" tabindex="-1"></a><span class="fu">rowRanges</span>(GeneExpressionMatrix)</span></code></pre></div>
+<pre><code>## GRanges object with 100 ranges and 2 metadata columns:
+##         seqnames      ranges strand |        name          ID
+##            &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt;
+##     [1]     chr2 48932-49428      - |      Gene-1         ID1
+##     [2]     chr1 57278-57418      * |      Gene-2         ID2
+##     [3]     chr2 20807-21201      * |      Gene-3         ID3
+##     [4]     chr1 75364-75476      * |      Gene-4         ID4
+##     [5]     chr2 60681-60820      * |      Gene-5         ID5
+##     ...      ...         ...    ... .         ...         ...
+##    [96]     chr2 49039-49437      + |     Gene-96        ID96
+##    [97]     chr2 34808-35203      * |     Gene-97        ID97
+##    [98]     chr1 87087-87432      + |     Gene-98        ID98
+##    [99]     chr1 96985-97456      * |     Gene-99        ID99
+##   [100]     chr1 81693-82053      * |    Gene-100       ID100
+##   -------
+##   seqinfo: 2 sequences from an unspecified genome; no seqlengths</code></pre>
+<p>The additional information about the genes will also appear in <code>rowData</code></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-preparation-1.html#cb56-1" tabindex="-1"></a><span class="fu">rowData</span>(GeneExpressionMatrix)</span></code></pre></div>
+<pre><code>## DataFrame with 100 rows and 2 columns
+##            name          ID
+##     &lt;character&gt; &lt;character&gt;
+## 1        Gene-1         ID1
+## 2        Gene-2         ID2
+## 3        Gene-3         ID3
+## 4        Gene-4         ID4
+## 5        Gene-5         ID5
+## ...         ...         ...
+## 96      Gene-96        ID96
+## 97      Gene-97        ID97
+## 98      Gene-98        ID98
+## 99      Gene-99        ID99
+## 100    Gene-100       ID100</code></pre>
+<p>Finally we add some reduced dimension data which is needed for clustering</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="data-preparation-1.html#cb58-1" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;PCA&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>), <span class="at">nrow=</span><span class="dv">1000</span>, <span class="at">ncol=</span><span class="dv">20</span>)</span>
+<span id="cb58-2"><a href="data-preparation-1.html#cb58-2" tabindex="-1"></a>GeneExpressionMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 100 1000 
+## metadata(0):
+## assays(1): counts
+## rownames: NULL
+## rowData names(2): name ID
+## colnames: NULL
+## colData names(1): Cluster
+## reducedDimNames(1): PCA
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>Repeat the process to create a <code>PeakMatrix</code></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="data-preparation-1.html#cb60-1" tabindex="-1"></a><span class="co"># add counts</span></span>
+<span id="cb60-2"><a href="data-preparation-1.html#cb60-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rpois</span>(<span class="dv">1000000</span>, <span class="at">lambda =</span> <span class="dv">1</span>), <span class="at">ncol=</span><span class="dv">1000</span>, <span class="at">nrow=</span><span class="dv">1000</span>)</span>
+<span id="cb60-3"><a href="data-preparation-1.html#cb60-3" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">SingleCellExperiment</span>(<span class="fu">list</span>(<span class="at">counts=</span>counts))</span>
+<span id="cb60-4"><a href="data-preparation-1.html#cb60-4" tabindex="-1"></a><span class="fu">rownames</span>(PeakMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Peak&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">sep=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb60-5"><a href="data-preparation-1.html#cb60-5" tabindex="-1"></a><span class="fu">colnames</span>(PeakMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Cell&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">sep=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb60-6"><a href="data-preparation-1.html#cb60-6" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="data-preparation-1.html#cb60-7" tabindex="-1"></a><span class="co"># convert count matrix to dgCMatrix</span></span>
+<span id="cb60-8"><a href="data-preparation-1.html#cb60-8" tabindex="-1"></a><span class="fu">counts</span>(PeakMatrix) <span class="ot">&lt;-</span> <span class="fu">as</span>(<span class="fu">counts</span>(PeakMatrix), <span class="st">&quot;dgCMatrix&quot;</span>)</span>
+<span id="cb60-9"><a href="data-preparation-1.html#cb60-9" tabindex="-1"></a></span>
+<span id="cb60-10"><a href="data-preparation-1.html#cb60-10" tabindex="-1"></a><span class="co"># add rowRanges</span></span>
+<span id="cb60-11"><a href="data-preparation-1.html#cb60-11" tabindex="-1"></a>seqnames <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;chr&quot;</span>, <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1000</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb60-12"><a href="data-preparation-1.html#cb60-12" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>, <span class="dv">1000</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb60-13"><a href="data-preparation-1.html#cb60-13" tabindex="-1"></a>end <span class="ot">&lt;-</span> start <span class="sc">+</span> <span class="fu">sample</span>(<span class="dv">100</span><span class="sc">:</span><span class="dv">500</span>, <span class="dv">1000</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb60-14"><a href="data-preparation-1.html#cb60-14" tabindex="-1"></a>strand <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;+&quot;</span>, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;*&quot;</span>), <span class="dv">1000</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb60-15"><a href="data-preparation-1.html#cb60-15" tabindex="-1"></a></span>
+<span id="cb60-16"><a href="data-preparation-1.html#cb60-16" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(</span>
+<span id="cb60-17"><a href="data-preparation-1.html#cb60-17" tabindex="-1"></a>    <span class="at">seqnames =</span> seqnames,</span>
+<span id="cb60-18"><a href="data-preparation-1.html#cb60-18" tabindex="-1"></a>    <span class="at">ranges =</span> <span class="fu">IRanges</span>(<span class="at">start =</span> start, <span class="at">end =</span> end),</span>
+<span id="cb60-19"><a href="data-preparation-1.html#cb60-19" tabindex="-1"></a>    <span class="at">strand =</span> strand</span>
+<span id="cb60-20"><a href="data-preparation-1.html#cb60-20" tabindex="-1"></a>)</span>
+<span id="cb60-21"><a href="data-preparation-1.html#cb60-21" tabindex="-1"></a></span>
+<span id="cb60-22"><a href="data-preparation-1.html#cb60-22" tabindex="-1"></a><span class="co"># add rowData</span></span>
+<span id="cb60-23"><a href="data-preparation-1.html#cb60-23" tabindex="-1"></a><span class="fu">mcols</span>(gr) <span class="ot">&lt;-</span> <span class="fu">DataFrame</span>(<span class="at">name =</span> <span class="fu">paste</span>(<span class="st">&quot;Peak&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">sep=</span><span class="st">&quot;-&quot;</span>))</span>
+<span id="cb60-24"><a href="data-preparation-1.html#cb60-24" tabindex="-1"></a></span>
+<span id="cb60-25"><a href="data-preparation-1.html#cb60-25" tabindex="-1"></a><span class="fu">rowRanges</span>(PeakMatrix) <span class="ot">&lt;-</span> gr</span>
+<span id="cb60-26"><a href="data-preparation-1.html#cb60-26" tabindex="-1"></a></span>
+<span id="cb60-27"><a href="data-preparation-1.html#cb60-27" tabindex="-1"></a><span class="co"># add reduced dimensionality matrix</span></span>
+<span id="cb60-28"><a href="data-preparation-1.html#cb60-28" tabindex="-1"></a></span>
+<span id="cb60-29"><a href="data-preparation-1.html#cb60-29" tabindex="-1"></a><span class="fu">reducedDim</span>(PeakMatrix, <span class="st">&quot;ATAC_LSI&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>), <span class="at">nrow=</span><span class="dv">1000</span>, <span class="at">ncol=</span><span class="dv">20</span>)</span>
+<span id="cb60-30"><a href="data-preparation-1.html#cb60-30" tabindex="-1"></a>PeakMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 1000 1000 
+## metadata(0):
+## assays(1): counts
+## rownames: NULL
+## rowData names(1): name
+## colnames(1000): Cell-1 Cell-2 ... Cell-999 Cell-1000
+## colData names(0):
+## reducedDimNames(1): ATAC_LSI
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>For more information on SingleCellExperiment, please refer to the <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">documentation</a> on bioconductor.</p>
+<p>For a real example of a properly formatted <code>SingleCellExperiment</code> object, check out datasets from the <a href="https://www.bioconductor.org/packages/release/data/experiment/html/scMultiome.html">scMultiome</a> package. Both the GeneExpressionMatrix and PeakMatrix are combined into a <code>MultiAssayExperiment</code> object.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="data-preparation-1.html#cb62-1" tabindex="-1"></a>mae <span class="ot">&lt;-</span> scMultiome<span class="sc">::</span><span class="fu">reprogramSeq</span>()</span></code></pre></div>
+<pre><code>## see ?scMultiome and browseVignettes(&#39;scMultiome&#39;) for documentation</code></pre>
+<pre><code>## loading from cache</code></pre>
+<p>Inspect the gene expression matrix</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="data-preparation-1.html#cb65-1" tabindex="-1"></a>GeneExpressMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;GeneExpressionMatrix&quot;</span>]]</span>
+<span id="cb65-2"><a href="data-preparation-1.html#cb65-2" tabindex="-1"></a>GeneExpressMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 36438 3903 
+## metadata(1): .internal
+## assays(2): counts normalizedCounts
+## rownames(36438): MIR1302-2HG FAM138A ... IL9R WASIR1
+## rowData names(2): name strand.1
+## colnames(3903): reprogram#TTAGGAACAAGGTACG-1
+##   reprogram#GAGCGGTCAACCTGGT-1 ... reprogram#GGTTACTAGACACCGC-1
+##   reprogram#CGCTATGAGTGAACAG-1
+## colData names(23): BlacklistRatio DoubletEnrichment ... ReadsInPeaks
+##   FRIP
+## reducedDimNames(2): LSI_RNA UMAP_RNA
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>Inspect the peak matrix</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="data-preparation-1.html#cb67-1" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;PeakMatrix&quot;</span>]]</span>
+<span id="cb67-2"><a href="data-preparation-1.html#cb67-2" tabindex="-1"></a>PeakMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 126602 3903 
+## metadata(1): .internal
+## assays(1): counts
+## rownames: NULL
+## rowData names(1): idx
+## colnames(3903): reprogram#TTAGGAACAAGGTACG-1
+##   reprogram#GAGCGGTCAACCTGGT-1 ... reprogram#GGTTACTAGACACCGC-1
+##   reprogram#CGCTATGAGTGAACAG-1
+## colData names(23): BlacklistRatio DoubletEnrichment ... ReadsInPeaks
+##   FRIP
+## reducedDimNames(0):
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+</div>
+<div id="starting-from-an-archr-object" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Starting from an ArchR object<a href="data-preparation-1.html#starting-from-an-archr-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Epiregulon is designed to work seamlessly with ArchR. GeneExpressionMatrix and PeakMatrix can be easily exported from ArchR using ArchR’s build-in function.</p>
+<p>Download a test ArchR project</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="data-preparation-1.html#cb69-1" tabindex="-1"></a><span class="fu">library</span>(ArchR)</span>
+<span id="cb69-2"><a href="data-preparation-1.html#cb69-2" tabindex="-1"></a>archr.proj <span class="ot">&lt;-</span> <span class="fu">getTestProject</span>()</span></code></pre></div>
+<p>Check available matrices in ArchR project</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="data-preparation-1.html#cb70-1" tabindex="-1"></a><span class="fu">getAvailableMatrices</span>(<span class="at">ArchRProj =</span> archr.proj)</span></code></pre></div>
+<pre><code>## [1] &quot;GeneIntegrationMatrix&quot; &quot;GeneScoreMatrix&quot;       &quot;MotifMatrix&quot;          
+## [4] &quot;PeakMatrix&quot;            &quot;TileMatrix&quot;</code></pre>
+<p>Export the GeneExpressionMatrix and PeakMatrix from the ArchR project.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="data-preparation-1.html#cb72-1" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(<span class="at">ArchRProj =</span> archr.proj, <span class="at">useMatrix =</span> <span class="st">&quot;GeneIntegrationMatrix&quot;</span>)</span>
+<span id="cb72-2"><a href="data-preparation-1.html#cb72-2" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(<span class="at">ArchRProj =</span> archr.proj, <span class="at">useMatrix =</span> <span class="st">&quot;PeakMatrix&quot;</span>)</span>
+<span id="cb72-3"><a href="data-preparation-1.html#cb72-3" tabindex="-1"></a>GeneExpressionMatrix</span></code></pre></div>
+<pre><code>## class: SummarizedExperiment 
+## dim: 2051 127 
+## metadata(0):
+## assays(1): GeneIntegrationMatrix
+## rownames: NULL
+## rowData names(6): seqnames start ... name idx
+## colnames(127): PBSmall#B.43 PBSmall#T.24 ... PBSmall#B.37 PBSmall#B.4
+## colData names(20): BlacklistRatio nDiFrags ... predictedGroup_Un
+##   predictedScore_Un</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="data-preparation-1.html#cb74-1" tabindex="-1"></a>PeakMatrix</span></code></pre></div>
+<pre><code>## class: RangedSummarizedExperiment 
+## dim: 2142 127 
+## metadata(0):
+## assays(1): PeakMatrix
+## rownames: NULL
+## rowData names(1): idx
+## colnames(127): PBSmall#B.43 PBSmall#T.24 ... PBSmall#B.37 PBSmall#B.4
+## colData names(20): BlacklistRatio nDiFrags ... predictedGroup_Un
+##   predictedScore_Un</code></pre>
+<p>The GeneExpressionMatrix and PeakMatrix exported from ArchR project are in the form of <code>SummarizedExperiment</code> and <code>RangedSummarizedExperiment</code> respectively. We provide a helper function to convert both to <code>SingleCellExperiment</code> class. Furthermore, the genomic location of the genes are transferred from <code>rowData</code> in the <code>RangedSummarizedExperiment</code> to the <code>rowRanges</code> of the <code>SingleCellExperiment</code>.</p>
+<p>Please note that GeneExpressionMatrix extracted from ArchR project contain normalized counts (not logged) and for clarity, we rename the assay as “normalizedCounts”</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="data-preparation-1.html#cb76-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.archr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;epiregulon.archr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:epiregulon&#39;:
+## 
+##     addMotifScore, addTFMotifInfo, calculateP2G, getTFMotifInfo</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="data-preparation-1.html#cb79-1" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">ArchRMatrix2SCE</span>(<span class="at">rse =</span> GeneExpressionMatrix, <span class="at">rename =</span> <span class="st">&quot;normalizedCounts&quot;</span>)</span>
+<span id="cb79-2"><a href="data-preparation-1.html#cb79-2" tabindex="-1"></a>GeneExpressionMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 2051 127 
+## metadata(0):
+## assays(1): normalizedCounts
+## rownames: NULL
+## rowData names(2): name idx
+## colnames(127): PBSmall#B.43 PBSmall#T.24 ... PBSmall#B.37 PBSmall#B.4
+## colData names(20): BlacklistRatio nDiFrags ... predictedGroup_Un
+##   predictedScore_Un
+## reducedDimNames(0):
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>We can also transform the counts to logcounts. This will add a new assay and we name it as “logcounts”.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="data-preparation-1.html#cb81-1" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">ArchRMatrix2SCE</span>(<span class="at">rse =</span> GeneExpressionMatrix, <span class="at">transform =</span> <span class="cn">TRUE</span>, <span class="at">transform_method =</span> <span class="st">&quot;log&quot;</span>, <span class="at">log_name =</span> <span class="st">&quot;logcounts&quot;</span>)</span>
+<span id="cb81-2"><a href="data-preparation-1.html#cb81-2" tabindex="-1"></a>GeneExpressionMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 2051 127 
+## metadata(0):
+## assays(2): counts logcounts
+## rownames: NULL
+## rowData names(2): name idx
+## colnames(127): PBSmall#B.43 PBSmall#T.24 ... PBSmall#B.37 PBSmall#B.4
+## colData names(20): BlacklistRatio nDiFrags ... predictedGroup_Un
+##   predictedScore_Un
+## reducedDimNames(0):
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>Check that rowRanges have been transferred</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="data-preparation-1.html#cb83-1" tabindex="-1"></a><span class="fu">rowRanges</span>(GeneExpressionMatrix)</span></code></pre></div>
+<pre><code>## GRanges object with 2051 ranges and 2 metadata columns:
+##          seqnames              ranges strand |        name       idx
+##             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;integer&gt;
+##      [1]    chr11       126987-139152      - |   LINC01001         1
+##      [2]    chr11       193080-194573      + |     SCGB1C1         2
+##      [3]    chr11       196761-200258      + |        ODF3         3
+##      [4]    chr11       202924-207422      - |       BET1L         4
+##      [5]    chr11       208530-215110      + |       RIC8A         5
+##      ...      ...                 ...    ... .         ...       ...
+##   [2047]     chr5 180551357-180552304      - |       OR2V1       827
+##   [2048]     chr5 180581943-180582890      + |       OR2V2       828
+##   [2049]     chr5 180620924-180632177      - |       TRIM7       829
+##   [2050]     chr5 180650263-180662808      + |      TRIM41       830
+##   [2051]     chr5 180683386-180688119      - |      TRIM52       831
+##   -------
+##   seqinfo: 2 sequences from an unspecified genome; no seqlengths</code></pre>
+<p>We next convert the PeakMatrix to a <code>SingleCellExperiment</code> object. The counts exported from ArchR are raw counts and thus we rename the assay as “counts”</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="data-preparation-1.html#cb85-1" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">ArchRMatrix2SCE</span>(PeakMatrix, <span class="at">rename =</span> <span class="st">&quot;counts&quot;</span>)</span>
+<span id="cb85-2"><a href="data-preparation-1.html#cb85-2" tabindex="-1"></a>PeakMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 2142 127 
+## metadata(0):
+## assays(1): counts
+## rownames: NULL
+## rowData names(1): idx
+## colnames(127): PBSmall#B.43 PBSmall#T.24 ... PBSmall#B.37 PBSmall#B.4
+## colData names(20): BlacklistRatio nDiFrags ... predictedGroup_Un
+##   predictedScore_Un
+## reducedDimNames(0):
+## mainExpName: NULL
+## altExpNames(0):</code></pre>
+<p>Neither SummarizedExperiment object or RangedSummarizedExperiment object contains reduced dimension, so we must extract the reduced dimensionality matrix from the ArchR project and add it to GeneExpressionMatrix and/or PeakMatrix</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="data-preparation-1.html#cb87-1" tabindex="-1"></a><span class="fu">reducedDim</span>(PeakMatrix, <span class="st">&quot;IterativeLSI&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">getReducedDims</span>(<span class="at">ArchRProj =</span> archr.proj, <span class="at">reducedDims =</span> <span class="st">&quot;IterativeLSI&quot;</span>)</span></code></pre></div>
+<p>Refer to ArchR <a href="https://www.archrproject.com/bookdown/index.html">manual</a> for full documentation.</p>
+</div>
+<div id="starting-from-a-seuratsignac-object" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Starting from a Seurat/Signac object<a href="data-preparation-1.html#starting-from-a-seuratsignac-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We download an example multimodel dataset from <a href="https://github.com/satijalab/seurat-data">SeuratData</a>.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-preparation-1.html#cb88-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;satijalab/seurat-data&#39;</span>)</span>
+<span id="cb88-2"><a href="data-preparation-1.html#cb88-2" tabindex="-1"></a><span class="fu">library</span>(SeuratData)</span>
+<span id="cb88-3"><a href="data-preparation-1.html#cb88-3" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="data-preparation-1.html#cb88-4" tabindex="-1"></a><span class="fu">InstallData</span>(<span class="st">&quot;pbmcMultiome&quot;</span>)</span></code></pre></div>
+<p>This is a PBMC dataset consisting of both RNAseq and ATACseq data and we load each modality as a separate Seurat object</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-preparation-1.html#cb89-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb89-2"><a href="data-preparation-1.html#cb89-2" tabindex="-1"></a><span class="fu">library</span>(Signac)</span>
+<span id="cb89-3"><a href="data-preparation-1.html#cb89-3" tabindex="-1"></a><span class="fu">library</span>(SeuratData)</span>
+<span id="cb89-4"><a href="data-preparation-1.html#cb89-4" tabindex="-1"></a>pbmc.rna <span class="ot">&lt;-</span> <span class="fu">LoadData</span>(<span class="st">&quot;pbmcMultiome&quot;</span>, <span class="st">&quot;pbmc.rna&quot;</span>)</span>
+<span id="cb89-5"><a href="data-preparation-1.html#cb89-5" tabindex="-1"></a>pbmc.atac <span class="ot">&lt;-</span> <span class="fu">LoadData</span>(<span class="st">&quot;pbmcMultiome&quot;</span>, <span class="st">&quot;pbmc.atac&quot;</span>)</span></code></pre></div>
+<p>We first convert the RNA Seurat object to GeneExpressionMatrix <code>SingleCellExperiment</code> class.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-preparation-1.html#cb90-1" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(pbmc.rna, <span class="at">assay=</span><span class="st">&quot;RNA&quot;</span>)</span></code></pre></div>
+<p>Because these genes are missing genomic positions, we must first annotate them with a genomic database, for example ensembl</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="data-preparation-1.html#cb91-1" tabindex="-1"></a><span class="fu">library</span>(AnnotationHub)</span>
+<span id="cb91-2"><a href="data-preparation-1.html#cb91-2" tabindex="-1"></a>ah <span class="ot">&lt;-</span> <span class="fu">AnnotationHub</span>()</span>
+<span id="cb91-3"><a href="data-preparation-1.html#cb91-3" tabindex="-1"></a>edb <span class="ot">&lt;-</span> ah[[<span class="st">&quot;AH98047&quot;</span>]]  <span class="co">#&quot;EnsDb.Hsapiens.v105&quot;</span></span></code></pre></div>
+<pre><code>## loading from cache</code></pre>
+<pre><code>## require(&quot;ensembldb&quot;)</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-preparation-1.html#cb94-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">genes</span>(edb, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;gene_id&quot;</span>, <span class="st">&quot;gene_name&quot;</span>))</span></code></pre></div>
+<p>We retain only the genes that have genomic positions. The genomic positions are necessary to link peak positions to the nearby target genes.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-preparation-1.html#cb95-1" tabindex="-1"></a>common_genes <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">intersect</span>(gr<span class="sc">$</span>gene_name, <span class="fu">rownames</span>(GeneExpressionMatrix)))</span>
+<span id="cb95-2"><a href="data-preparation-1.html#cb95-2" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> GeneExpressionMatrix[common_genes,]</span>
+<span id="cb95-3"><a href="data-preparation-1.html#cb95-3" tabindex="-1"></a><span class="fu">rowRanges</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> gr[<span class="fu">match</span>(common_genes, gr<span class="sc">$</span>gene_name)]</span>
+<span id="cb95-4"><a href="data-preparation-1.html#cb95-4" tabindex="-1"></a><span class="fu">rowRanges</span>(GeneExpressionMatrix)</span></code></pre></div>
+<pre><code>## GRanges object with 23644 ranges and 2 metadata columns:
+##                   seqnames            ranges strand |         gene_id
+##                      &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt;
+##   ENSG00000243485        1       29554-31109      + | ENSG00000243485
+##   ENSG00000237613        1       34554-36081      - | ENSG00000237613
+##   ENSG00000186092        1       65419-71585      + | ENSG00000186092
+##   ENSG00000284733        1     450740-451678      - | ENSG00000284733
+##   ENSG00000284662        1     685716-686654      - | ENSG00000284662
+##               ...      ...               ...    ... .             ...
+##   ENSG00000228296        Y 25063083-25099892      - | ENSG00000228296
+##   ENSG00000223641        Y 25182277-25213389      - | ENSG00000223641
+##   ENSG00000228786        Y 25378300-25394719      - | ENSG00000228786
+##   ENSG00000172288        Y 25622162-25624902      + | ENSG00000172288
+##   ENSG00000231141        Y 25728490-25733388      + | ENSG00000231141
+##                      gene_name
+##                    &lt;character&gt;
+##   ENSG00000243485  MIR1302-2HG
+##   ENSG00000237613      FAM138A
+##   ENSG00000186092        OR4F5
+##   ENSG00000284733       OR4F29
+##   ENSG00000284662       OR4F16
+##               ...          ...
+##   ENSG00000228296       TTTY4C
+##   ENSG00000223641      TTTY17C
+##   ENSG00000228786 LINC00266-4P
+##   ENSG00000172288         CDY1
+##   ENSG00000231141        TTTY3
+##   -------
+##   seqinfo: 456 sequences (1 circular) from GRCh38 genome</code></pre>
+<p>We then convert ATAC matrix to PeakMatrix. After conversion to <code>SingleCellExperiment</code>, the peak positions appear as rownames and must be converted to <code>GRanges</code>.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="data-preparation-1.html#cb97-1" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(pbmc.atac, <span class="at">assay=</span><span class="st">&quot;ATAC&quot;</span>)</span>
+<span id="cb97-2"><a href="data-preparation-1.html#cb97-2" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="data-preparation-1.html#cb97-3" tabindex="-1"></a>peak_position <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="fu">rownames</span>(PeakMatrix), <span class="at">split =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb97-4"><a href="data-preparation-1.html#cb97-4" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(</span>
+<span id="cb97-5"><a href="data-preparation-1.html#cb97-5" tabindex="-1"></a>    <span class="at">seqnames =</span> <span class="fu">sapply</span>(peak_position,<span class="st">&quot;[&quot;</span>,<span class="dv">1</span>),</span>
+<span id="cb97-6"><a href="data-preparation-1.html#cb97-6" tabindex="-1"></a>    <span class="at">ranges =</span> <span class="fu">IRanges</span>(<span class="at">start =</span> <span class="fu">as.numeric</span>(<span class="fu">sapply</span>(peak_position,<span class="st">&quot;[&quot;</span>,<span class="dv">2</span>)), </span>
+<span id="cb97-7"><a href="data-preparation-1.html#cb97-7" tabindex="-1"></a>                     <span class="at">end =</span> <span class="fu">as.numeric</span>(<span class="fu">sapply</span>(peak_position,<span class="st">&quot;[&quot;</span>,<span class="dv">3</span>)))</span>
+<span id="cb97-8"><a href="data-preparation-1.html#cb97-8" tabindex="-1"></a>)</span>
+<span id="cb97-9"><a href="data-preparation-1.html#cb97-9" tabindex="-1"></a><span class="fu">rowRanges</span>(PeakMatrix) <span class="ot">&lt;-</span> gr</span>
+<span id="cb97-10"><a href="data-preparation-1.html#cb97-10" tabindex="-1"></a>PeakMatrix</span></code></pre></div>
+<pre><code>## class: SingleCellExperiment 
+## dim: 108377 11909 
+## metadata(0):
+## assays(2): counts logcounts
+## rownames: NULL
+## rowData names(0):
+## colnames(11909): AAACAGCCAAGGAATC-1 AAACAGCCAATCCCTT-1 ...
+##   TTTGTTGGTTGGTTAG-1 TTTGTTGGTTTGCAGA-1
+## colData names(5): orig.ident nCount_ATAC nFeature_ATAC
+##   seurat_annotations ident
+## reducedDimNames(0):
+## mainExpName: ATAC
+## altExpNames(0):</code></pre>
+<p>For more information, refer to Signac <a href="https://stuartlab.org/signac/articles/overview">tutorial</a></p>
+</div>
+<div id="starting-from-anndata" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Starting from AnnData<a href="data-preparation-1.html#starting-from-anndata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We download an example PBMC anndata dataset from <a href="https://scglue.readthedocs.io/en/latest/data.html">scglue</a>.</p>
+<p>We first import the GeneExpressionMatrix.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-preparation-1.html#cb99-1" tabindex="-1"></a><span class="fu">library</span>(zellkonverter)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;zellkonverter&#39;:
+##   method                                             from      
+##   py_to_r.pandas.core.arrays.categorical.Categorical reticulate</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="data-preparation-1.html#cb101-1" tabindex="-1"></a><span class="fu">library</span>(GenomicRanges)</span>
+<span id="cb101-2"><a href="data-preparation-1.html#cb101-2" tabindex="-1"></a><span class="fu">library</span>(SingleCellExperiment)</span>
+<span id="cb101-3"><a href="data-preparation-1.html#cb101-3" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://download.gao-lab.org/GLUE/dataset/10x-Multiome-Pbmc10k-RNA.h5ad&quot;</span></span>
+<span id="cb101-4"><a href="data-preparation-1.html#cb101-4" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.h5ad&quot;</span>)</span>
+<span id="cb101-5"><a href="data-preparation-1.html#cb101-5" tabindex="-1"></a></span>
+<span id="cb101-6"><a href="data-preparation-1.html#cb101-6" tabindex="-1"></a><span class="co"># Download the file</span></span>
+<span id="cb101-7"><a href="data-preparation-1.html#cb101-7" tabindex="-1"></a><span class="fu">download.file</span>(url, destfile, <span class="at">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb101-8"><a href="data-preparation-1.html#cb101-8" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">readH5AD</span>(destfile, <span class="at">version=</span><span class="st">&quot;0.10.6&quot;</span>)</span></code></pre></div>
+<pre><code>## For native R and reading and writing of H5AD files, an R &lt;AnnData&gt; object, and
+## conversion to &lt;SingleCellExperiment&gt; or &lt;Seurat&gt; objects, check out the
+## anndataR package:
+## ℹ Install it from Bioconductor with `BiocManager::install(&quot;anndataR&quot;)`
+## ℹ See more at &lt;https://bioconductor.org/packages/anndataR/&gt;
+## This message is displayed once per session.</code></pre>
+<p>The field “chrom” “chromStart” “chromEnd” correspond to genomic positions of the genes.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-preparation-1.html#cb103-1" tabindex="-1"></a><span class="fu">rowData</span>(GeneExpressionMatrix)</span></code></pre></div>
+<pre><code>## DataFrame with 29095 rows and 26 columns
+##                   gene_ids   feature_types   genome      chrom chromStart
+##                &lt;character&gt;        &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt;  &lt;numeric&gt;
+## AL627309.1 ENSG00000238009 Gene Expression   GRCh38       chr1      89294
+## AL627309.5 ENSG00000241860 Gene Expression   GRCh38       chr1     141473
+## AL627309.4 ENSG00000241599 Gene Expression   GRCh38       chr1     160445
+## AP006222.2 ENSG00000286448 Gene Expression   GRCh38       chr1     266854
+## AL669831.2 ENSG00000229905 Gene Expression   GRCh38       chr1     760910
+## ...                    ...             ...      ...        ...        ...
+## AC004556.3 ENSG00000276345 Gene Expression   GRCh38 KI270721.1       2584
+## AC233755.2 ENSG00000277856 Gene Expression   GRCh38 KI270726.1      26240
+## AC233755.1 ENSG00000275063 Gene Expression   GRCh38 KI270726.1      41443
+## AC007325.1 ENSG00000276017 Gene Expression   GRCh38 KI270734.1      72410
+## AC007325.4 ENSG00000278817 Gene Expression   GRCh38 KI270734.1     131493
+##             chromEnd            name    score   strand thickStart thickEnd
+##            &lt;numeric&gt;     &lt;character&gt; &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt; &lt;factor&gt;
+## AL627309.1    133723 ENSG00000238009        .        -          .        .
+## AL627309.5    173862 ENSG00000241860        .        -          .        .
+## AL627309.4    161525 ENSG00000241599        .        +          .        .
+## AP006222.2    268655 ENSG00000286448        .        +          .        .
+## AL669831.2    761989 ENSG00000229905        .        +          .        .
+## ...              ...             ...      ...      ...        ...      ...
+## AC004556.3     11802 ENSG00000276345        .        +          .        .
+## AC233755.2     26534 ENSG00000277856        .        +          .        .
+## AC233755.1     41876 ENSG00000275063        .        +          .        .
+## AC007325.1     74814 ENSG00000276017        .        +          .        .
+## AC007325.4    137392 ENSG00000278817        .        +          .        .
+##             itemRgb blockCount blockSizes blockStarts      gene_type  gene_name
+##            &lt;factor&gt;   &lt;factor&gt;   &lt;factor&gt;    &lt;factor&gt;       &lt;factor&gt;   &lt;factor&gt;
+## AL627309.1        .          .          .           .         lncRNA AL627309.1
+## AL627309.5        .          .          .           .         lncRNA AL627309.5
+## AL627309.4        .          .          .           .         lncRNA AL627309.4
+## AP006222.2        .          .          .           .         lncRNA AP006222.2
+## AL669831.2        .          .          .           .         lncRNA AL669831.2
+## ...             ...        ...        ...         ...            ...        ...
+## AC004556.3        .          .          .           . protein_coding AC004556.3
+## AC233755.2        .          .          .           . protein_coding AC233755.2
+## AC233755.1        .          .          .           . protein_coding AC233755.1
+## AC007325.1        .          .          .           . protein_coding AC007325.1
+## AC007325.4        .          .          .           . protein_coding AC007325.4
+##             hgnc_id          havana_gene               tag  n_counts
+##            &lt;factor&gt;             &lt;factor&gt;          &lt;factor&gt; &lt;numeric&gt;
+## AL627309.1       NA OTTHUMG00000001096.2 overlapping_locus        70
+## AL627309.5       NA OTTHUMG00000002480.4 ncRNA_host              442
+## AL627309.4       NA OTTHUMG00000002525.1 NA                       44
+## AP006222.2       NA OTTHUMG00000194680.1 NA                        1
+## AL669831.2       NA OTTHUMG00000002408.1 NA                       10
+## ...             ...                  ...               ...       ...
+## AC004556.3       NA                   NA                NA       320
+## AC233755.2       NA                   NA                NA         1
+## AC233755.1       NA                   NA                NA         1
+## AC007325.1       NA                   NA                NA         3
+## AC007325.4       NA                   NA                NA        43
+##            highly_variable highly_variable_rank       means   variances
+##                  &lt;logical&gt;            &lt;numeric&gt;   &lt;numeric&gt;   &lt;numeric&gt;
+## AL627309.1           FALSE                  NaN 0.007268196 0.008462225
+## AL627309.5           FALSE                  NaN 0.045893469 0.050853072
+## AL627309.4           FALSE                  NaN 0.004568581 0.004755865
+## AP006222.2           FALSE                  NaN 0.000103831 0.000103831
+## AL669831.2           FALSE                  NaN 0.001038314 0.001037343
+## ...                    ...                  ...         ...         ...
+## AC004556.3           FALSE                  NaN 0.033226041 0.035448356
+## AC233755.2           FALSE                  NaN 0.000103831 0.000103831
+## AC233755.1           FALSE                  NaN 0.000103831 0.000103831
+## AC007325.1           FALSE                  NaN 0.000311494 0.000311429
+## AC007325.4           FALSE                  NaN 0.004464749 0.004445277
+##            variances_norm
+##                 &lt;numeric&gt;
+## AL627309.1       0.971895
+## AL627309.5       0.888672
+## AL627309.4       0.891707
+## AP006222.2       0.999904
+## AL669831.2       0.933916
+## ...                   ...
+## AC004556.3       0.856870
+## AC233755.2       0.999904
+## AC233755.1       0.999904
+## AC007325.1       0.975766
+## AC007325.4       0.854162</code></pre>
+<p>They must be renamed to “seqnames” “start” and “end” before conversion to <code>GRanges</code></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="data-preparation-1.html#cb105-1" tabindex="-1"></a>index_to_rename <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">c</span>(<span class="st">&quot;chrom&quot;</span>, <span class="st">&quot;chromStart&quot;</span>,  <span class="st">&quot;chromEnd&quot;</span>), <span class="fu">colnames</span>(<span class="fu">rowData</span>(GeneExpressionMatrix)))</span>
+<span id="cb105-2"><a href="data-preparation-1.html#cb105-2" tabindex="-1"></a><span class="fu">colnames</span>(<span class="fu">rowData</span>(GeneExpressionMatrix))[index_to_rename] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;seqnames&quot;</span>, <span class="st">&quot;start&quot;</span>,   <span class="st">&quot;end&quot;</span>)</span>
+<span id="cb105-3"><a href="data-preparation-1.html#cb105-3" tabindex="-1"></a><span class="fu">rowRanges</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(<span class="fu">rowData</span>(GeneExpressionMatrix))</span>
+<span id="cb105-4"><a href="data-preparation-1.html#cb105-4" tabindex="-1"></a><span class="fu">rowRanges</span>(GeneExpressionMatrix)</span></code></pre></div>
+<pre><code>## GRanges object with 29095 ranges and 22 metadata columns:
+##                seqnames        ranges strand |        gene_ids   feature_types
+##                   &lt;Rle&gt;     &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt;        &lt;factor&gt;
+##   AL627309.1       chr1  89294-133723      - | ENSG00000238009 Gene Expression
+##   AL627309.5       chr1 141473-173862      - | ENSG00000241860 Gene Expression
+##   AL627309.4       chr1 160445-161525      + | ENSG00000241599 Gene Expression
+##   AP006222.2       chr1 266854-268655      + | ENSG00000286448 Gene Expression
+##   AL669831.2       chr1 760910-761989      + | ENSG00000229905 Gene Expression
+##          ...        ...           ...    ... .             ...             ...
+##   AC004556.3 KI270721.1    2584-11802      + | ENSG00000276345 Gene Expression
+##   AC233755.2 KI270726.1   26240-26534      + | ENSG00000277856 Gene Expression
+##   AC233755.1 KI270726.1   41443-41876      + | ENSG00000275063 Gene Expression
+##   AC007325.1 KI270734.1   72410-74814      + | ENSG00000276017 Gene Expression
+##   AC007325.4 KI270734.1 131493-137392      + | ENSG00000278817 Gene Expression
+##                genome            name    score thickStart thickEnd  itemRgb
+##              &lt;factor&gt;     &lt;character&gt; &lt;factor&gt;   &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;
+##   AL627309.1   GRCh38 ENSG00000238009        .          .        .        .
+##   AL627309.5   GRCh38 ENSG00000241860        .          .        .        .
+##   AL627309.4   GRCh38 ENSG00000241599        .          .        .        .
+##   AP006222.2   GRCh38 ENSG00000286448        .          .        .        .
+##   AL669831.2   GRCh38 ENSG00000229905        .          .        .        .
+##          ...      ...             ...      ...        ...      ...      ...
+##   AC004556.3   GRCh38 ENSG00000276345        .          .        .        .
+##   AC233755.2   GRCh38 ENSG00000277856        .          .        .        .
+##   AC233755.1   GRCh38 ENSG00000275063        .          .        .        .
+##   AC007325.1   GRCh38 ENSG00000276017        .          .        .        .
+##   AC007325.4   GRCh38 ENSG00000278817        .          .        .        .
+##              blockCount blockSizes blockStarts      gene_type  gene_name
+##                &lt;factor&gt;   &lt;factor&gt;    &lt;factor&gt;       &lt;factor&gt;   &lt;factor&gt;
+##   AL627309.1          .          .           .         lncRNA AL627309.1
+##   AL627309.5          .          .           .         lncRNA AL627309.5
+##   AL627309.4          .          .           .         lncRNA AL627309.4
+##   AP006222.2          .          .           .         lncRNA AP006222.2
+##   AL669831.2          .          .           .         lncRNA AL669831.2
+##          ...        ...        ...         ...            ...        ...
+##   AC004556.3          .          .           . protein_coding AC004556.3
+##   AC233755.2          .          .           . protein_coding AC233755.2
+##   AC233755.1          .          .           . protein_coding AC233755.1
+##   AC007325.1          .          .           . protein_coding AC007325.1
+##   AC007325.4          .          .           . protein_coding AC007325.4
+##               hgnc_id          havana_gene               tag  n_counts
+##              &lt;factor&gt;             &lt;factor&gt;          &lt;factor&gt; &lt;numeric&gt;
+##   AL627309.1       NA OTTHUMG00000001096.2 overlapping_locus        70
+##   AL627309.5       NA OTTHUMG00000002480.4 ncRNA_host              442
+##   AL627309.4       NA OTTHUMG00000002525.1 NA                       44
+##   AP006222.2       NA OTTHUMG00000194680.1 NA                        1
+##   AL669831.2       NA OTTHUMG00000002408.1 NA                       10
+##          ...      ...                  ...               ...       ...
+##   AC004556.3       NA                   NA                NA       320
+##   AC233755.2       NA                   NA                NA         1
+##   AC233755.1       NA                   NA                NA         1
+##   AC007325.1       NA                   NA                NA         3
+##   AC007325.4       NA                   NA                NA        43
+##              highly_variable highly_variable_rank       means   variances
+##                    &lt;logical&gt;            &lt;numeric&gt;   &lt;numeric&gt;   &lt;numeric&gt;
+##   AL627309.1           FALSE                  NaN 0.007268196 0.008462225
+##   AL627309.5           FALSE                  NaN 0.045893469 0.050853072
+##   AL627309.4           FALSE                  NaN 0.004568581 0.004755865
+##   AP006222.2           FALSE                  NaN 0.000103831 0.000103831
+##   AL669831.2           FALSE                  NaN 0.001038314 0.001037343
+##          ...             ...                  ...         ...         ...
+##   AC004556.3           FALSE                  NaN 0.033226041 0.035448356
+##   AC233755.2           FALSE                  NaN 0.000103831 0.000103831
+##   AC233755.1           FALSE                  NaN 0.000103831 0.000103831
+##   AC007325.1           FALSE                  NaN 0.000311494 0.000311429
+##   AC007325.4           FALSE                  NaN 0.004464749 0.004445277
+##              variances_norm
+##                   &lt;numeric&gt;
+##   AL627309.1       0.971895
+##   AL627309.5       0.888672
+##   AL627309.4       0.891707
+##   AP006222.2       0.999904
+##   AL669831.2       0.933916
+##          ...            ...
+##   AC004556.3       0.856870
+##   AC233755.2       0.999904
+##   AC233755.1       0.999904
+##   AC007325.1       0.975766
+##   AC007325.4       0.854162
+##   -------
+##   seqinfo: 34 sequences from an unspecified genome; no seqlengths</code></pre>
+<p>We next import the PeakMatrix. The rownames are already in the format of seqnames:start-end, so rowRanges can be extracted directly from rowData.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="data-preparation-1.html#cb107-1" tabindex="-1"></a><span class="fu">library</span>(zellkonverter)</span>
+<span id="cb107-2"><a href="data-preparation-1.html#cb107-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://download.gao-lab.org/GLUE/dataset/10x-Multiome-Pbmc10k-ATAC.h5ad&quot;</span></span>
+<span id="cb107-3"><a href="data-preparation-1.html#cb107-3" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.h5ad&quot;</span>)</span>
+<span id="cb107-4"><a href="data-preparation-1.html#cb107-4" tabindex="-1"></a></span>
+<span id="cb107-5"><a href="data-preparation-1.html#cb107-5" tabindex="-1"></a><span class="co"># Download the file</span></span>
+<span id="cb107-6"><a href="data-preparation-1.html#cb107-6" tabindex="-1"></a><span class="fu">download.file</span>(url, destfile, <span class="at">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb107-7"><a href="data-preparation-1.html#cb107-7" tabindex="-1"></a></span>
+<span id="cb107-8"><a href="data-preparation-1.html#cb107-8" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">readH5AD</span>(destfile, <span class="at">version=</span><span class="st">&quot;0.10.6&quot;</span>)</span>
+<span id="cb107-9"><a href="data-preparation-1.html#cb107-9" tabindex="-1"></a><span class="fu">rowRanges</span>(PeakMatrix) <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(<span class="fu">rowData</span>(PeakMatrix))</span>
+<span id="cb107-10"><a href="data-preparation-1.html#cb107-10" tabindex="-1"></a><span class="fu">rowRanges</span>(PeakMatrix)</span></code></pre></div>
+<pre><code>## GRanges object with 107194 ranges and 3 metadata columns:
+##                            seqnames        ranges strand | feature_types
+##                               &lt;Rle&gt;     &lt;IRanges&gt;  &lt;Rle&gt; |      &lt;factor&gt;
+##       chr1:816881-817647       chr1 816881-817647      * |         Peaks
+##       chr1:819912-823500       chr1 819912-823500      * |         Peaks
+##       chr1:825827-825889       chr1 825827-825889      * |         Peaks
+##       chr1:826612-827979       chr1 826612-827979      * |         Peaks
+##       chr1:841243-843059       chr1 841243-843059      * |         Peaks
+##                      ...        ...           ...    ... .           ...
+##   KI270713.1:20444-22615 KI270713.1   20444-22615      * |         Peaks
+##   KI270713.1:27118-28927 KI270713.1   27118-28927      * |         Peaks
+##   KI270713.1:29485-30706 KI270713.1   29485-30706      * |         Peaks
+##   KI270713.1:31511-32072 KI270713.1   31511-32072      * |         Peaks
+##   KI270713.1:37129-37638 KI270713.1   37129-37638      * |         Peaks
+##                            genome  n_counts
+##                          &lt;factor&gt; &lt;numeric&gt;
+##       chr1:816881-817647   GRCh38      1025
+##       chr1:819912-823500   GRCh38      1384
+##       chr1:825827-825889   GRCh38        20
+##       chr1:826612-827979   GRCh38      4555
+##       chr1:841243-843059   GRCh38       555
+##                      ...      ...       ...
+##   KI270713.1:20444-22615   GRCh38     12640
+##   KI270713.1:27118-28927   GRCh38       533
+##   KI270713.1:29485-30706   GRCh38       622
+##   KI270713.1:31511-32072   GRCh38       207
+##   KI270713.1:37129-37638   GRCh38       388
+##   -------
+##   seqinfo: 32 sequences from an unspecified genome; no seqlengths</code></pre>
+<p>This example SingleCellExperiment dataset is missing the dimensionality reduction information. Users should have been this precalculated. Refer to the section on how to import from <a href="#id_##%20Reading%20directly%20from%20CSV">csv files</a>, or refer to <a href="https://bioconductor.org/books/3.20/OSCA.basic/dimensionality-reduction.html">OSCA</a> book on how to perform dimensionality reduction.</p>
+</div>
+<div id="starting-from-10x-data-formats" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Starting from 10x data formats<a href="data-preparation-1.html#starting-from-10x-data-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="reading-from-.h5-file" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Reading from .h5 file<a href="data-preparation-1.html#reading-from-.h5-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We first download the publicly available PBMC data from 10x Genomics</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-preparation-1.html#cb109-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5&quot;</span></span>
+<span id="cb109-2"><a href="data-preparation-1.html#cb109-2" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.h5&quot;</span>)  </span>
+<span id="cb109-3"><a href="data-preparation-1.html#cb109-3" tabindex="-1"></a></span>
+<span id="cb109-4"><a href="data-preparation-1.html#cb109-4" tabindex="-1"></a><span class="co"># Download the file</span></span>
+<span id="cb109-5"><a href="data-preparation-1.html#cb109-5" tabindex="-1"></a><span class="fu">download.file</span>(url, destfile, <span class="at">mode =</span> <span class="st">&quot;wb&quot;</span>)</span></code></pre></div>
+<p>This .h5 file contains both genes and peak regions as features, so we read in all the features into a single <code>SingleCellExperiment</code>, and we can specify “Gene Expression” as the main experiment and “Peaks” as the alternative experiment. We then split this single object into 2 separate <code>SingleCellExperiment</code> objects for consistency with other sections.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-preparation-1.html#cb110-1" tabindex="-1"></a><span class="fu">library</span>(DropletUtils)</span>
+<span id="cb110-2"><a href="data-preparation-1.html#cb110-2" tabindex="-1"></a>sce10x <span class="ot">&lt;-</span> <span class="fu">read10xCounts</span>(destfile)</span>
+<span id="cb110-3"><a href="data-preparation-1.html#cb110-3" tabindex="-1"></a></span>
+<span id="cb110-4"><a href="data-preparation-1.html#cb110-4" tabindex="-1"></a>sce10x <span class="ot">&lt;-</span> <span class="fu">splitAltExps</span>(sce10x, <span class="at">f=</span><span class="fu">rowData</span>(sce10x)<span class="sc">$</span>Type, <span class="at">ref=</span><span class="st">&quot;Gene Expression&quot;</span>)</span>
+<span id="cb110-5"><a href="data-preparation-1.html#cb110-5" tabindex="-1"></a></span>
+<span id="cb110-6"><a href="data-preparation-1.html#cb110-6" tabindex="-1"></a>peakMatrix <span class="ot">&lt;-</span> <span class="fu">altExp</span>(sce10x)</span>
+<span id="cb110-7"><a href="data-preparation-1.html#cb110-7" tabindex="-1"></a><span class="fu">rowRanges</span>(peakMatrix) <span class="ot">&lt;-</span> <span class="fu">GRanges</span>(<span class="fu">rownames</span>(peakMatrix))</span>
+<span id="cb110-8"><a href="data-preparation-1.html#cb110-8" tabindex="-1"></a></span>
+<span id="cb110-9"><a href="data-preparation-1.html#cb110-9" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">removeAltExps</span>(sce10x)</span></code></pre></div>
+</div>
+<div id="reading-directly-from-a-10x-directory" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Reading directly from a 10x directory<a href="data-preparation-1.html#reading-directly-from-a-10x-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also create a <code>SingleCellExperiment</code> object from a directory containing “matrix.mtx.gz”, “barcodes.tsv.gz” and “features.tsv.gz”</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-preparation-1.html#cb111-1" tabindex="-1"></a><span class="fu">example</span>(write10xCounts)</span>
+<span id="cb111-2"><a href="data-preparation-1.html#cb111-2" tabindex="-1"></a></span>
+<span id="cb111-3"><a href="data-preparation-1.html#cb111-3" tabindex="-1"></a><span class="fu">list.files</span>(tmpdir)</span>
+<span id="cb111-4"><a href="data-preparation-1.html#cb111-4" tabindex="-1"></a></span>
+<span id="cb111-5"><a href="data-preparation-1.html#cb111-5" tabindex="-1"></a>sce10x <span class="ot">&lt;-</span> <span class="fu">read10xCounts</span>(tmpdir)</span></code></pre></div>
+<p>Refer to the section on <a href="%7B#Constructing%20a%20SingleCellExperiment%20object%7D">Constructing a SingleCellExperiment object</a> on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.</p>
+</div>
+</div>
+<div id="reading-directly-from-csv" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Reading directly from CSV<a href="data-preparation-1.html#reading-directly-from-csv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the count matrices are in the form of csv files, read in the count matrix as a sparse matrix and convert it to a <code>dgCMatrix</code>.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-preparation-1.html#cb112-1" tabindex="-1"></a><span class="fu">library</span>(SparseArray)</span>
+<span id="cb112-2"><a href="data-preparation-1.html#cb112-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">readSparseCSV</span>(<span class="st">&quot;counts.csv&quot;</span>)</span>
+<span id="cb112-3"><a href="data-preparation-1.html#cb112-3" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">as</span>(counts, <span class="st">&quot;dgCMatrix&quot;</span>)</span></code></pre></div>
+<p>Then read in the genomic positions as data.frame and convert it to a <code>GRanges</code>.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-preparation-1.html#cb113-1" tabindex="-1"></a>peak_position <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;peaks.csv&quot;</span>)</span>
+<span id="cb113-2"><a href="data-preparation-1.html#cb113-2" tabindex="-1"></a>peak_position <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(peak_position)</span>
+<span id="cb113-3"><a href="data-preparation-1.html#cb113-3" tabindex="-1"></a>gr <span class="ot">&lt;-</span> GenomicRanges<span class="sc">::</span><span class="fu">makeGRangesFromDataFrame</span>(peak_position)</span></code></pre></div>
+<p>Refer to the section on <a href="%7B#Constructing%20a%20SingleCellExperiment%20object%7D">Constructing a SingleCellExperiment object</a> on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.</p>
+</div>
+<div id="important-points" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Important points<a href="data-preparation-1.html#important-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally, we would like to emphasize again the importance of converting all count matrices to dgCMatrix for speed and compatibility. Both gene expression and peak matrices require <code>rowRanges</code> to indicate genomic positions of target gene position and peak position.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="quick-start.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="construction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/sce.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Epiregulon documentation.pdf", "Epiregulon documentation.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

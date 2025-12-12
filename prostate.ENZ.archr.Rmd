@@ -4,7 +4,7 @@ In this chapter, we illustrate the epiregulon workflow starting from an ArchR pr
 
 The dataset consists of unpaired scATACseq/scRNAseq of parental LNCaP cells treated with DMSO, Enzalutamide and Enza resistant cells. The dataset was taken from [Taavitsainen et al](https://www.nature.com/articles/s41467-021-25624-1) [GSE168667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168667) and [GSE168668](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168668).
 
-## Data preparation
+## Prepare data
 
 Please refer to the full ArchR [manual](https://www.archrproject.com/bookdown/index.html) for instructions 
 
@@ -101,7 +101,7 @@ scater::plotReducedDim(GeneExpressionMatrix,
 
 First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse mm10 are available. 
 
-```{r getTFMotifInfo_prostate}
+```{r getTFMotifInfo_prostate, message=FALSE, warning=FALSE}
 grl <- getTFMotifInfo(genome = "hg38")
 grl
 ```
@@ -111,7 +111,7 @@ grl
 Next, we compute peak to gene correlations using the `addPeak2GeneLinks` function from the ArchR package. The user would need 
 to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction. 
 
-```{r calculateP2G_prostate}
+```{r calculateP2G_prostate, message=FALSE, warning=FALSE}
 
 p2g <- calculateP2G(ArchR_path = archR_project_path,
                     useDim = "iLSI_Combined", 
@@ -188,7 +188,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
 
 Then we extract the chromVarMatrix from ArchR project and then visualize the chromatin accessibility at AR bound sites. We can see that 48 hour of enzalutamide treatment reduced chromatin accessibility at AR bound sites
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 chromVarMatrix <- getMatrixFromProject(
     ArchRProj = proj,
     useMatrix = "MotifMatrix",
@@ -291,7 +291,6 @@ The astute users could however detect a difference in the prediction of the AR a
 
 In the absence of the ground truth, it is difficult to judge which method is superior. Therefore, it is always crucial to validate key findings with additional empirical evidence. The most important disclaimer we wish to make is that all predictions by epiregulon should be robustly tested experimentally.  
 
-
 ## Perform differential activity
 
 For the remaining steps, we continue with activity derived from the `wilcoxon` method.
@@ -389,6 +388,7 @@ plotHeatmapActivity(activity=score.combine.wilcox,
                     name = "transcription factor activity",
                     column_title_rot = 45)
 ```
+
 ## Geneset enrichment
 Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
 
@@ -482,7 +482,7 @@ ggplot(rank_table, aes(x = rank, y = centrality)) +
 
 Sometimes, we are interested to identify interaction partners of the TFs of interest. This can be achieved by comparing the overlap of the targets genes for all the TFs and identify the most similar TFs by Jaccard similarity. To illustrate this function, we take a look at the top most similar 20 TFs to AR.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(igraph)
 diff_graph_filter <- subgraph.edges(diff_graph, 
                                     E(diff_graph)[E(diff_graph)$weight>0], 
@@ -539,10 +539,3 @@ print(topTFplot)
 p_matrix <- rowMeans(apply(permute_matrix, 2, function(x) {x > similarity_score_AR}))
 p_matrix[names(head(sort(diff_matrix,decreasing = TRUE),20))]
 ```
-
-## Session Info
-
-```{r}
-sessionInfo()
-```
-

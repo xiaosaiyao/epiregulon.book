@@ -21,7 +21,7 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
 pruned.regulon[,c("idxATAC", "target", "tf", "corr", "pval", "stats")]
 ```
 
-### Cell aggregation {#cell_aggregation}
+### Aggregate cells {#cell_aggregation}
 
 The `pruneRegulon` function also supports aggregation of cells into metacells. This can substantially speed up GRN refinement if the dataset is large (>100K cells). Ideally, cell aggregation should also reduce noise while still maintaining the underlying biological signals. Since the data is less sparse after aggregation, users may want to adjust the feature cutoffs to better differentiate between cell aggregates with low and high expression. Setting `exp_cutoff` and `peak_cutoff` to `NULL` allows `pruneRegulon` to calculate the mean values for each feature and use these as the thresholds.
 
@@ -40,7 +40,7 @@ pruned.regulon.aggr <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                peak_cutoff = NULL)
 ```
 
-## Annotation with TF motifs {#motif_score}
+## Annotate with TF motifs {#motif_score}
 
 So far, the gene regulatory network has been constructed exclusively from TF ChIP-seq data. Some users may want to further annotate regulatory elements with motifs. We provide an option to annotate peaks with motifs from the [CIS_BP](https://cisbp.ccbr.utoronto.ca/) database. If no motifs are present for a particular factor (e.g., for co-factors or chromatin modifiers), `NA` is returned. If motifs exist for a factor and the regulatory element contains a motif, `1` is returned; if the regulatory element does not contain a motif, `0` is returned. Users can also provide their own motif annotation through the `pwms` argument.
 
@@ -60,7 +60,7 @@ pruned.regulon.motif[,c("idxATAC", "target", "tf", "corr", "p_val_peak_gene", "p
 ```
 
 
-## Annotating with log fold changes
+## Annotate with log fold changes
 
 It is sometimes helpful to filter the regulons based on gene expression changes between two conditions. The `addLogFC` function is a wrapper around `scran::findMarkers` and adds extra columns of log changes to the regulon `DataFrame`. Users can specify the reference group in `logFC_ref` and comparison groups in `logFC_condition`. If these are not provided, log fold changes are calculated for every condition in the cluster labels against the rest of the conditions.
  

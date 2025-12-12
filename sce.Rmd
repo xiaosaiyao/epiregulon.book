@@ -2,7 +2,7 @@
 
 Epiregulon operates on the `SingleCellExperiment` class. We assume that gene expression, chromatin accessibility and dimension reduction have been obtained by users' favorite packages prior to the use of Epiregulon. This chapter provides instructions on how to convert gene expression matrix and peak matrix into `SingleCellExperiment` objects from other formats including ArchR project, Seurat objects, AnnData and 10x genomics output. The first section provides a quick primer on the components of a `SingleCellExperiment` object necessary to run Epiregulon. It is thus recommended for all users to go through it. 
 
-## Constructing a SingleCellExperiment object
+## Construct a SingleCellExperiment object
 
 Let's construct a GeneExpressionMatrix from scratch. First we will create the count matrix. 
 ```{r message=FALSE, eval=TRUE}
@@ -121,7 +121,7 @@ Inspect the peak matrix
 PeakMatrix <- mae[["PeakMatrix"]]
 PeakMatrix
 ```
-## Starting from an ArchR object
+## Start from an ArchR object
 
 Epiregulon is designed to work seamlessly with ArchR. GeneExpressionMatrix and PeakMatrix can be easily exported from ArchR using ArchR's build-in function.
 
@@ -180,7 +180,7 @@ reducedDim(PeakMatrix, "IterativeLSI") <- getReducedDims(ArchRProj = archr.proj,
 
 Refer to ArchR [manual](https://www.archrproject.com/bookdown/index.html) for full documentation.
 
-## Starting from a Seurat/Signac object
+## Start from a Seurat/Signac object
 
 We download an example multimodel dataset from [SeuratData](https://github.com/satijalab/seurat-data). 
 ```{r, eval=FALSE}
@@ -239,7 +239,7 @@ PeakMatrix
 For more information, refer to Signac [tutorial](https://stuartlab.org/signac/articles/overview)
 
 
-## Starting from AnnData
+## Start from AnnData
 
 We download an example PBMC anndata dataset from [scglue](https://scglue.readthedocs.io/en/latest/data.html).
 
@@ -286,8 +286,8 @@ rowRanges(PeakMatrix)
 
 This example SingleCellExperiment dataset is missing the dimensionality reduction information. Users should have been this precalculated. Refer to the section on how to import from [csv files](### Reading directly from CSV),  or refer to [OSCA](https://bioconductor.org/books/3.20/OSCA.basic/dimensionality-reduction.html) book on how to perform dimensionality reduction. 
 
-## Starting from 10x data formats 
-### Reading from .h5 file 
+## Start from 10x data formats 
+### Read from .h5 file 
 
 We first download the publicly available PBMC data from 10x Genomics
 
@@ -313,7 +313,7 @@ GeneExpressionMatrix <- removeAltExps(sce10x)
 
 ```
 
-### Reading directly from a 10x directory
+### Read directly from a 10x directory
 
 We can also create a `SingleCellExperiment` object from a directory containing "matrix.mtx.gz", "barcodes.tsv.gz" and "features.tsv.gz"
 ```{r messages=FALSE, results="hide", warning=FALSE}
@@ -327,7 +327,7 @@ sce10x <- read10xCounts(tmpdir)
 
 Refer to the section on [Constructing a SingleCellExperiment object]({#Constructing a SingleCellExperiment object}) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.
 
-## Reading directly from CSV
+## Read directly from CSV
 
 If the count matrices are in the form of csv files, read in the count matrix as a sparse matrix and convert it to a `dgCMatrix`. 
 
@@ -347,8 +347,6 @@ gr <- GenomicRanges::makeGRangesFromDataFrame(peak_position)
 ```
 
 Refer to the section on [Constructing a SingleCellExperiment object]({#Constructing a SingleCellExperiment object}) on how to construct SingleCellExperiment, add colData, rowData and reduced dimensions.
-
-
 
 ## Important points
 

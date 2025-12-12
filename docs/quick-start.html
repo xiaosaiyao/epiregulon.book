@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Quick start | Epiregulon documentation</title>
+  <meta name="description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Quick start | Epiregulon documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Quick start | Epiregulon documentation" />
+  
+  <meta name="twitter:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  
+
+<meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
+
+
+<meta name="date" content="2025-12-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="installation.html"/>
+<link rel="next" href="data-preparation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Epiregulon documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="installation.html"><a href="installation.html#install-from-github"><i class="fa fa-check"></i><b>1.1</b> Install from GitHub</a></li>
+<li class="chapter" data-level="1.2" data-path="installation.html"><a href="installation.html#install-from-bioconductor"><i class="fa fa-check"></i><b>1.2</b> Install from Bioconductor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>2</b> Quick start</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="quick-start.html"><a href="quick-start.html#prepare-data"><i class="fa fa-check"></i><b>2.1</b> Prepare data</a></li>
+<li class="chapter" data-level="2.2" data-path="quick-start.html"><a href="quick-start.html#retrieve-bulk-tf-chip-seq-binding-sites"><i class="fa fa-check"></i><b>2.2</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="2.3" data-path="quick-start.html"><a href="quick-start.html#link-atac-seq-peaks-to-target-genes"><i class="fa fa-check"></i><b>2.3</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="2.4" data-path="quick-start.html"><a href="quick-start.html#add-tf-motif-binding-to-peaks"><i class="fa fa-check"></i><b>2.4</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="2.5" data-path="quick-start.html"><a href="quick-start.html#generate-regulons"><i class="fa fa-check"></i><b>2.5</b> Generate regulons</a></li>
+<li class="chapter" data-level="2.6" data-path="quick-start.html"><a href="quick-start.html#prune-network-recommended"><i class="fa fa-check"></i><b>2.6</b> Prune network (recommended)</a></li>
+<li class="chapter" data-level="2.7" data-path="quick-start.html"><a href="quick-start.html#annotate-regulon"><i class="fa fa-check"></i><b>2.7</b> Annotate regulon</a></li>
+<li class="chapter" data-level="2.8" data-path="quick-start.html"><a href="quick-start.html#calculate-tf-activity"><i class="fa fa-check"></i><b>2.8</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>3</b> Data preparation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-preparation.html"><a href="data-preparation.html#construct-a-singlecellexperiment-object"><i class="fa fa-check"></i><b>3.1</b> Construct a SingleCellExperiment object</a></li>
+<li class="chapter" data-level="3.2" data-path="data-preparation.html"><a href="data-preparation.html#start-from-an-archr-object"><i class="fa fa-check"></i><b>3.2</b> Start from an ArchR object</a></li>
+<li class="chapter" data-level="3.3" data-path="data-preparation.html"><a href="data-preparation.html#start-from-a-seuratsignac-object"><i class="fa fa-check"></i><b>3.3</b> Start from a Seurat/Signac object</a></li>
+<li class="chapter" data-level="3.4" data-path="data-preparation.html"><a href="data-preparation.html#start-from-anndata"><i class="fa fa-check"></i><b>3.4</b> Start from AnnData</a></li>
+<li class="chapter" data-level="3.5" data-path="data-preparation.html"><a href="data-preparation.html#start-from-10x-data-formats"><i class="fa fa-check"></i><b>3.5</b> Start from 10x data formats</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-preparation.html"><a href="data-preparation.html#read-from-.h5-file"><i class="fa fa-check"></i><b>3.5.1</b> Read from .h5 file</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-preparation.html"><a href="data-preparation.html#read-directly-from-a-10x-directory"><i class="fa fa-check"></i><b>3.5.2</b> Read directly from a 10x directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-preparation.html"><a href="data-preparation.html#read-directly-from-csv"><i class="fa fa-check"></i><b>3.6</b> Read directly from CSV</a></li>
+<li class="chapter" data-level="3.7" data-path="data-preparation.html"><a href="data-preparation.html#important-points"><i class="fa fa-check"></i><b>3.7</b> Important points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>4</b> Construction of the gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="construction.html"><a href="construction.html#download-and-format-dataset"><i class="fa fa-check"></i><b>4.1</b> Download and format dataset</a></li>
+<li class="chapter" data-level="4.2" data-path="construction.html"><a href="construction.html#retrieve-tf-occupancy-data"><i class="fa fa-check"></i><b>4.2</b> Retrieve TF occupancy data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="construction.html"><a href="construction.html#chip-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> ChIP-seq data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="construction.html"><a href="construction.html#motif-information"><i class="fa fa-check"></i><b>4.2.2</b> Motif information</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="construction.html"><a href="construction.html#link-atacseq-peaks-to-target-genes"><i class="fa fa-check"></i><b>4.3</b> Link ATACseq peaks to target genes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="construction.html"><a href="construction.html#optimization"><i class="fa fa-check"></i><b>4.3.1</b> Optimize the number of metacells (optional)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="construction.html"><a href="construction.html#distance_window"><i class="fa fa-check"></i><b>4.3.2</b> Find peak-target gene links within a defined distance</a></li>
+<li class="chapter" data-level="4.3.3" data-path="construction.html"><a href="construction.html#link-peaks-to-the-nearest-genes"><i class="fa fa-check"></i><b>4.3.3</b> Link peaks to the nearest genes</a></li>
+<li class="chapter" data-level="4.3.4" data-path="construction.html"><a href="construction.html#filter-peak-target-gene-links"><i class="fa fa-check"></i><b>4.3.4</b> Filter peak-target gene links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="construction.html"><a href="construction.html#add-tf-occupancy-to-peaks"><i class="fa fa-check"></i><b>4.4</b> Add TF occupancy to peaks</a></li>
+<li class="chapter" data-level="4.5" data-path="construction.html"><a href="construction.html#generate-regulons-1"><i class="fa fa-check"></i><b>4.5</b> Generate regulons</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="refinement.html"><a href="refinement.html"><i class="fa fa-check"></i><b>5</b> Refinement of gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Network pruning</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="refinement.html"><a href="refinement.html#cell_aggregation"><i class="fa fa-check"></i><b>5.1.1</b> Aggregate cells</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="refinement.html"><a href="refinement.html#motif_score"><i class="fa fa-check"></i><b>5.2</b> Annotate with TF motifs</a></li>
+<li class="chapter" data-level="5.3" data-path="refinement.html"><a href="refinement.html#annotate-with-log-fold-changes"><i class="fa fa-check"></i><b>5.3</b> Annotate with log fold changes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html"><i class="fa fa-check"></i><b>6</b> Calculation of the TF activity</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#addWeights"><i class="fa fa-check"></i><b>6.1</b> Add weights</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#aggregate-cells"><i class="fa fa-check"></i><b>6.1.1</b> Aggregate cells</a></li>
+<li class="chapter" data-level="6.1.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#using-chromatin-accessibility-data"><i class="fa fa-check"></i><b>6.1.2</b> Using chromatin accessibility data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#calculate-tf-activity-1"><i class="fa fa-check"></i><b>6.2</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>7</b> Network analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Differential TF activity</a></li>
+<li class="chapter" data-level="7.2" data-path="network-analysis.html"><a href="network-analysis.html#diff_activity_vis"><i class="fa fa-check"></i><b>7.2</b> Visualize TF activities</a></li>
+<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Differential network analysis</a></li>
+<li class="chapter" data-level="7.5" data-path="network-analysis.html"><a href="network-analysis.html#find-interaction-partners"><i class="fa fa-check"></i><b>7.5</b> Find interaction partners</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>8</b> ArchR workflow and different weight methods</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prepare-data-1"><i class="fa fa-check"></i><b>8.1</b> Prepare data</a></li>
+<li class="chapter" data-level="8.2" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#load-archr-project"><i class="fa fa-check"></i><b>8.2</b> Load ArchR project</a></li>
+<li class="chapter" data-level="8.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>8.3</b> Retrieve matrices from ArchR project</a></li>
+<li class="chapter" data-level="8.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>8.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="8.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>8.5</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>8.6</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="8.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-2"><i class="fa fa-check"></i><b>8.7</b> Generate regulons</a></li>
+<li class="chapter" data-level="8.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>8.8</b> (Optional) Annotate with TF motifs</a></li>
+<li class="chapter" data-level="8.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network"><i class="fa fa-check"></i><b>8.9</b> Prune network</a></li>
+<li class="chapter" data-level="8.10" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#weights_prostate"><i class="fa fa-check"></i><b>8.10</b> Add Weights</a></li>
+<li class="chapter" data-level="8.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-2"><i class="fa fa-check"></i><b>8.11</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="8.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>8.12</b> Perform differential activity</a></li>
+<li class="chapter" data-level="8.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>8.13</b> Visualize the results</a></li>
+<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment-1"><i class="fa fa-check"></i><b>8.14</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="8.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network"><i class="fa fa-check"></i><b>8.15</b> Differential network analysis {diff_network}</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>9</b> Single modality: scRNA-seq only</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>9.1</b> Load regulon</a></li>
+<li class="chapter" data-level="9.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>9.2</b> Load scRNA-seq data</a></li>
+<li class="chapter" data-level="9.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>9.3</b> Calculate activity</a></li>
+<li class="chapter" data-level="9.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>9.4</b> Perform differential activity</a></li>
+<li class="chapter" data-level="9.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>9.5</b> Visualize activity</a></li>
+<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Pathway enrichment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>10</b> Session Info</a></li>
+<li class="chapter" data-level="11" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>11</b> Contact</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Epiregulon documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="quick-start" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Quick start<a href="quick-start.html#quick-start" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we illustrate the epiregulon workflow, using the PBMC dataset which can be downloaded from the <em><a href="https://bioconductor.org/packages/3.22/scMultiome">scMultiome</a></em> package.</p>
+<div id="prepare-data" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Prepare data<a href="quick-start.html#prepare-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Prior to using <code>epiregulon</code>, single cell preprocessing needs to be performed by user’s favorite methods. The following components are required: <br>
+1. Peak matrix from scATAC-seq containing the chromatin accessibility information <br>
+2. Gene expression matrix from either paired or unpaired scRNA-seq. RNA-seq integration needs to be performed for unpaired dataset. <br>
+3. Dimensionality reduction matrix from with either single modalities or joint scRNA-seq and scATAC-seq <br></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="quick-start.html#cb5-1" tabindex="-1"></a><span class="co"># load the MAE object</span></span>
+<span id="cb5-2"><a href="quick-start.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(scMultiome)</span>
+<span id="cb5-3"><a href="quick-start.html#cb5-3" tabindex="-1"></a><span class="fu">library</span>(epiregulon)</span>
+<span id="cb5-4"><a href="quick-start.html#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="quick-start.html#cb5-5" tabindex="-1"></a><span class="co"># Download the example dataset</span></span>
+<span id="cb5-6"><a href="quick-start.html#cb5-6" tabindex="-1"></a>mae <span class="ot">&lt;-</span> scMultiome<span class="sc">::</span><span class="fu">PBMC_10x</span>()</span>
+<span id="cb5-7"><a href="quick-start.html#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="quick-start.html#cb5-8" tabindex="-1"></a><span class="co"># Load peak matrix</span></span>
+<span id="cb5-9"><a href="quick-start.html#cb5-9" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;PeakMatrix&quot;</span>]]</span>
+<span id="cb5-10"><a href="quick-start.html#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="quick-start.html#cb5-11" tabindex="-1"></a><span class="co"># Load expression matrix</span></span>
+<span id="cb5-12"><a href="quick-start.html#cb5-12" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> mae[[<span class="st">&quot;GeneExpressionMatrix&quot;</span>]]</span></code></pre></div>
+<p>Visualize singleCellExperiment by UMAP</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="quick-start.html#cb6-1" tabindex="-1"></a>scater<span class="sc">::</span><span class="fu">plotReducedDim</span>(GeneExpressionMatrix, </span>
+<span id="cb6-2"><a href="quick-start.html#cb6-2" tabindex="-1"></a>                       <span class="at">dimred =</span> <span class="st">&quot;UMAP_RNA&quot;</span>, </span>
+<span id="cb6-3"><a href="quick-start.html#cb6-3" tabindex="-1"></a>                       <span class="at">text_by =</span> <span class="st">&quot;cell_type&quot;</span>, </span>
+<span id="cb6-4"><a href="quick-start.html#cb6-4" tabindex="-1"></a>                       <span class="at">colour_by =</span> <span class="st">&quot;cell_type&quot;</span>,</span>
+<span id="cb6-5"><a href="quick-start.html#cb6-5" tabindex="-1"></a>                       <span class="at">point_size =</span> <span class="fl">0.3</span>,</span>
+<span id="cb6-6"><a href="quick-start.html#cb6-6" tabindex="-1"></a>                       <span class="at">point_alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="retrieve-bulk-tf-chip-seq-binding-sites" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Retrieve bulk TF ChIP-seq binding sites<a href="quick-start.html#retrieve-bulk-tf-chip-seq-binding-sites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First, we retrieve a <code>GRangesList</code> object containing the binding sites of all the transcription factors and co-regulators. These binding sites are derived from bulk ChIP-seq data in the <a href="https://chip-atlas.org/">ChIP-Atlas</a> and <a href="https://www.encodeproject.org/">ENCODE</a> databases. For the same transcription factor, multiple ChIP-seq files from different cell lines or tissues are merged. For further information on how these peaks are derived, please refer to <code>?epiregulon::getTFMotifInfo</code>. Currently, human genomes hg19 and hg38 and mouse mm10 are supported.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="quick-start.html#cb7-1" tabindex="-1"></a>grl <span class="ot">&lt;-</span> <span class="fu">getTFMotifInfo</span>(<span class="at">genome =</span> <span class="st">&quot;hg38&quot;</span>)</span>
+<span id="cb7-2"><a href="quick-start.html#cb7-2" tabindex="-1"></a>grl</span></code></pre></div>
+<pre><code>## GRangesList object of length 1377:
+## $AEBP2
+## GRanges object with 2700 ranges and 0 metadata columns:
+##          seqnames            ranges strand
+##             &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt;
+##      [1]     chr1        9792-10446      *
+##      [2]     chr1     942105-942400      *
+##      [3]     chr1     984486-984781      *
+##      [4]     chr1   3068932-3069282      *
+##      [5]     chr1   3069411-3069950      *
+##      ...      ...               ...    ...
+##   [2696]     chrY   8465261-8465730      *
+##   [2697]     chrY 11721744-11722260      *
+##   [2698]     chrY 11747448-11747964      *
+##   [2699]     chrY 19302661-19303134      *
+##   [2700]     chrY 19985662-19985982      *
+##   -------
+##   seqinfo: 25 sequences from an unspecified genome; no seqlengths
+## 
+## ...
+## &lt;1376 more elements&gt;</code></pre>
+</div>
+<div id="link-atac-seq-peaks-to-target-genes" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Link ATAC-seq peaks to target genes<a href="quick-start.html#link-atac-seq-peaks-to-target-genes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Next, we try to link ATAC-seq peaks to their putative target genes. We assign a peak to a gene within a size window (default ±250kb) if the chromatin accessibility of the peak and expression of the target genes are highly correlated (default threshold 0.5). To compute correlations, we first create cell aggregates by performing k-means clustering on the reduced dimensionality matrix. To estimate the optimal number of cells per cluster we will run the function <code>optimizeMetacellNumber</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="quick-start.html#cb9-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1010</span>)</span>
+<span id="cb9-2"><a href="quick-start.html#cb9-2" tabindex="-1"></a>cellNum <span class="ot">&lt;-</span> <span class="fu">optimizeMetacellNumber</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb9-3"><a href="quick-start.html#cb9-3" tabindex="-1"></a>                                  <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb9-4"><a href="quick-start.html#cb9-4" tabindex="-1"></a>                                  <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb9-5"><a href="quick-start.html#cb9-5" tabindex="-1"></a>                                  <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb9-6"><a href="quick-start.html#cb9-6" tabindex="-1"></a>                                  <span class="at">reducedDim =</span> <span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;LSI_RNA&quot;</span>),</span>
+<span id="cb9-7"><a href="quick-start.html#cb9-7" tabindex="-1"></a>                                  <span class="at">BPPARAM =</span> BiocParallel<span class="sc">::</span><span class="fu">SerialParam</span>(<span class="at">progressbar =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<p><code>cellNum</code> object is now provided as an argument to <code>calculateP2G</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="quick-start.html#cb10-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1010</span>)</span>
+<span id="cb10-2"><a href="quick-start.html#cb10-2" tabindex="-1"></a>p2g <span class="ot">&lt;-</span> <span class="fu">calculateP2G</span>(<span class="at">peakMatrix =</span> PeakMatrix, </span>
+<span id="cb10-3"><a href="quick-start.html#cb10-3" tabindex="-1"></a>                    <span class="at">expMatrix =</span> GeneExpressionMatrix, </span>
+<span id="cb10-4"><a href="quick-start.html#cb10-4" tabindex="-1"></a>                    <span class="at">reducedDim =</span> <span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;LSI_RNA&quot;</span>),</span>
+<span id="cb10-5"><a href="quick-start.html#cb10-5" tabindex="-1"></a>                    <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb10-6"><a href="quick-start.html#cb10-6" tabindex="-1"></a>                    <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>)</span></code></pre></div>
+<pre><code>## Using epiregulon to compute peak to gene links...</code></pre>
+<pre><code>## Value of the paramater &#39;cellNum&#39; has not been optimized.  Considerrunning function &#39;optimizeMetacellNumber&#39; and use output to set&#39;cellNum&#39;.</code></pre>
+<pre><code>## Creating metacells...
+## Looking for regulatory elements near target genes...
+## Computing correlations...
+##   |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   2%  |                                                                              |===                                                                   |   5%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   9%  |                                                                              |========                                                              |  11%  |                                                                              |==========                                                            |  14%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  23%  |                                                                              |==================                                                    |  25%  |                                                                              |===================                                                   |  27%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |=========================                                             |  36%  |                                                                              |===========================                                           |  39%  |                                                                              |=============================                                         |  41%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  45%  |                                                                              |=================================                                     |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |=====================================                                 |  52%  |                                                                              |======================================                                |  55%  |                                                                              |========================================                              |  57%  |                                                                              |=========================================                             |  59%  |                                                                              |===========================================                           |  61%  |                                                                              |=============================================                         |  64%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================                |  77%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  91%  |                                                                              |=================================================================     |  93%  |                                                                              |===================================================================   |  95%  |                                                                              |====================================================================  |  98%  |                                                                              |======================================================================| 100%
+## 
+##   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="quick-start.html#cb14-1" tabindex="-1"></a>p2g</span></code></pre></div>
+<pre><code>## DataFrame with 67644 rows and 10 columns
+##         idxATAC         chr     start       end    idxRNA    target Correlation
+##       &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;   &lt;array&gt;    &lt;matrix&gt;
+## 1             1        chr1    817086    817586        17 LINC00115    0.487936
+## 2            10        chr1    897218    897718        30      HES4    0.464881
+## 3            27        chr1    955434    955934        30      HES4    0.552958
+## 4            27        chr1    955434    955934        33      AGRN    0.498275
+## 5            29        chr1    959712    960212        31     ISG15   -0.398968
+## ...         ...         ...       ...       ...       ...       ...         ...
+## 67640    159255        chrX 154799001 154799501     36414      DKC1   -0.378386
+## 67641    159255        chrX 154799001 154799501     36415      MPP1    0.644579
+## 67642    159255        chrX 154799001 154799501     36419      F8A1   -0.395646
+## 67643    159256        chrX 154800772 154801272     36415      MPP1    0.610599
+## 67644    159256        chrX 154800772 154801272     36419      F8A1   -0.393617
+##       p_val_peak_gene FDR_peak_gene  distance
+##              &lt;matrix&gt;      &lt;matrix&gt; &lt;integer&gt;
+## 1           0.0397870      0.616636      9934
+## 2           0.0456846      0.625393    102261
+## 3           0.0248449      0.566187     44045
+## 4           0.0366621      0.603988     64184
+## 5           0.0247077      0.566187     40924
+## ...               ...           ...       ...
+## 67640       0.0295832      0.578736     36259
+## 67641       0.0118173      0.506844      5894
+## 67642       0.0252025      0.566187     86846
+## 67643       0.0158884      0.532984      4123
+## 67644       0.0257158      0.568362     85075</code></pre>
+</div>
+<div id="add-tf-motif-binding-to-peaks" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Add TF motif binding to peaks<a href="quick-start.html#add-tf-motif-binding-to-peaks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The next step is to add the TF binding information by overlapping regions of the peak matrix with the bulk chip-seq database. The output is a data frame object with three columns:</p>
+<ol style="list-style-type: decimal">
+<li><code>idxATAC</code> - index of the peak in the peak matrix</li>
+<li><code>idxTF</code> - index in the gene expression matrix corresponding to the transcription factor</li>
+<li><code>tf</code> - name of the transcription factor</li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="quick-start.html#cb16-1" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">addTFMotifInfo</span>(<span class="at">grl =</span> grl, <span class="at">p2g =</span> p2g, <span class="at">peakMatrix =</span> PeakMatrix)</span></code></pre></div>
+<pre><code>## Computing overlap...</code></pre>
+<pre><code>## Success!</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="quick-start.html#cb19-1" tabindex="-1"></a><span class="fu">head</span>(overlap)</span></code></pre></div>
+<pre><code>##   idxATAC idxTF    tf
+## 1       1    16  ATF1
+## 2       1    17  ATF2
+## 3       1    18  ATF3
+## 4       1    21  ATF7
+## 5       1    35 BRCA2
+## 6       1    36  BRD4</code></pre>
+</div>
+<div id="generate-regulons" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Generate regulons<a href="quick-start.html#generate-regulons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A data frame representing the inferred regulons is then generated. The data frame consists of several columns, including those indicating target genes, transcription factors, and regulatory elements indexed by their corresponding rows in the <code>PeakMatrix</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="quick-start.html#cb21-1" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> <span class="fu">getRegulon</span>(<span class="at">p2g =</span> p2g, <span class="at">overlap =</span> overlap, <span class="at">aggregate =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-2"><a href="quick-start.html#cb21-2" tabindex="-1"></a>regulon</span></code></pre></div>
+<pre><code>## DataFrame with 8418612 rows and 12 columns
+##           idxATAC         chr     start       end    idxRNA    target      corr
+##         &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;   &lt;array&gt;  &lt;matrix&gt;
+## 1               1        chr1    817086    817586        17 LINC00115  0.487936
+## 2               1        chr1    817086    817586        17 LINC00115  0.487936
+## 3               1        chr1    817086    817586        17 LINC00115  0.487936
+## 4               1        chr1    817086    817586        17 LINC00115  0.487936
+## 5               1        chr1    817086    817586        17 LINC00115  0.487936
+## ...           ...         ...       ...       ...       ...       ...       ...
+## 8418608    159256        chrX 154800772 154801272     36419      F8A1 -0.393617
+## 8418609    159256        chrX 154800772 154801272     36419      F8A1 -0.393617
+## 8418610    159256        chrX 154800772 154801272     36419      F8A1 -0.393617
+## 8418611    159256        chrX 154800772 154801272     36419      F8A1 -0.393617
+## 8418612    159256        chrX 154800772 154801272     36419      F8A1 -0.393617
+##         p_val_peak_gene FDR_peak_gene  distance     idxTF              tf
+##                &lt;matrix&gt;      &lt;matrix&gt; &lt;integer&gt; &lt;integer&gt;     &lt;character&gt;
+## 1              0.039787      0.616636      9934        16            ATF1
+## 2              0.039787      0.616636      9934        17            ATF2
+## 3              0.039787      0.616636      9934        18            ATF3
+## 4              0.039787      0.616636      9934        21            ATF7
+## 5              0.039787      0.616636      9934        35           BRCA2
+## ...                 ...           ...       ...       ...             ...
+## 8418608       0.0257158      0.568362     85075       979             MNT
+## 8418609       0.0257158      0.568362     85075       991            NFIA
+## 8418610       0.0257158      0.568362     85075      1018          POLR2A
+## 8418611       0.0257158      0.568362     85075      1020 POLR2AphosphoS5
+## 8418612       0.0257158      0.568362     85075      1335          ZNF766</code></pre>
+</div>
+<div id="prune-network-recommended" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Prune network (recommended)<a href="quick-start.html#prune-network-recommended" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Since our regulon is quite large, and likely contains many false connections, we will pass it through the pruning function.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="quick-start.html#cb23-1" tabindex="-1"></a>pruned.regulon <span class="ot">&lt;-</span> <span class="fu">pruneRegulon</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb23-2"><a href="quick-start.html#cb23-2" tabindex="-1"></a>                               <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb23-3"><a href="quick-start.html#cb23-3" tabindex="-1"></a>                               <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb23-4"><a href="quick-start.html#cb23-4" tabindex="-1"></a>                               <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb23-5"><a href="quick-start.html#cb23-5" tabindex="-1"></a>                               <span class="at">test =</span> <span class="st">&quot;chi.sq&quot;</span>,</span>
+<span id="cb23-6"><a href="quick-start.html#cb23-6" tabindex="-1"></a>                               regulon,</span>
+<span id="cb23-7"><a href="quick-start.html#cb23-7" tabindex="-1"></a>                               <span class="at">prune_value =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb23-8"><a href="quick-start.html#cb23-8" tabindex="-1"></a>                               <span class="at">regulon_cutoff =</span> <span class="fl">0.05</span></span>
+<span id="cb23-9"><a href="quick-start.html#cb23-9" tabindex="-1"></a>                               )</span>
+<span id="cb23-10"><a href="quick-start.html#cb23-10" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="quick-start.html#cb23-11" tabindex="-1"></a>pruned.regulon</span></code></pre></div>
+</div>
+<div id="annotate-regulon" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Annotate regulon<a href="quick-start.html#annotate-regulon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Apart from pruning, the regulon can be annotated with metrics useful for further refinement. One such metric is the log fold change of gene expression in a specified group of cells compared to all other or a selected group. Before running <code>addLogFC</code> function we need to log-transform gene expression counts.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="quick-start.html#cb24-1" tabindex="-1"></a><span class="co"># add &#39;logcounts&#39; assay</span></span>
+<span id="cb24-2"><a href="quick-start.html#cb24-2" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> scuttle<span class="sc">::</span><span class="fu">logNormCounts</span>(GeneExpressionMatrix)</span>
+<span id="cb24-3"><a href="quick-start.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="quick-start.html#cb24-4" tabindex="-1"></a>regulon.FC <span class="ot">&lt;-</span> <span class="fu">addLogFC</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb24-5"><a href="quick-start.html#cb24-5" tabindex="-1"></a>                       <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>cell_type,</span>
+<span id="cb24-6"><a href="quick-start.html#cb24-6" tabindex="-1"></a>                       <span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb24-7"><a href="quick-start.html#cb24-7" tabindex="-1"></a>                       <span class="at">pval.type =</span> <span class="st">&quot;any&quot;</span>,</span>
+<span id="cb24-8"><a href="quick-start.html#cb24-8" tabindex="-1"></a>                       <span class="at">sig_type =</span> <span class="st">&quot;FDR&quot;</span>,</span>
+<span id="cb24-9"><a href="quick-start.html#cb24-9" tabindex="-1"></a>                       <span class="at">assay.type =</span> <span class="st">&quot;logcounts&quot;</span>,</span>
+<span id="cb24-10"><a href="quick-start.html#cb24-10" tabindex="-1"></a>                       <span class="at">logFC_condition=</span><span class="fu">c</span>(<span class="st">&#39;Naive CD4+ T&#39;</span>)</span>
+<span id="cb24-11"><a href="quick-start.html#cb24-11" tabindex="-1"></a>)</span>
+<span id="cb24-12"><a href="quick-start.html#cb24-12" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="quick-start.html#cb24-13" tabindex="-1"></a>regulon.FC</span></code></pre></div>
+<p>Another way to annotate the regulon is to add information about the presence of a motif at the regulatory element. By default, a new column named <code>motif</code> will be appended to the regulon, with 1s in rows where a motif has been found that matches the declared transcription factor.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="quick-start.html#cb25-1" tabindex="-1"></a>regulon.motif <span class="ot">&lt;-</span> <span class="fu">addMotifScore</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb25-2"><a href="quick-start.html#cb25-2" tabindex="-1"></a>                                <span class="at">peaks =</span> <span class="fu">rowRanges</span>(PeakMatrix),</span>
+<span id="cb25-3"><a href="quick-start.html#cb25-3" tabindex="-1"></a>                                <span class="at">species =</span> <span class="st">&quot;human&quot;</span>,</span>
+<span id="cb25-4"><a href="quick-start.html#cb25-4" tabindex="-1"></a>                                <span class="at">genome =</span> <span class="st">&quot;hg38&quot;</span>)</span>
+<span id="cb25-5"><a href="quick-start.html#cb25-5" tabindex="-1"></a>regulon.motif</span></code></pre></div>
+</div>
+<div id="calculate-tf-activity" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Calculate TF activity<a href="quick-start.html#calculate-tf-activity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally, the activities for a specific TF in each cell are computed by averaging expressions of target genes linked to the TF weighted by the test statistics of choice. Using the <code>method</code> argument to the <code>addWeights</code> function, the user may choose among correlation, mutual information, or Wilcoxon as the test statistic.
+<span class="math display">\[y=\frac{1}{n}\sum_{i=1}^{n} x_i * weights_i\]</span>
+where <span class="math inline">\(y\)</span> is the activity of a TF for a cell, <br>
+<span class="math inline">\(n\)</span> is the total number of targets for a TF,<br>
+<span class="math inline">\(x_i\)</span> is the log count expression of target <span class="math inline">\(i\)</span> where <span class="math inline">\(i\)</span> in {1,2,…,n} and<br>
+<span class="math inline">\(weights_i\)</span> is the weight of TF - target <span class="math inline">\(i\)</span>, calculated by running <code>addWeights</code> function.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="quick-start.html#cb26-1" tabindex="-1"></a>regulon.w <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb26-2"><a href="quick-start.html#cb26-2" tabindex="-1"></a>                        <span class="at">expMatrix  =</span> GeneExpressionMatrix,</span>
+<span id="cb26-3"><a href="quick-start.html#cb26-3" tabindex="-1"></a>                        <span class="at">exp_assay  =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb26-4"><a href="quick-start.html#cb26-4" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb26-5"><a href="quick-start.html#cb26-5" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>)</span></code></pre></div>
+<pre><code>## adding weights using wilcoxon...</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="quick-start.html#cb28-1" tabindex="-1"></a>score.combine <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb28-2"><a href="quick-start.html#cb28-2" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w, </span>
+<span id="cb28-3"><a href="quick-start.html#cb28-3" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>, </span>
+<span id="cb28-4"><a href="quick-start.html#cb28-4" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>, </span>
+<span id="cb28-5"><a href="quick-start.html#cb28-5" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb28-6"><a href="quick-start.html#cb28-6" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, regulon =
+## regulon.w, : Argument &#39;method&#39; to calculateActivity was deprecated as of
+## epiregulon version 2.0.0</code></pre>
+<pre><code>## calculating TF activity from regulon using weightedMean</code></pre>
+<pre><code>## aggregating regulons...</code></pre>
+<pre><code>## creating weight matrix...</code></pre>
+<pre><code>## calculating activity scores...</code></pre>
+<pre><code>## normalize by the number of targets...</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="quick-start.html#cb35-1" tabindex="-1"></a>score.combine[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##       PBMC_10k#GGTTGCATCCTGGCTT-1 PBMC_10k#GGTTGCGGTAAACAAG-1
+## ADNP                   0.11379320                  0.09052355
+## AEBP2                  0.03488950                  0.06604866
+## AFF1                   0.09373167                  0.08967789
+## AFF4                   0.11164763                  0.10782789
+## AGO1                   0.09017644                  0.07779564
+##       PBMC_10k#TGTTCCTCATAAGTTC-1 PBMC_10k#CGACTAAGTAACGGGA-1
+## ADNP                   0.11310774                  0.07767001
+## AEBP2                  0.06581493                  0.07258739
+## AFF1                   0.10807508                  0.06184494
+## AFF4                   0.13602988                  0.07292949
+## AGO1                   0.08892206                  0.05903171
+##       PBMC_10k#CTGCTCCCAAGGTCCT-1
+## ADNP                    0.1201884
+## AEBP2                   0.0780261
+## AFF1                    0.1136837
+## AFF4                    0.1392258
+## AGO1                    0.0889592</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-preparation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/multiome.mae.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Epiregulon documentation.pdf", "Epiregulon documentation.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

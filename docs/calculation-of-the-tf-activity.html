@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Calculation of the TF activity | Epiregulon documentation</title>
+  <meta name="description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Calculation of the TF activity | Epiregulon documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Calculation of the TF activity | Epiregulon documentation" />
+  
+  <meta name="twitter:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  
+
+<meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
+
+
+<meta name="date" content="2025-12-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="refinement.html"/>
+<link rel="next" href="network-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Epiregulon documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="installation.html"><a href="installation.html#install-from-github"><i class="fa fa-check"></i><b>1.1</b> Install from GitHub</a></li>
+<li class="chapter" data-level="1.2" data-path="installation.html"><a href="installation.html#install-from-bioconductor"><i class="fa fa-check"></i><b>1.2</b> Install from Bioconductor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>2</b> Quick start</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="quick-start.html"><a href="quick-start.html#prepare-data"><i class="fa fa-check"></i><b>2.1</b> Prepare data</a></li>
+<li class="chapter" data-level="2.2" data-path="quick-start.html"><a href="quick-start.html#retrieve-bulk-tf-chip-seq-binding-sites"><i class="fa fa-check"></i><b>2.2</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="2.3" data-path="quick-start.html"><a href="quick-start.html#link-atac-seq-peaks-to-target-genes"><i class="fa fa-check"></i><b>2.3</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="2.4" data-path="quick-start.html"><a href="quick-start.html#add-tf-motif-binding-to-peaks"><i class="fa fa-check"></i><b>2.4</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="2.5" data-path="quick-start.html"><a href="quick-start.html#generate-regulons"><i class="fa fa-check"></i><b>2.5</b> Generate regulons</a></li>
+<li class="chapter" data-level="2.6" data-path="quick-start.html"><a href="quick-start.html#prune-network-recommended"><i class="fa fa-check"></i><b>2.6</b> Prune network (recommended)</a></li>
+<li class="chapter" data-level="2.7" data-path="quick-start.html"><a href="quick-start.html#annotate-regulon"><i class="fa fa-check"></i><b>2.7</b> Annotate regulon</a></li>
+<li class="chapter" data-level="2.8" data-path="quick-start.html"><a href="quick-start.html#calculate-tf-activity"><i class="fa fa-check"></i><b>2.8</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>3</b> Data preparation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-preparation.html"><a href="data-preparation.html#construct-a-singlecellexperiment-object"><i class="fa fa-check"></i><b>3.1</b> Construct a SingleCellExperiment object</a></li>
+<li class="chapter" data-level="3.2" data-path="data-preparation.html"><a href="data-preparation.html#start-from-an-archr-object"><i class="fa fa-check"></i><b>3.2</b> Start from an ArchR object</a></li>
+<li class="chapter" data-level="3.3" data-path="data-preparation.html"><a href="data-preparation.html#start-from-a-seuratsignac-object"><i class="fa fa-check"></i><b>3.3</b> Start from a Seurat/Signac object</a></li>
+<li class="chapter" data-level="3.4" data-path="data-preparation.html"><a href="data-preparation.html#start-from-anndata"><i class="fa fa-check"></i><b>3.4</b> Start from AnnData</a></li>
+<li class="chapter" data-level="3.5" data-path="data-preparation.html"><a href="data-preparation.html#start-from-10x-data-formats"><i class="fa fa-check"></i><b>3.5</b> Start from 10x data formats</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-preparation.html"><a href="data-preparation.html#read-from-.h5-file"><i class="fa fa-check"></i><b>3.5.1</b> Read from .h5 file</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-preparation.html"><a href="data-preparation.html#read-directly-from-a-10x-directory"><i class="fa fa-check"></i><b>3.5.2</b> Read directly from a 10x directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-preparation.html"><a href="data-preparation.html#read-directly-from-csv"><i class="fa fa-check"></i><b>3.6</b> Read directly from CSV</a></li>
+<li class="chapter" data-level="3.7" data-path="data-preparation.html"><a href="data-preparation.html#important-points"><i class="fa fa-check"></i><b>3.7</b> Important points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>4</b> Construction of the gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="construction.html"><a href="construction.html#download-and-format-dataset"><i class="fa fa-check"></i><b>4.1</b> Download and format dataset</a></li>
+<li class="chapter" data-level="4.2" data-path="construction.html"><a href="construction.html#retrieve-tf-occupancy-data"><i class="fa fa-check"></i><b>4.2</b> Retrieve TF occupancy data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="construction.html"><a href="construction.html#chip-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> ChIP-seq data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="construction.html"><a href="construction.html#motif-information"><i class="fa fa-check"></i><b>4.2.2</b> Motif information</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="construction.html"><a href="construction.html#link-atacseq-peaks-to-target-genes"><i class="fa fa-check"></i><b>4.3</b> Link ATACseq peaks to target genes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="construction.html"><a href="construction.html#optimization"><i class="fa fa-check"></i><b>4.3.1</b> Optimize the number of metacells (optional)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="construction.html"><a href="construction.html#distance_window"><i class="fa fa-check"></i><b>4.3.2</b> Find peak-target gene links within a defined distance</a></li>
+<li class="chapter" data-level="4.3.3" data-path="construction.html"><a href="construction.html#link-peaks-to-the-nearest-genes"><i class="fa fa-check"></i><b>4.3.3</b> Link peaks to the nearest genes</a></li>
+<li class="chapter" data-level="4.3.4" data-path="construction.html"><a href="construction.html#filter-peak-target-gene-links"><i class="fa fa-check"></i><b>4.3.4</b> Filter peak-target gene links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="construction.html"><a href="construction.html#add-tf-occupancy-to-peaks"><i class="fa fa-check"></i><b>4.4</b> Add TF occupancy to peaks</a></li>
+<li class="chapter" data-level="4.5" data-path="construction.html"><a href="construction.html#generate-regulons-1"><i class="fa fa-check"></i><b>4.5</b> Generate regulons</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="refinement.html"><a href="refinement.html"><i class="fa fa-check"></i><b>5</b> Refinement of gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Network pruning</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="refinement.html"><a href="refinement.html#cell_aggregation"><i class="fa fa-check"></i><b>5.1.1</b> Aggregate cells</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="refinement.html"><a href="refinement.html#motif_score"><i class="fa fa-check"></i><b>5.2</b> Annotate with TF motifs</a></li>
+<li class="chapter" data-level="5.3" data-path="refinement.html"><a href="refinement.html#annotate-with-log-fold-changes"><i class="fa fa-check"></i><b>5.3</b> Annotate with log fold changes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html"><i class="fa fa-check"></i><b>6</b> Calculation of the TF activity</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#addWeights"><i class="fa fa-check"></i><b>6.1</b> Add weights</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#aggregate-cells"><i class="fa fa-check"></i><b>6.1.1</b> Aggregate cells</a></li>
+<li class="chapter" data-level="6.1.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#using-chromatin-accessibility-data"><i class="fa fa-check"></i><b>6.1.2</b> Using chromatin accessibility data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#calculate-tf-activity-1"><i class="fa fa-check"></i><b>6.2</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>7</b> Network analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Differential TF activity</a></li>
+<li class="chapter" data-level="7.2" data-path="network-analysis.html"><a href="network-analysis.html#diff_activity_vis"><i class="fa fa-check"></i><b>7.2</b> Visualize TF activities</a></li>
+<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Differential network analysis</a></li>
+<li class="chapter" data-level="7.5" data-path="network-analysis.html"><a href="network-analysis.html#find-interaction-partners"><i class="fa fa-check"></i><b>7.5</b> Find interaction partners</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>8</b> ArchR workflow and different weight methods</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prepare-data-1"><i class="fa fa-check"></i><b>8.1</b> Prepare data</a></li>
+<li class="chapter" data-level="8.2" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#load-archr-project"><i class="fa fa-check"></i><b>8.2</b> Load ArchR project</a></li>
+<li class="chapter" data-level="8.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>8.3</b> Retrieve matrices from ArchR project</a></li>
+<li class="chapter" data-level="8.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>8.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="8.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>8.5</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>8.6</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="8.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-2"><i class="fa fa-check"></i><b>8.7</b> Generate regulons</a></li>
+<li class="chapter" data-level="8.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>8.8</b> (Optional) Annotate with TF motifs</a></li>
+<li class="chapter" data-level="8.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network"><i class="fa fa-check"></i><b>8.9</b> Prune network</a></li>
+<li class="chapter" data-level="8.10" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#weights_prostate"><i class="fa fa-check"></i><b>8.10</b> Add Weights</a></li>
+<li class="chapter" data-level="8.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-2"><i class="fa fa-check"></i><b>8.11</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="8.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>8.12</b> Perform differential activity</a></li>
+<li class="chapter" data-level="8.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>8.13</b> Visualize the results</a></li>
+<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment-1"><i class="fa fa-check"></i><b>8.14</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="8.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network"><i class="fa fa-check"></i><b>8.15</b> Differential network analysis {diff_network}</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>9</b> Single modality: scRNA-seq only</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>9.1</b> Load regulon</a></li>
+<li class="chapter" data-level="9.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>9.2</b> Load scRNA-seq data</a></li>
+<li class="chapter" data-level="9.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>9.3</b> Calculate activity</a></li>
+<li class="chapter" data-level="9.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>9.4</b> Perform differential activity</a></li>
+<li class="chapter" data-level="9.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>9.5</b> Visualize activity</a></li>
+<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Pathway enrichment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>10</b> Session Info</a></li>
+<li class="chapter" data-level="11" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>11</b> Contact</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Epiregulon documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="calculation-of-the-tf-activity" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Calculation of the TF activity<a href="calculation-of-the-tf-activity.html#calculation-of-the-tf-activity" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Once we define the target genes of TFs by constructing the GRN, we can calculate the per cell TF activity by summing up the expression of the individual target genes. While it is reasonable to assume equal contribution from each target genes, epiregulon tries to estimate the weights of each target gene. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity.</p>
+<div id="addWeights" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Add weights<a href="calculation-of-the-tf-activity.html#addWeights" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Epiregulon estimates the regulatory potential using one of the three measures:</p>
+<ol style="list-style-type: decimal">
+<li>Wilcoxon test statistics of target gene expression in cells jointly expressing all 3 elements vs. cells that do not.</li>
+<li>Correlation between TG and TF, or between TG and the product of TF and RE.</li>
+<li>Mutual information between TG and TF expression, or between TG and the product of TF and RE.</li>
+</ol>
+<p>Wilcoxon and correlation methods give both the magnitude and directionality of changes whereas mutual information is always positive. The correlation and mutual information statistics are computed on grouped pseudobulks following user-supplied cluster labels and yield a single weight across all clusters per each TF-RE-target triplet. In contrast, the Wilcoxon method can give a single weight across all cells or give cluster-specific weights if the users provide cluster labels. In general, we recommend computing a single weight across all cells because the data in totality provides the variability of target gene expression necessary for weights estimation. For example, we want to include both untreated and treated cells to gauge the effects of the treatment. Cluster-specific weights can be useful for inferring differential network connectivity (See section on <a href="%7B#diffNetwork%7D">Differential Network Analysis</a>).</p>
+<p>The choice of weights method can have a profound effect on the estimate of TF activity. When the TF activity is directly correlated with TF expression, all methods tend to work quite well. However, there are scenarios such as drug treatment or CRISPR knockout when TF continues to be expressed despite post-translational inhibition of TF activity. Epiregulon was designed to handle scenarios where TF expression is decoupled from TF activity. In such cases, <code>wilcox</code> is the preferred choice. For a specific use case, see the Section @ref(weights_prostate) on a comparison between <code>"wilcox"</code> and <code>"corr"</code> methods. Refer to our <a href="https://www.nature.com/articles/s41467-025-62252-5">manuscript</a> for a more in-depth discussion of the biological scenarios compatible with each weight method.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="calculation-of-the-tf-activity.html#cb165-1" tabindex="-1"></a>regulon.w <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon.filtered,</span>
+<span id="cb165-2"><a href="calculation-of-the-tf-activity.html#cb165-2" tabindex="-1"></a>                        <span class="at">expMatrix  =</span> GeneExpressionMatrix,</span>
+<span id="cb165-3"><a href="calculation-of-the-tf-activity.html#cb165-3" tabindex="-1"></a>                        <span class="at">exp_assay  =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb165-4"><a href="calculation-of-the-tf-activity.html#cb165-4" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb165-5"><a href="calculation-of-the-tf-activity.html#cb165-5" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb165-6"><a href="calculation-of-the-tf-activity.html#cb165-6" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;wilcox&quot;</span>,</span>
+<span id="cb165-7"><a href="calculation-of-the-tf-activity.html#cb165-7" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>cell_type,</span>
+<span id="cb165-8"><a href="calculation-of-the-tf-activity.html#cb165-8" tabindex="-1"></a>                        <span class="at">useDim =</span> <span class="st">&quot;LSI_RNA&quot;</span>)</span></code></pre></div>
+<pre><code>## adding weights using wilcoxon...</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="calculation-of-the-tf-activity.html#cb167-1" tabindex="-1"></a>regulon.w</span></code></pre></div>
+<pre><code>## DataFrame with 1471785 rows and 49 columns
+##           idxATAC         chr     start       end    idxRNA    target      corr
+##         &lt;integer&gt; &lt;character&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;   &lt;array&gt;  &lt;matrix&gt;
+## 1             266        chr1   1686177   1686677        86      NADK  0.801851
+## 2             991        chr1   8947075   8947575       222       CA6  0.888973
+## 3            1204        chr1  10208525  10209025       248     KIF1B  0.742701
+## 4            1607        chr1  15296927  15297427       351     EFHD2  0.745672
+## 5            1889        chr1  17494138  17494638       418 ARHGEF10L  0.704022
+## ...           ...         ...       ...       ...       ...       ...       ...
+## 1471781    155369       chr22  49962306  49962806     23685      PIM3  0.715168
+## 1471782    155544       chr22  50524937  50525437     23714      TYMP -0.559642
+## 1471783    155577       chr22  50582163  50582663     23713      SCO2 -0.543323
+## 1471784    155577       chr22  50582163  50582663     23714      TYMP -0.544313
+## 1471785    155577       chr22  50582163  50582663     23715     ODF3B -0.546970
+##         p_val_peak_gene FDR_peak_gene  distance     idxTF          tf
+##                &lt;matrix&gt;      &lt;matrix&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt;
+## 1             0.0142937      0.488274     91791      1030        ADNP
+## 2             0.0044733      0.421536      1207      1030        ADNP
+## 3             0.0248840      0.526717      1778      1030        ADNP
+## 4             0.0244471      0.526717    112459      1030        ADNP
+## 5             0.0337058      0.547711     45058      1030        ADNP
+## ...                 ...           ...       ...       ...         ...
+## 1471781       0.0310426      0.542175      1534      1558        ZXDC
+## 1471782       0.0268017      0.532791      4557      1558        ZXDC
+## 1471783       0.0311916      0.542175     56559      1558        ZXDC
+## 1471784       0.0309221      0.542175     52167      1558        ZXDC
+## 1471785       0.0302867      0.539986     50086      1558        ZXDC
+##                pval    stats        qval CD14..Mono.vs.rest.FDR
+##            &lt;matrix&gt; &lt;matrix&gt;    &lt;matrix&gt;              &lt;numeric&gt;
+## 1       2.14101e-07 26.90142 1.00000e+00           1.12227e-273
+## 2       2.09927e-03  9.46065 1.00000e+00            1.07642e-91
+## 3       3.18769e-21 89.42324 2.78453e-14           7.65618e-310
+## 4       4.50461e-03  8.06831 1.00000e+00            0.00000e+00
+## 5       1.17979e-03 10.52173 1.00000e+00           1.59755e-278
+## ...             ...      ...         ...                    ...
+## 1471781 0.000207305 13.76368           1            2.47662e-85
+## 1471782 0.019343447  5.47020           1            0.00000e+00
+## 1471783 0.030612624  4.67456           1            0.00000e+00
+## 1471784 0.000448926 12.31669           1            0.00000e+00
+## 1471785 0.006005115  7.54877           1           2.70505e-207
+##         CD14..Mono.vs.rest.p.value CD14..Mono.vs.rest.logFC
+##                          &lt;numeric&gt;                &lt;numeric&gt;
+## 1                     3.58197e-275                 0.453974
+## 2                      1.13527e-92                -0.381033
+## 3                     2.01501e-311                 0.575687
+## 4                      0.00000e+00                 0.579157
+## 5                     5.00688e-280                 0.461821
+## ...                            ...                      ...
+## 1471781                2.76970e-86                 0.146817
+## 1471782                0.00000e+00                 2.369751
+## 1471783                0.00000e+00                 0.703607
+## 1471784                0.00000e+00                 2.369751
+## 1471785               1.26648e-208                 0.355839
+##         Memory.CD4..T.vs.rest.FDR Memory.CD4..T.vs.rest.p.value
+##                         &lt;numeric&gt;                     &lt;numeric&gt;
+## 1                    2.05315e-154                  6.44038e-156
+## 2                     4.84933e-83                   3.37369e-84
+## 3                     5.24986e-87                   3.43190e-88
+## 4                    2.68684e-150                  8.80424e-152
+## 5                    6.39081e-272                  8.43619e-274
+## ...                           ...                           ...
+## 1471781               1.36783e-29                   2.37244e-30
+## 1471782               0.00000e+00                   0.00000e+00
+## 1471783               0.00000e+00                   0.00000e+00
+## 1471784               0.00000e+00                   0.00000e+00
+## 1471785              7.68600e-155                  2.39621e-156
+##         Memory.CD4..T.vs.rest.logFC B.vs.rest.FDR B.vs.rest.p.value
+##                           &lt;numeric&gt;     &lt;numeric&gt;         &lt;numeric&gt;
+## 1                         -0.375422   1.86039e-71       7.26021e-73
+## 2                         -0.366194   2.38300e-91       7.00421e-93
+## 3                         -0.374737  2.15099e-133      3.81343e-135
+## 4                         -0.431623  4.46147e-126      8.60754e-128
+## 5                         -0.458002  3.73172e-236      2.55008e-238
+## ...                             ...           ...               ...
+## 1471781                   0.0961699   3.02010e-09       6.92489e-10
+## 1471782                  -2.2468525   0.00000e+00       0.00000e+00
+## 1471783                  -0.6697767  1.26531e-315      4.89624e-318
+## 1471784                  -2.2468525   0.00000e+00       0.00000e+00
+## 1471785                  -0.3236477  2.16867e-129      4.01738e-131
+##         B.vs.rest.logFC Monocytes.vs.rest.FDR Monocytes.vs.rest.p.value
+##               &lt;numeric&gt;             &lt;numeric&gt;                 &lt;numeric&gt;
+## 1             -0.336361           1.61672e-15               1.49878e-16
+## 2             -0.381502           7.44419e-91               4.10638e-93
+## 3             -0.484800           1.52032e-18               1.15574e-19
+## 4             -0.461085           1.51226e-45               3.07532e-47
+## 5             -0.447276           3.34831e-11               4.30507e-12
+## ...                 ...                   ...                       ...
+## 1471781       0.0715721           5.67114e-06               1.18378e-06
+## 1471782      -2.1374129           5.62567e-83               3.56642e-85
+## 1471783      -0.6915773           5.05831e-18               3.97441e-19
+## 1471784      -2.1374129           5.62567e-83               3.56642e-85
+## 1471785      -0.3240672           2.75961e-13               3.00060e-14
+##         Monocytes.vs.rest.logFC Naive.CD8..T.vs.rest.FDR
+##                       &lt;numeric&gt;                &lt;numeric&gt;
+## 1                      0.310028             1.69311e-155
+## 2                     -0.381965              1.88762e-92
+## 3                      0.396732             2.67629e-197
+## 4                      0.961398             4.65608e-199
+## 5                      0.251675             3.66003e-274
+## ...                         ...                      ...
+## 1471781                0.112528              1.56350e-18
+## 1471782                1.673328              0.00000e+00
+## 1471783                0.434858              0.00000e+00
+## 1471784                1.673328              0.00000e+00
+## 1471785                0.252888             2.29027e-184
+##         Naive.CD8..T.vs.rest.p.value Naive.CD8..T.vs.rest.logFC
+##                            &lt;numeric&gt;                  &lt;numeric&gt;
+## 1                       4.84635e-157                  -0.381930
+## 2                        1.02675e-93                   0.381965
+## 3                       5.40575e-199                  -0.502247
+## 4                       9.32800e-201                  -0.488863
+## 5                       4.62049e-276                  -0.459590
+## ...                              ...                        ...
+## 1471781                  3.33572e-19                 -0.0907983
+## 1471782                  0.00000e+00                 -2.3697514
+## 1471783                  0.00000e+00                 -0.6972445
+## 1471784                  0.00000e+00                 -2.3697514
+## 1471785                 5.13517e-186                 -0.3431860
+##         FCGR3A..Mono.vs.rest.FDR FCGR3A..Mono.vs.rest.p.value
+##                        &lt;numeric&gt;                    &lt;numeric&gt;
+## 1                    1.28738e-75                  3.94290e-77
+## 2                    1.85410e-91                  4.10631e-93
+## 3                    4.51660e-48                  2.62284e-49
+## 4                   3.23963e-108                 5.18334e-110
+## 5                    1.60853e-40                  1.13848e-41
+## ...                          ...                          ...
+## 1471781              1.76882e-16                  2.82085e-17
+## 1471782             4.02540e-319                 4.74303e-322
+## 1471783              1.10843e-54                  5.33866e-56
+## 1471784             4.02540e-319                 4.74303e-322
+## 1471785              2.39081e-31                  2.25381e-32
+##         FCGR3A..Mono.vs.rest.logFC DC.vs.rest.FDR DC.vs.rest.p.value
+##                          &lt;numeric&gt;      &lt;numeric&gt;          &lt;numeric&gt;
+## 1                         0.613397    1.48721e-10        1.38321e-11
+## 2                        -0.381965    5.36314e-91        4.10647e-93
+## 3                         0.464689    1.15367e-05        1.85408e-06
+## 4                         0.912985    6.92276e-55        1.00693e-56
+## 5                        -0.294942   1.58551e-276       1.00079e-279
+## ...                            ...            ...                ...
+## 1471781                   0.113414    8.93729e-08        1.10692e-08
+## 1471782                   2.407016    9.94254e-52        1.54440e-53
+## 1471783                   0.529519    3.60704e-33        9.35467e-35
+## 1471784                   2.407016    9.94254e-52        1.54440e-53
+## 1471785                   0.272149    9.20085e-16        5.72181e-17
+##         DC.vs.rest.logFC Naive.CD4..T.vs.rest.FDR Naive.CD4..T.vs.rest.p.value
+##                &lt;numeric&gt;                &lt;numeric&gt;                    &lt;numeric&gt;
+## 1               0.467425             4.93457e-177                 9.94010e-179
+## 2              -0.381965              1.74410e-35                  2.12424e-36
+## 3               0.325063             2.32559e-185                 4.42934e-187
+## 4              -1.224596             5.94247e-203                 1.00949e-204
+## 5              -0.461821             3.20265e-268                 3.76183e-270
+## ...                  ...                      ...                          ...
+## 1471781         0.379087              7.08993e-15                  1.55446e-15
+## 1471782        -2.022347              0.00000e+00                  0.00000e+00
+## 1471783        -0.635970              0.00000e+00                  0.00000e+00
+## 1471784        -2.022347              0.00000e+00                  0.00000e+00
+## 1471785        -0.281375             9.44166e-179                 1.87859e-180
+##         Naive.CD4..T.vs.rest.logFC Memory.CD8..T.vs.rest.FDR
+##                          &lt;numeric&gt;                 &lt;numeric&gt;
+## 1                        -0.402145               4.83824e-93
+## 2                        -0.265716               2.07278e-90
+## 3                        -0.499501               5.15609e-58
+## 4                        -0.498699               2.89359e-93
+## 5                        -0.456728              1.08094e-264
+## ...                            ...                       ...
+## 1471781                  0.0641851               4.05854e-14
+## 1471782                 -2.3462477               0.00000e+00
+## 1471783                 -0.7036065              1.78609e-274
+## 1471784                 -2.3462477               0.00000e+00
+## 1471785                 -0.3415591              1.03392e-165
+##         Memory.CD8..T.vs.rest.p.value Memory.CD8..T.vs.rest.logFC
+##                             &lt;numeric&gt;                   &lt;numeric&gt;
+## 1                         1.51369e-94                   -0.358226
+## 2                         6.76934e-92                   -0.380283
+## 3                         2.82016e-59                   -0.379189
+## 4                         9.00523e-95                    0.678123
+## 5                        7.20865e-267                   -0.456896
+## ...                               ...                         ...
+## 1471781                   7.72992e-15                  -0.0922453
+## 1471782                   0.00000e+00                  -2.3157151
+## 1471783                  1.09308e-276                  -0.6694588
+## 1471784                   0.00000e+00                  -2.3157151
+## 1471785                  1.46415e-167                  -0.3380033
+##         NK.vs.rest.FDR NK.vs.rest.p.value NK.vs.rest.logFC NA.vs.rest.FDR
+##              &lt;numeric&gt;          &lt;numeric&gt;        &lt;numeric&gt;      &lt;numeric&gt;
+## 1          1.19826e-65        3.53184e-67        -0.355368   1.34418e-273
+## 2          4.31779e-89        8.81618e-91        -0.379363    4.29660e-92
+## 3          7.20212e-67        2.07735e-68        -0.450352   9.36515e-310
+## 4         2.95876e-118       4.05187e-120         1.421655    0.00000e+00
+## 5         1.02006e-264       3.63929e-267        -0.457695   3.83279e-278
+## ...                ...                ...              ...            ...
+## 1471781    9.37019e-18        1.10551e-18        -0.110243    2.71442e-85
+## 1471782   2.18585e-267       7.37856e-270        -2.218151    4.85186e-06
+## 1471783   9.48323e-192       5.85577e-194        -0.665203    3.69027e-01
+## 1471784   2.18585e-267       7.37856e-270        -2.218151    4.85186e-06
+## 1471785    1.38920e-89        2.80981e-91        -0.321178   3.12869e-207
+##         NA.vs.rest.p.value NA.vs.rest.logFC
+##                  &lt;numeric&gt;        &lt;numeric&gt;
+## 1             3.58197e-275        -0.453974
+## 2              4.10700e-93        -0.381965
+## 3             2.01501e-311        -0.575687
+## 4              0.00000e+00        -0.579157
+## 5             1.00138e-279        -0.461821
+## ...                    ...              ...
+## 1471781        2.76970e-86        -0.146817
+## 1471782        1.65084e-06        -2.121123
+## 1471783        1.89547e-01        -0.531398
+## 1471784        1.65084e-06        -2.121123
+## 1471785       1.26648e-208        -0.355839
+##                                        weight
+##                                      &lt;matrix&gt;
+## 1       0.0583992: 0.00000000:-0.00307422:...
+## 2       0.0311224:-0.00137646:-0.00249145:...
+## 3       0.1032210: 0.01156464: 0.03634468:...
+## 4       0.0333821: 0.00000000: 0.00137167:...
+## 5       0.0340038:-0.01020603: 0.01396996:...
+## ...                                       ...
+## 1471781 0.0368769: 0.02603271: 0.03120368:...
+## 1471782 0.0258094: 0.00679141:-0.00776715:...
+## 1471783 0.0262938:-0.01485703: 0.00423260:...
+## 1471784 0.0532873:-0.00953433: 0.00931223:...
+## 1471785 0.0311489:-0.05049477: 0.00802140:...</code></pre>
+<div id="aggregate-cells" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Aggregate cells<a href="calculation-of-the-tf-activity.html#aggregate-cells" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As with the <code>pruneRegulon function</code>, cells can be aggregated into metacells using the <code>aggregateCells</code> argument in <code>addWeights</code>. Use this option only with the Wilcoxon method, since the other two methods already incorporate cell aggregation. By default, the function generates aggregates containing an average of 10 cells. However, the exact number may vary across metacells, depending on how single cells are distributed in the reduced dimensionality space. Refer to the cell aggregation section in Regulation Refinement for additional information (Section @ref(cell_aggregation)).</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="calculation-of-the-tf-activity.html#cb169-1" tabindex="-1"></a>regulon.w.aggr <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb169-2"><a href="calculation-of-the-tf-activity.html#cb169-2" tabindex="-1"></a>                             <span class="at">expMatrix  =</span> GeneExpressionMatrix,</span>
+<span id="cb169-3"><a href="calculation-of-the-tf-activity.html#cb169-3" tabindex="-1"></a>                             <span class="at">exp_assay  =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb169-4"><a href="calculation-of-the-tf-activity.html#cb169-4" tabindex="-1"></a>                             <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb169-5"><a href="calculation-of-the-tf-activity.html#cb169-5" tabindex="-1"></a>                             <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb169-6"><a href="calculation-of-the-tf-activity.html#cb169-6" tabindex="-1"></a>                             <span class="at">method =</span> <span class="st">&quot;wilcox&quot;</span>,</span>
+<span id="cb169-7"><a href="calculation-of-the-tf-activity.html#cb169-7" tabindex="-1"></a>                             <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>cell_type,</span>
+<span id="cb169-8"><a href="calculation-of-the-tf-activity.html#cb169-8" tabindex="-1"></a>                             <span class="at">aggregateCells =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb169-9"><a href="calculation-of-the-tf-activity.html#cb169-9" tabindex="-1"></a>                             <span class="at">useDim =</span> <span class="st">&quot;LSI_RNA&quot;</span>,</span>
+<span id="cb169-10"><a href="calculation-of-the-tf-activity.html#cb169-10" tabindex="-1"></a>                             <span class="at">exp_cutoff=</span><span class="cn">NULL</span>,</span>
+<span id="cb169-11"><a href="calculation-of-the-tf-activity.html#cb169-11" tabindex="-1"></a>                             <span class="at">peak_cutoff=</span><span class="cn">NULL</span>)</span></code></pre></div>
+</div>
+<div id="using-chromatin-accessibility-data" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Using chromatin accessibility data<a href="calculation-of-the-tf-activity.html#using-chromatin-accessibility-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>corr</code> and <code>MI</code> methods for calculating weights by default ignore information about chromatin accessibility. However, it is possible to incorporate this modality into the calculations by setting the <code>tf_re.merge</code> argument to <code>TRUE</code>. This adds an additional step to the procedure, in which transcription factor expression is multiplied by chromatin accessibility. Therefore, expression is reduced to zero if the corresponding element is not accessible. The TF-RE product is calculated at the level of aggregated cells, mitigating the effect of sparsity, which affects ATAC-seq data more than gene expression. See the Section @ref(weights_prostate) for an example of using the <code>tf_re.merge</code> argument.</p>
+</div>
+</div>
+<div id="calculate-tf-activity-1" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Calculate TF activity<a href="calculation-of-the-tf-activity.html#calculate-tf-activity-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally, the activity for a specific TF in each cell is computed by averaging the expression of target genes weighted by the test statistics of choice as explained in the <a href="calculation-of-the-tf-activity.html#addWeights">addWeights</a> section.
+<span class="math display">\[y=\frac{1}{n}\sum_{i=1}^{n} x_i * weights_i\]</span>
+where <span class="math inline">\(y\)</span> is the activity of a TF for a cell,
+<span class="math inline">\(n\)</span> is the total number of targets for a TF,
+<span class="math inline">\(x_i\)</span> is the log count expression of target <span class="math inline">\(i\)</span> where <span class="math inline">\(i\)</span> in {1,2,…,n} and
+<span class="math inline">\(weights_i\)</span> is the weight of TF - target <span class="math inline">\(i\)</span></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="calculation-of-the-tf-activity.html#cb170-1" tabindex="-1"></a>score.combine <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb170-2"><a href="calculation-of-the-tf-activity.html#cb170-2" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w, </span>
+<span id="cb170-3"><a href="calculation-of-the-tf-activity.html#cb170-3" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>, </span>
+<span id="cb170-4"><a href="calculation-of-the-tf-activity.html#cb170-4" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>)</span>
+<span id="cb170-5"><a href="calculation-of-the-tf-activity.html#cb170-5" tabindex="-1"></a></span>
+<span id="cb170-6"><a href="calculation-of-the-tf-activity.html#cb170-6" tabindex="-1"></a>score.combine[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##       PBMC_10k#GGTTGCATCCTGGCTT-1 PBMC_10k#GGTTGCGGTAAACAAG-1
+## ADNP                   0.19779780                   0.1531687
+## AEBP2                  0.07012385                   0.1433285
+## AFF1                   0.17376423                   0.1661146
+## AFF4                   0.20355110                   0.1979733
+## AGO1                   0.16440461                   0.1428504
+##       PBMC_10k#TGTTCCTCATAAGTTC-1 PBMC_10k#CGACTAAGTAACGGGA-1
+## ADNP                    0.1945887                   0.1174226
+## AEBP2                   0.1422228                   0.1678583
+## AFF1                    0.2037083                   0.1094581
+## AFF4                    0.2451325                   0.1282145
+## AGO1                    0.1625822                   0.1039042
+##       PBMC_10k#CTGCTCCCAAGGTCCT-1
+## ADNP                    0.2076910
+## AEBP2                   0.1733083
+## AFF1                    0.2112685
+## AFF4                    0.2525639
+## AGO1                    0.1679543</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="refinement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="network-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/TF_activity.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Epiregulon documentation.pdf", "Epiregulon documentation.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

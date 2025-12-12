@@ -23,7 +23,7 @@ markers.sig <- getSigGenes(markers, topgenes = 5, direction = "up" )
 markers.sig 
 ```
 
-## Visualizing TF activities {#diff_activity_vis}
+## Visualize TF activities {#diff_activity_vis}
 
 Epiregulon also provides the option for visualizing the inferred TF activities.
 ```{r}
@@ -159,7 +159,7 @@ ggplot(rank_table, aes(x = rank, y = centrality)) +
 
 ```
 
-## Finding interaction Partners
+## Find interaction partners
 
 Sometimes, we are interested to identify interaction partners of the TFs of interest. This can be achieved by comparing the overlap of regulons and identify the most similar TFs by Jaccard similarity. To illustrate this function, we take a look at the top most similar 20 TFs to EBF1, and we successfully identify PAX5 as the most similar TF. Both PAX5 and EBF1 are important factors for B cell development (https://www.nature.com/articles/ni.2641).
 

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Session Info | Epiregulon documentation</title>
+  <meta name="description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Session Info | Epiregulon documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Session Info | Epiregulon documentation" />
+  
+  <meta name="twitter:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
+scenarions in which the package can be usd to analyse single-cell data.</p>" />
+  
+
+<meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
+
+
+<meta name="date" content="2025-12-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="single-modality-scrna-seq-only.html"/>
+<link rel="next" href="contact.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Epiregulon documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="installation.html"><a href="installation.html#installing-from-github"><i class="fa fa-check"></i><b>1.1</b> Installing from github</a></li>
+<li class="chapter" data-level="1.2" data-path="installation.html"><a href="installation.html#installing-from-bioconductor"><i class="fa fa-check"></i><b>1.2</b> Installing from Bioconductor</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>2</b> Quick start</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="quick-start.html"><a href="quick-start.html#data-preparation"><i class="fa fa-check"></i><b>2.1</b> Data preparation</a></li>
+<li class="chapter" data-level="2.2" data-path="quick-start.html"><a href="quick-start.html#retrieve-bulk-tf-chip-seq-binding-sites"><i class="fa fa-check"></i><b>2.2</b> Retrieve bulk TF ChIP-seq binding sites</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="quick-start.html"><a href="quick-start.html#link-atac-seq-peaks-to-target-genes"><i class="fa fa-check"></i><b>2.2.1</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="2.2.2" data-path="quick-start.html"><a href="quick-start.html#add-tf-motif-binding-to-peaks"><i class="fa fa-check"></i><b>2.2.2</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="2.2.3" data-path="quick-start.html"><a href="quick-start.html#generate-regulons"><i class="fa fa-check"></i><b>2.2.3</b> Generate regulons</a></li>
+<li class="chapter" data-level="2.2.4" data-path="quick-start.html"><a href="quick-start.html#network-pruning-recommended"><i class="fa fa-check"></i><b>2.2.4</b> Network pruning (recommended)</a></li>
+<li class="chapter" data-level="2.2.5" data-path="quick-start.html"><a href="quick-start.html#calculate-tf-activity"><i class="fa fa-check"></i><b>2.2.5</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="quick-start.html"><a href="quick-start.html#session-info"><i class="fa fa-check"></i><b>2.3</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-preparation-1.html"><a href="data-preparation-1.html"><i class="fa fa-check"></i><b>3</b> Data preparation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-preparation-1.html"><a href="data-preparation-1.html#constructing-a-singlecellexperiment-object"><i class="fa fa-check"></i><b>3.1</b> Constructing a SingleCellExperiment object</a></li>
+<li class="chapter" data-level="3.2" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-an-archr-object"><i class="fa fa-check"></i><b>3.2</b> Starting from an ArchR object</a></li>
+<li class="chapter" data-level="3.3" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-a-seuratsignac-object"><i class="fa fa-check"></i><b>3.3</b> Starting from a Seurat/Signac object</a></li>
+<li class="chapter" data-level="3.4" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-anndata"><i class="fa fa-check"></i><b>3.4</b> Starting from AnnData</a></li>
+<li class="chapter" data-level="3.5" data-path="data-preparation-1.html"><a href="data-preparation-1.html#starting-from-10x-data-formats"><i class="fa fa-check"></i><b>3.5</b> Starting from 10x data formats</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-preparation-1.html"><a href="data-preparation-1.html#reading-from-.h5-file"><i class="fa fa-check"></i><b>3.5.1</b> Reading from .h5 file</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-preparation-1.html"><a href="data-preparation-1.html#reading-directly-from-a-10x-directory"><i class="fa fa-check"></i><b>3.5.2</b> Reading directly from a 10x directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-preparation-1.html"><a href="data-preparation-1.html#reading-directly-from-csv"><i class="fa fa-check"></i><b>3.6</b> Reading directly from CSV</a></li>
+<li class="chapter" data-level="3.7" data-path="data-preparation-1.html"><a href="data-preparation-1.html#important-points"><i class="fa fa-check"></i><b>3.7</b> Important points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>4</b> Construction of the gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="construction.html"><a href="construction.html#downloading-and-formatting-dataset"><i class="fa fa-check"></i><b>4.1</b> Downloading and formatting dataset</a></li>
+<li class="chapter" data-level="4.2" data-path="construction.html"><a href="construction.html#retrieving-tf-occupancy-data"><i class="fa fa-check"></i><b>4.2</b> Retrieving TF occupancy data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="construction.html"><a href="construction.html#chip-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> ChIP-seq data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="construction.html"><a href="construction.html#motif-information"><i class="fa fa-check"></i><b>4.2.2</b> Motif information</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="construction.html"><a href="construction.html#linking-atacseq-peaks-to-target-genes"><i class="fa fa-check"></i><b>4.3</b> Linking ATACseq peaks to target genes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="construction.html"><a href="construction.html#optimizating-the-number-of-metacells-optional"><i class="fa fa-check"></i><b>4.3.1</b> Optimizating the number of metacells (optional)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="construction.html"><a href="construction.html#distance_window"><i class="fa fa-check"></i><b>4.3.2</b> Finding peak-target gene links within a defined distance</a></li>
+<li class="chapter" data-level="4.3.3" data-path="construction.html"><a href="construction.html#linking-peaks-to-the-nearest-genes"><i class="fa fa-check"></i><b>4.3.3</b> Linking peaks to the nearest genes</a></li>
+<li class="chapter" data-level="4.3.4" data-path="construction.html"><a href="construction.html#filtering-peak-target-gene-links"><i class="fa fa-check"></i><b>4.3.4</b> Filtering peak-target gene links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="construction.html"><a href="construction.html#adding-tf-occupancy-to-peaks"><i class="fa fa-check"></i><b>4.4</b> Adding TF occupancy to peaks</a></li>
+<li class="chapter" data-level="4.5" data-path="construction.html"><a href="construction.html#generating-regulons"><i class="fa fa-check"></i><b>4.5</b> Generating regulons</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="refinement.html"><a href="refinement.html"><i class="fa fa-check"></i><b>5</b> Refinement of gene regulatory network</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Network pruning</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="refinement.html"><a href="refinement.html#cell_aggregation"><i class="fa fa-check"></i><b>5.1.1</b> Cell aggregation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="refinement.html"><a href="refinement.html#motif_score"><i class="fa fa-check"></i><b>5.2</b> Annotation with TF motifs</a></li>
+<li class="chapter" data-level="5.3" data-path="refinement.html"><a href="refinement.html#annotating-with-log-fold-changes"><i class="fa fa-check"></i><b>5.3</b> Annotating with log fold changes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html"><i class="fa fa-check"></i><b>6</b> Calculation of the TF activity</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#addWeights"><i class="fa fa-check"></i><b>6.1</b> Adding weights</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#cell-aggregation"><i class="fa fa-check"></i><b>6.1.1</b> Cell aggregation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#calculating-tf-activity"><i class="fa fa-check"></i><b>6.2</b> Calculating TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>7</b> Network analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Differential TF activity</a></li>
+<li class="chapter" data-level="7.2" data-path="network-analysis.html"><a href="network-analysis.html#diff_activity_vis"><i class="fa fa-check"></i><b>7.2</b> Visualizing TF activities</a></li>
+<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Differential network analysis</a></li>
+<li class="chapter" data-level="7.5" data-path="network-analysis.html"><a href="network-analysis.html#finding-interaction-partners"><i class="fa fa-check"></i><b>7.5</b> Finding interaction Partners</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>8</b> ArchR workflow and different weight methods</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#data-preparation-2"><i class="fa fa-check"></i><b>8.1</b> Data preparation</a></li>
+<li class="chapter" data-level="8.2" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#load-archr-project"><i class="fa fa-check"></i><b>8.2</b> Load ArchR project</a></li>
+<li class="chapter" data-level="8.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>8.3</b> Retrieve matrices from ArchR project</a></li>
+<li class="chapter" data-level="8.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>8.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="8.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>8.5</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>8.6</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="8.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-1"><i class="fa fa-check"></i><b>8.7</b> Generate regulons</a></li>
+<li class="chapter" data-level="8.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>8.8</b> (Optional) Annotate with TF motifs</a></li>
+<li class="chapter" data-level="8.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network"><i class="fa fa-check"></i><b>8.9</b> Prune network</a></li>
+<li class="chapter" data-level="8.10" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#weights_prostate"><i class="fa fa-check"></i><b>8.10</b> Add Weights</a></li>
+<li class="chapter" data-level="8.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-1"><i class="fa fa-check"></i><b>8.11</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="8.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>8.12</b> Perform differential activity</a></li>
+<li class="chapter" data-level="8.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>8.13</b> Visualize the results</a></li>
+<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network"><i class="fa fa-check"></i><b>8.14</b> Differential network analysis {diff_network}</a></li>
+<li class="chapter" data-level="8.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#session-info-1"><i class="fa fa-check"></i><b>8.15</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>9</b> Single modality: scRNA-seq only</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>9.1</b> Load regulon</a></li>
+<li class="chapter" data-level="9.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>9.2</b> Load scRNA-seq data</a></li>
+<li class="chapter" data-level="9.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>9.3</b> Calculate activity</a></li>
+<li class="chapter" data-level="9.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>9.4</b> Perform differential activity</a></li>
+<li class="chapter" data-level="9.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>9.5</b> Visualize activity</a></li>
+<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Pathway enrichment</a></li>
+<li class="chapter" data-level="9.7" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#session-info-2"><i class="fa fa-check"></i><b>9.7</b> Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="session-info-3.html"><a href="session-info-3.html"><i class="fa fa-check"></i><b>10</b> Session Info</a></li>
+<li class="chapter" data-level="11" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>11</b> Contact</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Epiregulon documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="session-info-3" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Session Info<a href="session-info-3.html#session-info-3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="session-info-3.html#cb377-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.5.2 (2025-10-31)
+## Platform: x86_64-pc-linux-gnu
+## Running under: Red Hat Enterprise Linux 8.10 (Ootpa)
+## 
+## Matrix products: default
+## BLAS/LAPACK: FlexiBLAS OPENBLAS;  LAPACK version 3.12.0
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## time zone: America/Los_Angeles
+## tzcode source: system (glibc)
+## 
+## attached base packages:
+## [1] grid      stats4    stats     graphics  grDevices utils     datasets 
+## [8] methods   base     
+## 
+## other attached packages:
+##  [1] org.Mm.eg.db_3.22.0               scater_1.38.0                    
+##  [3] scuttle_1.20.0                    scRNAseq_2.24.0                  
+##  [5] dorothea_1.22.0                   igraph_2.2.1                     
+##  [7] nabor_0.5.0                       org.Hs.eg.db_3.22.0              
+##  [9] msigdbr_25.1.1                    epiregulon.extra_1.6.0           
+## [11] BSgenome.Hsapiens.UCSC.hg38_1.4.5 BSgenome_1.78.0                  
+## [13] rtracklayer_1.70.0                BiocIO_1.20.0                    
+## [15] Biostrings_2.78.0                 XVector_0.50.0                   
+## [17] GenomeInfoDb_1.46.1               DropletUtils_1.30.0              
+## [19] zellkonverter_1.20.0              ensembldb_2.34.0                 
+## [21] AnnotationFilter_1.34.0           GenomicFeatures_1.62.0           
+## [23] AnnotationDbi_1.72.0              pbmcMultiome.SeuratData_0.1.4    
+## [25] SeuratData_0.2.2.9002             Signac_1.16.0                    
+## [27] Seurat_5.3.1                      SeuratObject_5.2.0               
+## [29] sp_2.2-0                          epiregulon.archr_0.99.7          
+## [31] rhdf5_2.54.0                      RcppArmadillo_15.2.2-1           
+## [33] Rcpp_1.1.0                        sparseMatrixStats_1.22.0         
+## [35] data.table_1.17.8                 stringr_1.6.0                    
+## [37] plyr_1.8.9                        magrittr_2.0.4                   
+## [39] ggplot2_4.0.1                     gtable_0.3.6                     
+## [41] gtools_3.9.5                      gridExtra_2.3                    
+## [43] devtools_2.4.6                    usethis_3.2.1                    
+## [45] ArchR_1.0.3.1                     Matrix_1.7-4                     
+## [47] epiregulon_2.1.2                  scMultiome_1.10.0                
+## [49] SingleCellExperiment_1.32.0       MultiAssayExperiment_1.36.1      
+## [51] SummarizedExperiment_1.40.0       Biobase_2.70.0                   
+## [53] GenomicRanges_1.62.0              Seqinfo_1.0.0                    
+## [55] IRanges_2.44.0                    S4Vectors_0.48.0                 
+## [57] MatrixGenerics_1.22.0             matrixStats_1.5.0                
+## [59] ExperimentHub_3.0.0               AnnotationHub_4.0.0              
+## [61] BiocFileCache_3.0.0               dbplyr_2.5.1                     
+## [63] BiocGenerics_0.56.0               generics_0.1.4                   
+## [65] BiocStyle_2.38.0                 
+## 
+## loaded via a namespace (and not attached):
+##   [1] graph_1.88.0                      ica_1.0-3                        
+##   [3] plotly_4.11.0                     BiocBaseUtils_1.12.0             
+##   [5] doParallel_1.0.17                 tidyselect_1.2.1                 
+##   [7] bit_4.6.0                         clue_0.3-66                      
+##   [9] lattice_0.22-7                    rjson_0.2.23                     
+##  [11] blob_1.2.4                        S4Arrays_1.10.0                  
+##  [13] parallel_4.5.2                    dichromat_2.0-0.1                
+##  [15] seqLogo_1.76.0                    png_0.1-8                        
+##  [17] cli_3.6.5                         ggplotify_0.1.3                  
+##  [19] ProtGenerics_1.42.0               goftest_1.2-3                    
+##  [21] bluster_1.20.0                    purrr_1.2.0                      
+##  [23] EnrichmentBrowser_2.40.0          BiocNeighbors_2.4.0              
+##  [25] uwot_0.2.4                        curl_7.0.0                       
+##  [27] mime_0.13                         evaluate_1.0.5                   
+##  [29] tidytree_0.4.6                    ComplexHeatmap_2.26.0            
+##  [31] stringi_1.8.7                     backports_1.5.0                  
+##  [33] XML_3.99-0.20                     httpuv_1.6.16                    
+##  [35] clusterProfiler_4.18.2            rappdirs_0.3.3                   
+##  [37] splines_4.5.2                     RcppRoll_0.3.1                   
+##  [39] ggraph_2.2.2                      bcellViper_1.46.0                
+##  [41] dplyr_1.1.4                       sctransform_0.4.2                
+##  [43] ggbeeswarm_0.7.3                  sessioninfo_1.2.3                
+##  [45] DBI_1.2.3                         HDF5Array_1.38.0                 
+##  [47] jquerylib_0.1.4                   withr_3.0.2                      
+##  [49] systemfonts_1.3.1                 enrichplot_1.30.3                
+##  [51] lmtest_0.9-40                     GSEABase_1.72.0                  
+##  [53] tidygraph_1.3.1                   BiocManager_1.30.27              
+##  [55] htmlwidgets_1.6.4                 fs_1.6.6                         
+##  [57] ggrepel_0.9.6                     labeling_0.4.3                   
+##  [59] SparseArray_1.10.3                h5mread_1.2.1                    
+##  [61] annotate_1.88.0                   reticulate_1.44.1                
+##  [63] zoo_1.8-14                        knitr_1.50                       
+##  [65] TFBSTools_1.48.0                  UCSC.utils_1.6.0                 
+##  [67] TFMPvalue_0.0.9                   foreach_1.5.2                    
+##  [69] patchwork_1.3.2                   caTools_1.18.3                   
+##  [71] ggtree_4.0.1                      pwalign_1.6.0                    
+##  [73] R.oo_1.27.1                       ggiraph_0.9.2                    
+##  [75] RSpectra_0.16-2                   irlba_2.3.5.1                    
+##  [77] ggrastr_1.0.2                     alabaster.schemas_1.10.0         
+##  [79] fastDummies_1.7.5                 gridGraphics_0.5-1               
+##  [81] ellipsis_0.3.2                    lazyeval_0.2.2                   
+##  [83] yaml_2.3.11                       survival_3.8-3                   
+##  [85] scattermore_1.2                   BiocVersion_3.22.0               
+##  [87] crayon_1.5.3                      RcppAnnoy_0.0.22                 
+##  [89] RColorBrewer_1.1-3                tidyr_1.3.1                      
+##  [91] progressr_0.18.0                  tweenr_2.0.3                     
+##  [93] later_1.4.4                       Rgraphviz_2.54.0                 
+##  [95] GlobalOptions_0.1.3               ggridges_0.5.7                   
+##  [97] codetools_0.2-20                  KEGGREST_1.50.0                  
+##  [99] shape_1.4.6.1                     Rtsne_0.17                       
+## [101] limma_3.66.0                      gdtools_0.4.4                    
+## [103] Rsamtools_2.26.0                  filelock_1.0.3                   
+## [105] pkgconfig_2.0.3                   KEGGgraph_1.70.0                 
+## [107] spatstat.univar_3.1-5             GenomicAlignments_1.46.0         
+## [109] aplot_0.2.9                       alabaster.base_1.10.0            
+## [111] spatstat.sparse_3.1-0             ape_5.8-1                        
+## [113] viridisLite_0.4.2                 xtable_1.8-4                     
+## [115] httr_1.4.7                        tools_4.5.2                      
+## [117] globals_0.18.0                    pkgbuild_1.4.8                   
+## [119] beeswarm_0.4.0                    checkmate_2.3.3                  
+## [121] nlme_3.1-168                      assertthat_0.2.1                 
+## [123] digest_0.6.39                     bookdown_0.45                    
+## [125] dir.expiry_1.18.0                 farver_2.1.2                     
+## [127] reshape2_1.4.5                    yulab.utils_0.2.2                
+## [129] viridis_0.6.5                     DirichletMultinomial_1.52.0      
+## [131] glue_1.8.0                        cachem_1.1.0                     
+## [133] polyclip_1.10-7                   parallelly_1.45.1                
+## [135] pkgload_1.4.1                     statmod_1.5.1                    
+## [137] RcppHNSW_0.6.0                    ScaledMatrix_1.18.0              
+## [139] fontBitstreamVera_0.1.1           pbapply_1.7-4                    
+## [141] httr2_1.2.1                       spam_2.11-1                      
+## [143] gson_0.1.0                        dqrng_0.4.1                      
+## [145] basilisk_1.22.0                   graphlayouts_1.2.2               
+## [147] alabaster.se_1.10.0               shiny_1.11.1                     
+## [149] scrapper_1.4.0                    R.utils_2.13.0                   
+## [151] rhdf5filters_1.22.0               RCurl_1.98-1.17                  
+## [153] alabaster.sce_1.10.0              memoise_2.0.1                    
+## [155] rmarkdown_2.30                    scales_1.4.0                     
+## [157] R.methodsS3_1.8.2                 gypsum_1.6.0                     
+## [159] future_1.68.0                     chromote_0.5.1                   
+## [161] RANN_2.6.2                        fontLiberation_0.1.0             
+## [163] Cairo_1.7-0                       spatstat.data_3.1-9              
+## [165] rstudioapi_0.17.1                 cluster_2.1.8.1                  
+## [167] spatstat.utils_3.2-0              fitdistrplus_1.2-4               
+## [169] cowplot_1.2.0                     colorspace_2.1-2                 
+## [171] FNN_1.1.4.1                       rlang_1.1.6                      
+## [173] BSgenome.Hsapiens.UCSC.hg19_1.4.3 DelayedMatrixStats_1.32.0        
+## [175] dotCall64_1.2                     circlize_0.4.16                  
+## [177] ggforce_0.5.0                     ggtangle_0.0.9                   
+## [179] xfun_0.54                         alabaster.matrix_1.10.0          
+## [181] iterators_1.0.14                  remotes_2.5.0                    
+## [183] abind_1.4-8                       GOSemSim_2.36.0                  
+## [185] tibble_3.3.0                      treeio_1.34.0                    
+## [187] Rhdf5lib_1.32.0                   motifmatchr_1.32.0               
+## [189] bitops_1.0-9                      ps_1.9.1                         
+## [191] promises_1.5.0                    RSQLite_2.4.5                    
+## [193] qvalue_2.42.0                     fgsea_1.36.0                     
+## [195] DelayedArray_0.36.0               GO.db_3.22.0                     
+## [197] compiler_4.5.2                    alabaster.ranges_1.10.0          
+## [199] beachmat_2.26.0                   listenv_0.10.0                   
+## [201] fontquiver_0.2.1                  edgeR_4.8.0                      
+## [203] BiocSingular_1.26.1               tensor_1.5.1                     
+## [205] MASS_7.3-65                       BiocParallel_1.44.0              
+## [207] babelgene_22.9                    spatstat.random_3.4-3            
+## [209] R6_2.6.1                          fastmap_1.2.0                    
+## [211] fastmatch_1.1-6                   vipor_0.4.7                      
+## [213] ROCR_1.0-11                       websocket_1.4.4                  
+## [215] rsvd_1.0.5                        KernSmooth_2.23-26               
+## [217] miniUI_0.1.2                      deldir_2.0-4                     
+## [219] htmltools_0.5.8.1                 bit64_4.6.0-1                    
+## [221] spatstat.explore_3.6-0            lifecycle_1.0.4                  
+## [223] S7_0.2.1                          processx_3.8.6                   
+## [225] restfulr_0.0.16                   sass_0.4.10                      
+## [227] vctrs_0.6.5                       spatstat.geom_3.6-1              
+## [229] DOSE_4.4.0                        scran_1.38.0                     
+## [231] ggfun_0.2.0                       future.apply_1.20.0              
+## [233] bslib_0.9.0                       pillar_1.11.1                    
+## [235] magick_2.9.0                      metapod_1.18.0                   
+## [237] locfit_1.5-9.12                   otel_0.2.0                       
+## [239] jsonlite_2.0.0                    GetoptLong_1.1.0                 
+## [241] cigarillo_1.0.0</code></pre>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="single-modality-scrna-seq-only.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="contact.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/session_log.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Epiregulon documentation.pdf", "Epiregulon documentation.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

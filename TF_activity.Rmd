@@ -3,7 +3,7 @@
 Once we define the target genes of TFs by constructing the GRN, we can calculate the per cell TF activity by summing up the expression of the individual target genes. While it is reasonable to assume equal contribution from each target genes, epiregulon tries to estimate the weights of each target gene. Biologically, this can be interpreted as the magnitude of gene expression changes induced by transcription factor activity.
 
 
-## Adding weights{#addWeights}
+## Add weights{#addWeights}
 
 Epiregulon estimates the regulatory potential using one of the three measures: 
 
@@ -28,7 +28,7 @@ regulon.w <- addWeights(regulon = pruned.regulon.filtered,
 regulon.w
 ```
 
-### Cell aggregation
+### Aggregate cells
 As with the `pruneRegulon function`, cells can be aggregated into metacells using the `aggregateCells` argument in `addWeights`. Use this option only with the Wilcoxon method, since the other two methods already incorporate cell aggregation. By default, the function generates aggregates containing an average of 10 cells. However, the exact number may vary across metacells, depending on how single cells are distributed in the reduced dimensionality space. Refer to the cell aggregation section in Regulation Refinement for additional information (Section \@ref(cell_aggregation)).
 ```{r eval=FALSE}
 regulon.w.aggr <- addWeights(regulon = pruned.regulon,
@@ -44,7 +44,10 @@ regulon.w.aggr <- addWeights(regulon = pruned.regulon,
                              peak_cutoff=NULL)
 ```
 
-## Calculating TF activity 
+### Using chromatin accessibility data
+The `corr` and `MI` methods for calculating weights by default ignore information about chromatin accessibility. However, it is possible to incorporate this modality into the calculations by setting the `tf_re.merge` argument to `TRUE`. This adds an additional step to the procedure, in which transcription factor expression is multiplied by chromatin accessibility. Therefore, expression is reduced to zero if the corresponding element is not accessible. The TF-RE product is calculated at the level of aggregated cells, mitigating the effect of sparsity, which affects ATAC-seq data more than gene expression. See the Section \@ref(weights_prostate) for an example of using the `tf_re.merge` argument.
+
+## Calculate TF activity 
 
 Finally, the activity for a specific TF in each cell is computed by averaging the expression of target genes weighted by the test statistics of choice as explained in the [addWeights](#addWeights) section. 
 $$y=\frac{1}{n}\sum_{i=1}^{n} x_i * weights_i$$

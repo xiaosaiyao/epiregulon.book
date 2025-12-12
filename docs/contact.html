@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Contact | Epiregulon documentation</title>
+  <title>11 Contact | Epiregulon documentation</title>
   <meta name="description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
 scenarions in which the package can be usd to analyse single-cell data.</p>" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Contact | Epiregulon documentation" />
+  <meta property="og:title" content="11 Contact | Epiregulon documentation" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
@@ -17,7 +17,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Contact | Epiregulon documentation" />
+  <meta name="twitter:title" content="11 Contact | Epiregulon documentation" />
   
   <meta name="twitter:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
 scenarions in which the package can be usd to analyse single-cell data.</p>" />
@@ -26,14 +26,14 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
 <meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
 
 
-<meta name="date" content="2025-01-16" />
+<meta name="date" content="2025-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="single-modality-scrna-seq-only.html"/>
+<link rel="prev" href="session-info.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -58,6 +58,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -146,84 +147,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="installation.html"><a href="installation.html#installing-from-github"><i class="fa fa-check"></i><b>1.1</b> Installing from github</a></li>
-<li class="chapter" data-level="1.2" data-path="installation.html"><a href="installation.html#installing-from-bioconductor"><i class="fa fa-check"></i><b>1.2</b> Installing from Bioconductor</a></li>
+<li class="chapter" data-level="1.1" data-path="installation.html"><a href="installation.html#install-from-github"><i class="fa fa-check"></i><b>1.1</b> Install from GitHub</a></li>
+<li class="chapter" data-level="1.2" data-path="installation.html"><a href="installation.html#install-from-bioconductor"><i class="fa fa-check"></i><b>1.2</b> Install from Bioconductor</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>2</b> Data preparation</a>
+<li class="chapter" data-level="2" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i><b>2</b> Quick start</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data-preparation.html"><a href="data-preparation.html#constructing-a-singlecellexperiment-object"><i class="fa fa-check"></i><b>2.1</b> Constructing a SingleCellExperiment object</a></li>
-<li class="chapter" data-level="2.2" data-path="data-preparation.html"><a href="data-preparation.html#starting-from-an-archr-object"><i class="fa fa-check"></i><b>2.2</b> Starting from an ArchR object</a></li>
-<li class="chapter" data-level="2.3" data-path="data-preparation.html"><a href="data-preparation.html#starting-from-a-seuratsignac-object"><i class="fa fa-check"></i><b>2.3</b> Starting from a Seurat/Signac object</a></li>
-<li class="chapter" data-level="2.4" data-path="data-preparation.html"><a href="data-preparation.html#starting-from-anndata"><i class="fa fa-check"></i><b>2.4</b> Starting from AnnData</a></li>
-<li class="chapter" data-level="2.5" data-path="data-preparation.html"><a href="data-preparation.html#starting-from-10x-data-formats"><i class="fa fa-check"></i><b>2.5</b> Starting from 10x data formats</a>
+<li class="chapter" data-level="2.1" data-path="quick-start.html"><a href="quick-start.html#prepare-data"><i class="fa fa-check"></i><b>2.1</b> Prepare data</a></li>
+<li class="chapter" data-level="2.2" data-path="quick-start.html"><a href="quick-start.html#retrieve-bulk-tf-chip-seq-binding-sites"><i class="fa fa-check"></i><b>2.2</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="2.3" data-path="quick-start.html"><a href="quick-start.html#link-atac-seq-peaks-to-target-genes"><i class="fa fa-check"></i><b>2.3</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="2.4" data-path="quick-start.html"><a href="quick-start.html#add-tf-motif-binding-to-peaks"><i class="fa fa-check"></i><b>2.4</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="2.5" data-path="quick-start.html"><a href="quick-start.html#generate-regulons"><i class="fa fa-check"></i><b>2.5</b> Generate regulons</a></li>
+<li class="chapter" data-level="2.6" data-path="quick-start.html"><a href="quick-start.html#prune-network-recommended"><i class="fa fa-check"></i><b>2.6</b> Prune network (recommended)</a></li>
+<li class="chapter" data-level="2.7" data-path="quick-start.html"><a href="quick-start.html#annotate-regulon"><i class="fa fa-check"></i><b>2.7</b> Annotate regulon</a></li>
+<li class="chapter" data-level="2.8" data-path="quick-start.html"><a href="quick-start.html#calculate-tf-activity"><i class="fa fa-check"></i><b>2.8</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>3</b> Data preparation</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="data-preparation.html"><a href="data-preparation.html#reading-from-.h5-file"><i class="fa fa-check"></i><b>2.5.1</b> Reading from .h5 file</a></li>
-<li class="chapter" data-level="2.5.2" data-path="data-preparation.html"><a href="data-preparation.html#reading-directly-from-a-10x-directory"><i class="fa fa-check"></i><b>2.5.2</b> Reading directly from a 10x directory</a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="data-preparation.html"><a href="data-preparation.html#reading-directly-from-csv"><i class="fa fa-check"></i><b>2.6</b> Reading directly from CSV</a></li>
-<li class="chapter" data-level="2.7" data-path="data-preparation.html"><a href="data-preparation.html#important-points"><i class="fa fa-check"></i><b>2.7</b> Important points</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html"><i class="fa fa-check"></i><b>3</b> Basic workflow with MultiAssayExperiment</a>
+<li class="chapter" data-level="3.1" data-path="data-preparation.html"><a href="data-preparation.html#construct-a-singlecellexperiment-object"><i class="fa fa-check"></i><b>3.1</b> Construct a SingleCellExperiment object</a></li>
+<li class="chapter" data-level="3.2" data-path="data-preparation.html"><a href="data-preparation.html#start-from-an-archr-object"><i class="fa fa-check"></i><b>3.2</b> Start from an ArchR object</a></li>
+<li class="chapter" data-level="3.3" data-path="data-preparation.html"><a href="data-preparation.html#start-from-a-seuratsignac-object"><i class="fa fa-check"></i><b>3.3</b> Start from a Seurat/Signac object</a></li>
+<li class="chapter" data-level="3.4" data-path="data-preparation.html"><a href="data-preparation.html#start-from-anndata"><i class="fa fa-check"></i><b>3.4</b> Start from AnnData</a></li>
+<li class="chapter" data-level="3.5" data-path="data-preparation.html"><a href="data-preparation.html#start-from-10x-data-formats"><i class="fa fa-check"></i><b>3.5</b> Start from 10x data formats</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#data-preparation-1"><i class="fa fa-check"></i><b>3.1</b> Data preparation</a></li>
-<li class="chapter" data-level="3.2" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#quick-start"><i class="fa fa-check"></i><b>3.2</b> Quick start</a>
+<li class="chapter" data-level="3.5.1" data-path="data-preparation.html"><a href="data-preparation.html#read-from-.h5-file"><i class="fa fa-check"></i><b>3.5.1</b> Read from .h5 file</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-preparation.html"><a href="data-preparation.html#read-directly-from-a-10x-directory"><i class="fa fa-check"></i><b>3.5.2</b> Read directly from a 10x directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-preparation.html"><a href="data-preparation.html#read-directly-from-csv"><i class="fa fa-check"></i><b>3.6</b> Read directly from CSV</a></li>
+<li class="chapter" data-level="3.7" data-path="data-preparation.html"><a href="data-preparation.html#important-points"><i class="fa fa-check"></i><b>3.7</b> Important points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>4</b> Construction of the gene regulatory network</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#retrieve-bulk-tf-chip-seq-binding-sites"><i class="fa fa-check"></i><b>3.2.1</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
-<li class="chapter" data-level="3.2.2" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#link-atac-seq-peaks-to-target-genes"><i class="fa fa-check"></i><b>3.2.2</b> Link ATAC-seq peaks to target genes</a></li>
-<li class="chapter" data-level="3.2.3" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#add-tf-motif-binding-to-peaks"><i class="fa fa-check"></i><b>3.2.3</b> Add TF motif binding to peaks</a></li>
-<li class="chapter" data-level="3.2.4" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#generate-regulons"><i class="fa fa-check"></i><b>3.2.4</b> Generate regulons</a></li>
-<li class="chapter" data-level="3.2.5" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#network-pruning-highly-recommended"><i class="fa fa-check"></i><b>3.2.5</b> Network pruning (highly recommended)</a></li>
-<li class="chapter" data-level="3.2.6" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#add-weights"><i class="fa fa-check"></i><b>3.2.6</b> Add Weights</a></li>
-<li class="chapter" data-level="3.2.7" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>3.2.7</b> (Optional) Annotate with TF motifs</a></li>
-<li class="chapter" data-level="3.2.8" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#calculate-tf-activity"><i class="fa fa-check"></i><b>3.2.8</b> Calculate TF activity</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="basic-workflow-with-multiassayexperiment.html"><a href="basic-workflow-with-multiassayexperiment.html#session-info"><i class="fa fa-check"></i><b>3.3</b> Session Info</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html"><i class="fa fa-check"></i><b>4</b> Advanced workflow with MultiAssayExperiment</a>
+<li class="chapter" data-level="4.1" data-path="construction.html"><a href="construction.html#download-and-format-dataset"><i class="fa fa-check"></i><b>4.1</b> Download and format dataset</a></li>
+<li class="chapter" data-level="4.2" data-path="construction.html"><a href="construction.html#retrieve-tf-occupancy-data"><i class="fa fa-check"></i><b>4.2</b> Retrieve TF occupancy data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#data-preparation-2"><i class="fa fa-check"></i><b>4.1</b> Data preparation</a></li>
-<li class="chapter" data-level="4.2" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>4.2</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
-<li class="chapter" data-level="4.3" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#link-atacseq-peaks-to-target-genes"><i class="fa fa-check"></i><b>4.3</b> Link ATACseq peaks to target genes</a></li>
-<li class="chapter" data-level="4.4" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>4.4</b> Add TF motif binding to peaks</a></li>
-<li class="chapter" data-level="4.5" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#generate-regulons-1"><i class="fa fa-check"></i><b>4.5</b> Generate regulons</a></li>
-<li class="chapter" data-level="4.6" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#prune-network"><i class="fa fa-check"></i><b>4.6</b> Prune network</a></li>
-<li class="chapter" data-level="4.7" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#add-weights-1"><i class="fa fa-check"></i><b>4.7</b> Add Weights</a></li>
-<li class="chapter" data-level="4.8" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#calculate-tf-activity-1"><i class="fa fa-check"></i><b>4.8</b> Calculate TF activity</a></li>
-<li class="chapter" data-level="4.9" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#differential-tf-activity-test"><i class="fa fa-check"></i><b>4.9</b> Differential TF activity test</a></li>
-<li class="chapter" data-level="4.10" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#visualizing-tf-activities"><i class="fa fa-check"></i><b>4.10</b> Visualizing TF activities</a></li>
-<li class="chapter" data-level="4.11" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#geneset-enrichment"><i class="fa fa-check"></i><b>4.11</b> Geneset enrichment</a></li>
-<li class="chapter" data-level="4.12" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#differential-network-analysis"><i class="fa fa-check"></i><b>4.12</b> Differential Network analysis</a></li>
-<li class="chapter" data-level="4.13" data-path="advanced-workflow-with-multiassayexperiment.html"><a href="advanced-workflow-with-multiassayexperiment.html#session-info-1"><i class="fa fa-check"></i><b>4.13</b> Session Info</a></li>
+<li class="chapter" data-level="4.2.1" data-path="construction.html"><a href="construction.html#chip-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> ChIP-seq data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="construction.html"><a href="construction.html#motif-information"><i class="fa fa-check"></i><b>4.2.2</b> Motif information</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>5</b> ArchR workflow and different weight methods</a>
+<li class="chapter" data-level="4.3" data-path="construction.html"><a href="construction.html#link-atacseq-peaks-to-target-genes"><i class="fa fa-check"></i><b>4.3</b> Link ATACseq peaks to target genes</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#data-preparation-3"><i class="fa fa-check"></i><b>5.1</b> Data preparation</a></li>
-<li class="chapter" data-level="5.2" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#load-archr-project"><i class="fa fa-check"></i><b>5.2</b> Load ArchR project</a></li>
-<li class="chapter" data-level="5.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>5.3</b> Retrieve matrices from ArchR project</a></li>
-<li class="chapter" data-level="5.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-2"><i class="fa fa-check"></i><b>5.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
-<li class="chapter" data-level="5.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>5.5</b> Link ATAC-seq peaks to target genes</a></li>
-<li class="chapter" data-level="5.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-2"><i class="fa fa-check"></i><b>5.6</b> Add TF motif binding to peaks</a></li>
-<li class="chapter" data-level="5.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-2"><i class="fa fa-check"></i><b>5.7</b> Generate regulons</a></li>
-<li class="chapter" data-level="5.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs-1"><i class="fa fa-check"></i><b>5.8</b> (Optional) Annotate with TF motifs</a></li>
-<li class="chapter" data-level="5.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network-1"><i class="fa fa-check"></i><b>5.9</b> Prune network</a></li>
-<li class="chapter" data-level="5.10" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-weights-2"><i class="fa fa-check"></i><b>5.10</b> Add Weights</a></li>
-<li class="chapter" data-level="5.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-2"><i class="fa fa-check"></i><b>5.11</b> Calculate TF activity</a></li>
-<li class="chapter" data-level="5.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>5.12</b> Perform differential activity</a></li>
-<li class="chapter" data-level="5.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>5.13</b> Visualize the results</a></li>
-<li class="chapter" data-level="5.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-1"><i class="fa fa-check"></i><b>5.14</b> Differential network analysis</a></li>
-<li class="chapter" data-level="5.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#session-info-2"><i class="fa fa-check"></i><b>5.15</b> Session Info</a></li>
+<li class="chapter" data-level="4.3.1" data-path="construction.html"><a href="construction.html#optimization"><i class="fa fa-check"></i><b>4.3.1</b> Optimize the number of metacells (optional)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="construction.html"><a href="construction.html#distance_window"><i class="fa fa-check"></i><b>4.3.2</b> Find peak-target gene links within a defined distance</a></li>
+<li class="chapter" data-level="4.3.3" data-path="construction.html"><a href="construction.html#link-peaks-to-the-nearest-genes"><i class="fa fa-check"></i><b>4.3.3</b> Link peaks to the nearest genes</a></li>
+<li class="chapter" data-level="4.3.4" data-path="construction.html"><a href="construction.html#filter-peak-target-gene-links"><i class="fa fa-check"></i><b>4.3.4</b> Filter peak-target gene links</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>6</b> Single modality: scRNA-seq only</a>
+<li class="chapter" data-level="4.4" data-path="construction.html"><a href="construction.html#add-tf-occupancy-to-peaks"><i class="fa fa-check"></i><b>4.4</b> Add TF occupancy to peaks</a></li>
+<li class="chapter" data-level="4.5" data-path="construction.html"><a href="construction.html#generate-regulons-1"><i class="fa fa-check"></i><b>4.5</b> Generate regulons</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="refinement.html"><a href="refinement.html"><i class="fa fa-check"></i><b>5</b> Refinement of gene regulatory network</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>6.1</b> Load regulon</a></li>
-<li class="chapter" data-level="6.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>6.2</b> Load scRNA-seq data</a></li>
-<li class="chapter" data-level="6.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>6.3</b> Calculate activity</a></li>
-<li class="chapter" data-level="6.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>6.4</b> Perform differential activity</a></li>
-<li class="chapter" data-level="6.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>6.5</b> Visualize activity</a></li>
-<li class="chapter" data-level="6.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>6.6</b> Pathway enrichment</a></li>
-<li class="chapter" data-level="6.7" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#session-info-3"><i class="fa fa-check"></i><b>6.7</b> Session Info</a></li>
+<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Network pruning</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="refinement.html"><a href="refinement.html#cell_aggregation"><i class="fa fa-check"></i><b>5.1.1</b> Aggregate cells</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>7</b> Contact</a></li>
+<li class="chapter" data-level="5.2" data-path="refinement.html"><a href="refinement.html#motif_score"><i class="fa fa-check"></i><b>5.2</b> Annotate with TF motifs</a></li>
+<li class="chapter" data-level="5.3" data-path="refinement.html"><a href="refinement.html#annotate-with-log-fold-changes"><i class="fa fa-check"></i><b>5.3</b> Annotate with log fold changes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html"><i class="fa fa-check"></i><b>6</b> Calculation of the TF activity</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#addWeights"><i class="fa fa-check"></i><b>6.1</b> Add weights</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#aggregate-cells"><i class="fa fa-check"></i><b>6.1.1</b> Aggregate cells</a></li>
+<li class="chapter" data-level="6.1.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#using-chromatin-accessibility-data"><i class="fa fa-check"></i><b>6.1.2</b> Using chromatin accessibility data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="calculation-of-the-tf-activity.html"><a href="calculation-of-the-tf-activity.html#calculate-tf-activity-1"><i class="fa fa-check"></i><b>6.2</b> Calculate TF activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>7</b> Network analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Differential TF activity</a></li>
+<li class="chapter" data-level="7.2" data-path="network-analysis.html"><a href="network-analysis.html#diff_activity_vis"><i class="fa fa-check"></i><b>7.2</b> Visualize TF activities</a></li>
+<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Differential network analysis</a></li>
+<li class="chapter" data-level="7.5" data-path="network-analysis.html"><a href="network-analysis.html#find-interaction-partners"><i class="fa fa-check"></i><b>7.5</b> Find interaction partners</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>8</b> ArchR workflow and different weight methods</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prepare-data-1"><i class="fa fa-check"></i><b>8.1</b> Prepare data</a></li>
+<li class="chapter" data-level="8.2" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#load-archr-project"><i class="fa fa-check"></i><b>8.2</b> Load ArchR project</a></li>
+<li class="chapter" data-level="8.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>8.3</b> Retrieve matrices from ArchR project</a></li>
+<li class="chapter" data-level="8.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>8.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
+<li class="chapter" data-level="8.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>8.5</b> Link ATAC-seq peaks to target genes</a></li>
+<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>8.6</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="8.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-2"><i class="fa fa-check"></i><b>8.7</b> Generate regulons</a></li>
+<li class="chapter" data-level="8.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>8.8</b> (Optional) Annotate with TF motifs</a></li>
+<li class="chapter" data-level="8.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network"><i class="fa fa-check"></i><b>8.9</b> Prune network</a></li>
+<li class="chapter" data-level="8.10" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#weights_prostate"><i class="fa fa-check"></i><b>8.10</b> Add Weights</a></li>
+<li class="chapter" data-level="8.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-2"><i class="fa fa-check"></i><b>8.11</b> Calculate TF activity</a></li>
+<li class="chapter" data-level="8.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>8.12</b> Perform differential activity</a></li>
+<li class="chapter" data-level="8.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>8.13</b> Visualize the results</a></li>
+<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment-1"><i class="fa fa-check"></i><b>8.14</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="8.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network"><i class="fa fa-check"></i><b>8.15</b> Differential network analysis {diff_network}</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>9</b> Single modality: scRNA-seq only</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>9.1</b> Load regulon</a></li>
+<li class="chapter" data-level="9.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>9.2</b> Load scRNA-seq data</a></li>
+<li class="chapter" data-level="9.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>9.3</b> Calculate activity</a></li>
+<li class="chapter" data-level="9.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>9.4</b> Perform differential activity</a></li>
+<li class="chapter" data-level="9.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>9.5</b> Visualize activity</a></li>
+<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Pathway enrichment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>10</b> Session Info</a></li>
+<li class="chapter" data-level="11" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>11</b> Contact</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -244,8 +268,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="contact" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">7</span> Contact<a href="contact.html#contact" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="contact" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">11</span> Contact<a href="contact.html#contact" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The issues related to <code>epiregulon</code> suite of packages can be reported on the package GitHub repository page.</p>
 <ul>
 <li><a href="https://github.com/xiaosaiyao/epiregulon/issues"><code>epiregulon</code></a></li>
@@ -264,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="single-modality-scrna-seq-only.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="session-info.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -279,42 +303,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/contact.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["Epiregulon documentation.pdf", "Epiregulon documentation.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/contact.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Epiregulon documentation.pdf", "Epiregulon documentation.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

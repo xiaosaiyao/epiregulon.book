@@ -3,9 +3,9 @@ library(BiocStyle)
 ```
 # Quick start
 
-In this chapter, we illustrate the epiregulon workflow, using the reprogram-seq dataset which can be downloaded from the `r Biocpkg("scMultiome")` package. In this example, prostate cancer cells (LNCaP) were infected in separate wells with viruses encoding 4 transcription factors (NKX2-1, GATA6, FOXA1 and FOXA2) and a positive control (mNeonGreen) before pooling. The identity of the infected transcription factors was tracked through cell hashing (available in the field `hash_assignment` of the `colData`) and serves as the ground truth.
+In this chapter, we illustrate the epiregulon workflow, using the PBMC dataset which can be downloaded from the `r Biocpkg("scMultiome")` package.  
 
-## Data preparation
+## Prepare data
 
 Prior to using `epiregulon`, single cell preprocessing needs to be performed by user's favorite methods. The following components are required: <br>
 1. Peak matrix from scATAC-seq containing the chromatin accessibility information <br>
@@ -17,45 +17,36 @@ Prior to using `epiregulon`, single cell preprocessing needs to be performed by 
 library(scMultiome)
 library(epiregulon)
 
-mae <- scMultiome::reprogramSeq()
+# Download the example dataset
+mae <- scMultiome::PBMC_10x()
 
-# extract peak matrix
+# Load peak matrix
 PeakMatrix <- mae[["PeakMatrix"]]
 
-# extract expression matrix
+# Load expression matrix
 GeneExpressionMatrix <- mae[["GeneExpressionMatrix"]]
-rownames(GeneExpressionMatrix) <- rowData(GeneExpressionMatrix)$name
-
-# define the order of hash_assigment
-GeneExpressionMatrix$hash_assignment <- factor(as.character(GeneExpressionMatrix$hash_assignment),
-                                               levels = c("HTO10_GATA6_UTR", "HTO2_GATA6_v2", "HTO8_NKX2.1_UTR", "HTO3_NKX2.1_v2", 
-                                                          "HTO1_FOXA2_v2", "HTO4_mFOXA1_v2", "HTO6_hFOXA1_UTR", "HTO5_NeonG_v2"))
-# extract dimensional reduction matrix
-reducedDimMatrix <- reducedDim(mae[['TileMatrix500']], "LSI_ATAC")
-
-# transfer UMAP_combined from TileMatrix to GeneExpressionMatrix
-reducedDim(GeneExpressionMatrix, "UMAP_Combined") <- reducedDim(mae[['TileMatrix500']], "UMAP_Combined")
 ```
 Visualize singleCellExperiment by UMAP
 
 ```{r}
-
 scater::plotReducedDim(GeneExpressionMatrix, 
-                       dimred = "UMAP_Combined", 
-                       text_by = "Clusters", 
-                       colour_by = "Clusters")
+                       dimred = "UMAP_RNA", 
+                       text_by = "cell_type", 
+                       colour_by = "cell_type",
+                       point_size = 0.3,
+                       point_alpha = 0.3)
 ```
 
 ## Retrieve bulk TF ChIP-seq binding sites 
 
 First, we retrieve a `GRangesList` object containing the binding sites of all the transcription factors and co-regulators. These binding sites are derived from bulk ChIP-seq data in the [ChIP-Atlas](https://chip-atlas.org/) and [ENCODE](https://www.encodeproject.org/) databases. For the same transcription factor, multiple ChIP-seq files from different cell lines or tissues are merged. For further information on how these peaks are derived, please refer to `?epiregulon::getTFMotifInfo`. Currently, human genomes hg19 and hg38 and mouse mm10 are supported. 
 
-```{r getTFMotifInfo}
+```{r getTFMotifInfo, warning = FALSE, message = FALSE}
 grl <- getTFMotifInfo(genome = "hg38")
 grl
 ```
 
-### Link ATAC-seq peaks to target genes
+## Link ATAC-seq peaks to target genes
 
 Next, we try to link ATAC-seq peaks to their putative target genes. We assign a peak to a gene within a size window (default ±250kb) if the chromatin accessibility of the peak and expression of the target genes are highly correlated (default threshold 0.5). To compute correlations, we first create cell aggregates by performing k-means clustering on the reduced dimensionality matrix. To estimate the optimal number of cells per cluster we will run the function `optimizeMetacellNumber`.
 
@@ -65,10 +56,9 @@ cellNum <- optimizeMetacellNumber(expMatrix = GeneExpressionMatrix,
                                   peakMatrix = PeakMatrix,
                                   exp_assay = "normalizedCounts",
                                   peak_assay = "counts",
-                                  reducedDim = reducedDim(GeneExpressionMatrix, "UMAP_Combined"),
+                                  reducedDim = reducedDim(GeneExpressionMatrix, "LSI_RNA"),
                                   BPPARAM = BiocParallel::SerialParam(progressbar = FALSE))
 
-cellNum
 ```
 
 `cellNum` object is now provided as an argument to `calculateP2G`.
@@ -77,14 +67,14 @@ cellNum
 set.seed(1010)
 p2g <- calculateP2G(peakMatrix = PeakMatrix, 
                     expMatrix = GeneExpressionMatrix, 
-                    reducedDim = reducedDimMatrix,
+                    reducedDim = reducedDim(GeneExpressionMatrix, "LSI_RNA"),
                     exp_assay = "normalizedCounts",
                     peak_assay = "counts")
 
 p2g
 ```
 
-### Add TF motif binding to peaks
+## Add TF motif binding to peaks
 
 The next step is to add the TF binding information by overlapping regions of the peak matrix with the bulk chip-seq database. The output is a data frame object with three columns:
 
@@ -98,7 +88,7 @@ overlap <- addTFMotifInfo(grl = grl, p2g = p2g, peakMatrix = PeakMatrix)
 head(overlap)
 ```
 
-### Generate regulons
+## Generate regulons
 
 A data frame representing the inferred regulons is then generated. The data frame consists of several columns, including those indicating target genes, transcription factors, and regulatory elements indexed by their corresponding rows in the `PeakMatrix`.
 
@@ -107,19 +97,18 @@ regulon <- getRegulon(p2g = p2g, overlap = overlap, aggregate = FALSE)
 regulon
 ```
 
-### Network pruning (recommended)
+## Prune network (recommended)
 
 Since our regulon is quite large, and likely contains many false connections, we will pass it through the pruning function.
 
-```{r network pruning, results = "hide", message = FALSE}
+```{r results = "hide", message = FALSE}
 
 pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
                                exp_assay = "normalizedCounts",
                                peakMatrix = PeakMatrix,
                                peak_assay = "counts",
                                test = "chi.sq",
-                               regulon[regulon$tf %in% c("NKX2-1","GATA6","FOXA1","FOXA2", "AR"),],
-                               clusters = GeneExpressionMatrix$Clusters,
+                               regulon,
                                prune_value = "pval",
                                regulon_cutoff = 0.05
                                )
@@ -127,15 +116,46 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
 pruned.regulon
 ```
 
-### Calculate TF activity 
+## Annotate regulon
 
-Finally, the activities for a specific TF in each cell are computed by averaging expressions of target genes linked to the TF weighted by the test statistics of choice, chosen from either correlation, mutual information or the Wilcoxon test statistics. 
+Apart from pruning, the regulon can be annotated with metrics useful for further refinement. One such metric is the log fold change of gene expression in a specified group of cells compared to all other or a selected group. Before running `addLogFC` function we need to log-transform gene expression counts.
+
+```{r results = "hide", message = FALSE}
+
+# add 'logcounts' assay
+GeneExpressionMatrix <- scuttle::logNormCounts(GeneExpressionMatrix)
+
+regulon.FC <- addLogFC(expMatrix = GeneExpressionMatrix,
+                       clusters = GeneExpressionMatrix$cell_type,
+                       regulon = pruned.regulon,
+                       pval.type = "any",
+                       sig_type = "FDR",
+                       assay.type = "logcounts",
+                       logFC_condition=c('Naive CD4+ T')
+)
+
+regulon.FC
+```
+
+
+Another way to annotate the regulon is to add information about the presence of a motif at the regulatory element. By default, a new column named `motif` will be appended to the regulon, with 1s in rows where a motif has been found that matches the declared transcription factor.
+
+```{r results = "hide", message = FALSE}
+regulon.motif <- addMotifScore(regulon = pruned.regulon,
+                                peaks = rowRanges(PeakMatrix),
+                                species = "human",
+                                genome = "hg38")
+regulon.motif
+```
+
+## Calculate TF activity 
+
+Finally, the activities for a specific TF in each cell are computed by averaging expressions of target genes linked to the TF weighted by the test statistics of choice. Using the `method` argument to the `addWeights` function, the user may choose among correlation, mutual information, or Wilcoxon as the test statistic.
 $$y=\frac{1}{n}\sum_{i=1}^{n} x_i * weights_i$$
-where $y$ is the activity of a TF for a cell,
-$n$ is the total number of targets for a TF,
-$x_i$ is the log count expression of target $i$ where $i$ in {1,2,...,n} and
+where $y$ is the activity of a TF for a cell, <br>
+$n$ is the total number of targets for a TF,<br>
+$x_i$ is the log count expression of target $i$ where $i$ in {1,2,...,n} and<br>
 $weights_i$ is the weight of TF - target $i$, calculated by running `addWeights` function.
-
 
 
 ```{r calculateActivity}
@@ -143,9 +163,7 @@ regulon.w <- addWeights(regulon = pruned.regulon,
                         expMatrix  = GeneExpressionMatrix,
                         exp_assay  = "normalizedCounts",
                         peakMatrix = PeakMatrix,
-                        peak_assay = "counts",
-                        clusters = GeneExpressionMatrix$Clusters,
-                        method = "wilcox")
+                        peak_assay = "counts")
 
 
 score.combine <- calculateActivity(expMatrix = GeneExpressionMatrix,
@@ -156,10 +174,4 @@ score.combine <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    normalize = FALSE)
 
 score.combine[1:5,1:5]
-```
-
-## Session Info
-
-```{r}
-sessionInfo()
 ```
