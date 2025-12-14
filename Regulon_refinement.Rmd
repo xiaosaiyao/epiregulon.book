@@ -4,7 +4,7 @@ The `regulon` object constructed in the previous [chapter](#construction) contai
 In this chapter, we introduce three additional filters. The `pruneRegulon` function filters the GRN based on the co-occurrence of TF gene expression, RE chromatin accessibility and target gene expression. The `addMotifScore` function annotates regulons for the presence of motifs. Lastly, the `addLogFC` function calculates changes in gene expression between conditions, so that only target genes showing differential expression are selected.
 
 
-## Network pruning {#pruning}
+## Prune network {#pruning}
 
 Epiregulon prunes the network by performing tests of independence on the observed number of cells jointly expressing transcription factor ($TF$), regulatory element ($RE$) and target gene ($TG$). The thresholds at which the features are considered expressed are defined by the `peak_cutoff` and `exp_cutoff` arguments. We implement two tests, the binomial test and the chi-square test. In the binomial test, the expected probability is $P(TF, RE) \cdot P(TG)$, and the number of trials is the total number of cells (or metacells if we set `aggregateCells=TRUE`), and the observed successes is the number of cells jointly expressing all three elements. In the chi-square test, the expected probability for having all 3 elements active is also $P(TF, RE) \cdot P(TG)$. The observed cell count for the active category is the number of cells jointly expressing all three elements ($n_{triple}$).
 

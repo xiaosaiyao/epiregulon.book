@@ -2,7 +2,7 @@
 
 In this chapter, we illustrate the epiregulon workflow starting from an ArchR project and compare the different weight estimation methods.
 
-The dataset consists of unpaired scATACseq/scRNAseq of parental LNCaP cells treated with DMSO, Enzalutamide and Enza resistant cells. The dataset was taken from [Taavitsainen et al](https://www.nature.com/articles/s41467-021-25624-1) [GSE168667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168667) and [GSE168668](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168668).
+The dataset consists of unpaired scATACseq/scRNAseq of parental LNCaP cells treated with DMSO, enzalutamide and Enza resistant cells. The dataset was taken from [Taavitsainen et al](https://www.nature.com/articles/s41467-021-25624-1) ([GSE168667](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168667) and [GSE168668](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168668)).
 
 ## Prepare data
 
@@ -10,15 +10,15 @@ Please refer to the full ArchR [manual](https://www.archrproject.com/bookdown/in
 
 Before running Epiregulon, the following analyses need to be completed:
 
-1. Obtain a peak matrix on scATACseq by using addGroupCoverages > addReproduciblePeakSet > addPeakMatrix. See chapter [10](https://www.archrproject.com/bookdown/calling-peaks-with-archr.html) from ArchR manual
+1. Obtain a peak matrix on scATACseq by using `addGroupCoverages` > `addReproduciblePeakSet` > `addPeakMatrix`. See chapter [10](https://www.archrproject.com/bookdown/calling-peaks-with-archr.html) from ArchR manual
 2. RNA-seq integration. 
-    a. For unpaired scATAC-seq, use addGeneIntegrationMatrix. See chapter [8](https://www.archrproject.com/bookdown/defining-cluster-identity-with-scrna-seq.html) from ArchR manual
-    b. For multiome data, use addGeneExpressionMatrix. See [multiome](https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html) tutorial
-3. Perform dimensionality reduction from with either single modalities or joint scRNAseq and scATACseq using [addCombinedDims](https://www.archrproject.com/reference/addCombinedDims.html)
+    a. For unpaired scATAC-seq, use `addGeneIntegrationMatrix`. See chapter [8](https://www.archrproject.com/bookdown/defining-cluster-identity-with-scrna-seq.html) from ArchR manual
+    b. For multiome data, use `addGeneExpressionMatrix`. See [multiome](https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html) tutorial
+3. Perform dimensionality reduction from with either single modalities or joint scRNAseq and scATACseq using `addCombinedDims`. See [vignette](https://www.archrproject.com/reference/addCombinedDims.html)
 
 ## Load ArchR project
 
-The data processed in `ArchR` is available at as compressed file containing `ArchR` project. 
+Download and load the ArchR project. 
 
 ```{r, message = FALSE}
 library(ArchR)
@@ -30,12 +30,6 @@ archR_project_path <- file.path(temp_path, "multiome")
 proj <- loadArchRProject(path = archR_project_path, showLogo = FALSE)
 ```
 
-We will use the joint reducedDims - "LSI_Combined" and  joint embeddings - "UMAP_Combined"
-```{r}
-head(getReducedDims(proj, reducedDims = "iLSI_Combined")[,1:5])
-head(getEmbedding(proj, embedding = "UMAP_Combined"))
-
-```
 ## Retrieve matrices from ArchR project
 
 Retrieve gene expression and peak matrix from the ArchR project
@@ -77,7 +71,7 @@ PeakMatrix <- ArchRMatrix2SCE(PeakMatrix, rename = "counts")
 
 Transfer embeddings from ArchR project to `SingleCellExperiment` for visualization
 
-```{r}
+```{r, results='hide', message=FALSE}
 reducedDim(GeneExpressionMatrix, "UMAP_Combined") <- getEmbedding(ArchRProj = proj, 
                                                                   embedding = "UMAP_Combined", 
                                                                   returnDF = TRUE)[colnames(GeneExpressionMatrix),]
@@ -89,7 +83,7 @@ GeneExpressionMatrix$label <- factor(GeneExpressionMatrix$label,
                                      levels = c("LNCaP", "LNCaP–ENZ48", "LNCaP RES-A", "LNCaP RES-B"))
 ```
 
-Visualize singleCellExperiment by UMAP
+Visualize the SingleCellExperiment object by UMAP
 ```{r}
 scater::plotReducedDim(GeneExpressionMatrix, 
                        dimred = "UMAP_Combined", 
@@ -99,7 +93,7 @@ scater::plotReducedDim(GeneExpressionMatrix,
 
 ## Retrieve bulk TF ChIP-seq binding sites 
 
-First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse mm10 are available. 
+We retrieve TF binding sites compiled from ChIP-Atlas and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse mm10 are available.
 
 ```{r getTFMotifInfo_prostate, message=FALSE, warning=FALSE}
 grl <- getTFMotifInfo(genome = "hg38")
@@ -108,8 +102,8 @@ grl
 
 ## Link ATAC-seq peaks to target genes
 
-Next, we compute peak to gene correlations using the `addPeak2GeneLinks` function from the ArchR package. The user would need 
-to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction. 
+We compute peak to gene correlations using the `addPeak2GeneLinks` function from the ArchR package. The user would need 
+to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction. We will use the joint reducedDims - "LSI_Combined".
 
 ```{r calculateP2G_prostate, message=FALSE, warning=FALSE}
 
@@ -120,11 +114,11 @@ p2g <- calculateP2G(ArchR_path = archR_project_path,
 p2g
 ```
 
-## Add TF motif binding to peaks
+## Add TF occupancy data to peaks
 
-The next step is to add the TF motif binding information by overlapping the regions of the peak matrix with the bulk chip-seq database. The user can supply an ArchR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a `Granges` object or `RangedSummarizedExperiment`.
+The next step is to add the TF binding information by overlapping the regions of the peak matrix with the bulk ChIP-seq data. Users can supply an ArchR project path and this function will retrieve the positions of the peaks from the peak matrix.
 
-```{r addTFMotifInfo_prostate}
+```{r addTFMotifInfo_prostate, warning=FALSE, message=FALSE}
 overlap <- addTFMotifInfo(archR_project_path = archR_project_path, grl = grl, p2g = p2g)
 ```
 
@@ -143,7 +137,7 @@ regulon
 
 ## (Optional) Annotate with TF motifs
 
-In this example, we will filter the regulon for the presence of transcription factor motifs in a peak (see Section \@ref(motif_score)) and continue the workflow with the `regulon.motif` object. However, if the user prefers to retain all target genes, including REs without motifs, they may proceed with `regulon`.
+In this example, we will filter the regulons for the presence of transcription factor motifs and continue the workflow with the `regulon.motif` object. However, if users prefer to retain all target genes, they may proceed with the `regulon` object.
 
 ```{r addMotifScore_prostate}
 
@@ -155,7 +149,7 @@ regulon.motif <- regulon.motif[which(regulon.motif$motif ==1),]
 
 ## Prune network
 
-We will use `pruneRegulon` function to restict the downstream analysis to more reliable GRN connections. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section \@ref(diff_network) to learn more on the differential networks.
+We prune the regulons. 
 
 ```{r pruning_prostate,  results = "hide", warning = FALSE, message = FALSE}
 
@@ -172,7 +166,7 @@ pruned.regulon <- pruneRegulon(expMatrix = GeneExpressionMatrix,
 
 ## Add Weights {#weights_prostate}
 
-Before we calculate AR activity, we will first visualize its expression and show that enzalutamide does not decrease AR expression.
+Before we calculate AR activity, we visualize its expression and show that enzalutamide does not decrease AR expression despite being an AR antagonist.
 
 ```{r}
 library(epiregulon.extra)
@@ -186,7 +180,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
 
 ```
 
-Then we extract the chromVarMatrix from ArchR project and then visualize the chromatin accessibility at AR bound sites. We can see that 48 hour of enzalutamide treatment reduced chromatin accessibility at AR bound sites
+Then we extract the chromVarMatrix from ArchR project and visualize the chromatin accessibility at AR bound sites. We can see that 48 hour of enzalutamide treatment reduced chromatin accessibility at AR bound sites.
 
 ```{r message=FALSE, warning=FALSE}
 chromVarMatrix <- getMatrixFromProject(
@@ -210,7 +204,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
 Next, we are going to compare 3 different weight methods. In the first method, the `wilcoxon` test compares target gene expression in cells meeting both the TF expression and accessibility cutoffs vs cells failing either the TF expression or/and accessibility cutoffs. Next, we try out the correlation method which comes in two flavors. When `tf_re.merge = FALSE`, weight is computed on the correlation of target gene expression vs TF gene expression. When `tf_re.merge = TRUE`, weight is computed on the correlation of target gene expression vs the product of TF expression and chromatin accessibility at TF-bound regulatory elements.
 
 
-```{r addWeights_prostate, results = "hide"}
+```{r addWeights_prostate, results = "hide", message=FALSE}
 
 regulon.w.wilcox <- addWeights(regulon = pruned.regulon,
                         expMatrix = GeneExpressionMatrix,
@@ -247,27 +241,24 @@ $n$ is the total number of targets for a TF
 $x_i$ is the log count expression of target i where i in {1,2,...,n}
 $weight_i$ is the weight of TF and target i
 
-We calculate three different activities corresponding to the different weighted regulons
+We calculate the activities corresponding to three weight methods.
 
-```{r calculateActivity_prostate, results = "hide"}
+```{r calculateActivity_prostate, results = "hide", message=FALSE, warning=FALSE}
 score.combine.wilcox <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    exp_assay = "normalizedCounts",
                                    regulon = regulon.w.wilcox,
                                    normalize = TRUE,
-                                   mode = "weight",
-                                   method = "weightedMean")
+                                   mode = "weight")
 score.combine.corr <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    exp_assay = "normalizedCounts",
                                    regulon = regulon.w.corr,
                                    normalize = TRUE,
-                                   mode = "weight",
-                                   method = "weightedMean")
+                                   mode = "weight")
 score.combine.corr.re <- calculateActivity(expMatrix = GeneExpressionMatrix,
                                    exp_assay = "normalizedCounts",
                                    regulon = regulon.w.corr.re,
                                    normalize = TRUE,
-                                   mode = "weight",
-                                   method = "weightedMean")
+                                   mode = "weight")
 ```
 
 We visualize the different activities side by side.
@@ -285,11 +276,11 @@ plotActivityViolin(activity_matrix = score.combine.corr.re,
                    clusters = GeneExpressionMatrix$label) + ggtitle ("AR activity by corr TF*RE vs TG")
 ```
 
-In this case, activity calculated from correlation based on TF and TG expression is clearly wrong because we see increased AR activity after Enzalutamide treatment despite it being an AR antagonist. Therefore, for drug treatment which often decouples TF gene expression and its activity, it is important to take into consideration both TF gene expression and RE chromatin accessibility; the latter may be a better indicator of TF function if the TF has an effect on the chromatin accessibility. In this case, the recommended methods are either `wilcox` or `corr` with `tf_re.merge = TRUE`. 
+We can see that the AR activity calculated from correlation based on TF and TG expression is clearly wrong because AR activity is increased after enzalutamide treatment despite it being an AR antagonist. Therefore, for drug treatment which often decouples TF gene expression from its activity, it is important to take into consideration both TF gene expression and RE chromatin accessibility; the latter may be a better indicator of TF function. In this case, the recommended methods are either `wilcox` or `corr` with `tf_re.merge = TRUE`. 
 
 The astute users could however detect a difference in the prediction of the AR activity in the resistant clones "RES-A" and "RES-B" with respect to the parental "LNCaP" between the two methods. For example, the `corr` with `tf_re.merge = TRUE` shows increased AR activity in "RES-B" compared to "LNCaP" because "RES-B" shows increased AR expression. In contrast, the `wilcoxon` method did not predict an increase in AR activity in "RES-B" because "RES-B" still shows reduced chromatin accessibility compared to "LNCaP". Since `wilcoxon` takes into account the co-occurrence of both TF gene expression and RE chromatin accessibility, this method does not predict an overall increase in AR activity.
 
-In the absence of the ground truth, it is difficult to judge which method is superior. Therefore, it is always crucial to validate key findings with additional empirical evidence. The most important disclaimer we wish to make is that all predictions by epiregulon should be robustly tested experimentally.  
+In the absence of the ground truth, it is difficult to judge which method is superior. Therefore, it is always crucial to validate key findings with empirical evidence. The most important disclaimer we wish to make is that all predictions by epiregulon should be robustly tested experimentally.  
 
 ## Perform differential activity
 
@@ -347,7 +338,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
 
 ```
 
-Visualize the newly discovered differential TFs by UMAP
+Visualize the differential TFs by UMAP
 ```{r}
 plotActivityDim(sce = GeneExpressionMatrix,
                 activity_matrix = score.combine.wilcox, 
@@ -362,7 +353,7 @@ plotActivityDim(sce = GeneExpressionMatrix,
 ```
 
 Visualize regulons by heatmap
-```{r}
+```{r warning=FALSE, message=FALSE}
 
 rowData(GeneExpressionMatrix) <- NULL
 
@@ -378,7 +369,7 @@ plotHeatmapRegulon(sce=GeneExpressionMatrix,
                    column_title_rot = 45)
 ```
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 plotHeatmapActivity(activity=score.combine.wilcox,
                     sce=GeneExpressionMatrix,
                     tfs=rownames(score.combine.wilcox),
@@ -390,9 +381,9 @@ plotHeatmapActivity(activity=score.combine.wilcox,
 ```
 
 ## Geneset enrichment
-Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
+Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from [clusterProfiler](https://guangchuangyu.github.io/software/clusterProfiler/documentation/).
 
-```{r enrichment_prostate, fig.height = 10, fig.width = 12}
+```{r enrichment_prostate, fig.height = 10, fig.width = 12, warning=FALSE, message=FALSE}
 #retrieve genesets
 H <- EnrichmentBrowser::getGenesets(org = "hsa", 
                                     db = "msigdb", 
@@ -428,6 +419,7 @@ plotGseaNetwork(tf = names(enrichresults),
                 ntop_pathways = 10)
 
 ```
+
 We can visualize the genesets of differential factors as a network
 
 ```{r}
@@ -443,20 +435,9 @@ plotGseaNetwork(tf = names(enrichresults),
 ```
 
 ## Differential network analysis {diff_network}
-In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that AR is downregulated in the Enzalutamide treated cells compared to parental LNCaP. 
+In addition to looking at summed TF activity, a second approach to investigate differential TF activity is to compare target genes or network topology. In this example, we know that AR is downregulated in the enzalutamide treated cells compared to parental LNCaP. 
 
-```{r differential_networks_prostate}
-
-plotDiffNetwork(regulon.w.wilcox,
-                cutoff = 0,
-                tf = c("AR"),
-                weight = "weight",
-                clusters = c("LNCaP","LNCaP–ENZ48"),
-                layout = "stress")
-
-```
-
-We perform edge subtracted graph between two conditions and rank TFs by degree centrality. In this example, positive centrality indicates higher activity in parental LNCaP and negative centrality indicates higher activity in Enzalutamide treated cells.
+We perform edge subtracted graph between two conditions and rank TFs by degree centrality. In this example, positive centrality indicates higher activity in parental LNCaP and negative centrality indicates higher activity in enzalutamide treated cells.
 
 ```{r}
 # construct a graph of the parental and enzalutamide treated cells respectively

@@ -14,7 +14,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
   
   <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
 scenarions in which the package can be usd to analyse single-cell data.</p>" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="xiaosaiyao/epiregulon.book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="9 Single modality: scRNA-seq only | Epiregulon documentation" />
@@ -26,7 +26,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
 <meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
 
 
-<meta name="date" content="2025-12-12" />
+<meta name="date" content="2025-12-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="refinement.html"><a href="refinement.html"><i class="fa fa-check"></i><b>5</b> Refinement of gene regulatory network</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Network pruning</a>
+<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Prune network</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="refinement.html"><a href="refinement.html#cell_aggregation"><i class="fa fa-check"></i><b>5.1.1</b> Aggregate cells</a></li>
 </ul></li>
@@ -213,10 +213,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>7</b> Network analysis</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Differential TF activity</a></li>
+<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#perform-differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Perform differential TF activity</a></li>
 <li class="chapter" data-level="7.2" data-path="network-analysis.html"><a href="network-analysis.html#diff_activity_vis"><i class="fa fa-check"></i><b>7.2</b> Visualize TF activities</a></li>
-<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Geneset enrichment</a></li>
-<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Differential network analysis</a></li>
+<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#perform-geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Perform geneset enrichment</a></li>
+<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Perform differential network analysis</a></li>
 <li class="chapter" data-level="7.5" data-path="network-analysis.html"><a href="network-analysis.html#find-interaction-partners"><i class="fa fa-check"></i><b>7.5</b> Find interaction partners</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>8</b> ArchR workflow and different weight methods</a>
@@ -226,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>8.3</b> Retrieve matrices from ArchR project</a></li>
 <li class="chapter" data-level="8.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>8.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
 <li class="chapter" data-level="8.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>8.5</b> Link ATAC-seq peaks to target genes</a></li>
-<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>8.6</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-occupancy-data-to-peaks"><i class="fa fa-check"></i><b>8.6</b> Add TF occupancy data to peaks</a></li>
 <li class="chapter" data-level="8.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-2"><i class="fa fa-check"></i><b>8.7</b> Generate regulons</a></li>
 <li class="chapter" data-level="8.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>8.8</b> (Optional) Annotate with TF motifs</a></li>
 <li class="chapter" data-level="8.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network"><i class="fa fa-check"></i><b>8.9</b> Prune network</a></li>
@@ -234,17 +234,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-2"><i class="fa fa-check"></i><b>8.11</b> Calculate TF activity</a></li>
 <li class="chapter" data-level="8.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>8.12</b> Perform differential activity</a></li>
 <li class="chapter" data-level="8.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>8.13</b> Visualize the results</a></li>
-<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment-1"><i class="fa fa-check"></i><b>8.14</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment"><i class="fa fa-check"></i><b>8.14</b> Geneset enrichment</a></li>
 <li class="chapter" data-level="8.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network"><i class="fa fa-check"></i><b>8.15</b> Differential network analysis {diff_network}</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>9</b> Single modality: scRNA-seq only</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>9.1</b> Load regulon</a></li>
+<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulons"><i class="fa fa-check"></i><b>9.1</b> Load regulons</a></li>
 <li class="chapter" data-level="9.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>9.2</b> Load scRNA-seq data</a></li>
 <li class="chapter" data-level="9.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>9.3</b> Calculate activity</a></li>
 <li class="chapter" data-level="9.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>9.4</b> Perform differential activity</a></li>
 <li class="chapter" data-level="9.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>9.5</b> Visualize activity</a></li>
-<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Pathway enrichment</a></li>
+<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Perform pathway enrichment</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>10</b> Session Info</a></li>
 <li class="chapter" data-level="11" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>11</b> Contact</a></li>
@@ -270,175 +270,167 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="single-modality-scrna-seq-only" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">9</span> Single modality: scRNA-seq only<a href="single-modality-scrna-seq-only.html#single-modality-scrna-seq-only" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Epiregulon also supports transcription factor activity inference when users only have scRNA-seq. After all, multiome or scATAC-seq data is still relatively rare. To enable TF activity inference on scRNA-seq, users can supply a pre-constructed gene regulatory network. <a href="https://saezlab.github.io/dorothea/articles/dorothea.html">Dorothea</a> provides both human and mouse pre-constructed gene regulatory networks based on curated experimental and computational data. In this vignette, we bypass the regulon construction step and go straight to calculate TF activity from a Dorothea GRN.</p>
-<div id="load-regulon" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Load regulon<a href="single-modality-scrna-seq-only.html#load-regulon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Dorothea assigns confidence level to its regulons with A being the most confident (i.e. supported by multiple lines of evidence) and E being the least confident.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="single-modality-scrna-seq-only.html#cb297-1" tabindex="-1"></a><span class="fu">library</span>(dorothea)</span>
-<span id="cb297-2"><a href="single-modality-scrna-seq-only.html#cb297-2" tabindex="-1"></a><span class="fu">data</span>(dorothea_mm, <span class="at">package =</span> <span class="st">&quot;dorothea&quot;</span>)</span>
-<span id="cb297-3"><a href="single-modality-scrna-seq-only.html#cb297-3" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> dorothea_mm </span>
-<span id="cb297-4"><a href="single-modality-scrna-seq-only.html#cb297-4" tabindex="-1"></a></span>
-<span id="cb297-5"><a href="single-modality-scrna-seq-only.html#cb297-5" tabindex="-1"></a><span class="co">#known tfs</span></span>
-<span id="cb297-6"><a href="single-modality-scrna-seq-only.html#cb297-6" tabindex="-1"></a>genes_to_plot <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Foxa1&quot;</span>, <span class="st">&quot;Neurod1&quot;</span>,<span class="st">&quot;Pdx1&quot;</span>,<span class="st">&quot;Arx&quot;</span>)</span></code></pre></div>
+<p>Epiregulon also supports transcription factor activity inference when users only have scRNA-seq. To enable TF activity inference on scRNA-seq, users can supply a pre-constructed gene regulatory network. In this vignette, we bypass the regulon construction step and go straight to calculate TF activity from a Dorothea GRN.</p>
+<div id="load-regulons" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Load regulons<a href="single-modality-scrna-seq-only.html#load-regulons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://saezlab.github.io/dorothea/articles/dorothea.html">Dorothea</a> provides both human and mouse pre-constructed gene regulatory networks based on curated experimental and computational data.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="single-modality-scrna-seq-only.html#cb194-1" tabindex="-1"></a><span class="fu">library</span>(dorothea)</span>
+<span id="cb194-2"><a href="single-modality-scrna-seq-only.html#cb194-2" tabindex="-1"></a><span class="fu">data</span>(dorothea_mm, <span class="at">package =</span> <span class="st">&quot;dorothea&quot;</span>)</span>
+<span id="cb194-3"><a href="single-modality-scrna-seq-only.html#cb194-3" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> dorothea_mm </span>
+<span id="cb194-4"><a href="single-modality-scrna-seq-only.html#cb194-4" tabindex="-1"></a></span>
+<span id="cb194-5"><a href="single-modality-scrna-seq-only.html#cb194-5" tabindex="-1"></a><span class="co">#known tfs</span></span>
+<span id="cb194-6"><a href="single-modality-scrna-seq-only.html#cb194-6" tabindex="-1"></a>genes_to_plot <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Onecut1&quot;</span>, <span class="st">&quot;Hnf1a&quot;</span>,<span class="st">&quot;Pdx1&quot;</span>,<span class="st">&quot;Arx&quot;</span>)</span></code></pre></div>
 </div>
 <div id="load-scrna-seq-data" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Load scRNA-seq data<a href="single-modality-scrna-seq-only.html#load-scrna-seq-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We download the raw counts of a mouse pancreas data set from <em><a href="https://bioconductor.org/packages/3.22/scRNAseq">scRNAseq</a></em>. We add normalized logcounts, perform dimension reduction and visualize the embeddings using <em><a href="https://bioconductor.org/packages/3.22/scater">scater</a></em>.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="single-modality-scrna-seq-only.html#cb298-1" tabindex="-1"></a><span class="fu">library</span>(scRNAseq)</span>
-<span id="cb298-2"><a href="single-modality-scrna-seq-only.html#cb298-2" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
-<span id="cb298-3"><a href="single-modality-scrna-seq-only.html#cb298-3" tabindex="-1"></a></span>
-<span id="cb298-4"><a href="single-modality-scrna-seq-only.html#cb298-4" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">BaronPancreasData</span>(<span class="st">&#39;mouse&#39;</span>)</span>
-<span id="cb298-5"><a href="single-modality-scrna-seq-only.html#cb298-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(sce)</span>
-<span id="cb298-6"><a href="single-modality-scrna-seq-only.html#cb298-6" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(sce)</span>
-<span id="cb298-7"><a href="single-modality-scrna-seq-only.html#cb298-7" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(sce)</span>
-<span id="cb298-8"><a href="single-modality-scrna-seq-only.html#cb298-8" tabindex="-1"></a></span>
-<span id="cb298-9"><a href="single-modality-scrna-seq-only.html#cb298-9" tabindex="-1"></a><span class="fu">plotUMAP</span>(sce, <span class="at">colour_by =</span> <span class="st">&quot;label&quot;</span>, <span class="at">text_by =</span> <span class="st">&quot;label&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="single-modality-scrna-seq-only.html#cb195-1" tabindex="-1"></a><span class="fu">library</span>(scRNAseq)</span>
+<span id="cb195-2"><a href="single-modality-scrna-seq-only.html#cb195-2" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb195-3"><a href="single-modality-scrna-seq-only.html#cb195-3" tabindex="-1"></a></span>
+<span id="cb195-4"><a href="single-modality-scrna-seq-only.html#cb195-4" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">BaronPancreasData</span>(<span class="st">&#39;mouse&#39;</span>)</span>
+<span id="cb195-5"><a href="single-modality-scrna-seq-only.html#cb195-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(sce)</span>
+<span id="cb195-6"><a href="single-modality-scrna-seq-only.html#cb195-6" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(sce)</span>
+<span id="cb195-7"><a href="single-modality-scrna-seq-only.html#cb195-7" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(sce)</span>
+<span id="cb195-8"><a href="single-modality-scrna-seq-only.html#cb195-8" tabindex="-1"></a></span>
+<span id="cb195-9"><a href="single-modality-scrna-seq-only.html#cb195-9" tabindex="-1"></a><span class="fu">plotUMAP</span>(sce, <span class="at">colour_by =</span> <span class="st">&quot;label&quot;</span>, <span class="at">text_by =</span> <span class="st">&quot;label&quot;</span>)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/load_scRNAseq_singlemodality_scRNA_only-1.png" width="672" /></p>
 </div>
 <div id="calculate-activity" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Calculate activity<a href="single-modality-scrna-seq-only.html#calculate-activity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Even though Dorothea provides weights under the mor column, we can achieve superior performance if we recompute the weights based on the correlation between tf and target gene expression based on our own data. We performed 2 steps, the first step is to add weights to the Dorothea regulons and the second step is to estimate the TF activity by taking the weighted average of the target gene expression.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="single-modality-scrna-seq-only.html#cb299-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon)</span>
-<span id="cb299-2"><a href="single-modality-scrna-seq-only.html#cb299-2" tabindex="-1"></a></span>
-<span id="cb299-3"><a href="single-modality-scrna-seq-only.html#cb299-3" tabindex="-1"></a></span>
-<span id="cb299-4"><a href="single-modality-scrna-seq-only.html#cb299-4" tabindex="-1"></a><span class="co">#Add weights to regulon. Default method (wilcoxon) cannot be used</span></span>
-<span id="cb299-5"><a href="single-modality-scrna-seq-only.html#cb299-5" tabindex="-1"></a>regulon.ms <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> regulon,</span>
-<span id="cb299-6"><a href="single-modality-scrna-seq-only.html#cb299-6" tabindex="-1"></a>                         <span class="at">expMatrix =</span> sce,</span>
-<span id="cb299-7"><a href="single-modality-scrna-seq-only.html#cb299-7" tabindex="-1"></a>                         <span class="at">clusters =</span> sce<span class="sc">$</span>label,</span>
-<span id="cb299-8"><a href="single-modality-scrna-seq-only.html#cb299-8" tabindex="-1"></a>                         <span class="at">BPPARAM =</span> BiocParallel<span class="sc">::</span><span class="fu">MulticoreParam</span>(),</span>
-<span id="cb299-9"><a href="single-modality-scrna-seq-only.html#cb299-9" tabindex="-1"></a>                         <span class="at">method=</span><span class="st">&quot;corr&quot;</span>)</span>
-<span id="cb299-10"><a href="single-modality-scrna-seq-only.html#cb299-10" tabindex="-1"></a></span>
-<span id="cb299-11"><a href="single-modality-scrna-seq-only.html#cb299-11" tabindex="-1"></a><span class="co">#Calculate activity</span></span>
-<span id="cb299-12"><a href="single-modality-scrna-seq-only.html#cb299-12" tabindex="-1"></a>score.combine <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(sce, </span>
-<span id="cb299-13"><a href="single-modality-scrna-seq-only.html#cb299-13" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.ms, </span>
-<span id="cb299-14"><a href="single-modality-scrna-seq-only.html#cb299-14" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>, </span>
-<span id="cb299-15"><a href="single-modality-scrna-seq-only.html#cb299-15" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>)</span></code></pre></div>
+<p>Even though Dorothea provides weights under the mor column, we can achieve superior performance if we recompute the weights based on the correlation between tf and target gene expression based on our own data. We performed 2 steps: the first step is to add weights to the Dorothea regulons and the second step is to estimate the TF activity by taking the weighted average of the target gene expression.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="single-modality-scrna-seq-only.html#cb196-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon)</span>
+<span id="cb196-2"><a href="single-modality-scrna-seq-only.html#cb196-2" tabindex="-1"></a></span>
+<span id="cb196-3"><a href="single-modality-scrna-seq-only.html#cb196-3" tabindex="-1"></a></span>
+<span id="cb196-4"><a href="single-modality-scrna-seq-only.html#cb196-4" tabindex="-1"></a><span class="co">#Add weights to regulon. Default method (wilcoxon) cannot be used</span></span>
+<span id="cb196-5"><a href="single-modality-scrna-seq-only.html#cb196-5" tabindex="-1"></a>regulon.ms <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> regulon,</span>
+<span id="cb196-6"><a href="single-modality-scrna-seq-only.html#cb196-6" tabindex="-1"></a>                         <span class="at">expMatrix =</span> sce,</span>
+<span id="cb196-7"><a href="single-modality-scrna-seq-only.html#cb196-7" tabindex="-1"></a>                         <span class="at">clusters =</span> sce<span class="sc">$</span>label,</span>
+<span id="cb196-8"><a href="single-modality-scrna-seq-only.html#cb196-8" tabindex="-1"></a>                         <span class="at">BPPARAM =</span> BiocParallel<span class="sc">::</span><span class="fu">MulticoreParam</span>(),</span>
+<span id="cb196-9"><a href="single-modality-scrna-seq-only.html#cb196-9" tabindex="-1"></a>                         <span class="at">method=</span><span class="st">&quot;corr&quot;</span>)</span>
+<span id="cb196-10"><a href="single-modality-scrna-seq-only.html#cb196-10" tabindex="-1"></a></span>
+<span id="cb196-11"><a href="single-modality-scrna-seq-only.html#cb196-11" tabindex="-1"></a><span class="co">#Calculate activity</span></span>
+<span id="cb196-12"><a href="single-modality-scrna-seq-only.html#cb196-12" tabindex="-1"></a>score.combine <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(sce, </span>
+<span id="cb196-13"><a href="single-modality-scrna-seq-only.html#cb196-13" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.ms, </span>
+<span id="cb196-14"><a href="single-modality-scrna-seq-only.html#cb196-14" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>, </span>
+<span id="cb196-15"><a href="single-modality-scrna-seq-only.html#cb196-15" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>)</span></code></pre></div>
 </div>
 <div id="perform-differential-activity-1" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Perform differential activity<a href="single-modality-scrna-seq-only.html#perform-differential-activity-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="single-modality-scrna-seq-only.html#cb300-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.extra)</span>
-<span id="cb300-2"><a href="single-modality-scrna-seq-only.html#cb300-2" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findDifferentialActivity</span>(<span class="at">activity_matrix =</span> score.combine, </span>
-<span id="cb300-3"><a href="single-modality-scrna-seq-only.html#cb300-3" tabindex="-1"></a>                                    <span class="at">clusters =</span> sce<span class="sc">$</span>label, </span>
-<span id="cb300-4"><a href="single-modality-scrna-seq-only.html#cb300-4" tabindex="-1"></a>                                    <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
-<span id="cb300-5"><a href="single-modality-scrna-seq-only.html#cb300-5" tabindex="-1"></a>                                    <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
-<span id="cb300-6"><a href="single-modality-scrna-seq-only.html#cb300-6" tabindex="-1"></a>                                    <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="single-modality-scrna-seq-only.html#cb197-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.extra)</span>
+<span id="cb197-2"><a href="single-modality-scrna-seq-only.html#cb197-2" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findDifferentialActivity</span>(<span class="at">activity_matrix =</span> score.combine, </span>
+<span id="cb197-3"><a href="single-modality-scrna-seq-only.html#cb197-3" tabindex="-1"></a>                                    <span class="at">clusters =</span> sce<span class="sc">$</span>label, </span>
+<span id="cb197-4"><a href="single-modality-scrna-seq-only.html#cb197-4" tabindex="-1"></a>                                    <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb197-5"><a href="single-modality-scrna-seq-only.html#cb197-5" tabindex="-1"></a>                                    <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
+<span id="cb197-6"><a href="single-modality-scrna-seq-only.html#cb197-6" tabindex="-1"></a>                                    <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
 <p>Take the top TFs</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="single-modality-scrna-seq-only.html#cb301-1" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">topgenes =</span> <span class="dv">5</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="single-modality-scrna-seq-only.html#cb198-1" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">topgenes =</span> <span class="dv">5</span> )</span></code></pre></div>
 </div>
 <div id="visualize-activity" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Visualize activity<a href="single-modality-scrna-seq-only.html#visualize-activity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Finally we visualize the TF activity by either UMAP, violin plots or bubble plots. We confirm the activity of known lineage factors Pdx1 and Neurod1 in beta cells, Arx in alpha cells and Foxa1 in ductal cells.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="single-modality-scrna-seq-only.html#cb302-1" tabindex="-1"></a><span class="co"># plot umap</span></span>
-<span id="cb302-2"><a href="single-modality-scrna-seq-only.html#cb302-2" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> sce, </span>
-<span id="cb302-3"><a href="single-modality-scrna-seq-only.html#cb302-3" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine,</span>
-<span id="cb302-4"><a href="single-modality-scrna-seq-only.html#cb302-4" tabindex="-1"></a>                <span class="at">tf =</span> genes_to_plot, </span>
-<span id="cb302-5"><a href="single-modality-scrna-seq-only.html#cb302-5" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;score&quot;</span>,</span>
-<span id="cb302-6"><a href="single-modality-scrna-seq-only.html#cb302-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb302-7"><a href="single-modality-scrna-seq-only.html#cb302-7" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
-<span id="cb302-8"><a href="single-modality-scrna-seq-only.html#cb302-8" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb302-9"><a href="single-modality-scrna-seq-only.html#cb302-9" tabindex="-1"></a>                <span class="at">combine =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb302-10"><a href="single-modality-scrna-seq-only.html#cb302-10" tabindex="-1"></a>                <span class="at">text_size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>Finally we visualize the TF activity by either UMAP, violin plots or bubble plots. We confirm the activity of known lineage factors: Pdx1 in beta cells, Arx in alpha cells, Onecut1 in ductal cells and Hnf1a in both endocrine and exocrine cells.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="single-modality-scrna-seq-only.html#cb199-1" tabindex="-1"></a><span class="co"># plot umap</span></span>
+<span id="cb199-2"><a href="single-modality-scrna-seq-only.html#cb199-2" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> sce, </span>
+<span id="cb199-3"><a href="single-modality-scrna-seq-only.html#cb199-3" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine,</span>
+<span id="cb199-4"><a href="single-modality-scrna-seq-only.html#cb199-4" tabindex="-1"></a>                <span class="at">tf =</span> genes_to_plot, </span>
+<span id="cb199-5"><a href="single-modality-scrna-seq-only.html#cb199-5" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;score&quot;</span>,</span>
+<span id="cb199-6"><a href="single-modality-scrna-seq-only.html#cb199-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb199-7"><a href="single-modality-scrna-seq-only.html#cb199-7" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
+<span id="cb199-8"><a href="single-modality-scrna-seq-only.html#cb199-8" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb199-9"><a href="single-modality-scrna-seq-only.html#cb199-9" tabindex="-1"></a>                <span class="at">combine =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb199-10"><a href="single-modality-scrna-seq-only.html#cb199-10" tabindex="-1"></a>                <span class="at">text_size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/visualization_singlemodality_scRNA_only-1.png" width="672" /></p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="single-modality-scrna-seq-only.html#cb303-1" tabindex="-1"></a><span class="co"># plot violin plot</span></span>
-<span id="cb303-2"><a href="single-modality-scrna-seq-only.html#cb303-2" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(score.combine, </span>
-<span id="cb303-3"><a href="single-modality-scrna-seq-only.html#cb303-3" tabindex="-1"></a>                   <span class="at">tf =</span> genes_to_plot,</span>
-<span id="cb303-4"><a href="single-modality-scrna-seq-only.html#cb303-4" tabindex="-1"></a>                   <span class="at">clusters =</span> sce<span class="sc">$</span>label)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="single-modality-scrna-seq-only.html#cb200-1" tabindex="-1"></a><span class="co"># plot violin plot</span></span>
+<span id="cb200-2"><a href="single-modality-scrna-seq-only.html#cb200-2" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(score.combine, </span>
+<span id="cb200-3"><a href="single-modality-scrna-seq-only.html#cb200-3" tabindex="-1"></a>                   <span class="at">tf =</span> genes_to_plot,</span>
+<span id="cb200-4"><a href="single-modality-scrna-seq-only.html#cb200-4" tabindex="-1"></a>                   <span class="at">clusters =</span> sce<span class="sc">$</span>label)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/visualization_singlemodality_scRNA_only-2.png" width="672" /></p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="single-modality-scrna-seq-only.html#cb304-1" tabindex="-1"></a><span class="co"># plot bubble plot</span></span>
-<span id="cb304-2"><a href="single-modality-scrna-seq-only.html#cb304-2" tabindex="-1"></a><span class="fu">plotBubble</span>(score.combine, </span>
-<span id="cb304-3"><a href="single-modality-scrna-seq-only.html#cb304-3" tabindex="-1"></a>           <span class="at">tf =</span> genes_to_plot, </span>
-<span id="cb304-4"><a href="single-modality-scrna-seq-only.html#cb304-4" tabindex="-1"></a>           <span class="at">clusters =</span> sce<span class="sc">$</span>label)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="single-modality-scrna-seq-only.html#cb201-1" tabindex="-1"></a><span class="co"># plot bubble plot</span></span>
+<span id="cb201-2"><a href="single-modality-scrna-seq-only.html#cb201-2" tabindex="-1"></a><span class="fu">plotBubble</span>(score.combine, </span>
+<span id="cb201-3"><a href="single-modality-scrna-seq-only.html#cb201-3" tabindex="-1"></a>           <span class="at">tf =</span> genes_to_plot, </span>
+<span id="cb201-4"><a href="single-modality-scrna-seq-only.html#cb201-4" tabindex="-1"></a>           <span class="at">clusters =</span> sce<span class="sc">$</span>label)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/visualization_singlemodality_scRNA_only-3.png" width="672" /></p>
 <p>Plot bubble plot of differential TFs</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="single-modality-scrna-seq-only.html#cb305-1" tabindex="-1"></a><span class="fu">plotBubble</span>(score.combine, </span>
-<span id="cb305-2"><a href="single-modality-scrna-seq-only.html#cb305-2" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
-<span id="cb305-3"><a href="single-modality-scrna-seq-only.html#cb305-3" tabindex="-1"></a>           <span class="at">clusters =</span> sce<span class="sc">$</span>label)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
-<p>We can adapt the epiregulon package to plot gene expression. When compared against TF activity, gene expression of Foxa1 and Arx has noisy signals and high dropout rates.
-Epiregulon enhances the signal to noise ratio of TF activity and better resolves lineage differences.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="single-modality-scrna-seq-only.html#cb306-1" tabindex="-1"></a><span class="co"># plot umap</span></span>
-<span id="cb306-2"><a href="single-modality-scrna-seq-only.html#cb306-2" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> sce, </span>
-<span id="cb306-3"><a href="single-modality-scrna-seq-only.html#cb306-3" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">logcounts</span>(sce),</span>
-<span id="cb306-4"><a href="single-modality-scrna-seq-only.html#cb306-4" tabindex="-1"></a>                <span class="at">tf =</span> genes_to_plot, </span>
-<span id="cb306-5"><a href="single-modality-scrna-seq-only.html#cb306-5" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;gex&quot;</span>,</span>
-<span id="cb306-6"><a href="single-modality-scrna-seq-only.html#cb306-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb306-7"><a href="single-modality-scrna-seq-only.html#cb306-7" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
-<span id="cb306-8"><a href="single-modality-scrna-seq-only.html#cb306-8" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb306-9"><a href="single-modality-scrna-seq-only.html#cb306-9" tabindex="-1"></a>                <span class="at">combine =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb306-10"><a href="single-modality-scrna-seq-only.html#cb306-10" tabindex="-1"></a>                <span class="at">text_size =</span> <span class="dv">2</span>,</span>
-<span id="cb306-11"><a href="single-modality-scrna-seq-only.html#cb306-11" tabindex="-1"></a>                <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;gray&quot;</span>,<span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb306-12"><a href="single-modality-scrna-seq-only.html#cb306-12" tabindex="-1"></a>                <span class="at">limit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="single-modality-scrna-seq-only.html#cb202-1" tabindex="-1"></a><span class="fu">plotBubble</span>(score.combine, </span>
+<span id="cb202-2"><a href="single-modality-scrna-seq-only.html#cb202-2" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
+<span id="cb202-3"><a href="single-modality-scrna-seq-only.html#cb202-3" tabindex="-1"></a>           <span class="at">clusters =</span> sce<span class="sc">$</span>label)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>We can adapt the epiregulon package to plot gene expression. When compared against TF activity, gene expression tends to have noisy signals and high dropout rates. Epiregulon enhances the signal to noise ratio of TF activity and better resolves lineage differences.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="single-modality-scrna-seq-only.html#cb203-1" tabindex="-1"></a><span class="co"># plot umap</span></span>
+<span id="cb203-2"><a href="single-modality-scrna-seq-only.html#cb203-2" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> sce, </span>
+<span id="cb203-3"><a href="single-modality-scrna-seq-only.html#cb203-3" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">logcounts</span>(sce),</span>
+<span id="cb203-4"><a href="single-modality-scrna-seq-only.html#cb203-4" tabindex="-1"></a>                <span class="at">tf =</span> genes_to_plot, </span>
+<span id="cb203-5"><a href="single-modality-scrna-seq-only.html#cb203-5" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;gex&quot;</span>,</span>
+<span id="cb203-6"><a href="single-modality-scrna-seq-only.html#cb203-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb203-7"><a href="single-modality-scrna-seq-only.html#cb203-7" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP&quot;</span>, </span>
+<span id="cb203-8"><a href="single-modality-scrna-seq-only.html#cb203-8" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb203-9"><a href="single-modality-scrna-seq-only.html#cb203-9" tabindex="-1"></a>                <span class="at">combine =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb203-10"><a href="single-modality-scrna-seq-only.html#cb203-10" tabindex="-1"></a>                <span class="at">text_size =</span> <span class="dv">2</span>,</span>
+<span id="cb203-11"><a href="single-modality-scrna-seq-only.html#cb203-11" tabindex="-1"></a>                <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;gray&quot;</span>,<span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb203-12"><a href="single-modality-scrna-seq-only.html#cb203-12" tabindex="-1"></a>                <span class="at">limit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>))</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/scRNAseq_scRNA_only-1.png" width="672" /></p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="single-modality-scrna-seq-only.html#cb307-1" tabindex="-1"></a><span class="co"># plot violin plot</span></span>
-<span id="cb307-2"><a href="single-modality-scrna-seq-only.html#cb307-2" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="fu">logcounts</span>(sce), </span>
-<span id="cb307-3"><a href="single-modality-scrna-seq-only.html#cb307-3" tabindex="-1"></a>                   <span class="at">tf =</span> genes_to_plot,</span>
-<span id="cb307-4"><a href="single-modality-scrna-seq-only.html#cb307-4" tabindex="-1"></a>                   <span class="at">clusters =</span> sce<span class="sc">$</span>label,</span>
-<span id="cb307-5"><a href="single-modality-scrna-seq-only.html#cb307-5" tabindex="-1"></a>                   <span class="at">legend.label =</span> <span class="st">&quot;gex&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="single-modality-scrna-seq-only.html#cb204-1" tabindex="-1"></a><span class="co"># plot violin plot</span></span>
+<span id="cb204-2"><a href="single-modality-scrna-seq-only.html#cb204-2" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="fu">logcounts</span>(sce), </span>
+<span id="cb204-3"><a href="single-modality-scrna-seq-only.html#cb204-3" tabindex="-1"></a>                   <span class="at">tf =</span> genes_to_plot,</span>
+<span id="cb204-4"><a href="single-modality-scrna-seq-only.html#cb204-4" tabindex="-1"></a>                   <span class="at">clusters =</span> sce<span class="sc">$</span>label,</span>
+<span id="cb204-5"><a href="single-modality-scrna-seq-only.html#cb204-5" tabindex="-1"></a>                   <span class="at">legend.label =</span> <span class="st">&quot;gex&quot;</span>)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/scRNAseq_scRNA_only-2.png" width="672" /></p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="single-modality-scrna-seq-only.html#cb308-1" tabindex="-1"></a><span class="co"># plot Bubble plot</span></span>
-<span id="cb308-2"><a href="single-modality-scrna-seq-only.html#cb308-2" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="fu">logcounts</span>(sce), </span>
-<span id="cb308-3"><a href="single-modality-scrna-seq-only.html#cb308-3" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
-<span id="cb308-4"><a href="single-modality-scrna-seq-only.html#cb308-4" tabindex="-1"></a>           <span class="at">clusters =</span> sce<span class="sc">$</span>label,</span>
-<span id="cb308-5"><a href="single-modality-scrna-seq-only.html#cb308-5" tabindex="-1"></a>           <span class="at">legend.label =</span> <span class="st">&quot;gex&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="single-modality-scrna-seq-only.html#cb205-1" tabindex="-1"></a><span class="co"># plot Bubble plot</span></span>
+<span id="cb205-2"><a href="single-modality-scrna-seq-only.html#cb205-2" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="fu">logcounts</span>(sce), </span>
+<span id="cb205-3"><a href="single-modality-scrna-seq-only.html#cb205-3" tabindex="-1"></a>           <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf, </span>
+<span id="cb205-4"><a href="single-modality-scrna-seq-only.html#cb205-4" tabindex="-1"></a>           <span class="at">clusters =</span> sce<span class="sc">$</span>label,</span>
+<span id="cb205-5"><a href="single-modality-scrna-seq-only.html#cb205-5" tabindex="-1"></a>           <span class="at">legend.label =</span> <span class="st">&quot;gex&quot;</span>,</span>
+<span id="cb205-6"><a href="single-modality-scrna-seq-only.html#cb205-6" tabindex="-1"></a>           <span class="at">title =</span> <span class="st">&quot;gene expression&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <p>We can visualize the target genes for transcription factors of interest</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="single-modality-scrna-seq-only.html#cb309-1" tabindex="-1"></a><span class="fu">plotHeatmapRegulon</span>(<span class="at">sce=</span>sce,</span>
-<span id="cb309-2"><a href="single-modality-scrna-seq-only.html#cb309-2" tabindex="-1"></a>                   <span class="at">tfs=</span>genes_to_plot,</span>
-<span id="cb309-3"><a href="single-modality-scrna-seq-only.html#cb309-3" tabindex="-1"></a>                   <span class="at">regulon=</span>regulon.ms,</span>
-<span id="cb309-4"><a href="single-modality-scrna-seq-only.html#cb309-4" tabindex="-1"></a>                   <span class="at">regulon_cutoff=</span><span class="fl">0.5</span>,</span>
-<span id="cb309-5"><a href="single-modality-scrna-seq-only.html#cb309-5" tabindex="-1"></a>                   <span class="at">downsample=</span><span class="dv">1000</span>,</span>
-<span id="cb309-6"><a href="single-modality-scrna-seq-only.html#cb309-6" tabindex="-1"></a>                   <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb309-7"><a href="single-modality-scrna-seq-only.html#cb309-7" tabindex="-1"></a>                   <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb309-8"><a href="single-modality-scrna-seq-only.html#cb309-8" tabindex="-1"></a>                   <span class="at">exprs_values=</span><span class="st">&quot;logcounts&quot;</span>,</span>
-<span id="cb309-9"><a href="single-modality-scrna-seq-only.html#cb309-9" tabindex="-1"></a>                   <span class="at">name=</span><span class="st">&quot;regulon heatmap&quot;</span>,</span>
-<span id="cb309-10"><a href="single-modality-scrna-seq-only.html#cb309-10" tabindex="-1"></a>                   <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
-<pre><code>## Found more than one class &quot;package_version&quot; in cache; using the first, from namespace &#39;SeuratObject&#39;</code></pre>
-<pre><code>## Also defined by &#39;alabaster.base&#39;</code></pre>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-109-1.png" width="1152" /></p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="single-modality-scrna-seq-only.html#cb312-1" tabindex="-1"></a><span class="fu">plotHeatmapActivity</span>(<span class="at">activity_matrix =</span> score.combine,</span>
-<span id="cb312-2"><a href="single-modality-scrna-seq-only.html#cb312-2" tabindex="-1"></a>                    <span class="at">sce=</span>sce,</span>
-<span id="cb312-3"><a href="single-modality-scrna-seq-only.html#cb312-3" tabindex="-1"></a>                    <span class="at">tfs=</span>genes_to_plot,</span>
-<span id="cb312-4"><a href="single-modality-scrna-seq-only.html#cb312-4" tabindex="-1"></a>                    <span class="at">downsample=</span><span class="dv">1000</span>,</span>
-<span id="cb312-5"><a href="single-modality-scrna-seq-only.html#cb312-5" tabindex="-1"></a>                    <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb312-6"><a href="single-modality-scrna-seq-only.html#cb312-6" tabindex="-1"></a>                    <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb312-7"><a href="single-modality-scrna-seq-only.html#cb312-7" tabindex="-1"></a>                    <span class="at">name=</span><span class="st">&quot;regulon heatmap&quot;</span>,</span>
-<span id="cb312-8"><a href="single-modality-scrna-seq-only.html#cb312-8" tabindex="-1"></a>                    <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
-<pre><code>## Found more than one class &quot;package_version&quot; in cache; using the first, from namespace &#39;SeuratObject&#39;
-## Also defined by &#39;alabaster.base&#39;</code></pre>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-109-2.png" width="1152" /></p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="single-modality-scrna-seq-only.html#cb206-1" tabindex="-1"></a><span class="fu">plotHeatmapRegulon</span>(<span class="at">sce=</span>sce,</span>
+<span id="cb206-2"><a href="single-modality-scrna-seq-only.html#cb206-2" tabindex="-1"></a>                   <span class="at">tfs=</span>genes_to_plot,</span>
+<span id="cb206-3"><a href="single-modality-scrna-seq-only.html#cb206-3" tabindex="-1"></a>                   <span class="at">regulon=</span>regulon.ms,</span>
+<span id="cb206-4"><a href="single-modality-scrna-seq-only.html#cb206-4" tabindex="-1"></a>                   <span class="at">regulon_cutoff=</span><span class="fl">0.5</span>,</span>
+<span id="cb206-5"><a href="single-modality-scrna-seq-only.html#cb206-5" tabindex="-1"></a>                   <span class="at">downsample=</span><span class="dv">1000</span>,</span>
+<span id="cb206-6"><a href="single-modality-scrna-seq-only.html#cb206-6" tabindex="-1"></a>                   <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb206-7"><a href="single-modality-scrna-seq-only.html#cb206-7" tabindex="-1"></a>                   <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb206-8"><a href="single-modality-scrna-seq-only.html#cb206-8" tabindex="-1"></a>                   <span class="at">exprs_values=</span><span class="st">&quot;logcounts&quot;</span>,</span>
+<span id="cb206-9"><a href="single-modality-scrna-seq-only.html#cb206-9" tabindex="-1"></a>                   <span class="at">name=</span><span class="st">&quot;regulon heatmap&quot;</span>,</span>
+<span id="cb206-10"><a href="single-modality-scrna-seq-only.html#cb206-10" tabindex="-1"></a>                   <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-107-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="single-modality-scrna-seq-only.html#cb207-1" tabindex="-1"></a><span class="fu">plotHeatmapActivity</span>(<span class="at">activity_matrix =</span> score.combine,</span>
+<span id="cb207-2"><a href="single-modality-scrna-seq-only.html#cb207-2" tabindex="-1"></a>                    <span class="at">sce=</span>sce,</span>
+<span id="cb207-3"><a href="single-modality-scrna-seq-only.html#cb207-3" tabindex="-1"></a>                    <span class="at">tfs=</span>genes_to_plot,</span>
+<span id="cb207-4"><a href="single-modality-scrna-seq-only.html#cb207-4" tabindex="-1"></a>                    <span class="at">downsample=</span><span class="dv">1000</span>,</span>
+<span id="cb207-5"><a href="single-modality-scrna-seq-only.html#cb207-5" tabindex="-1"></a>                    <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb207-6"><a href="single-modality-scrna-seq-only.html#cb207-6" tabindex="-1"></a>                    <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb207-7"><a href="single-modality-scrna-seq-only.html#cb207-7" tabindex="-1"></a>                    <span class="at">name=</span><span class="st">&quot;regulon heatmap&quot;</span>,</span>
+<span id="cb207-8"><a href="single-modality-scrna-seq-only.html#cb207-8" tabindex="-1"></a>                    <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-108-1.png" width="1152" /></p>
 </div>
-<div id="pathway-enrichment" class="section level2 hasAnchor" number="9.6">
-<h2><span class="header-section-number">9.6</span> Pathway enrichment<a href="single-modality-scrna-seq-only.html#pathway-enrichment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sometimes it is useful to understand what pathways are enriched in the regulons. We take the highly correlated target genes of a regulon and perform geneset enrichment using the enricher function from <a href="http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html">clusterProfiler</a>.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="single-modality-scrna-seq-only.html#cb314-1" tabindex="-1"></a><span class="co">#retrieve genesets</span></span>
-<span id="cb314-2"><a href="single-modality-scrna-seq-only.html#cb314-2" tabindex="-1"></a>MH <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;mmu&quot;</span>, </span>
-<span id="cb314-3"><a href="single-modality-scrna-seq-only.html#cb314-3" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
-<span id="cb314-4"><a href="single-modality-scrna-seq-only.html#cb314-4" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;MH&quot;</span>, </span>
-<span id="cb314-5"><a href="single-modality-scrna-seq-only.html#cb314-5" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>, </span>
-<span id="cb314-6"><a href="single-modality-scrna-seq-only.html#cb314-6" tabindex="-1"></a>                                    <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb314-7"><a href="single-modality-scrna-seq-only.html#cb314-7" tabindex="-1"></a>M7 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;mmu&quot;</span>, </span>
-<span id="cb314-8"><a href="single-modality-scrna-seq-only.html#cb314-8" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
-<span id="cb314-9"><a href="single-modality-scrna-seq-only.html#cb314-9" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;M7&quot;</span>, </span>
-<span id="cb314-10"><a href="single-modality-scrna-seq-only.html#cb314-10" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>,  </span>
-<span id="cb314-11"><a href="single-modality-scrna-seq-only.html#cb314-11" tabindex="-1"></a>                                     <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb314-12"><a href="single-modality-scrna-seq-only.html#cb314-12" tabindex="-1"></a></span>
-<span id="cb314-13"><a href="single-modality-scrna-seq-only.html#cb314-13" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
-<span id="cb314-14"><a href="single-modality-scrna-seq-only.html#cb314-14" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(MH,M7)</span>
-<span id="cb314-15"><a href="single-modality-scrna-seq-only.html#cb314-15" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), <span class="cf">function</span>(x) </span>
-<span id="cb314-16"><a href="single-modality-scrna-seq-only.html#cb314-16" tabindex="-1"></a>  {<span class="fu">data.frame</span>(<span class="at">gs =</span> x, <span class="at">genes =</span> gs[[x]])}))</span>
-<span id="cb314-17"><a href="single-modality-scrna-seq-only.html#cb314-17" tabindex="-1"></a></span>
-<span id="cb314-18"><a href="single-modality-scrna-seq-only.html#cb314-18" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(genes_to_plot, </span>
-<span id="cb314-19"><a href="single-modality-scrna-seq-only.html#cb314-19" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.ms, </span>
-<span id="cb314-20"><a href="single-modality-scrna-seq-only.html#cb314-20" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb314-21"><a href="single-modality-scrna-seq-only.html#cb314-21" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="fl">0.5</span>, </span>
-<span id="cb314-22"><a href="single-modality-scrna-seq-only.html#cb314-22" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span></code></pre></div>
-<pre><code>## Foxa1</code></pre>
-<pre><code>## Neurod1</code></pre>
-<pre><code>## Pdx1</code></pre>
-<pre><code>## Arx</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="single-modality-scrna-seq-only.html#cb319-1" tabindex="-1"></a><span class="co">#plot results</span></span>
-<span id="cb319-2"><a href="single-modality-scrna-seq-only.html#cb319-2" tabindex="-1"></a><span class="fu">enrichPlot</span>(<span class="at">results =</span> enrichresults, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/enrichment_singlemodality_scRNA_only-1.png" width="672" /></p>
+<div id="perform-pathway-enrichment" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Perform pathway enrichment<a href="single-modality-scrna-seq-only.html#perform-pathway-enrichment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes it is useful to understand what pathways are enriched in the regulons. We take the highly correlated target genes of a regulon and perform geneset enrichment using the enricher function from <a href="https://guangchuangyu.github.io/software/clusterProfiler/documentation/">clusterProfiler</a>.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="single-modality-scrna-seq-only.html#cb208-1" tabindex="-1"></a><span class="co">#retrieve genesets</span></span>
+<span id="cb208-2"><a href="single-modality-scrna-seq-only.html#cb208-2" tabindex="-1"></a>MH <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;mmu&quot;</span>, </span>
+<span id="cb208-3"><a href="single-modality-scrna-seq-only.html#cb208-3" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb208-4"><a href="single-modality-scrna-seq-only.html#cb208-4" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;MH&quot;</span>, </span>
+<span id="cb208-5"><a href="single-modality-scrna-seq-only.html#cb208-5" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>, </span>
+<span id="cb208-6"><a href="single-modality-scrna-seq-only.html#cb208-6" tabindex="-1"></a>                                    <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb208-7"><a href="single-modality-scrna-seq-only.html#cb208-7" tabindex="-1"></a>M7 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;mmu&quot;</span>, </span>
+<span id="cb208-8"><a href="single-modality-scrna-seq-only.html#cb208-8" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb208-9"><a href="single-modality-scrna-seq-only.html#cb208-9" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;M7&quot;</span>, </span>
+<span id="cb208-10"><a href="single-modality-scrna-seq-only.html#cb208-10" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>,  </span>
+<span id="cb208-11"><a href="single-modality-scrna-seq-only.html#cb208-11" tabindex="-1"></a>                                     <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb208-12"><a href="single-modality-scrna-seq-only.html#cb208-12" tabindex="-1"></a></span>
+<span id="cb208-13"><a href="single-modality-scrna-seq-only.html#cb208-13" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
+<span id="cb208-14"><a href="single-modality-scrna-seq-only.html#cb208-14" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(MH,M7)</span>
+<span id="cb208-15"><a href="single-modality-scrna-seq-only.html#cb208-15" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), <span class="cf">function</span>(x) </span>
+<span id="cb208-16"><a href="single-modality-scrna-seq-only.html#cb208-16" tabindex="-1"></a>  {<span class="fu">data.frame</span>(<span class="at">gs =</span> x, <span class="at">genes =</span> gs[[x]])}))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="single-modality-scrna-seq-only.html#cb209-1" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(genes_to_plot, </span>
+<span id="cb209-2"><a href="single-modality-scrna-seq-only.html#cb209-2" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.ms, </span>
+<span id="cb209-3"><a href="single-modality-scrna-seq-only.html#cb209-3" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
+<span id="cb209-4"><a href="single-modality-scrna-seq-only.html#cb209-4" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="fl">0.3</span>, </span>
+<span id="cb209-5"><a href="single-modality-scrna-seq-only.html#cb209-5" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span>
+<span id="cb209-6"><a href="single-modality-scrna-seq-only.html#cb209-6" tabindex="-1"></a></span>
+<span id="cb209-7"><a href="single-modality-scrna-seq-only.html#cb209-7" tabindex="-1"></a><span class="co">#plot results</span></span>
+<span id="cb209-8"><a href="single-modality-scrna-seq-only.html#cb209-8" tabindex="-1"></a><span class="fu">enrichPlot</span>(<span class="at">results =</span> enrichresults, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">top=</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -479,7 +471,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/scRNAseq.only.Rmd",
+    "link": "https://github.com/xiaosai/epiregulon.book/edit/master/scRNAseq.only.Rmd",
     "text": "Edit"
   },
   "history": {

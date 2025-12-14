@@ -2,7 +2,7 @@
 
 The `epiregulon.extra` package provides tools for downstream analysis of gene regulatory networks (GRNs) and TF activity. It enables users to identify differential TF activity, visualize these differences, construct differential graphs that highlight changes in GRN topology, and discover potential interaction partners by identifying overlapping regulons.
 
-## Differential TF activity
+## Perform differential TF activity
 
 We can determine which TFs exhibit differential activities across cell clusters/groups via the `findDifferentialActivity` function. This function is a wrapper around the `findMarkers` function from `r BiocStyle::Biocpkg("scran")` package. 
 
@@ -100,7 +100,7 @@ plotBubble(activity_matrix = score.combine,
            logvalues = FALSE)
 ```
 
-## Geneset enrichment
+## Perform geneset enrichment
 
 Sometimes we are interested in knowing what pathways are enriched in the regulon of a particular TF. We can perform gene set enrichment using the enricher function from [clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html).
 
@@ -133,7 +133,7 @@ enrichresults <- regulonEnrich(TF = tfs_interest,
 enrichPlot(results = enrichresults, ncol=2)
 ```
 
-## Differential network analysis {#diffNetwork}
+## Perform differential network analysis {#diffNetwork}
 
 A second approach to investigate differential TF activity is to compare the weights of the target genes between groups. In this example, we are interested to compare the networks of B cells and CD4 memory T cells. We build an edge subtracted graph and calculate the degree centrality of the subtracted graph. We normalize centrality using the default square root function. The top 5 most positive TFs represent lineage factors more active in B cells whereas the bottom 5 TFs present lineage factors enriched in CD4+ memory T cells. We successfully identified the B factors EBF1, PAX5 and IRF4. The putative CD4 memory T cells factors are less understood and remain to be validated.
 

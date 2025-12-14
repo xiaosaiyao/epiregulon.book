@@ -14,7 +14,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
   
   <meta property="og:description" content="<p>This book presents the Epiregulon package. We provide the tutorials showing different
 scenarions in which the package can be usd to analyse single-cell data.</p>" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="xiaosaiyao/epiregulon.book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="8 ArchR workflow and different weight methods | Epiregulon documentation" />
@@ -26,7 +26,7 @@ scenarions in which the package can be usd to analyse single-cell data.</p>" />
 <meta name="author" content="Xiaosai Yao, Tomasz Włodarczyk" />
 
 
-<meta name="date" content="2025-12-12" />
+<meta name="date" content="2025-12-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="refinement.html"><a href="refinement.html"><i class="fa fa-check"></i><b>5</b> Refinement of gene regulatory network</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Network pruning</a>
+<li class="chapter" data-level="5.1" data-path="refinement.html"><a href="refinement.html#pruning"><i class="fa fa-check"></i><b>5.1</b> Prune network</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="refinement.html"><a href="refinement.html#cell_aggregation"><i class="fa fa-check"></i><b>5.1.1</b> Aggregate cells</a></li>
 </ul></li>
@@ -213,10 +213,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>7</b> Network analysis</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Differential TF activity</a></li>
+<li class="chapter" data-level="7.1" data-path="network-analysis.html"><a href="network-analysis.html#perform-differential-tf-activity"><i class="fa fa-check"></i><b>7.1</b> Perform differential TF activity</a></li>
 <li class="chapter" data-level="7.2" data-path="network-analysis.html"><a href="network-analysis.html#diff_activity_vis"><i class="fa fa-check"></i><b>7.2</b> Visualize TF activities</a></li>
-<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Geneset enrichment</a></li>
-<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Differential network analysis</a></li>
+<li class="chapter" data-level="7.3" data-path="network-analysis.html"><a href="network-analysis.html#perform-geneset-enrichment"><i class="fa fa-check"></i><b>7.3</b> Perform geneset enrichment</a></li>
+<li class="chapter" data-level="7.4" data-path="network-analysis.html"><a href="network-analysis.html#diffNetwork"><i class="fa fa-check"></i><b>7.4</b> Perform differential network analysis</a></li>
 <li class="chapter" data-level="7.5" data-path="network-analysis.html"><a href="network-analysis.html#find-interaction-partners"><i class="fa fa-check"></i><b>7.5</b> Find interaction partners</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html"><i class="fa fa-check"></i><b>8</b> ArchR workflow and different weight methods</a>
@@ -226,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project"><i class="fa fa-check"></i><b>8.3</b> Retrieve matrices from ArchR project</a></li>
 <li class="chapter" data-level="8.4" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1"><i class="fa fa-check"></i><b>8.4</b> Retrieve bulk TF ChIP-seq binding sites</a></li>
 <li class="chapter" data-level="8.5" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1"><i class="fa fa-check"></i><b>8.5</b> Link ATAC-seq peaks to target genes</a></li>
-<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1"><i class="fa fa-check"></i><b>8.6</b> Add TF motif binding to peaks</a></li>
+<li class="chapter" data-level="8.6" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#add-tf-occupancy-data-to-peaks"><i class="fa fa-check"></i><b>8.6</b> Add TF occupancy data to peaks</a></li>
 <li class="chapter" data-level="8.7" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#generate-regulons-2"><i class="fa fa-check"></i><b>8.7</b> Generate regulons</a></li>
 <li class="chapter" data-level="8.8" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs"><i class="fa fa-check"></i><b>8.8</b> (Optional) Annotate with TF motifs</a></li>
 <li class="chapter" data-level="8.9" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#prune-network"><i class="fa fa-check"></i><b>8.9</b> Prune network</a></li>
@@ -234,17 +234,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.11" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-2"><i class="fa fa-check"></i><b>8.11</b> Calculate TF activity</a></li>
 <li class="chapter" data-level="8.12" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity"><i class="fa fa-check"></i><b>8.12</b> Perform differential activity</a></li>
 <li class="chapter" data-level="8.13" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#visualize-the-results"><i class="fa fa-check"></i><b>8.13</b> Visualize the results</a></li>
-<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment-1"><i class="fa fa-check"></i><b>8.14</b> Geneset enrichment</a></li>
+<li class="chapter" data-level="8.14" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment"><i class="fa fa-check"></i><b>8.14</b> Geneset enrichment</a></li>
 <li class="chapter" data-level="8.15" data-path="archr-workflow-and-different-weight-methods.html"><a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network"><i class="fa fa-check"></i><b>8.15</b> Differential network analysis {diff_network}</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html"><i class="fa fa-check"></i><b>9</b> Single modality: scRNA-seq only</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulon"><i class="fa fa-check"></i><b>9.1</b> Load regulon</a></li>
+<li class="chapter" data-level="9.1" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-regulons"><i class="fa fa-check"></i><b>9.1</b> Load regulons</a></li>
 <li class="chapter" data-level="9.2" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#load-scrna-seq-data"><i class="fa fa-check"></i><b>9.2</b> Load scRNA-seq data</a></li>
 <li class="chapter" data-level="9.3" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#calculate-activity"><i class="fa fa-check"></i><b>9.3</b> Calculate activity</a></li>
 <li class="chapter" data-level="9.4" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-differential-activity-1"><i class="fa fa-check"></i><b>9.4</b> Perform differential activity</a></li>
 <li class="chapter" data-level="9.5" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#visualize-activity"><i class="fa fa-check"></i><b>9.5</b> Visualize activity</a></li>
-<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Pathway enrichment</a></li>
+<li class="chapter" data-level="9.6" data-path="single-modality-scrna-seq-only.html"><a href="single-modality-scrna-seq-only.html#perform-pathway-enrichment"><i class="fa fa-check"></i><b>9.6</b> Perform pathway enrichment</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>10</b> Session Info</a></li>
 <li class="chapter" data-level="11" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i><b>11</b> Contact</a></li>
@@ -271,113 +271,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="archr-workflow-and-different-weight-methods" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">8</span> ArchR workflow and different weight methods<a href="archr-workflow-and-different-weight-methods.html#archr-workflow-and-different-weight-methods" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this chapter, we illustrate the epiregulon workflow starting from an ArchR project and compare the different weight estimation methods.</p>
-<p>The dataset consists of unpaired scATACseq/scRNAseq of parental LNCaP cells treated with DMSO, Enzalutamide and Enza resistant cells. The dataset was taken from <a href="https://www.nature.com/articles/s41467-021-25624-1">Taavitsainen et al</a> <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168667">GSE168667</a> and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168668">GSE168668</a>.</p>
+<p>The dataset consists of unpaired scATACseq/scRNAseq of parental LNCaP cells treated with DMSO, enzalutamide and Enza resistant cells. The dataset was taken from <a href="https://www.nature.com/articles/s41467-021-25624-1">Taavitsainen et al</a> (<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168667">GSE168667</a> and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168668">GSE168668</a>).</p>
 <div id="prepare-data-1" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Prepare data<a href="archr-workflow-and-different-weight-methods.html#prepare-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Please refer to the full ArchR <a href="https://www.archrproject.com/bookdown/index.html">manual</a> for instructions</p>
 <p>Before running Epiregulon, the following analyses need to be completed:</p>
 <ol style="list-style-type: decimal">
-<li>Obtain a peak matrix on scATACseq by using addGroupCoverages &gt; addReproduciblePeakSet &gt; addPeakMatrix. See chapter <a href="https://www.archrproject.com/bookdown/calling-peaks-with-archr.html">10</a> from ArchR manual</li>
+<li>Obtain a peak matrix on scATACseq by using <code>addGroupCoverages</code> &gt; <code>addReproduciblePeakSet</code> &gt; <code>addPeakMatrix</code>. See chapter <a href="https://www.archrproject.com/bookdown/calling-peaks-with-archr.html">10</a> from ArchR manual</li>
 <li>RNA-seq integration.
 <ol style="list-style-type: lower-alpha">
-<li>For unpaired scATAC-seq, use addGeneIntegrationMatrix. See chapter <a href="https://www.archrproject.com/bookdown/defining-cluster-identity-with-scrna-seq.html">8</a> from ArchR manual</li>
-<li>For multiome data, use addGeneExpressionMatrix. See <a href="https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html">multiome</a> tutorial</li>
+<li>For unpaired scATAC-seq, use <code>addGeneIntegrationMatrix</code>. See chapter <a href="https://www.archrproject.com/bookdown/defining-cluster-identity-with-scrna-seq.html">8</a> from ArchR manual</li>
+<li>For multiome data, use <code>addGeneExpressionMatrix</code>. See <a href="https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html">multiome</a> tutorial</li>
 </ol></li>
-<li>Perform dimensionality reduction from with either single modalities or joint scRNAseq and scATACseq using <a href="https://www.archrproject.com/reference/addCombinedDims.html">addCombinedDims</a></li>
+<li>Perform dimensionality reduction from with either single modalities or joint scRNAseq and scATACseq using <code>addCombinedDims</code>. See <a href="https://www.archrproject.com/reference/addCombinedDims.html">vignette</a></li>
 </ol>
 </div>
 <div id="load-archr-project" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Load ArchR project<a href="archr-workflow-and-different-weight-methods.html#load-archr-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The data processed in <code>ArchR</code> is available at as compressed file containing <code>ArchR</code> project.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="archr-workflow-and-different-weight-methods.html#cb188-1" tabindex="-1"></a><span class="fu">library</span>(ArchR)</span>
-<span id="cb188-2"><a href="archr-workflow-and-different-weight-methods.html#cb188-2" tabindex="-1"></a>temp_path <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() </span>
-<span id="cb188-3"><a href="archr-workflow-and-different-weight-methods.html#cb188-3" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;http://research-pub.gene.com/oncbx/yaox/Epiregulon/GSE168667.tar.gz&quot;</span>,</span>
-<span id="cb188-4"><a href="archr-workflow-and-different-weight-methods.html#cb188-4" tabindex="-1"></a>              <span class="fu">file.path</span>(temp_path, <span class="st">&quot;GSE168667.tar.gz&quot;</span>))</span>
-<span id="cb188-5"><a href="archr-workflow-and-different-weight-methods.html#cb188-5" tabindex="-1"></a><span class="fu">untar</span>(<span class="at">tarfile=</span><span class="fu">file.path</span>(temp_path, <span class="st">&quot;GSE168667.tar.gz&quot;</span>), <span class="at">exdir =</span> temp_path)</span>
-<span id="cb188-6"><a href="archr-workflow-and-different-weight-methods.html#cb188-6" tabindex="-1"></a>archR_project_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(temp_path, <span class="st">&quot;multiome&quot;</span>)</span>
-<span id="cb188-7"><a href="archr-workflow-and-different-weight-methods.html#cb188-7" tabindex="-1"></a>proj <span class="ot">&lt;-</span> <span class="fu">loadArchRProject</span>(<span class="at">path =</span> archR_project_path, <span class="at">showLogo =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>We will use the joint reducedDims - “LSI_Combined” and joint embeddings - “UMAP_Combined”</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="archr-workflow-and-different-weight-methods.html#cb189-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">getReducedDims</span>(proj, <span class="at">reducedDims =</span> <span class="st">&quot;iLSI_Combined&quot;</span>)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
-<pre><code>##                                     LSI1       LSI2       LSI3        LSI4
-## SRR13927735#TTATGTCTCCAGGTAT-1 -2.713935 -0.3677949 -0.4484238 -0.30645138
-## SRR13927735#TATTGCTCATCAGAAA-1 -2.642781 -0.2767556 -0.9142714 -0.19675812
-## SRR13927735#TTCGATTGTAGGGTTG-1 -2.322865 -0.1543080 -1.4106049 -0.08891276
-## SRR13927735#CATTCATTCGGATGTT-1 -2.572976 -0.1917188 -1.0464294 -0.12660121
-## SRR13927735#ACGTTAGGTCAACTGT-1 -2.478552 -0.1776639 -1.1037295 -0.22976613
-## SRR13927735#AAATGCCCAGCAATGG-1 -2.595352 -0.3803464 -0.7770309 -0.52431765
-##                                        LSI5
-## SRR13927735#TTATGTCTCCAGGTAT-1 -0.046845365
-## SRR13927735#TATTGCTCATCAGAAA-1  0.075746940
-## SRR13927735#TTCGATTGTAGGGTTG-1  0.019873276
-## SRR13927735#CATTCATTCGGATGTT-1  0.009947438
-## SRR13927735#ACGTTAGGTCAACTGT-1 -0.150097539
-## SRR13927735#AAATGCCCAGCAATGG-1 -0.243074591</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="archr-workflow-and-different-weight-methods.html#cb191-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">getEmbedding</span>(proj, <span class="at">embedding =</span> <span class="st">&quot;UMAP_Combined&quot;</span>))</span></code></pre></div>
-<pre><code>##                                iLSI_Combined#UMAP_Dimension_1
-## SRR13927735#TTATGTCTCCAGGTAT-1                      -9.622903
-## SRR13927735#TATTGCTCATCAGAAA-1                      -9.360211
-## SRR13927735#TTCGATTGTAGGGTTG-1                      -8.617347
-## SRR13927735#CATTCATTCGGATGTT-1                      -9.285448
-## SRR13927735#ACGTTAGGTCAACTGT-1                      -8.809260
-## SRR13927735#AAATGCCCAGCAATGG-1                      -9.261216
-##                                iLSI_Combined#UMAP_Dimension_2
-## SRR13927735#TTATGTCTCCAGGTAT-1                     -0.2908237
-## SRR13927735#TATTGCTCATCAGAAA-1                     -0.2892935
-## SRR13927735#TTCGATTGTAGGGTTG-1                     -0.2154103
-## SRR13927735#CATTCATTCGGATGTT-1                     -0.3267481
-## SRR13927735#ACGTTAGGTCAACTGT-1                     -0.2168703
-## SRR13927735#AAATGCCCAGCAATGG-1                      0.3200356</code></pre>
+<p>Download and load the ArchR project.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="archr-workflow-and-different-weight-methods.html#cb152-1" tabindex="-1"></a><span class="fu">library</span>(ArchR)</span>
+<span id="cb152-2"><a href="archr-workflow-and-different-weight-methods.html#cb152-2" tabindex="-1"></a>temp_path <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() </span>
+<span id="cb152-3"><a href="archr-workflow-and-different-weight-methods.html#cb152-3" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;http://research-pub.gene.com/oncbx/yaox/Epiregulon/GSE168667.tar.gz&quot;</span>,</span>
+<span id="cb152-4"><a href="archr-workflow-and-different-weight-methods.html#cb152-4" tabindex="-1"></a>              <span class="fu">file.path</span>(temp_path, <span class="st">&quot;GSE168667.tar.gz&quot;</span>))</span>
+<span id="cb152-5"><a href="archr-workflow-and-different-weight-methods.html#cb152-5" tabindex="-1"></a><span class="fu">untar</span>(<span class="at">tarfile=</span><span class="fu">file.path</span>(temp_path, <span class="st">&quot;GSE168667.tar.gz&quot;</span>), <span class="at">exdir =</span> temp_path)</span>
+<span id="cb152-6"><a href="archr-workflow-and-different-weight-methods.html#cb152-6" tabindex="-1"></a>archR_project_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(temp_path, <span class="st">&quot;multiome&quot;</span>)</span>
+<span id="cb152-7"><a href="archr-workflow-and-different-weight-methods.html#cb152-7" tabindex="-1"></a>proj <span class="ot">&lt;-</span> <span class="fu">loadArchRProject</span>(<span class="at">path =</span> archR_project_path, <span class="at">showLogo =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="retrieve-matrices-from-archr-project" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Retrieve matrices from ArchR project<a href="archr-workflow-and-different-weight-methods.html#retrieve-matrices-from-archr-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Retrieve gene expression and peak matrix from the ArchR project</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="archr-workflow-and-different-weight-methods.html#cb193-1" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(</span>
-<span id="cb193-2"><a href="archr-workflow-and-different-weight-methods.html#cb193-2" tabindex="-1"></a>    <span class="at">ArchRProj =</span> proj,</span>
-<span id="cb193-3"><a href="archr-workflow-and-different-weight-methods.html#cb193-3" tabindex="-1"></a>    <span class="at">useMatrix =</span> <span class="st">&quot;GeneIntegrationMatrix&quot;</span>,</span>
-<span id="cb193-4"><a href="archr-workflow-and-different-weight-methods.html#cb193-4" tabindex="-1"></a>    <span class="at">useSeqnames =</span> <span class="cn">NULL</span>,</span>
-<span id="cb193-5"><a href="archr-workflow-and-different-weight-methods.html#cb193-5" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb193-6"><a href="archr-workflow-and-different-weight-methods.html#cb193-6" tabindex="-1"></a>    <span class="at">binarize =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb193-7"><a href="archr-workflow-and-different-weight-methods.html#cb193-7" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span>,</span>
-<span id="cb193-8"><a href="archr-workflow-and-different-weight-methods.html#cb193-8" tabindex="-1"></a>    <span class="at">logFile =</span> <span class="st">&quot;x&quot;</span></span>
-<span id="cb193-9"><a href="archr-workflow-and-different-weight-methods.html#cb193-9" tabindex="-1"></a>)</span>
-<span id="cb193-10"><a href="archr-workflow-and-different-weight-methods.html#cb193-10" tabindex="-1"></a></span>
-<span id="cb193-11"><a href="archr-workflow-and-different-weight-methods.html#cb193-11" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(</span>
-<span id="cb193-12"><a href="archr-workflow-and-different-weight-methods.html#cb193-12" tabindex="-1"></a>    <span class="at">ArchRProj =</span> proj,</span>
-<span id="cb193-13"><a href="archr-workflow-and-different-weight-methods.html#cb193-13" tabindex="-1"></a>    <span class="at">useMatrix =</span> <span class="st">&quot;PeakMatrix&quot;</span>,</span>
-<span id="cb193-14"><a href="archr-workflow-and-different-weight-methods.html#cb193-14" tabindex="-1"></a>    <span class="at">useSeqnames =</span> <span class="cn">NULL</span>,</span>
-<span id="cb193-15"><a href="archr-workflow-and-different-weight-methods.html#cb193-15" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb193-16"><a href="archr-workflow-and-different-weight-methods.html#cb193-16" tabindex="-1"></a>    <span class="at">binarize =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb193-17"><a href="archr-workflow-and-different-weight-methods.html#cb193-17" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span>,</span>
-<span id="cb193-18"><a href="archr-workflow-and-different-weight-methods.html#cb193-18" tabindex="-1"></a>    <span class="at">logFile =</span> <span class="st">&quot;x&quot;</span></span>
-<span id="cb193-19"><a href="archr-workflow-and-different-weight-methods.html#cb193-19" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="archr-workflow-and-different-weight-methods.html#cb153-1" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(</span>
+<span id="cb153-2"><a href="archr-workflow-and-different-weight-methods.html#cb153-2" tabindex="-1"></a>    <span class="at">ArchRProj =</span> proj,</span>
+<span id="cb153-3"><a href="archr-workflow-and-different-weight-methods.html#cb153-3" tabindex="-1"></a>    <span class="at">useMatrix =</span> <span class="st">&quot;GeneIntegrationMatrix&quot;</span>,</span>
+<span id="cb153-4"><a href="archr-workflow-and-different-weight-methods.html#cb153-4" tabindex="-1"></a>    <span class="at">useSeqnames =</span> <span class="cn">NULL</span>,</span>
+<span id="cb153-5"><a href="archr-workflow-and-different-weight-methods.html#cb153-5" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb153-6"><a href="archr-workflow-and-different-weight-methods.html#cb153-6" tabindex="-1"></a>    <span class="at">binarize =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb153-7"><a href="archr-workflow-and-different-weight-methods.html#cb153-7" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span>,</span>
+<span id="cb153-8"><a href="archr-workflow-and-different-weight-methods.html#cb153-8" tabindex="-1"></a>    <span class="at">logFile =</span> <span class="st">&quot;x&quot;</span></span>
+<span id="cb153-9"><a href="archr-workflow-and-different-weight-methods.html#cb153-9" tabindex="-1"></a>)</span>
+<span id="cb153-10"><a href="archr-workflow-and-different-weight-methods.html#cb153-10" tabindex="-1"></a></span>
+<span id="cb153-11"><a href="archr-workflow-and-different-weight-methods.html#cb153-11" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(</span>
+<span id="cb153-12"><a href="archr-workflow-and-different-weight-methods.html#cb153-12" tabindex="-1"></a>    <span class="at">ArchRProj =</span> proj,</span>
+<span id="cb153-13"><a href="archr-workflow-and-different-weight-methods.html#cb153-13" tabindex="-1"></a>    <span class="at">useMatrix =</span> <span class="st">&quot;PeakMatrix&quot;</span>,</span>
+<span id="cb153-14"><a href="archr-workflow-and-different-weight-methods.html#cb153-14" tabindex="-1"></a>    <span class="at">useSeqnames =</span> <span class="cn">NULL</span>,</span>
+<span id="cb153-15"><a href="archr-workflow-and-different-weight-methods.html#cb153-15" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb153-16"><a href="archr-workflow-and-different-weight-methods.html#cb153-16" tabindex="-1"></a>    <span class="at">binarize =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb153-17"><a href="archr-workflow-and-different-weight-methods.html#cb153-17" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span>,</span>
+<span id="cb153-18"><a href="archr-workflow-and-different-weight-methods.html#cb153-18" tabindex="-1"></a>    <span class="at">logFile =</span> <span class="st">&quot;x&quot;</span></span>
+<span id="cb153-19"><a href="archr-workflow-and-different-weight-methods.html#cb153-19" tabindex="-1"></a>)</span></code></pre></div>
 <p>If we extract the gene expression from matrix, it will be in the form of <code>RangedSummarizedExperiment</code>. We can make use of <code>ArchRMatrix2SCE</code> to convert gene expression matrix to a <code>SingleCellExperiment</code> object. It’s also important to note that gene expression from ArchR is library size normalized (not logged).</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="archr-workflow-and-different-weight-methods.html#cb194-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.archr)</span>
-<span id="cb194-2"><a href="archr-workflow-and-different-weight-methods.html#cb194-2" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">ArchRMatrix2SCE</span>(GeneExpressionMatrix, <span class="at">rename =</span> <span class="st">&quot;normalizedCounts&quot;</span>)</span>
-<span id="cb194-3"><a href="archr-workflow-and-different-weight-methods.html#cb194-3" tabindex="-1"></a><span class="fu">rownames</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(GeneExpressionMatrix)<span class="sc">$</span>name</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="archr-workflow-and-different-weight-methods.html#cb154-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.archr)</span>
+<span id="cb154-2"><a href="archr-workflow-and-different-weight-methods.html#cb154-2" tabindex="-1"></a>GeneExpressionMatrix <span class="ot">&lt;-</span> <span class="fu">ArchRMatrix2SCE</span>(GeneExpressionMatrix, <span class="at">rename =</span> <span class="st">&quot;normalizedCounts&quot;</span>)</span>
+<span id="cb154-3"><a href="archr-workflow-and-different-weight-methods.html#cb154-3" tabindex="-1"></a><span class="fu">rownames</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="fu">rowData</span>(GeneExpressionMatrix)<span class="sc">$</span>name</span></code></pre></div>
 <p>We rename the assay name of the PeakMatrix as counts.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="archr-workflow-and-different-weight-methods.html#cb195-1" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">ArchRMatrix2SCE</span>(PeakMatrix, <span class="at">rename =</span> <span class="st">&quot;counts&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="archr-workflow-and-different-weight-methods.html#cb155-1" tabindex="-1"></a>PeakMatrix <span class="ot">&lt;-</span> <span class="fu">ArchRMatrix2SCE</span>(PeakMatrix, <span class="at">rename =</span> <span class="st">&quot;counts&quot;</span>)</span></code></pre></div>
 <p>Transfer embeddings from ArchR project to <code>SingleCellExperiment</code> for visualization</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="archr-workflow-and-different-weight-methods.html#cb196-1" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;UMAP_Combined&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">getEmbedding</span>(<span class="at">ArchRProj =</span> proj, </span>
-<span id="cb196-2"><a href="archr-workflow-and-different-weight-methods.html#cb196-2" tabindex="-1"></a>                                                                  <span class="at">embedding =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
-<span id="cb196-3"><a href="archr-workflow-and-different-weight-methods.html#cb196-3" tabindex="-1"></a>                                                                  <span class="at">returnDF =</span> <span class="cn">TRUE</span>)[<span class="fu">colnames</span>(GeneExpressionMatrix),]</span>
-<span id="cb196-4"><a href="archr-workflow-and-different-weight-methods.html#cb196-4" tabindex="-1"></a></span>
-<span id="cb196-5"><a href="archr-workflow-and-different-weight-methods.html#cb196-5" tabindex="-1"></a><span class="co"># add cell label</span></span>
-<span id="cb196-6"><a href="archr-workflow-and-different-weight-methods.html#cb196-6" tabindex="-1"></a>GeneExpressionMatrix<span class="sc">$</span>label <span class="ot">&lt;-</span> GeneExpressionMatrix<span class="sc">$</span>Cells</span>
-<span id="cb196-7"><a href="archr-workflow-and-different-weight-methods.html#cb196-7" tabindex="-1"></a>GeneExpressionMatrix<span class="sc">$</span>label[GeneExpressionMatrix<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;enzalutamide 48h&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;LNCaP–ENZ48&quot;</span></span>
-<span id="cb196-8"><a href="archr-workflow-and-different-weight-methods.html#cb196-8" tabindex="-1"></a>GeneExpressionMatrix<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(GeneExpressionMatrix<span class="sc">$</span>label, </span>
-<span id="cb196-9"><a href="archr-workflow-and-different-weight-methods.html#cb196-9" tabindex="-1"></a>                                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;LNCaP&quot;</span>, <span class="st">&quot;LNCaP–ENZ48&quot;</span>, <span class="st">&quot;LNCaP RES-A&quot;</span>, <span class="st">&quot;LNCaP RES-B&quot;</span>))</span></code></pre></div>
-<p>Visualize singleCellExperiment by UMAP</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="archr-workflow-and-different-weight-methods.html#cb197-1" tabindex="-1"></a>scater<span class="sc">::</span><span class="fu">plotReducedDim</span>(GeneExpressionMatrix, </span>
-<span id="cb197-2"><a href="archr-workflow-and-different-weight-methods.html#cb197-2" tabindex="-1"></a>                       <span class="at">dimred =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
-<span id="cb197-3"><a href="archr-workflow-and-different-weight-methods.html#cb197-3" tabindex="-1"></a>                       <span class="at">text_by =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb197-4"><a href="archr-workflow-and-different-weight-methods.html#cb197-4" tabindex="-1"></a>                       <span class="at">colour_by =</span> <span class="st">&quot;label&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="archr-workflow-and-different-weight-methods.html#cb156-1" tabindex="-1"></a><span class="fu">reducedDim</span>(GeneExpressionMatrix, <span class="st">&quot;UMAP_Combined&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">getEmbedding</span>(<span class="at">ArchRProj =</span> proj, </span>
+<span id="cb156-2"><a href="archr-workflow-and-different-weight-methods.html#cb156-2" tabindex="-1"></a>                                                                  <span class="at">embedding =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb156-3"><a href="archr-workflow-and-different-weight-methods.html#cb156-3" tabindex="-1"></a>                                                                  <span class="at">returnDF =</span> <span class="cn">TRUE</span>)[<span class="fu">colnames</span>(GeneExpressionMatrix),]</span>
+<span id="cb156-4"><a href="archr-workflow-and-different-weight-methods.html#cb156-4" tabindex="-1"></a></span>
+<span id="cb156-5"><a href="archr-workflow-and-different-weight-methods.html#cb156-5" tabindex="-1"></a><span class="co"># add cell label</span></span>
+<span id="cb156-6"><a href="archr-workflow-and-different-weight-methods.html#cb156-6" tabindex="-1"></a>GeneExpressionMatrix<span class="sc">$</span>label <span class="ot">&lt;-</span> GeneExpressionMatrix<span class="sc">$</span>Cells</span>
+<span id="cb156-7"><a href="archr-workflow-and-different-weight-methods.html#cb156-7" tabindex="-1"></a>GeneExpressionMatrix<span class="sc">$</span>label[GeneExpressionMatrix<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;enzalutamide 48h&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;LNCaP–ENZ48&quot;</span></span>
+<span id="cb156-8"><a href="archr-workflow-and-different-weight-methods.html#cb156-8" tabindex="-1"></a>GeneExpressionMatrix<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">factor</span>(GeneExpressionMatrix<span class="sc">$</span>label, </span>
+<span id="cb156-9"><a href="archr-workflow-and-different-weight-methods.html#cb156-9" tabindex="-1"></a>                                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;LNCaP&quot;</span>, <span class="st">&quot;LNCaP–ENZ48&quot;</span>, <span class="st">&quot;LNCaP RES-A&quot;</span>, <span class="st">&quot;LNCaP RES-B&quot;</span>))</span></code></pre></div>
+<p>Visualize the SingleCellExperiment object by UMAP</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="archr-workflow-and-different-weight-methods.html#cb157-1" tabindex="-1"></a>scater<span class="sc">::</span><span class="fu">plotReducedDim</span>(GeneExpressionMatrix, </span>
+<span id="cb157-2"><a href="archr-workflow-and-different-weight-methods.html#cb157-2" tabindex="-1"></a>                       <span class="at">dimred =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb157-3"><a href="archr-workflow-and-different-weight-methods.html#cb157-3" tabindex="-1"></a>                       <span class="at">text_by =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb157-4"><a href="archr-workflow-and-different-weight-methods.html#cb157-4" tabindex="-1"></a>                       <span class="at">colour_by =</span> <span class="st">&quot;label&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 </div>
 <div id="retrieve-bulk-tf-chip-seq-binding-sites-1" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Retrieve bulk TF ChIP-seq binding sites<a href="archr-workflow-and-different-weight-methods.html#retrieve-bulk-tf-chip-seq-binding-sites-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First, we retrieve the information of TF binding sites collected from Cistrome and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse mm10 are available.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="archr-workflow-and-different-weight-methods.html#cb198-1" tabindex="-1"></a>grl <span class="ot">&lt;-</span> <span class="fu">getTFMotifInfo</span>(<span class="at">genome =</span> <span class="st">&quot;hg38&quot;</span>)</span>
-<span id="cb198-2"><a href="archr-workflow-and-different-weight-methods.html#cb198-2" tabindex="-1"></a>grl</span></code></pre></div>
+<p>We retrieve TF binding sites compiled from ChIP-Atlas and ENCODE ChIP-seq. Currently, human genomes hg19 and hg38 and mouse mm10 are available.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="archr-workflow-and-different-weight-methods.html#cb158-1" tabindex="-1"></a>grl <span class="ot">&lt;-</span> <span class="fu">getTFMotifInfo</span>(<span class="at">genome =</span> <span class="st">&quot;hg38&quot;</span>)</span>
+<span id="cb158-2"><a href="archr-workflow-and-different-weight-methods.html#cb158-2" tabindex="-1"></a>grl</span></code></pre></div>
 <pre><code>## GRangesList object of length 1558:
 ## $AEBP2
 ## GRanges object with 2700 ranges and 0 metadata columns:
@@ -402,49 +371,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="link-atac-seq-peaks-to-target-genes-1" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> Link ATAC-seq peaks to target genes<a href="archr-workflow-and-different-weight-methods.html#link-atac-seq-peaks-to-target-genes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Next, we compute peak to gene correlations using the <code>addPeak2GeneLinks</code> function from the ArchR package. The user would need
-to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="archr-workflow-and-different-weight-methods.html#cb200-1" tabindex="-1"></a>p2g <span class="ot">&lt;-</span> <span class="fu">calculateP2G</span>(<span class="at">ArchR_path =</span> archR_project_path,</span>
-<span id="cb200-2"><a href="archr-workflow-and-different-weight-methods.html#cb200-2" tabindex="-1"></a>                    <span class="at">useDim =</span> <span class="st">&quot;iLSI_Combined&quot;</span>, </span>
-<span id="cb200-3"><a href="archr-workflow-and-different-weight-methods.html#cb200-3" tabindex="-1"></a>                    <span class="at">useMatrix =</span> <span class="st">&quot;GeneIntegrationMatrix&quot;</span>,</span>
-<span id="cb200-4"><a href="archr-workflow-and-different-weight-methods.html#cb200-4" tabindex="-1"></a>                    <span class="at">threads =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>We compute peak to gene correlations using the <code>addPeak2GeneLinks</code> function from the ArchR package. The user would need
+to supply a path to an ArchR project already containing peak and gene matrices, as well as Latent semantic indexing (LSI) dimensionality reduction. We will use the joint reducedDims - “LSI_Combined”.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="archr-workflow-and-different-weight-methods.html#cb160-1" tabindex="-1"></a>p2g <span class="ot">&lt;-</span> <span class="fu">calculateP2G</span>(<span class="at">ArchR_path =</span> archR_project_path,</span>
+<span id="cb160-2"><a href="archr-workflow-and-different-weight-methods.html#cb160-2" tabindex="-1"></a>                    <span class="at">useDim =</span> <span class="st">&quot;iLSI_Combined&quot;</span>, </span>
+<span id="cb160-3"><a href="archr-workflow-and-different-weight-methods.html#cb160-3" tabindex="-1"></a>                    <span class="at">useMatrix =</span> <span class="st">&quot;GeneIntegrationMatrix&quot;</span>,</span>
+<span id="cb160-4"><a href="archr-workflow-and-different-weight-methods.html#cb160-4" tabindex="-1"></a>                    <span class="at">threads =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Using ArchR to compute peak to gene links...</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="archr-workflow-and-different-weight-methods.html#cb202-1" tabindex="-1"></a>p2g</span></code></pre></div>
-<pre><code>## DataFrame with 16883 rows and 8 columns
-##         idxATAC      chr     start       end    idxRNA        target
-##       &lt;integer&gt; &lt;factor&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;   &lt;character&gt;
-## 1            15     chr1    912762    913262         7         NOC2L
-## 2            25     chr1    920261    920761         7         NOC2L
-## 3            25     chr1    920261    920761         8        KLHL17
-## 4            32     chr1    927728    928228         7         NOC2L
-## 5            32     chr1    927728    928228         8        KLHL17
-## ...         ...      ...       ...       ...       ...           ...
-## 16879    210643     chrX 154542721 154543221     23496 CH17-340M24.3
-## 16880    210643     chrX 154542721 154543221     23501         LAGE3
-## 16881    210643     chrX 154542721 154543221     23506         IKBKG
-## 16882    210643     chrX 154542721 154543221     23509          DKC1
-## 16883    210665     chrX 154815200 154815700     23515            F8
-##       Correlation  distance
-##         &lt;numeric&gt; &lt;numeric&gt;
-## 1        0.543478     46297
-## 2        0.602633     38798
-## 3        0.597510     40076
-## 4        0.660584     31331
-## 5        0.532240     32609
-## ...           ...       ...
-## 16879    0.540888    114492
-## 16880    0.708942     63714
-## 16881    0.517261      1716
-## 16882    0.557412    219771
-## 16883    0.554537    211490</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="archr-workflow-and-different-weight-methods.html#cb162-1" tabindex="-1"></a>p2g</span></code></pre></div>
+<pre><code>## DataFrame with 17979 rows and 8 columns
+##         idxATAC      chr     start       end    idxRNA        target Correlation  distance
+##       &lt;integer&gt; &lt;factor&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;   &lt;character&gt;   &lt;numeric&gt; &lt;numeric&gt;
+## 1            15     chr1    912762    913262         7         NOC2L    0.546722     46297
+## 2            15     chr1    912762    913262         8        KLHL17    0.516539     47575
+## 3            25     chr1    920261    920761         7         NOC2L    0.649425     38798
+## 4            25     chr1    920261    920761         8        KLHL17    0.637711     40076
+## 5            32     chr1    927728    928228         7         NOC2L    0.610240     31331
+## ...         ...      ...       ...       ...       ...           ...         ...       ...
+## 17975    210643     chrX 154542721 154543221     23496 CH17-340M24.3    0.611273    114492
+## 17976    210643     chrX 154542721 154543221     23501         LAGE3    0.698033     63714
+## 17977    210643     chrX 154542721 154543221     23506         IKBKG    0.518586      1716
+## 17978    210643     chrX 154542721 154543221     23509          DKC1    0.526624    219771
+## 17979    210665     chrX 154815200 154815700     23515            F8    0.547783    211490</code></pre>
 </div>
-<div id="add-tf-motif-binding-to-peaks-1" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Add TF motif binding to peaks<a href="archr-workflow-and-different-weight-methods.html#add-tf-motif-binding-to-peaks-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The next step is to add the TF motif binding information by overlapping the regions of the peak matrix with the bulk chip-seq database. The user can supply an ArchR project path and this function will retrieve the peak matrix, or a peakMatrix in the form of a <code>Granges</code> object or <code>RangedSummarizedExperiment</code>.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="archr-workflow-and-different-weight-methods.html#cb204-1" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">addTFMotifInfo</span>(<span class="at">archR_project_path =</span> archR_project_path, <span class="at">grl =</span> grl, <span class="at">p2g =</span> p2g)</span></code></pre></div>
-<pre><code>## Successfully loaded ArchRProject!</code></pre>
-<pre><code>## Computing overlap...</code></pre>
-<pre><code>## Success!</code></pre>
+<div id="add-tf-occupancy-data-to-peaks" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Add TF occupancy data to peaks<a href="archr-workflow-and-different-weight-methods.html#add-tf-occupancy-data-to-peaks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The next step is to add the TF binding information by overlapping the regions of the peak matrix with the bulk ChIP-seq data. Users can supply an ArchR project path and this function will retrieve the positions of the peaks from the peak matrix.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="archr-workflow-and-different-weight-methods.html#cb164-1" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">addTFMotifInfo</span>(<span class="at">archR_project_path =</span> archR_project_path, <span class="at">grl =</span> grl, <span class="at">p2g =</span> p2g)</span></code></pre></div>
 </div>
 <div id="generate-regulons-2" class="section level2 hasAnchor" number="8.7">
 <h2><span class="header-section-number">8.7</span> Generate regulons<a href="archr-workflow-and-different-weight-methods.html#generate-regulons-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -454,117 +407,99 @@ to supply a path to an ArchR project already containing peak and gene matrices, 
 <li>target genes (target)</li>
 <li>peak to gene correlation between tf and target gene (corr)</li>
 </ul>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="archr-workflow-and-different-weight-methods.html#cb208-1" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> <span class="fu">getRegulon</span>(<span class="at">p2g =</span> p2g, <span class="at">overlap =</span> overlap, <span class="at">aggregate =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb208-2"><a href="archr-workflow-and-different-weight-methods.html#cb208-2" tabindex="-1"></a>regulon</span></code></pre></div>
-<pre><code>## DataFrame with 2612934 rows and 10 columns
-##           idxATAC      chr     start       end    idxRNA      target      corr
-##         &lt;integer&gt; &lt;factor&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;numeric&gt;
-## 1              15     chr1    912762    913262         7       NOC2L  0.543478
-## 2              15     chr1    912762    913262         7       NOC2L  0.543478
-## 3              15     chr1    912762    913262         7       NOC2L  0.543478
-## 4              15     chr1    912762    913262         7       NOC2L  0.543478
-## 5              15     chr1    912762    913262         7       NOC2L  0.543478
-## ...           ...      ...       ...       ...       ...         ...       ...
-## 2612930    210665     chrX 154815200 154815700     23515          F8  0.554537
-## 2612931    210665     chrX 154815200 154815700     23515          F8  0.554537
-## 2612932    210665     chrX 154815200 154815700     23515          F8  0.554537
-## 2612933    210665     chrX 154815200 154815700     23515          F8  0.554537
-## 2612934    210665     chrX 154815200 154815700     23515          F8  0.554537
-##          distance     idxTF          tf
-##         &lt;numeric&gt; &lt;integer&gt; &lt;character&gt;
-## 1           46297         4        AGO1
-## 2           46297        11      ARID4B
-## 3           46297        12      ARID5B
-## 4           46297        30        BCOR
-## 5           46297        36        BRD4
-## ...           ...       ...         ...
-## 2612930    211490      1146       NFRKB
-## 2612931    211490      1175      POLR2H
-## 2612932    211490      1273      ZBTB8A
-## 2612933    211490      1456      ZNF589
-## 2612934    211490      1457      ZNF592</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="archr-workflow-and-different-weight-methods.html#cb165-1" tabindex="-1"></a>regulon <span class="ot">&lt;-</span> <span class="fu">getRegulon</span>(<span class="at">p2g =</span> p2g, <span class="at">overlap =</span> overlap, <span class="at">aggregate =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb165-2"><a href="archr-workflow-and-different-weight-methods.html#cb165-2" tabindex="-1"></a>regulon</span></code></pre></div>
+<pre><code>## DataFrame with 2776926 rows and 10 columns
+##           idxATAC      chr     start       end    idxRNA      target      corr  distance     idxTF          tf
+##         &lt;integer&gt; &lt;factor&gt; &lt;integer&gt; &lt;integer&gt; &lt;integer&gt; &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;integer&gt; &lt;character&gt;
+## 1              15     chr1    912762    913262         7       NOC2L  0.546722     46297         4        AGO1
+## 2              15     chr1    912762    913262         7       NOC2L  0.546722     46297        11      ARID4B
+## 3              15     chr1    912762    913262         7       NOC2L  0.546722     46297        12      ARID5B
+## 4              15     chr1    912762    913262         7       NOC2L  0.546722     46297        30        BCOR
+## 5              15     chr1    912762    913262         7       NOC2L  0.546722     46297        36        BRD4
+## ...           ...      ...       ...       ...       ...         ...       ...       ...       ...         ...
+## 2776922    210665     chrX 154815200 154815700     23515          F8  0.547783    211490      1146       NFRKB
+## 2776923    210665     chrX 154815200 154815700     23515          F8  0.547783    211490      1175      POLR2H
+## 2776924    210665     chrX 154815200 154815700     23515          F8  0.547783    211490      1273      ZBTB8A
+## 2776925    210665     chrX 154815200 154815700     23515          F8  0.547783    211490      1456      ZNF589
+## 2776926    210665     chrX 154815200 154815700     23515          F8  0.547783    211490      1457      ZNF592</code></pre>
 </div>
 <div id="optional-annotate-with-tf-motifs" class="section level2 hasAnchor" number="8.8">
 <h2><span class="header-section-number">8.8</span> (Optional) Annotate with TF motifs<a href="archr-workflow-and-different-weight-methods.html#optional-annotate-with-tf-motifs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this example, we will filter the regulon for the presence of transcription factor motifs in a peak (see Section @ref(motif_score)) and continue the workflow with the <code>regulon.motif</code> object. However, if the user prefers to retain all target genes, including REs without motifs, they may proceed with <code>regulon</code>.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="archr-workflow-and-different-weight-methods.html#cb210-1" tabindex="-1"></a>regulon.motif <span class="ot">&lt;-</span> <span class="fu">addMotifScore</span>(<span class="at">regulon =</span> regulon, <span class="at">ArchProj =</span> proj )</span></code></pre></div>
-<pre><code>## retrieving motif information from ArchR project</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="archr-workflow-and-different-weight-methods.html#cb212-1" tabindex="-1"></a><span class="co"># retain only TF-RE-TG triplets with motifs </span></span>
-<span id="cb212-2"><a href="archr-workflow-and-different-weight-methods.html#cb212-2" tabindex="-1"></a>regulon.motif <span class="ot">&lt;-</span> regulon.motif[<span class="fu">which</span>(regulon.motif<span class="sc">$</span>motif <span class="sc">==</span><span class="dv">1</span>),]</span></code></pre></div>
+<p>In this example, we will filter the regulons for the presence of transcription factor motifs and continue the workflow with the <code>regulon.motif</code> object. However, if users prefer to retain all target genes, they may proceed with the <code>regulon</code> object.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="archr-workflow-and-different-weight-methods.html#cb167-1" tabindex="-1"></a>regulon.motif <span class="ot">&lt;-</span> <span class="fu">addMotifScore</span>(<span class="at">regulon =</span> regulon, <span class="at">ArchProj =</span> proj )</span>
+<span id="cb167-2"><a href="archr-workflow-and-different-weight-methods.html#cb167-2" tabindex="-1"></a></span>
+<span id="cb167-3"><a href="archr-workflow-and-different-weight-methods.html#cb167-3" tabindex="-1"></a><span class="co"># retain only TF-RE-TG triplets with motifs </span></span>
+<span id="cb167-4"><a href="archr-workflow-and-different-weight-methods.html#cb167-4" tabindex="-1"></a>regulon.motif <span class="ot">&lt;-</span> regulon.motif[<span class="fu">which</span>(regulon.motif<span class="sc">$</span>motif <span class="sc">==</span><span class="dv">1</span>),]</span></code></pre></div>
 </div>
 <div id="prune-network" class="section level2 hasAnchor" number="8.9">
 <h2><span class="header-section-number">8.9</span> Prune network<a href="archr-workflow-and-different-weight-methods.html#prune-network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We will use <code>pruneRegulon</code> function to restict the downstream analysis to more reliable GRN connections. The pruned regulons can then be used to visualize differential networks for transcription factors of interest. See section @ref(diff_network) to learn more on the differential networks.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="archr-workflow-and-different-weight-methods.html#cb213-1" tabindex="-1"></a>pruned.regulon <span class="ot">&lt;-</span> <span class="fu">pruneRegulon</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb213-2"><a href="archr-workflow-and-different-weight-methods.html#cb213-2" tabindex="-1"></a>                               <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb213-3"><a href="archr-workflow-and-different-weight-methods.html#cb213-3" tabindex="-1"></a>                               <span class="at">peakMatrix =</span> PeakMatrix,</span>
-<span id="cb213-4"><a href="archr-workflow-and-different-weight-methods.html#cb213-4" tabindex="-1"></a>                               <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
-<span id="cb213-5"><a href="archr-workflow-and-different-weight-methods.html#cb213-5" tabindex="-1"></a>                               <span class="at">test =</span> <span class="st">&quot;chi.sq&quot;</span>,</span>
-<span id="cb213-6"><a href="archr-workflow-and-different-weight-methods.html#cb213-6" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.motif,</span>
-<span id="cb213-7"><a href="archr-workflow-and-different-weight-methods.html#cb213-7" tabindex="-1"></a>                               <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
-<span id="cb213-8"><a href="archr-workflow-and-different-weight-methods.html#cb213-8" tabindex="-1"></a>                               <span class="at">prune_value =</span> <span class="st">&quot;pval&quot;</span>,</span>
-<span id="cb213-9"><a href="archr-workflow-and-different-weight-methods.html#cb213-9" tabindex="-1"></a>                               <span class="at">regulon_cutoff =</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<p>We prune the regulons.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="archr-workflow-and-different-weight-methods.html#cb168-1" tabindex="-1"></a>pruned.regulon <span class="ot">&lt;-</span> <span class="fu">pruneRegulon</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb168-2"><a href="archr-workflow-and-different-weight-methods.html#cb168-2" tabindex="-1"></a>                               <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb168-3"><a href="archr-workflow-and-different-weight-methods.html#cb168-3" tabindex="-1"></a>                               <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb168-4"><a href="archr-workflow-and-different-weight-methods.html#cb168-4" tabindex="-1"></a>                               <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb168-5"><a href="archr-workflow-and-different-weight-methods.html#cb168-5" tabindex="-1"></a>                               <span class="at">test =</span> <span class="st">&quot;chi.sq&quot;</span>,</span>
+<span id="cb168-6"><a href="archr-workflow-and-different-weight-methods.html#cb168-6" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.motif,</span>
+<span id="cb168-7"><a href="archr-workflow-and-different-weight-methods.html#cb168-7" tabindex="-1"></a>                               <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
+<span id="cb168-8"><a href="archr-workflow-and-different-weight-methods.html#cb168-8" tabindex="-1"></a>                               <span class="at">prune_value =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb168-9"><a href="archr-workflow-and-different-weight-methods.html#cb168-9" tabindex="-1"></a>                               <span class="at">regulon_cutoff =</span> <span class="fl">0.05</span>)</span></code></pre></div>
 </div>
 <div id="weights_prostate" class="section level2 hasAnchor" number="8.10">
 <h2><span class="header-section-number">8.10</span> Add Weights<a href="archr-workflow-and-different-weight-methods.html#weights_prostate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before we calculate AR activity, we will first visualize its expression and show that enzalutamide does not decrease AR expression.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="archr-workflow-and-different-weight-methods.html#cb214-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.extra)</span>
-<span id="cb214-2"><a href="archr-workflow-and-different-weight-methods.html#cb214-2" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
-<span id="cb214-3"><a href="archr-workflow-and-different-weight-methods.html#cb214-3" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">assay</span>(GeneExpressionMatrix), </span>
-<span id="cb214-4"><a href="archr-workflow-and-different-weight-methods.html#cb214-4" tabindex="-1"></a>                <span class="at">tf =</span> <span class="st">&quot;AR&quot;</span>, </span>
-<span id="cb214-5"><a href="archr-workflow-and-different-weight-methods.html#cb214-5" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
-<span id="cb214-6"><a href="archr-workflow-and-different-weight-methods.html#cb214-6" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb214-7"><a href="archr-workflow-and-different-weight-methods.html#cb214-7" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>,</span>
-<span id="cb214-8"><a href="archr-workflow-and-different-weight-methods.html#cb214-8" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;gene expression&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
-<p>Then we extract the chromVarMatrix from ArchR project and then visualize the chromatin accessibility at AR bound sites. We can see that 48 hour of enzalutamide treatment reduced chromatin accessibility at AR bound sites</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="archr-workflow-and-different-weight-methods.html#cb215-1" tabindex="-1"></a>chromVarMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(</span>
-<span id="cb215-2"><a href="archr-workflow-and-different-weight-methods.html#cb215-2" tabindex="-1"></a>    <span class="at">ArchRProj =</span> proj,</span>
-<span id="cb215-3"><a href="archr-workflow-and-different-weight-methods.html#cb215-3" tabindex="-1"></a>    <span class="at">useMatrix =</span> <span class="st">&quot;MotifMatrix&quot;</span>,</span>
-<span id="cb215-4"><a href="archr-workflow-and-different-weight-methods.html#cb215-4" tabindex="-1"></a>    <span class="at">useSeqnames =</span> <span class="cn">NULL</span>,</span>
-<span id="cb215-5"><a href="archr-workflow-and-different-weight-methods.html#cb215-5" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb215-6"><a href="archr-workflow-and-different-weight-methods.html#cb215-6" tabindex="-1"></a>    <span class="at">binarize =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb215-7"><a href="archr-workflow-and-different-weight-methods.html#cb215-7" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span></span>
-<span id="cb215-8"><a href="archr-workflow-and-different-weight-methods.html#cb215-8" tabindex="-1"></a>)</span>
-<span id="cb215-9"><a href="archr-workflow-and-different-weight-methods.html#cb215-9" tabindex="-1"></a></span>
-<span id="cb215-10"><a href="archr-workflow-and-different-weight-methods.html#cb215-10" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
-<span id="cb215-11"><a href="archr-workflow-and-different-weight-methods.html#cb215-11" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">assay</span>(chromVarMatrix, <span class="st">&quot;z&quot;</span>), </span>
-<span id="cb215-12"><a href="archr-workflow-and-different-weight-methods.html#cb215-12" tabindex="-1"></a>                <span class="at">tf =</span> <span class="st">&quot;AR_689&quot;</span>, </span>
-<span id="cb215-13"><a href="archr-workflow-and-different-weight-methods.html#cb215-13" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
-<span id="cb215-14"><a href="archr-workflow-and-different-weight-methods.html#cb215-14" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb215-15"><a href="archr-workflow-and-different-weight-methods.html#cb215-15" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>,</span>
-<span id="cb215-16"><a href="archr-workflow-and-different-weight-methods.html#cb215-16" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;chromVar&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p>Before we calculate AR activity, we visualize its expression and show that enzalutamide does not decrease AR expression despite being an AR antagonist.</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="archr-workflow-and-different-weight-methods.html#cb169-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.extra)</span>
+<span id="cb169-2"><a href="archr-workflow-and-different-weight-methods.html#cb169-2" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
+<span id="cb169-3"><a href="archr-workflow-and-different-weight-methods.html#cb169-3" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">assay</span>(GeneExpressionMatrix), </span>
+<span id="cb169-4"><a href="archr-workflow-and-different-weight-methods.html#cb169-4" tabindex="-1"></a>                <span class="at">tf =</span> <span class="st">&quot;AR&quot;</span>, </span>
+<span id="cb169-5"><a href="archr-workflow-and-different-weight-methods.html#cb169-5" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb169-6"><a href="archr-workflow-and-different-weight-methods.html#cb169-6" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb169-7"><a href="archr-workflow-and-different-weight-methods.html#cb169-7" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>,</span>
+<span id="cb169-8"><a href="archr-workflow-and-different-weight-methods.html#cb169-8" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;gene expression&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p>Then we extract the chromVarMatrix from ArchR project and visualize the chromatin accessibility at AR bound sites. We can see that 48 hour of enzalutamide treatment reduced chromatin accessibility at AR bound sites.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="archr-workflow-and-different-weight-methods.html#cb170-1" tabindex="-1"></a>chromVarMatrix <span class="ot">&lt;-</span> <span class="fu">getMatrixFromProject</span>(</span>
+<span id="cb170-2"><a href="archr-workflow-and-different-weight-methods.html#cb170-2" tabindex="-1"></a>    <span class="at">ArchRProj =</span> proj,</span>
+<span id="cb170-3"><a href="archr-workflow-and-different-weight-methods.html#cb170-3" tabindex="-1"></a>    <span class="at">useMatrix =</span> <span class="st">&quot;MotifMatrix&quot;</span>,</span>
+<span id="cb170-4"><a href="archr-workflow-and-different-weight-methods.html#cb170-4" tabindex="-1"></a>    <span class="at">useSeqnames =</span> <span class="cn">NULL</span>,</span>
+<span id="cb170-5"><a href="archr-workflow-and-different-weight-methods.html#cb170-5" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb170-6"><a href="archr-workflow-and-different-weight-methods.html#cb170-6" tabindex="-1"></a>    <span class="at">binarize =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb170-7"><a href="archr-workflow-and-different-weight-methods.html#cb170-7" tabindex="-1"></a>    <span class="at">threads =</span> <span class="dv">1</span></span>
+<span id="cb170-8"><a href="archr-workflow-and-different-weight-methods.html#cb170-8" tabindex="-1"></a>)</span>
+<span id="cb170-9"><a href="archr-workflow-and-different-weight-methods.html#cb170-9" tabindex="-1"></a></span>
+<span id="cb170-10"><a href="archr-workflow-and-different-weight-methods.html#cb170-10" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
+<span id="cb170-11"><a href="archr-workflow-and-different-weight-methods.html#cb170-11" tabindex="-1"></a>                <span class="at">activity_matrix =</span> <span class="fu">assay</span>(chromVarMatrix, <span class="st">&quot;z&quot;</span>), </span>
+<span id="cb170-12"><a href="archr-workflow-and-different-weight-methods.html#cb170-12" tabindex="-1"></a>                <span class="at">tf =</span> <span class="st">&quot;AR_689&quot;</span>, </span>
+<span id="cb170-13"><a href="archr-workflow-and-different-weight-methods.html#cb170-13" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb170-14"><a href="archr-workflow-and-different-weight-methods.html#cb170-14" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb170-15"><a href="archr-workflow-and-different-weight-methods.html#cb170-15" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>,</span>
+<span id="cb170-16"><a href="archr-workflow-and-different-weight-methods.html#cb170-16" tabindex="-1"></a>                <span class="at">legend.label =</span> <span class="st">&quot;chromVar&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>Next, we are going to compare 3 different weight methods. In the first method, the <code>wilcoxon</code> test compares target gene expression in cells meeting both the TF expression and accessibility cutoffs vs cells failing either the TF expression or/and accessibility cutoffs. Next, we try out the correlation method which comes in two flavors. When <code>tf_re.merge = FALSE</code>, weight is computed on the correlation of target gene expression vs TF gene expression. When <code>tf_re.merge = TRUE</code>, weight is computed on the correlation of target gene expression vs the product of TF expression and chromatin accessibility at TF-bound regulatory elements.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="archr-workflow-and-different-weight-methods.html#cb216-1" tabindex="-1"></a>regulon.w.wilcox <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
-<span id="cb216-2"><a href="archr-workflow-and-different-weight-methods.html#cb216-2" tabindex="-1"></a>                        <span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb216-3"><a href="archr-workflow-and-different-weight-methods.html#cb216-3" tabindex="-1"></a>                        <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb216-4"><a href="archr-workflow-and-different-weight-methods.html#cb216-4" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
-<span id="cb216-5"><a href="archr-workflow-and-different-weight-methods.html#cb216-5" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
-<span id="cb216-6"><a href="archr-workflow-and-different-weight-methods.html#cb216-6" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
-<span id="cb216-7"><a href="archr-workflow-and-different-weight-methods.html#cb216-7" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;wilcoxon&quot;</span>)</span></code></pre></div>
-<pre><code>## adding weights using wilcoxon...</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="archr-workflow-and-different-weight-methods.html#cb218-1" tabindex="-1"></a>regulon.w.corr <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
-<span id="cb218-2"><a href="archr-workflow-and-different-weight-methods.html#cb218-2" tabindex="-1"></a>                        <span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb218-3"><a href="archr-workflow-and-different-weight-methods.html#cb218-3" tabindex="-1"></a>                        <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb218-4"><a href="archr-workflow-and-different-weight-methods.html#cb218-4" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
-<span id="cb218-5"><a href="archr-workflow-and-different-weight-methods.html#cb218-5" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
-<span id="cb218-6"><a href="archr-workflow-and-different-weight-methods.html#cb218-6" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
-<span id="cb218-7"><a href="archr-workflow-and-different-weight-methods.html#cb218-7" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;corr&quot;</span>)</span></code></pre></div>
-<pre><code>## adding weights using corr...</code></pre>
-<pre><code>## calculating average expression across clusters...</code></pre>
-<pre><code>## computing weights...</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="archr-workflow-and-different-weight-methods.html#cb222-1" tabindex="-1"></a>regulon.w.corr.re <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
-<span id="cb222-2"><a href="archr-workflow-and-different-weight-methods.html#cb222-2" tabindex="-1"></a>                        <span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb222-3"><a href="archr-workflow-and-different-weight-methods.html#cb222-3" tabindex="-1"></a>                        <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb222-4"><a href="archr-workflow-and-different-weight-methods.html#cb222-4" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
-<span id="cb222-5"><a href="archr-workflow-and-different-weight-methods.html#cb222-5" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
-<span id="cb222-6"><a href="archr-workflow-and-different-weight-methods.html#cb222-6" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
-<span id="cb222-7"><a href="archr-workflow-and-different-weight-methods.html#cb222-7" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;corr&quot;</span>,</span>
-<span id="cb222-8"><a href="archr-workflow-and-different-weight-methods.html#cb222-8" tabindex="-1"></a>                        <span class="at">tf_re.merge =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## adding weights using corr...</code></pre>
-<pre><code>## calculating average expression across clusters...</code></pre>
-<pre><code>## computing weights...</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="archr-workflow-and-different-weight-methods.html#cb171-1" tabindex="-1"></a>regulon.w.wilcox <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb171-2"><a href="archr-workflow-and-different-weight-methods.html#cb171-2" tabindex="-1"></a>                        <span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb171-3"><a href="archr-workflow-and-different-weight-methods.html#cb171-3" tabindex="-1"></a>                        <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb171-4"><a href="archr-workflow-and-different-weight-methods.html#cb171-4" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb171-5"><a href="archr-workflow-and-different-weight-methods.html#cb171-5" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb171-6"><a href="archr-workflow-and-different-weight-methods.html#cb171-6" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
+<span id="cb171-7"><a href="archr-workflow-and-different-weight-methods.html#cb171-7" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;wilcoxon&quot;</span>)</span>
+<span id="cb171-8"><a href="archr-workflow-and-different-weight-methods.html#cb171-8" tabindex="-1"></a></span>
+<span id="cb171-9"><a href="archr-workflow-and-different-weight-methods.html#cb171-9" tabindex="-1"></a>regulon.w.corr <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb171-10"><a href="archr-workflow-and-different-weight-methods.html#cb171-10" tabindex="-1"></a>                        <span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb171-11"><a href="archr-workflow-and-different-weight-methods.html#cb171-11" tabindex="-1"></a>                        <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb171-12"><a href="archr-workflow-and-different-weight-methods.html#cb171-12" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb171-13"><a href="archr-workflow-and-different-weight-methods.html#cb171-13" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb171-14"><a href="archr-workflow-and-different-weight-methods.html#cb171-14" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
+<span id="cb171-15"><a href="archr-workflow-and-different-weight-methods.html#cb171-15" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;corr&quot;</span>)</span>
+<span id="cb171-16"><a href="archr-workflow-and-different-weight-methods.html#cb171-16" tabindex="-1"></a></span>
+<span id="cb171-17"><a href="archr-workflow-and-different-weight-methods.html#cb171-17" tabindex="-1"></a>regulon.w.corr.re <span class="ot">&lt;-</span> <span class="fu">addWeights</span>(<span class="at">regulon =</span> pruned.regulon,</span>
+<span id="cb171-18"><a href="archr-workflow-and-different-weight-methods.html#cb171-18" tabindex="-1"></a>                        <span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb171-19"><a href="archr-workflow-and-different-weight-methods.html#cb171-19" tabindex="-1"></a>                        <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb171-20"><a href="archr-workflow-and-different-weight-methods.html#cb171-20" tabindex="-1"></a>                        <span class="at">peakMatrix =</span> PeakMatrix,</span>
+<span id="cb171-21"><a href="archr-workflow-and-different-weight-methods.html#cb171-21" tabindex="-1"></a>                        <span class="at">peak_assay =</span> <span class="st">&quot;counts&quot;</span>,</span>
+<span id="cb171-22"><a href="archr-workflow-and-different-weight-methods.html#cb171-22" tabindex="-1"></a>                        <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
+<span id="cb171-23"><a href="archr-workflow-and-different-weight-methods.html#cb171-23" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">&quot;corr&quot;</span>,</span>
+<span id="cb171-24"><a href="archr-workflow-and-different-weight-methods.html#cb171-24" tabindex="-1"></a>                        <span class="at">tf_re.merge =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="calculate-tf-activity-2" class="section level2 hasAnchor" number="8.11">
 <h2><span class="header-section-number">8.11</span> Calculate TF activity<a href="archr-workflow-and-different-weight-methods.html#calculate-tf-activity-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -574,310 +509,254 @@ where <span class="math inline">\(y\)</span> is the activity of a TF for a cell
 <span class="math inline">\(n\)</span> is the total number of targets for a TF
 <span class="math inline">\(x_i\)</span> is the log count expression of target i where i in {1,2,…,n}
 <span class="math inline">\(weight_i\)</span> is the weight of TF and target i</p>
-<p>We calculate three different activities corresponding to the different weighted regulons</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="archr-workflow-and-different-weight-methods.html#cb226-1" tabindex="-1"></a>score.combine.wilcox <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb226-2"><a href="archr-workflow-and-different-weight-methods.html#cb226-2" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb226-3"><a href="archr-workflow-and-different-weight-methods.html#cb226-3" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w.wilcox,</span>
-<span id="cb226-4"><a href="archr-workflow-and-different-weight-methods.html#cb226-4" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb226-5"><a href="archr-workflow-and-different-weight-methods.html#cb226-5" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb226-6"><a href="archr-workflow-and-different-weight-methods.html#cb226-6" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, exp_assay =
-## &quot;normalizedCounts&quot;, : Argument &#39;method&#39; to calculateActivity was deprecated as
-## of epiregulon version 2.0.0</code></pre>
-<pre><code>## calculating TF activity from regulon using weightedMean</code></pre>
-<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, exp_assay = &quot;normalizedCounts&quot;, : The weight column contains multiple subcolumns but no cluster information was provided.
-##           Using first column to compute activity...</code></pre>
-<pre><code>## aggregating regulons...</code></pre>
-<pre><code>## creating weight matrix...</code></pre>
-<pre><code>## calculating activity scores...</code></pre>
-<pre><code>## normalize by mean...</code></pre>
-<pre><code>## normalize by the number of targets...</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="archr-workflow-and-different-weight-methods.html#cb235-1" tabindex="-1"></a>score.combine.corr <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb235-2"><a href="archr-workflow-and-different-weight-methods.html#cb235-2" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb235-3"><a href="archr-workflow-and-different-weight-methods.html#cb235-3" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w.corr,</span>
-<span id="cb235-4"><a href="archr-workflow-and-different-weight-methods.html#cb235-4" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb235-5"><a href="archr-workflow-and-different-weight-methods.html#cb235-5" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb235-6"><a href="archr-workflow-and-different-weight-methods.html#cb235-6" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, exp_assay =
-## &quot;normalizedCounts&quot;, : Argument &#39;method&#39; to calculateActivity was deprecated as
-## of epiregulon version 2.0.0</code></pre>
-<pre><code>## calculating TF activity from regulon using weightedMean</code></pre>
-<pre><code>## aggregating regulons...</code></pre>
-<pre><code>## creating weight matrix...</code></pre>
-<pre><code>## calculating activity scores...</code></pre>
-<pre><code>## normalize by mean...</code></pre>
-<pre><code>## normalize by the number of targets...</code></pre>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="archr-workflow-and-different-weight-methods.html#cb243-1" tabindex="-1"></a>score.combine.corr.re <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
-<span id="cb243-2"><a href="archr-workflow-and-different-weight-methods.html#cb243-2" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb243-3"><a href="archr-workflow-and-different-weight-methods.html#cb243-3" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w.corr.re,</span>
-<span id="cb243-4"><a href="archr-workflow-and-different-weight-methods.html#cb243-4" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb243-5"><a href="archr-workflow-and-different-weight-methods.html#cb243-5" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb243-6"><a href="archr-workflow-and-different-weight-methods.html#cb243-6" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;weightedMean&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in calculateActivity(expMatrix = GeneExpressionMatrix, exp_assay =
-## &quot;normalizedCounts&quot;, : Argument &#39;method&#39; to calculateActivity was deprecated as
-## of epiregulon version 2.0.0</code></pre>
-<pre><code>## calculating TF activity from regulon using weightedMean</code></pre>
-<pre><code>## aggregating regulons...</code></pre>
-<pre><code>## creating weight matrix...</code></pre>
-<pre><code>## calculating activity scores...</code></pre>
-<pre><code>## normalize by mean...</code></pre>
-<pre><code>## normalize by the number of targets...</code></pre>
+<p>We calculate the activities corresponding to three weight methods.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="archr-workflow-and-different-weight-methods.html#cb172-1" tabindex="-1"></a>score.combine.wilcox <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb172-2"><a href="archr-workflow-and-different-weight-methods.html#cb172-2" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb172-3"><a href="archr-workflow-and-different-weight-methods.html#cb172-3" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w.wilcox,</span>
+<span id="cb172-4"><a href="archr-workflow-and-different-weight-methods.html#cb172-4" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb172-5"><a href="archr-workflow-and-different-weight-methods.html#cb172-5" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>)</span>
+<span id="cb172-6"><a href="archr-workflow-and-different-weight-methods.html#cb172-6" tabindex="-1"></a>score.combine.corr <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb172-7"><a href="archr-workflow-and-different-weight-methods.html#cb172-7" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb172-8"><a href="archr-workflow-and-different-weight-methods.html#cb172-8" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w.corr,</span>
+<span id="cb172-9"><a href="archr-workflow-and-different-weight-methods.html#cb172-9" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb172-10"><a href="archr-workflow-and-different-weight-methods.html#cb172-10" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>)</span>
+<span id="cb172-11"><a href="archr-workflow-and-different-weight-methods.html#cb172-11" tabindex="-1"></a>score.combine.corr.re <span class="ot">&lt;-</span> <span class="fu">calculateActivity</span>(<span class="at">expMatrix =</span> GeneExpressionMatrix,</span>
+<span id="cb172-12"><a href="archr-workflow-and-different-weight-methods.html#cb172-12" tabindex="-1"></a>                                   <span class="at">exp_assay =</span> <span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb172-13"><a href="archr-workflow-and-different-weight-methods.html#cb172-13" tabindex="-1"></a>                                   <span class="at">regulon =</span> regulon.w.corr.re,</span>
+<span id="cb172-14"><a href="archr-workflow-and-different-weight-methods.html#cb172-14" tabindex="-1"></a>                                   <span class="at">normalize =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb172-15"><a href="archr-workflow-and-different-weight-methods.html#cb172-15" tabindex="-1"></a>                                   <span class="at">mode =</span> <span class="st">&quot;weight&quot;</span>)</span></code></pre></div>
 <p>We visualize the different activities side by side.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="archr-workflow-and-different-weight-methods.html#cb251-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.extra)</span>
-<span id="cb251-2"><a href="archr-workflow-and-different-weight-methods.html#cb251-2" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
-<span id="cb251-3"><a href="archr-workflow-and-different-weight-methods.html#cb251-3" tabindex="-1"></a>                   <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>), </span>
-<span id="cb251-4"><a href="archr-workflow-and-different-weight-methods.html#cb251-4" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label) <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;AR activity by wilcoxon&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="archr-workflow-and-different-weight-methods.html#cb252-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine.corr, </span>
-<span id="cb252-2"><a href="archr-workflow-and-different-weight-methods.html#cb252-2" tabindex="-1"></a>                   <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>), </span>
-<span id="cb252-3"><a href="archr-workflow-and-different-weight-methods.html#cb252-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label) <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;AR activity by corr TF vs TG&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-94-2.png" width="672" /></p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="archr-workflow-and-different-weight-methods.html#cb253-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine.corr.re, </span>
-<span id="cb253-2"><a href="archr-workflow-and-different-weight-methods.html#cb253-2" tabindex="-1"></a>                   <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>), </span>
-<span id="cb253-3"><a href="archr-workflow-and-different-weight-methods.html#cb253-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label) <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;AR activity by corr TF*RE vs TG&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-94-3.png" width="672" /></p>
-<p>In this case, activity calculated from correlation based on TF and TG expression is clearly wrong because we see increased AR activity after Enzalutamide treatment despite it being an AR antagonist. Therefore, for drug treatment which often decouples TF gene expression and its activity, it is important to take into consideration both TF gene expression and RE chromatin accessibility; the latter may be a better indicator of TF function if the TF has an effect on the chromatin accessibility. In this case, the recommended methods are either <code>wilcox</code> or <code>corr</code> with <code>tf_re.merge = TRUE</code>.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="archr-workflow-and-different-weight-methods.html#cb173-1" tabindex="-1"></a><span class="fu">library</span>(epiregulon.extra)</span>
+<span id="cb173-2"><a href="archr-workflow-and-different-weight-methods.html#cb173-2" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
+<span id="cb173-3"><a href="archr-workflow-and-different-weight-methods.html#cb173-3" tabindex="-1"></a>                   <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>), </span>
+<span id="cb173-4"><a href="archr-workflow-and-different-weight-methods.html#cb173-4" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label) <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;AR activity by wilcoxon&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="archr-workflow-and-different-weight-methods.html#cb174-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine.corr, </span>
+<span id="cb174-2"><a href="archr-workflow-and-different-weight-methods.html#cb174-2" tabindex="-1"></a>                   <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>), </span>
+<span id="cb174-3"><a href="archr-workflow-and-different-weight-methods.html#cb174-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label) <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;AR activity by corr TF vs TG&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-92-2.png" width="672" /></p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="archr-workflow-and-different-weight-methods.html#cb175-1" tabindex="-1"></a><span class="fu">plotActivityViolin</span>(<span class="at">activity_matrix =</span> score.combine.corr.re, </span>
+<span id="cb175-2"><a href="archr-workflow-and-different-weight-methods.html#cb175-2" tabindex="-1"></a>                   <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>), </span>
+<span id="cb175-3"><a href="archr-workflow-and-different-weight-methods.html#cb175-3" tabindex="-1"></a>                   <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label) <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;AR activity by corr TF*RE vs TG&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-92-3.png" width="672" /></p>
+<p>We can see that the AR activity calculated from correlation based on TF and TG expression is clearly wrong because AR activity is increased after enzalutamide treatment despite it being an AR antagonist. Therefore, for drug treatment which often decouples TF gene expression from its activity, it is important to take into consideration both TF gene expression and RE chromatin accessibility; the latter may be a better indicator of TF function. In this case, the recommended methods are either <code>wilcox</code> or <code>corr</code> with <code>tf_re.merge = TRUE</code>.</p>
 <p>The astute users could however detect a difference in the prediction of the AR activity in the resistant clones “RES-A” and “RES-B” with respect to the parental “LNCaP” between the two methods. For example, the <code>corr</code> with <code>tf_re.merge = TRUE</code> shows increased AR activity in “RES-B” compared to “LNCaP” because “RES-B” shows increased AR expression. In contrast, the <code>wilcoxon</code> method did not predict an increase in AR activity in “RES-B” because “RES-B” still shows reduced chromatin accessibility compared to “LNCaP”. Since <code>wilcoxon</code> takes into account the co-occurrence of both TF gene expression and RE chromatin accessibility, this method does not predict an overall increase in AR activity.</p>
-<p>In the absence of the ground truth, it is difficult to judge which method is superior. Therefore, it is always crucial to validate key findings with additional empirical evidence. The most important disclaimer we wish to make is that all predictions by epiregulon should be robustly tested experimentally.</p>
+<p>In the absence of the ground truth, it is difficult to judge which method is superior. Therefore, it is always crucial to validate key findings with empirical evidence. The most important disclaimer we wish to make is that all predictions by epiregulon should be robustly tested experimentally.</p>
 </div>
 <div id="perform-differential-activity" class="section level2 hasAnchor" number="8.12">
 <h2><span class="header-section-number">8.12</span> Perform differential activity<a href="archr-workflow-and-different-weight-methods.html#perform-differential-activity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For the remaining steps, we continue with activity derived from the <code>wilcoxon</code> method.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="archr-workflow-and-different-weight-methods.html#cb254-1" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findDifferentialActivity</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
-<span id="cb254-2"><a href="archr-workflow-and-different-weight-methods.html#cb254-2" tabindex="-1"></a>                                    <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label, </span>
-<span id="cb254-3"><a href="archr-workflow-and-different-weight-methods.html#cb254-3" tabindex="-1"></a>                                    <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
-<span id="cb254-4"><a href="archr-workflow-and-different-weight-methods.html#cb254-4" tabindex="-1"></a>                                    <span class="at">direction =</span> <span class="st">&quot;any&quot;</span>, </span>
-<span id="cb254-5"><a href="archr-workflow-and-different-weight-methods.html#cb254-5" tabindex="-1"></a>                                    <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>,</span>
-<span id="cb254-6"><a href="archr-workflow-and-different-weight-methods.html#cb254-6" tabindex="-1"></a>                                    <span class="at">logvalues =</span> <span class="cn">FALSE</span>  )</span>
-<span id="cb254-7"><a href="archr-workflow-and-different-weight-methods.html#cb254-7" tabindex="-1"></a>markers</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="archr-workflow-and-different-weight-methods.html#cb176-1" tabindex="-1"></a>markers <span class="ot">&lt;-</span> <span class="fu">findDifferentialActivity</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
+<span id="cb176-2"><a href="archr-workflow-and-different-weight-methods.html#cb176-2" tabindex="-1"></a>                                    <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label, </span>
+<span id="cb176-3"><a href="archr-workflow-and-different-weight-methods.html#cb176-3" tabindex="-1"></a>                                    <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb176-4"><a href="archr-workflow-and-different-weight-methods.html#cb176-4" tabindex="-1"></a>                                    <span class="at">direction =</span> <span class="st">&quot;any&quot;</span>, </span>
+<span id="cb176-5"><a href="archr-workflow-and-different-weight-methods.html#cb176-5" tabindex="-1"></a>                                    <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>,</span>
+<span id="cb176-6"><a href="archr-workflow-and-different-weight-methods.html#cb176-6" tabindex="-1"></a>                                    <span class="at">logvalues =</span> <span class="cn">FALSE</span>  )</span>
+<span id="cb176-7"><a href="archr-workflow-and-different-weight-methods.html#cb176-7" tabindex="-1"></a>markers</span></code></pre></div>
 <pre><code>## List of length 4
 ## names(4): LNCaP LNCaP–ENZ48 LNCaP RES-A LNCaP RES-B</code></pre>
 <p>Take the top differential TFs. Summary represents comparison of cells in the indicated class vs all the remaining cells.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="archr-workflow-and-different-weight-methods.html#cb256-1" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">direction =</span> <span class="st">&quot;any&quot;</span>, <span class="at">topgenes =</span> <span class="dv">2</span> )</span></code></pre></div>
-<pre><code>## Using a cutoff of 0.046 for class LNCaP for direction equal to any</code></pre>
-<pre><code>## Using a cutoff of 0.031 for class LNCaP–ENZ48 for direction equal to any</code></pre>
-<pre><code>## Using a cutoff of 0.04 for class LNCaP RES-A for direction equal to any</code></pre>
-<pre><code>## Using a cutoff of 0.04 for class LNCaP RES-B for direction equal to any</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="archr-workflow-and-different-weight-methods.html#cb261-1" tabindex="-1"></a>markers.sig</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="archr-workflow-and-different-weight-methods.html#cb178-1" tabindex="-1"></a>markers.sig <span class="ot">&lt;-</span> <span class="fu">getSigGenes</span>(markers, <span class="at">direction =</span> <span class="st">&quot;any&quot;</span>, <span class="at">topgenes =</span> <span class="dv">2</span> )</span>
+<span id="cb178-2"><a href="archr-workflow-and-different-weight-methods.html#cb178-2" tabindex="-1"></a>markers.sig</span></code></pre></div>
 <pre><code>##    p.value FDR summary.diff       class    tf
-## 1        0   0   0.06499576       LNCaP  HES4
-## 3        0   0   0.05017633       LNCaP SPDEF
-## 11       0   0   0.05137746 LNCaP–ENZ48  HES4
-## 31       0   0  -0.03602301 LNCaP–ENZ48 NR2F6
-## 12       0   0   0.07346485 LNCaP RES-A  ATF5
-## 2        0   0  -0.04162267 LNCaP RES-A  ETV1
-## 21       0   0   0.04793834 LNCaP RES-B   JUN
-## 32       0   0   0.04482560 LNCaP RES-B NR2F2</code></pre>
+## 1        0   0   0.06918392       LNCaP  HES4
+## 3        0   0   0.05180702       LNCaP SPDEF
+## 11       0   0   0.05553992 LNCaP–ENZ48  HES4
+## 31       0   0  -0.03564181 LNCaP–ENZ48 NR2F6
+## 12       0   0   0.07761191 LNCaP RES-A  ATF5
+## 2        0   0  -0.03724509 LNCaP RES-A   EHF
+## 21       0   0   0.04959529 LNCaP RES-B   JUN
+## 32       0   0   0.04786785 LNCaP RES-B NR2F2</code></pre>
 </div>
 <div id="visualize-the-results" class="section level2 hasAnchor" number="8.13">
 <h2><span class="header-section-number">8.13</span> Visualize the results<a href="archr-workflow-and-different-weight-methods.html#visualize-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First visualize the known differential TFs by bubble plot</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="archr-workflow-and-different-weight-methods.html#cb263-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
-<span id="cb263-2"><a href="archr-workflow-and-different-weight-methods.html#cb263-2" tabindex="-1"></a>           <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;AR&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;JUN&quot;</span>),</span>
-<span id="cb263-3"><a href="archr-workflow-and-different-weight-methods.html#cb263-3" tabindex="-1"></a>           <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
-<span id="cb263-4"><a href="archr-workflow-and-different-weight-methods.html#cb263-4" tabindex="-1"></a>           <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
-<span id="cb263-5"><a href="archr-workflow-and-different-weight-methods.html#cb263-5" tabindex="-1"></a>           <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
-<span id="cb263-6"><a href="archr-workflow-and-different-weight-methods.html#cb263-6" tabindex="-1"></a>           <span class="at">logvalues =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="archr-workflow-and-different-weight-methods.html#cb180-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
+<span id="cb180-2"><a href="archr-workflow-and-different-weight-methods.html#cb180-2" tabindex="-1"></a>           <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;AR&quot;</span>,<span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;JUN&quot;</span>),</span>
+<span id="cb180-3"><a href="archr-workflow-and-different-weight-methods.html#cb180-3" tabindex="-1"></a>           <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb180-4"><a href="archr-workflow-and-different-weight-methods.html#cb180-4" tabindex="-1"></a>           <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
+<span id="cb180-5"><a href="archr-workflow-and-different-weight-methods.html#cb180-5" tabindex="-1"></a>           <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
+<span id="cb180-6"><a href="archr-workflow-and-different-weight-methods.html#cb180-6" tabindex="-1"></a>           <span class="at">logvalues =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/visualization_prostate-1.png" width="672" /></p>
 <p>Then visualize the most differential TFs by clusters</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="archr-workflow-and-different-weight-methods.html#cb264-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
-<span id="cb264-2"><a href="archr-workflow-and-different-weight-methods.html#cb264-2" tabindex="-1"></a>           <span class="at">tf =</span> <span class="fu">unique</span>(markers.sig<span class="sc">$</span>tf), </span>
-<span id="cb264-3"><a href="archr-workflow-and-different-weight-methods.html#cb264-3" tabindex="-1"></a>           <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
-<span id="cb264-4"><a href="archr-workflow-and-different-weight-methods.html#cb264-4" tabindex="-1"></a>           <span class="at">direction =</span> <span class="st">&quot;any&quot;</span>, </span>
-<span id="cb264-5"><a href="archr-workflow-and-different-weight-methods.html#cb264-5" tabindex="-1"></a>           <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
-<span id="cb264-6"><a href="archr-workflow-and-different-weight-methods.html#cb264-6" tabindex="-1"></a>           <span class="at">logvalues =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="archr-workflow-and-different-weight-methods.html#cb181-1" tabindex="-1"></a><span class="fu">plotBubble</span>(<span class="at">activity_matrix =</span> score.combine.wilcox, </span>
+<span id="cb181-2"><a href="archr-workflow-and-different-weight-methods.html#cb181-2" tabindex="-1"></a>           <span class="at">tf =</span> <span class="fu">unique</span>(markers.sig<span class="sc">$</span>tf), </span>
+<span id="cb181-3"><a href="archr-workflow-and-different-weight-methods.html#cb181-3" tabindex="-1"></a>           <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb181-4"><a href="archr-workflow-and-different-weight-methods.html#cb181-4" tabindex="-1"></a>           <span class="at">direction =</span> <span class="st">&quot;any&quot;</span>, </span>
+<span id="cb181-5"><a href="archr-workflow-and-different-weight-methods.html#cb181-5" tabindex="-1"></a>           <span class="at">clusters =</span> GeneExpressionMatrix<span class="sc">$</span>label,</span>
+<span id="cb181-6"><a href="archr-workflow-and-different-weight-methods.html#cb181-6" tabindex="-1"></a>           <span class="at">logvalues =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p>Visualize the known differential TFs by UMAP</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="archr-workflow-and-different-weight-methods.html#cb265-1" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
-<span id="cb265-2"><a href="archr-workflow-and-different-weight-methods.html#cb265-2" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine.wilcox, </span>
-<span id="cb265-3"><a href="archr-workflow-and-different-weight-methods.html#cb265-3" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>, <span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>, <span class="st">&quot;JUN&quot;</span>), </span>
-<span id="cb265-4"><a href="archr-workflow-and-different-weight-methods.html#cb265-4" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
-<span id="cb265-5"><a href="archr-workflow-and-different-weight-methods.html#cb265-5" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb265-6"><a href="archr-workflow-and-different-weight-methods.html#cb265-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>, </span>
-<span id="cb265-7"><a href="archr-workflow-and-different-weight-methods.html#cb265-7" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb265-8"><a href="archr-workflow-and-different-weight-methods.html#cb265-8" tabindex="-1"></a>                <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
-<p>Visualize the newly discovered differential TFs by UMAP</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="archr-workflow-and-different-weight-methods.html#cb266-1" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
-<span id="cb266-2"><a href="archr-workflow-and-different-weight-methods.html#cb266-2" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine.wilcox, </span>
-<span id="cb266-3"><a href="archr-workflow-and-different-weight-methods.html#cb266-3" tabindex="-1"></a>                <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], </span>
-<span id="cb266-4"><a href="archr-workflow-and-different-weight-methods.html#cb266-4" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
-<span id="cb266-5"><a href="archr-workflow-and-different-weight-methods.html#cb266-5" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
-<span id="cb266-6"><a href="archr-workflow-and-different-weight-methods.html#cb266-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>, </span>
-<span id="cb266-7"><a href="archr-workflow-and-different-weight-methods.html#cb266-7" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb266-8"><a href="archr-workflow-and-different-weight-methods.html#cb266-8" tabindex="-1"></a>                <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="archr-workflow-and-different-weight-methods.html#cb182-1" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
+<span id="cb182-2"><a href="archr-workflow-and-different-weight-methods.html#cb182-2" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine.wilcox, </span>
+<span id="cb182-3"><a href="archr-workflow-and-different-weight-methods.html#cb182-3" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>, <span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>, <span class="st">&quot;JUN&quot;</span>), </span>
+<span id="cb182-4"><a href="archr-workflow-and-different-weight-methods.html#cb182-4" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb182-5"><a href="archr-workflow-and-different-weight-methods.html#cb182-5" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb182-6"><a href="archr-workflow-and-different-weight-methods.html#cb182-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>, </span>
+<span id="cb182-7"><a href="archr-workflow-and-different-weight-methods.html#cb182-7" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb182-8"><a href="archr-workflow-and-different-weight-methods.html#cb182-8" tabindex="-1"></a>                <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p>Visualize the differential TFs by UMAP</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="archr-workflow-and-different-weight-methods.html#cb183-1" tabindex="-1"></a><span class="fu">plotActivityDim</span>(<span class="at">sce =</span> GeneExpressionMatrix,</span>
+<span id="cb183-2"><a href="archr-workflow-and-different-weight-methods.html#cb183-2" tabindex="-1"></a>                <span class="at">activity_matrix =</span> score.combine.wilcox, </span>
+<span id="cb183-3"><a href="archr-workflow-and-different-weight-methods.html#cb183-3" tabindex="-1"></a>                <span class="at">tf =</span> markers.sig<span class="sc">$</span>tf[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], </span>
+<span id="cb183-4"><a href="archr-workflow-and-different-weight-methods.html#cb183-4" tabindex="-1"></a>                <span class="at">dimtype =</span> <span class="st">&quot;UMAP_Combined&quot;</span>, </span>
+<span id="cb183-5"><a href="archr-workflow-and-different-weight-methods.html#cb183-5" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;label&quot;</span>, </span>
+<span id="cb183-6"><a href="archr-workflow-and-different-weight-methods.html#cb183-6" tabindex="-1"></a>                <span class="at">point_size =</span> <span class="dv">1</span>, </span>
+<span id="cb183-7"><a href="archr-workflow-and-different-weight-methods.html#cb183-7" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb183-8"><a href="archr-workflow-and-different-weight-methods.html#cb183-8" tabindex="-1"></a>                <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>Visualize regulons by heatmap</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="archr-workflow-and-different-weight-methods.html#cb267-1" tabindex="-1"></a><span class="fu">rowData</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb267-2"><a href="archr-workflow-and-different-weight-methods.html#cb267-2" tabindex="-1"></a></span>
-<span id="cb267-3"><a href="archr-workflow-and-different-weight-methods.html#cb267-3" tabindex="-1"></a><span class="fu">plotHeatmapRegulon</span>(<span class="at">sce=</span>GeneExpressionMatrix,</span>
-<span id="cb267-4"><a href="archr-workflow-and-different-weight-methods.html#cb267-4" tabindex="-1"></a>                   <span class="at">tfs=</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>, <span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>, <span class="st">&quot;JUN&quot;</span>),</span>
-<span id="cb267-5"><a href="archr-workflow-and-different-weight-methods.html#cb267-5" tabindex="-1"></a>                   <span class="at">regulon=</span>regulon.w.wilcox,</span>
-<span id="cb267-6"><a href="archr-workflow-and-different-weight-methods.html#cb267-6" tabindex="-1"></a>                   <span class="at">regulon_cutoff=</span><span class="fl">0.1</span>,</span>
-<span id="cb267-7"><a href="archr-workflow-and-different-weight-methods.html#cb267-7" tabindex="-1"></a>                   <span class="at">downsample=</span><span class="dv">1000</span>,</span>
-<span id="cb267-8"><a href="archr-workflow-and-different-weight-methods.html#cb267-8" tabindex="-1"></a>                   <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb267-9"><a href="archr-workflow-and-different-weight-methods.html#cb267-9" tabindex="-1"></a>                   <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb267-10"><a href="archr-workflow-and-different-weight-methods.html#cb267-10" tabindex="-1"></a>                   <span class="at">exprs_values=</span><span class="st">&quot;normalizedCounts&quot;</span>,</span>
-<span id="cb267-11"><a href="archr-workflow-and-different-weight-methods.html#cb267-11" tabindex="-1"></a>                   <span class="at">name=</span><span class="st">&quot;regulon heatmap&quot;</span>,</span>
-<span id="cb267-12"><a href="archr-workflow-and-different-weight-methods.html#cb267-12" tabindex="-1"></a>                   <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="archr-workflow-and-different-weight-methods.html#cb268-1" tabindex="-1"></a><span class="fu">plotHeatmapActivity</span>(<span class="at">activity=</span>score.combine.wilcox,</span>
-<span id="cb268-2"><a href="archr-workflow-and-different-weight-methods.html#cb268-2" tabindex="-1"></a>                    <span class="at">sce=</span>GeneExpressionMatrix,</span>
-<span id="cb268-3"><a href="archr-workflow-and-different-weight-methods.html#cb268-3" tabindex="-1"></a>                    <span class="at">tfs=</span><span class="fu">rownames</span>(score.combine.wilcox),</span>
-<span id="cb268-4"><a href="archr-workflow-and-different-weight-methods.html#cb268-4" tabindex="-1"></a>                    <span class="at">downsample=</span><span class="dv">1000</span>,</span>
-<span id="cb268-5"><a href="archr-workflow-and-different-weight-methods.html#cb268-5" tabindex="-1"></a>                    <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb268-6"><a href="archr-workflow-and-different-weight-methods.html#cb268-6" tabindex="-1"></a>                    <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
-<span id="cb268-7"><a href="archr-workflow-and-different-weight-methods.html#cb268-7" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;transcription factor activity&quot;</span>,</span>
-<span id="cb268-8"><a href="archr-workflow-and-different-weight-methods.html#cb268-8" tabindex="-1"></a>                    <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="archr-workflow-and-different-weight-methods.html#cb184-1" tabindex="-1"></a><span class="fu">rowData</span>(GeneExpressionMatrix) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb184-2"><a href="archr-workflow-and-different-weight-methods.html#cb184-2" tabindex="-1"></a></span>
+<span id="cb184-3"><a href="archr-workflow-and-different-weight-methods.html#cb184-3" tabindex="-1"></a><span class="fu">plotHeatmapRegulon</span>(<span class="at">sce=</span>GeneExpressionMatrix,</span>
+<span id="cb184-4"><a href="archr-workflow-and-different-weight-methods.html#cb184-4" tabindex="-1"></a>                   <span class="at">tfs=</span> <span class="fu">c</span>( <span class="st">&quot;AR&quot;</span>, <span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>, <span class="st">&quot;JUN&quot;</span>),</span>
+<span id="cb184-5"><a href="archr-workflow-and-different-weight-methods.html#cb184-5" tabindex="-1"></a>                   <span class="at">regulon=</span>regulon.w.wilcox,</span>
+<span id="cb184-6"><a href="archr-workflow-and-different-weight-methods.html#cb184-6" tabindex="-1"></a>                   <span class="at">regulon_cutoff=</span><span class="fl">0.1</span>,</span>
+<span id="cb184-7"><a href="archr-workflow-and-different-weight-methods.html#cb184-7" tabindex="-1"></a>                   <span class="at">downsample=</span><span class="dv">1000</span>,</span>
+<span id="cb184-8"><a href="archr-workflow-and-different-weight-methods.html#cb184-8" tabindex="-1"></a>                   <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb184-9"><a href="archr-workflow-and-different-weight-methods.html#cb184-9" tabindex="-1"></a>                   <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb184-10"><a href="archr-workflow-and-different-weight-methods.html#cb184-10" tabindex="-1"></a>                   <span class="at">exprs_values=</span><span class="st">&quot;normalizedCounts&quot;</span>,</span>
+<span id="cb184-11"><a href="archr-workflow-and-different-weight-methods.html#cb184-11" tabindex="-1"></a>                   <span class="at">name=</span><span class="st">&quot;regulon heatmap&quot;</span>,</span>
+<span id="cb184-12"><a href="archr-workflow-and-different-weight-methods.html#cb184-12" tabindex="-1"></a>                   <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="archr-workflow-and-different-weight-methods.html#cb185-1" tabindex="-1"></a><span class="fu">plotHeatmapActivity</span>(<span class="at">activity=</span>score.combine.wilcox,</span>
+<span id="cb185-2"><a href="archr-workflow-and-different-weight-methods.html#cb185-2" tabindex="-1"></a>                    <span class="at">sce=</span>GeneExpressionMatrix,</span>
+<span id="cb185-3"><a href="archr-workflow-and-different-weight-methods.html#cb185-3" tabindex="-1"></a>                    <span class="at">tfs=</span><span class="fu">rownames</span>(score.combine.wilcox),</span>
+<span id="cb185-4"><a href="archr-workflow-and-different-weight-methods.html#cb185-4" tabindex="-1"></a>                    <span class="at">downsample=</span><span class="dv">1000</span>,</span>
+<span id="cb185-5"><a href="archr-workflow-and-different-weight-methods.html#cb185-5" tabindex="-1"></a>                    <span class="at">cell_attributes=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb185-6"><a href="archr-workflow-and-different-weight-methods.html#cb185-6" tabindex="-1"></a>                    <span class="at">col_gap=</span><span class="st">&quot;label&quot;</span>,</span>
+<span id="cb185-7"><a href="archr-workflow-and-different-weight-methods.html#cb185-7" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;transcription factor activity&quot;</span>,</span>
+<span id="cb185-8"><a href="archr-workflow-and-different-weight-methods.html#cb185-8" tabindex="-1"></a>                    <span class="at">column_title_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 </div>
-<div id="geneset-enrichment-1" class="section level2 hasAnchor" number="8.14">
-<h2><span class="header-section-number">8.14</span> Geneset enrichment<a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from <a href="http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html">clusterProfiler</a>.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="archr-workflow-and-different-weight-methods.html#cb269-1" tabindex="-1"></a><span class="co">#retrieve genesets</span></span>
-<span id="cb269-2"><a href="archr-workflow-and-different-weight-methods.html#cb269-2" tabindex="-1"></a>H <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
-<span id="cb269-3"><a href="archr-workflow-and-different-weight-methods.html#cb269-3" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
-<span id="cb269-4"><a href="archr-workflow-and-different-weight-methods.html#cb269-4" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;H&quot;</span>, </span>
-<span id="cb269-5"><a href="archr-workflow-and-different-weight-methods.html#cb269-5" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>,</span>
-<span id="cb269-6"><a href="archr-workflow-and-different-weight-methods.html#cb269-6" tabindex="-1"></a>                                    <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb269-7"><a href="archr-workflow-and-different-weight-methods.html#cb269-7" tabindex="-1"></a>C6 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
-<span id="cb269-8"><a href="archr-workflow-and-different-weight-methods.html#cb269-8" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
-<span id="cb269-9"><a href="archr-workflow-and-different-weight-methods.html#cb269-9" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;C6&quot;</span>, </span>
-<span id="cb269-10"><a href="archr-workflow-and-different-weight-methods.html#cb269-10" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>,</span>
-<span id="cb269-11"><a href="archr-workflow-and-different-weight-methods.html#cb269-11" tabindex="-1"></a>                                     <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb269-12"><a href="archr-workflow-and-different-weight-methods.html#cb269-12" tabindex="-1"></a></span>
-<span id="cb269-13"><a href="archr-workflow-and-different-weight-methods.html#cb269-13" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
-<span id="cb269-14"><a href="archr-workflow-and-different-weight-methods.html#cb269-14" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(H,C6)</span>
-<span id="cb269-15"><a href="archr-workflow-and-different-weight-methods.html#cb269-15" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), </span>
-<span id="cb269-16"><a href="archr-workflow-and-different-weight-methods.html#cb269-16" tabindex="-1"></a>                                <span class="cf">function</span>(x) {<span class="fu">data.frame</span>(<span class="at">gs=</span>x, <span class="at">genes=</span>gs[[x]])}))</span>
-<span id="cb269-17"><a href="archr-workflow-and-different-weight-methods.html#cb269-17" tabindex="-1"></a></span>
-<span id="cb269-18"><a href="archr-workflow-and-different-weight-methods.html#cb269-18" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(<span class="at">TF =</span> <span class="fu">c</span>(<span class="st">&quot;AR&quot;</span>, <span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>, <span class="st">&quot;JUN&quot;</span>), </span>
-<span id="cb269-19"><a href="archr-workflow-and-different-weight-methods.html#cb269-19" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.w.wilcox, </span>
-<span id="cb269-20"><a href="archr-workflow-and-different-weight-methods.html#cb269-20" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb269-21"><a href="archr-workflow-and-different-weight-methods.html#cb269-21" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="dv">0</span>, </span>
-<span id="cb269-22"><a href="archr-workflow-and-different-weight-methods.html#cb269-22" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span></code></pre></div>
-<pre><code>## AR</code></pre>
-<pre><code>## FOXA1</code></pre>
-<pre><code>## MYC</code></pre>
-<pre><code>## JUN</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="archr-workflow-and-different-weight-methods.html#cb274-1" tabindex="-1"></a><span class="co">#plot results</span></span>
-<span id="cb274-2"><a href="archr-workflow-and-different-weight-methods.html#cb274-2" tabindex="-1"></a><span class="fu">enrichPlot</span>(<span class="at">results =</span> enrichresults, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div id="geneset-enrichment" class="section level2 hasAnchor" number="8.14">
+<h2><span class="header-section-number">8.14</span> Geneset enrichment<a href="archr-workflow-and-different-weight-methods.html#geneset-enrichment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes we are interested to know what pathways are enriched in the regulon of a particular TF. We can perform geneset enrichment using the enricher function from <a href="https://guangchuangyu.github.io/software/clusterProfiler/documentation/">clusterProfiler</a>.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="archr-workflow-and-different-weight-methods.html#cb186-1" tabindex="-1"></a><span class="co">#retrieve genesets</span></span>
+<span id="cb186-2"><a href="archr-workflow-and-different-weight-methods.html#cb186-2" tabindex="-1"></a>H <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
+<span id="cb186-3"><a href="archr-workflow-and-different-weight-methods.html#cb186-3" tabindex="-1"></a>                                    <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb186-4"><a href="archr-workflow-and-different-weight-methods.html#cb186-4" tabindex="-1"></a>                                    <span class="at">cat =</span> <span class="st">&quot;H&quot;</span>, </span>
+<span id="cb186-5"><a href="archr-workflow-and-different-weight-methods.html#cb186-5" tabindex="-1"></a>                                    <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>,</span>
+<span id="cb186-6"><a href="archr-workflow-and-different-weight-methods.html#cb186-6" tabindex="-1"></a>                                    <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb186-7"><a href="archr-workflow-and-different-weight-methods.html#cb186-7" tabindex="-1"></a>C6 <span class="ot">&lt;-</span> EnrichmentBrowser<span class="sc">::</span><span class="fu">getGenesets</span>(<span class="at">org =</span> <span class="st">&quot;hsa&quot;</span>, </span>
+<span id="cb186-8"><a href="archr-workflow-and-different-weight-methods.html#cb186-8" tabindex="-1"></a>                                     <span class="at">db =</span> <span class="st">&quot;msigdb&quot;</span>, </span>
+<span id="cb186-9"><a href="archr-workflow-and-different-weight-methods.html#cb186-9" tabindex="-1"></a>                                     <span class="at">cat =</span> <span class="st">&quot;C6&quot;</span>, </span>
+<span id="cb186-10"><a href="archr-workflow-and-different-weight-methods.html#cb186-10" tabindex="-1"></a>                                     <span class="at">gene.id.type =</span> <span class="st">&quot;SYMBOL&quot;</span>,</span>
+<span id="cb186-11"><a href="archr-workflow-and-different-weight-methods.html#cb186-11" tabindex="-1"></a>                                     <span class="at">cache =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb186-12"><a href="archr-workflow-and-different-weight-methods.html#cb186-12" tabindex="-1"></a></span>
+<span id="cb186-13"><a href="archr-workflow-and-different-weight-methods.html#cb186-13" tabindex="-1"></a><span class="co">#combine genesets and convert genesets to be compatible with enricher</span></span>
+<span id="cb186-14"><a href="archr-workflow-and-different-weight-methods.html#cb186-14" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">c</span>(H,C6)</span>
+<span id="cb186-15"><a href="archr-workflow-and-different-weight-methods.html#cb186-15" tabindex="-1"></a>gs.list <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(gs), </span>
+<span id="cb186-16"><a href="archr-workflow-and-different-weight-methods.html#cb186-16" tabindex="-1"></a>                                <span class="cf">function</span>(x) {<span class="fu">data.frame</span>(<span class="at">gs=</span>x, <span class="at">genes=</span>gs[[x]])}))</span>
+<span id="cb186-17"><a href="archr-workflow-and-different-weight-methods.html#cb186-17" tabindex="-1"></a></span>
+<span id="cb186-18"><a href="archr-workflow-and-different-weight-methods.html#cb186-18" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(<span class="at">TF =</span> <span class="fu">c</span>(<span class="st">&quot;AR&quot;</span>, <span class="st">&quot;FOXA1&quot;</span>, <span class="st">&quot;MYC&quot;</span>, <span class="st">&quot;JUN&quot;</span>), </span>
+<span id="cb186-19"><a href="archr-workflow-and-different-weight-methods.html#cb186-19" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.w.wilcox, </span>
+<span id="cb186-20"><a href="archr-workflow-and-different-weight-methods.html#cb186-20" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
+<span id="cb186-21"><a href="archr-workflow-and-different-weight-methods.html#cb186-21" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="dv">0</span>, </span>
+<span id="cb186-22"><a href="archr-workflow-and-different-weight-methods.html#cb186-22" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span>
+<span id="cb186-23"><a href="archr-workflow-and-different-weight-methods.html#cb186-23" tabindex="-1"></a></span>
+<span id="cb186-24"><a href="archr-workflow-and-different-weight-methods.html#cb186-24" tabindex="-1"></a><span class="co">#plot results</span></span>
+<span id="cb186-25"><a href="archr-workflow-and-different-weight-methods.html#cb186-25" tabindex="-1"></a><span class="fu">enrichPlot</span>(<span class="at">results =</span> enrichresults, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="Epiregulon-documentation_files/figure-html/enrichment_prostate-1.png" width="1152" /></p>
 <p>We can visualize the genesets of known factors as a network</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="archr-workflow-and-different-weight-methods.html#cb275-1" tabindex="-1"></a><span class="fu">plotGseaNetwork</span>(<span class="at">tf =</span> <span class="fu">names</span>(enrichresults), </span>
-<span id="cb275-2"><a href="archr-workflow-and-different-weight-methods.html#cb275-2" tabindex="-1"></a>                <span class="at">enrichresults =</span> enrichresults, </span>
-<span id="cb275-3"><a href="archr-workflow-and-different-weight-methods.html#cb275-3" tabindex="-1"></a>                <span class="at">p.adj_cutoff =</span> <span class="fl">0.1</span>, </span>
-<span id="cb275-4"><a href="archr-workflow-and-different-weight-methods.html#cb275-4" tabindex="-1"></a>                <span class="at">ntop_pathways =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-101-1.png" width="672" />
-We can visualize the genesets of differential factors as a network</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="archr-workflow-and-different-weight-methods.html#cb276-1" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(<span class="at">TF =</span> markers.sig<span class="sc">$</span>tf, </span>
-<span id="cb276-2"><a href="archr-workflow-and-different-weight-methods.html#cb276-2" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.w.wilcox, </span>
-<span id="cb276-3"><a href="archr-workflow-and-different-weight-methods.html#cb276-3" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb276-4"><a href="archr-workflow-and-different-weight-methods.html#cb276-4" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="dv">0</span>, </span>
-<span id="cb276-5"><a href="archr-workflow-and-different-weight-methods.html#cb276-5" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span></code></pre></div>
-<pre><code>## HES4</code></pre>
-<pre><code>## SPDEF</code></pre>
-<pre><code>## HES4</code></pre>
-<pre><code>## NR2F6</code></pre>
-<pre><code>## ATF5</code></pre>
-<pre><code>## ETV1</code></pre>
-<pre><code>## JUN</code></pre>
-<pre><code>## NR2F2</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="archr-workflow-and-different-weight-methods.html#cb285-1" tabindex="-1"></a><span class="fu">plotGseaNetwork</span>(<span class="at">tf =</span> <span class="fu">names</span>(enrichresults), </span>
-<span id="cb285-2"><a href="archr-workflow-and-different-weight-methods.html#cb285-2" tabindex="-1"></a>                <span class="at">enrichresults =</span> enrichresults, </span>
-<span id="cb285-3"><a href="archr-workflow-and-different-weight-methods.html#cb285-3" tabindex="-1"></a>                <span class="at">p.adj_cutoff =</span> <span class="fl">0.1</span>, </span>
-<span id="cb285-4"><a href="archr-workflow-and-different-weight-methods.html#cb285-4" tabindex="-1"></a>                <span class="at">ntop_pathways =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="archr-workflow-and-different-weight-methods.html#cb187-1" tabindex="-1"></a><span class="fu">plotGseaNetwork</span>(<span class="at">tf =</span> <span class="fu">names</span>(enrichresults), </span>
+<span id="cb187-2"><a href="archr-workflow-and-different-weight-methods.html#cb187-2" tabindex="-1"></a>                <span class="at">enrichresults =</span> enrichresults, </span>
+<span id="cb187-3"><a href="archr-workflow-and-different-weight-methods.html#cb187-3" tabindex="-1"></a>                <span class="at">p.adj_cutoff =</span> <span class="fl">0.1</span>, </span>
+<span id="cb187-4"><a href="archr-workflow-and-different-weight-methods.html#cb187-4" tabindex="-1"></a>                <span class="at">ntop_pathways =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p>We can visualize the genesets of differential factors as a network</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="archr-workflow-and-different-weight-methods.html#cb188-1" tabindex="-1"></a>enrichresults <span class="ot">&lt;-</span> <span class="fu">regulonEnrich</span>(<span class="at">TF =</span> markers.sig<span class="sc">$</span>tf, </span>
+<span id="cb188-2"><a href="archr-workflow-and-different-weight-methods.html#cb188-2" tabindex="-1"></a>                               <span class="at">regulon =</span> regulon.w.wilcox, </span>
+<span id="cb188-3"><a href="archr-workflow-and-different-weight-methods.html#cb188-3" tabindex="-1"></a>                               <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
+<span id="cb188-4"><a href="archr-workflow-and-different-weight-methods.html#cb188-4" tabindex="-1"></a>                               <span class="at">weight_cutoff =</span> <span class="dv">0</span>, </span>
+<span id="cb188-5"><a href="archr-workflow-and-different-weight-methods.html#cb188-5" tabindex="-1"></a>                               <span class="at">genesets =</span> gs.list)</span>
+<span id="cb188-6"><a href="archr-workflow-and-different-weight-methods.html#cb188-6" tabindex="-1"></a><span class="fu">plotGseaNetwork</span>(<span class="at">tf =</span> <span class="fu">names</span>(enrichresults), </span>
+<span id="cb188-7"><a href="archr-workflow-and-different-weight-methods.html#cb188-7" tabindex="-1"></a>                <span class="at">enrichresults =</span> enrichresults, </span>
+<span id="cb188-8"><a href="archr-workflow-and-different-weight-methods.html#cb188-8" tabindex="-1"></a>                <span class="at">p.adj_cutoff =</span> <span class="fl">0.1</span>, </span>
+<span id="cb188-9"><a href="archr-workflow-and-different-weight-methods.html#cb188-9" tabindex="-1"></a>                <span class="at">ntop_pathways =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 </div>
 <div id="differential-network-analysis-diff_network" class="section level2 hasAnchor" number="8.15">
 <h2><span class="header-section-number">8.15</span> Differential network analysis {diff_network}<a href="archr-workflow-and-different-weight-methods.html#differential-network-analysis-diff_network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In addition to looking at the summed TF activity, a second approach to investigate differential TF activity is to compare and contrast target genes or network topology. In this example, we know that AR is downregulated in the Enzalutamide treated cells compared to parental LNCaP.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="archr-workflow-and-different-weight-methods.html#cb286-1" tabindex="-1"></a><span class="fu">plotDiffNetwork</span>(regulon.w.wilcox,</span>
-<span id="cb286-2"><a href="archr-workflow-and-different-weight-methods.html#cb286-2" tabindex="-1"></a>                <span class="at">cutoff =</span> <span class="dv">0</span>,</span>
-<span id="cb286-3"><a href="archr-workflow-and-different-weight-methods.html#cb286-3" tabindex="-1"></a>                <span class="at">tf =</span> <span class="fu">c</span>(<span class="st">&quot;AR&quot;</span>),</span>
-<span id="cb286-4"><a href="archr-workflow-and-different-weight-methods.html#cb286-4" tabindex="-1"></a>                <span class="at">weight =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb286-5"><a href="archr-workflow-and-different-weight-methods.html#cb286-5" tabindex="-1"></a>                <span class="at">clusters =</span> <span class="fu">c</span>(<span class="st">&quot;LNCaP&quot;</span>,<span class="st">&quot;LNCaP–ENZ48&quot;</span>),</span>
-<span id="cb286-6"><a href="archr-workflow-and-different-weight-methods.html#cb286-6" tabindex="-1"></a>                <span class="at">layout =</span> <span class="st">&quot;stress&quot;</span>)</span></code></pre></div>
-<pre><code>## Building graph using weight as edge weights</code></pre>
-<p><img src="Epiregulon-documentation_files/figure-html/differential_networks_prostate-1.png" width="672" /></p>
-<p>We perform edge subtracted graph between two conditions and rank TFs by degree centrality. In this example, positive centrality indicates higher activity in parental LNCaP and negative centrality indicates higher activity in Enzalutamide treated cells.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="archr-workflow-and-different-weight-methods.html#cb288-1" tabindex="-1"></a><span class="co"># construct a graph of the parental and enzalutamide treated cells respectively</span></span>
-<span id="cb288-2"><a href="archr-workflow-and-different-weight-methods.html#cb288-2" tabindex="-1"></a>LNCaP_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w.wilcox, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;LNCaP&quot;</span>)</span></code></pre></div>
-<pre><code>## Building graph using weight as edge weights</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="archr-workflow-and-different-weight-methods.html#cb290-1" tabindex="-1"></a>ENZ_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w.wilcox, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;LNCaP–ENZ48&quot;</span>)</span></code></pre></div>
-<pre><code>## Building graph using weight as edge weights</code></pre>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="archr-workflow-and-different-weight-methods.html#cb292-1" tabindex="-1"></a><span class="co"># construct a difference graph</span></span>
-<span id="cb292-2"><a href="archr-workflow-and-different-weight-methods.html#cb292-2" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">buildDiffGraph</span>(LNCaP_network, ENZ_network, <span class="at">abs_diff =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb292-3"><a href="archr-workflow-and-different-weight-methods.html#cb292-3" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">addCentrality</span>(diff_graph)</span>
-<span id="cb292-4"><a href="archr-workflow-and-different-weight-methods.html#cb292-4" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">normalizeCentrality</span>(diff_graph)</span>
-<span id="cb292-5"><a href="archr-workflow-and-different-weight-methods.html#cb292-5" tabindex="-1"></a>rank_table <span class="ot">&lt;-</span> <span class="fu">rankTfs</span>(diff_graph)</span>
-<span id="cb292-6"><a href="archr-workflow-and-different-weight-methods.html#cb292-6" tabindex="-1"></a></span>
-<span id="cb292-7"><a href="archr-workflow-and-different-weight-methods.html#cb292-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb292-8"><a href="archr-workflow-and-different-weight-methods.html#cb292-8" tabindex="-1"></a><span class="fu">ggplot</span>(rank_table, <span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> centrality)) <span class="sc">+</span></span>
-<span id="cb292-9"><a href="archr-workflow-and-different-weight-methods.html#cb292-9" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb292-10"><a href="archr-workflow-and-different-weight-methods.html#cb292-10" tabindex="-1"></a>    ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="at">data =</span> <span class="fu">rbind</span>(<span class="fu">head</span>(rank_table,<span class="dv">5</span>), </span>
-<span id="cb292-11"><a href="archr-workflow-and-different-weight-methods.html#cb292-11" tabindex="-1"></a>                                          <span class="fu">tail</span>(rank_table,<span class="dv">5</span>)), </span>
-<span id="cb292-12"><a href="archr-workflow-and-different-weight-methods.html#cb292-12" tabindex="-1"></a>                             <span class="fu">aes</span>(<span class="at">label =</span> tf), </span>
-<span id="cb292-13"><a href="archr-workflow-and-different-weight-methods.html#cb292-13" tabindex="-1"></a>                             <span class="at">nudge_x =</span> <span class="dv">0</span>, <span class="at">nudge_y =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb292-14"><a href="archr-workflow-and-different-weight-methods.html#cb292-14" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;differential TFs (LNCaP-ENZ) ranked by degree centrality&quot;</span>)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>In addition to looking at summed TF activity, a second approach to investigate differential TF activity is to compare target genes or network topology. In this example, we know that AR is downregulated in the enzalutamide treated cells compared to parental LNCaP.</p>
+<p>We perform edge subtracted graph between two conditions and rank TFs by degree centrality. In this example, positive centrality indicates higher activity in parental LNCaP and negative centrality indicates higher activity in enzalutamide treated cells.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="archr-workflow-and-different-weight-methods.html#cb189-1" tabindex="-1"></a><span class="co"># construct a graph of the parental and enzalutamide treated cells respectively</span></span>
+<span id="cb189-2"><a href="archr-workflow-and-different-weight-methods.html#cb189-2" tabindex="-1"></a>LNCaP_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w.wilcox, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;LNCaP&quot;</span>)</span>
+<span id="cb189-3"><a href="archr-workflow-and-different-weight-methods.html#cb189-3" tabindex="-1"></a>ENZ_network <span class="ot">&lt;-</span> <span class="fu">buildGraph</span>(regulon.w.wilcox, <span class="at">weights =</span> <span class="st">&quot;weight&quot;</span>, <span class="at">cluster=</span><span class="st">&quot;LNCaP–ENZ48&quot;</span>)</span>
+<span id="cb189-4"><a href="archr-workflow-and-different-weight-methods.html#cb189-4" tabindex="-1"></a></span>
+<span id="cb189-5"><a href="archr-workflow-and-different-weight-methods.html#cb189-5" tabindex="-1"></a><span class="co"># construct a difference graph</span></span>
+<span id="cb189-6"><a href="archr-workflow-and-different-weight-methods.html#cb189-6" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">buildDiffGraph</span>(LNCaP_network, ENZ_network, <span class="at">abs_diff =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb189-7"><a href="archr-workflow-and-different-weight-methods.html#cb189-7" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">addCentrality</span>(diff_graph)</span>
+<span id="cb189-8"><a href="archr-workflow-and-different-weight-methods.html#cb189-8" tabindex="-1"></a>diff_graph <span class="ot">&lt;-</span> <span class="fu">normalizeCentrality</span>(diff_graph)</span>
+<span id="cb189-9"><a href="archr-workflow-and-different-weight-methods.html#cb189-9" tabindex="-1"></a>rank_table <span class="ot">&lt;-</span> <span class="fu">rankTfs</span>(diff_graph)</span>
+<span id="cb189-10"><a href="archr-workflow-and-different-weight-methods.html#cb189-10" tabindex="-1"></a></span>
+<span id="cb189-11"><a href="archr-workflow-and-different-weight-methods.html#cb189-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb189-12"><a href="archr-workflow-and-different-weight-methods.html#cb189-12" tabindex="-1"></a><span class="fu">ggplot</span>(rank_table, <span class="fu">aes</span>(<span class="at">x =</span> rank, <span class="at">y =</span> centrality)) <span class="sc">+</span></span>
+<span id="cb189-13"><a href="archr-workflow-and-different-weight-methods.html#cb189-13" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb189-14"><a href="archr-workflow-and-different-weight-methods.html#cb189-14" tabindex="-1"></a>    ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="at">data =</span> <span class="fu">rbind</span>(<span class="fu">head</span>(rank_table,<span class="dv">5</span>), </span>
+<span id="cb189-15"><a href="archr-workflow-and-different-weight-methods.html#cb189-15" tabindex="-1"></a>                                          <span class="fu">tail</span>(rank_table,<span class="dv">5</span>)), </span>
+<span id="cb189-16"><a href="archr-workflow-and-different-weight-methods.html#cb189-16" tabindex="-1"></a>                             <span class="fu">aes</span>(<span class="at">label =</span> tf), </span>
+<span id="cb189-17"><a href="archr-workflow-and-different-weight-methods.html#cb189-17" tabindex="-1"></a>                             <span class="at">nudge_x =</span> <span class="dv">0</span>, <span class="at">nudge_y =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb189-18"><a href="archr-workflow-and-different-weight-methods.html#cb189-18" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">ggtitle</span> (<span class="st">&quot;differential TFs (LNCaP-ENZ) ranked by degree centrality&quot;</span>)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <p>Sometimes, we are interested to identify interaction partners of the TFs of interest. This can be achieved by comparing the overlap of the targets genes for all the TFs and identify the most similar TFs by Jaccard similarity. To illustrate this function, we take a look at the top most similar 20 TFs to AR.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="archr-workflow-and-different-weight-methods.html#cb293-1" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
-<span id="cb293-2"><a href="archr-workflow-and-different-weight-methods.html#cb293-2" tabindex="-1"></a>diff_graph_filter <span class="ot">&lt;-</span> <span class="fu">subgraph.edges</span>(diff_graph, </span>
-<span id="cb293-3"><a href="archr-workflow-and-different-weight-methods.html#cb293-3" tabindex="-1"></a>                                    <span class="fu">E</span>(diff_graph)[<span class="fu">E</span>(diff_graph)<span class="sc">$</span>weight<span class="sc">&gt;</span><span class="dv">0</span>], </span>
-<span id="cb293-4"><a href="archr-workflow-and-different-weight-methods.html#cb293-4" tabindex="-1"></a>                                    <span class="at">del=</span><span class="cn">TRUE</span>)</span>
-<span id="cb293-5"><a href="archr-workflow-and-different-weight-methods.html#cb293-5" tabindex="-1"></a></span>
-<span id="cb293-6"><a href="archr-workflow-and-different-weight-methods.html#cb293-6" tabindex="-1"></a></span>
-<span id="cb293-7"><a href="archr-workflow-and-different-weight-methods.html#cb293-7" tabindex="-1"></a><span class="co"># compute a similarity matrix of all TFs</span></span>
-<span id="cb293-8"><a href="archr-workflow-and-different-weight-methods.html#cb293-8" tabindex="-1"></a>similarity_score <span class="ot">&lt;-</span> <span class="fu">calculateJaccardSimilarity</span>(diff_graph_filter)</span>
-<span id="cb293-9"><a href="archr-workflow-and-different-weight-methods.html#cb293-9" tabindex="-1"></a></span>
-<span id="cb293-10"><a href="archr-workflow-and-different-weight-methods.html#cb293-10" tabindex="-1"></a><span class="co"># Focus on AR</span></span>
-<span id="cb293-11"><a href="archr-workflow-and-different-weight-methods.html#cb293-11" tabindex="-1"></a>similarity_score_AR <span class="ot">&lt;-</span> similarity_score[, <span class="st">&quot;AR&quot;</span>]</span>
-<span id="cb293-12"><a href="archr-workflow-and-different-weight-methods.html#cb293-12" tabindex="-1"></a>similarity_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_AR, </span>
-<span id="cb293-13"><a href="archr-workflow-and-different-weight-methods.html#cb293-13" tabindex="-1"></a>                                                   <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
-<span id="cb293-14"><a href="archr-workflow-and-different-weight-methods.html#cb293-14" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_AR,</span>
-<span id="cb293-15"><a href="archr-workflow-and-different-weight-methods.html#cb293-15" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
-<span id="cb293-16"><a href="archr-workflow-and-different-weight-methods.html#cb293-16" tabindex="-1"></a></span>
-<span id="cb293-17"><a href="archr-workflow-and-different-weight-methods.html#cb293-17" tabindex="-1"></a>similarity_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(similarity_df<span class="sc">$</span>TF, </span>
-<span id="cb293-18"><a href="archr-workflow-and-different-weight-methods.html#cb293-18" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(similarity_df<span class="sc">$</span>TF)))</span>
-<span id="cb293-19"><a href="archr-workflow-and-different-weight-methods.html#cb293-19" tabindex="-1"></a></span>
-<span id="cb293-20"><a href="archr-workflow-and-different-weight-methods.html#cb293-20" tabindex="-1"></a><span class="co"># plot top TFs most similar to SPI1</span></span>
-<span id="cb293-21"><a href="archr-workflow-and-different-weight-methods.html#cb293-21" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(similarity_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
-<span id="cb293-22"><a href="archr-workflow-and-different-weight-methods.html#cb293-22" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb293-23"><a href="archr-workflow-and-different-weight-methods.html#cb293-23" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb293-24"><a href="archr-workflow-and-different-weight-methods.html#cb293-24" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;AR similarity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb293-25"><a href="archr-workflow-and-different-weight-methods.html#cb293-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb293-26"><a href="archr-workflow-and-different-weight-methods.html#cb293-26" tabindex="-1"></a></span>
-<span id="cb293-27"><a href="archr-workflow-and-different-weight-methods.html#cb293-27" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="archr-workflow-and-different-weight-methods.html#cb190-1" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb190-2"><a href="archr-workflow-and-different-weight-methods.html#cb190-2" tabindex="-1"></a>diff_graph_filter <span class="ot">&lt;-</span> <span class="fu">subgraph.edges</span>(diff_graph, </span>
+<span id="cb190-3"><a href="archr-workflow-and-different-weight-methods.html#cb190-3" tabindex="-1"></a>                                    <span class="fu">E</span>(diff_graph)[<span class="fu">E</span>(diff_graph)<span class="sc">$</span>weight<span class="sc">&gt;</span><span class="dv">0</span>], </span>
+<span id="cb190-4"><a href="archr-workflow-and-different-weight-methods.html#cb190-4" tabindex="-1"></a>                                    <span class="at">del=</span><span class="cn">TRUE</span>)</span>
+<span id="cb190-5"><a href="archr-workflow-and-different-weight-methods.html#cb190-5" tabindex="-1"></a></span>
+<span id="cb190-6"><a href="archr-workflow-and-different-weight-methods.html#cb190-6" tabindex="-1"></a></span>
+<span id="cb190-7"><a href="archr-workflow-and-different-weight-methods.html#cb190-7" tabindex="-1"></a><span class="co"># compute a similarity matrix of all TFs</span></span>
+<span id="cb190-8"><a href="archr-workflow-and-different-weight-methods.html#cb190-8" tabindex="-1"></a>similarity_score <span class="ot">&lt;-</span> <span class="fu">calculateJaccardSimilarity</span>(diff_graph_filter)</span>
+<span id="cb190-9"><a href="archr-workflow-and-different-weight-methods.html#cb190-9" tabindex="-1"></a></span>
+<span id="cb190-10"><a href="archr-workflow-and-different-weight-methods.html#cb190-10" tabindex="-1"></a><span class="co"># Focus on AR</span></span>
+<span id="cb190-11"><a href="archr-workflow-and-different-weight-methods.html#cb190-11" tabindex="-1"></a>similarity_score_AR <span class="ot">&lt;-</span> similarity_score[, <span class="st">&quot;AR&quot;</span>]</span>
+<span id="cb190-12"><a href="archr-workflow-and-different-weight-methods.html#cb190-12" tabindex="-1"></a>similarity_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_AR, </span>
+<span id="cb190-13"><a href="archr-workflow-and-different-weight-methods.html#cb190-13" tabindex="-1"></a>                                                   <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
+<span id="cb190-14"><a href="archr-workflow-and-different-weight-methods.html#cb190-14" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(similarity_score_AR,</span>
+<span id="cb190-15"><a href="archr-workflow-and-different-weight-methods.html#cb190-15" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
+<span id="cb190-16"><a href="archr-workflow-and-different-weight-methods.html#cb190-16" tabindex="-1"></a></span>
+<span id="cb190-17"><a href="archr-workflow-and-different-weight-methods.html#cb190-17" tabindex="-1"></a>similarity_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(similarity_df<span class="sc">$</span>TF, </span>
+<span id="cb190-18"><a href="archr-workflow-and-different-weight-methods.html#cb190-18" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(similarity_df<span class="sc">$</span>TF)))</span>
+<span id="cb190-19"><a href="archr-workflow-and-different-weight-methods.html#cb190-19" tabindex="-1"></a></span>
+<span id="cb190-20"><a href="archr-workflow-and-different-weight-methods.html#cb190-20" tabindex="-1"></a><span class="co"># plot top TFs most similar to SPI1</span></span>
+<span id="cb190-21"><a href="archr-workflow-and-different-weight-methods.html#cb190-21" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(similarity_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
+<span id="cb190-22"><a href="archr-workflow-and-different-weight-methods.html#cb190-22" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb190-23"><a href="archr-workflow-and-different-weight-methods.html#cb190-23" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb190-24"><a href="archr-workflow-and-different-weight-methods.html#cb190-24" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;AR similarity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb190-25"><a href="archr-workflow-and-different-weight-methods.html#cb190-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb190-26"><a href="archr-workflow-and-different-weight-methods.html#cb190-26" tabindex="-1"></a></span>
+<span id="cb190-27"><a href="archr-workflow-and-different-weight-methods.html#cb190-27" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p>In order to convince ourselves that our differential network is statistically significant, we permute the edges and obtain a background graph from averaging many iterations. Here, we plot the differential network graph subtracted by permuted graphs.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="archr-workflow-and-different-weight-methods.html#cb294-1" tabindex="-1"></a><span class="co"># create a permuted graph by rewiring the edges 100 times</span></span>
-<span id="cb294-2"><a href="archr-workflow-and-different-weight-methods.html#cb294-2" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> <span class="fu">permuteGraph</span>(diff_graph_filter, <span class="st">&quot;AR&quot;</span>, <span class="dv">100</span>, <span class="at">p=</span><span class="dv">1</span>)</span>
-<span id="cb294-3"><a href="archr-workflow-and-different-weight-methods.html#cb294-3" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> permute_matrix[<span class="fu">names</span>(similarity_score_AR),]</span>
-<span id="cb294-4"><a href="archr-workflow-and-different-weight-methods.html#cb294-4" tabindex="-1"></a>diff_matrix <span class="ot">&lt;-</span> similarity_score_AR<span class="sc">-</span><span class="fu">rowMeans</span>(permute_matrix)</span>
-<span id="cb294-5"><a href="archr-workflow-and-different-weight-methods.html#cb294-5" tabindex="-1"></a></span>
-<span id="cb294-6"><a href="archr-workflow-and-different-weight-methods.html#cb294-6" tabindex="-1"></a>diff_matrix_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix, </span>
-<span id="cb294-7"><a href="archr-workflow-and-different-weight-methods.html#cb294-7" tabindex="-1"></a>                                                    <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
-<span id="cb294-8"><a href="archr-workflow-and-different-weight-methods.html#cb294-8" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,</span>
-<span id="cb294-9"><a href="archr-workflow-and-different-weight-methods.html#cb294-9" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
-<span id="cb294-10"><a href="archr-workflow-and-different-weight-methods.html#cb294-10" tabindex="-1"></a></span>
-<span id="cb294-11"><a href="archr-workflow-and-different-weight-methods.html#cb294-11" tabindex="-1"></a>diff_matrix_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(diff_matrix_df<span class="sc">$</span>TF, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(diff_matrix_df<span class="sc">$</span>TF)))</span>
-<span id="cb294-12"><a href="archr-workflow-and-different-weight-methods.html#cb294-12" tabindex="-1"></a></span>
-<span id="cb294-13"><a href="archr-workflow-and-different-weight-methods.html#cb294-13" tabindex="-1"></a><span class="co"># plot top TFs most similar to AR</span></span>
-<span id="cb294-14"><a href="archr-workflow-and-different-weight-methods.html#cb294-14" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diff_matrix_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
-<span id="cb294-15"><a href="archr-workflow-and-different-weight-methods.html#cb294-15" tabindex="-1"></a>            <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb294-16"><a href="archr-workflow-and-different-weight-methods.html#cb294-16" tabindex="-1"></a>            <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb294-17"><a href="archr-workflow-and-different-weight-methods.html#cb294-17" tabindex="-1"></a>            <span class="fu">ggtitle</span>(<span class="st">&quot;background subtracted AR similarity &quot;</span>) <span class="sc">+</span></span>
-<span id="cb294-18"><a href="archr-workflow-and-different-weight-methods.html#cb294-18" tabindex="-1"></a>            <span class="fu">theme_classic</span>()</span>
-<span id="cb294-19"><a href="archr-workflow-and-different-weight-methods.html#cb294-19" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
-<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="archr-workflow-and-different-weight-methods.html#cb295-1" tabindex="-1"></a><span class="co"># obtain empirical p-values</span></span>
-<span id="cb295-2"><a href="archr-workflow-and-different-weight-methods.html#cb295-2" tabindex="-1"></a>p_matrix <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(<span class="fu">apply</span>(permute_matrix, <span class="dv">2</span>, <span class="cf">function</span>(x) {x <span class="sc">&gt;</span> similarity_score_AR}))</span>
-<span id="cb295-3"><a href="archr-workflow-and-different-weight-methods.html#cb295-3" tabindex="-1"></a>p_matrix[<span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,<span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>))]</span></code></pre></div>
-<pre><code>##   JUND    MYC  FOXA1 HOXB13   NFIC  CEBPB    MAZ   XBP1  CEBPG  GATA2   REST 
-##   0.00   0.00   0.00   0.01   0.01   0.00   0.00   0.01   0.00   0.00   0.01 
-##   CTCF  FOXP1   NFIX   ATF4 ZNF148   NFIB    EHF   ETV1    YY1 
-##   0.00   0.01   0.00   0.03   0.02   0.00   0.00   0.00   0.00</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="archr-workflow-and-different-weight-methods.html#cb191-1" tabindex="-1"></a><span class="co"># create a permuted graph by rewiring the edges 100 times</span></span>
+<span id="cb191-2"><a href="archr-workflow-and-different-weight-methods.html#cb191-2" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> <span class="fu">permuteGraph</span>(diff_graph_filter, <span class="st">&quot;AR&quot;</span>, <span class="dv">100</span>, <span class="at">p=</span><span class="dv">1</span>)</span>
+<span id="cb191-3"><a href="archr-workflow-and-different-weight-methods.html#cb191-3" tabindex="-1"></a>permute_matrix <span class="ot">&lt;-</span> permute_matrix[<span class="fu">names</span>(similarity_score_AR),]</span>
+<span id="cb191-4"><a href="archr-workflow-and-different-weight-methods.html#cb191-4" tabindex="-1"></a>diff_matrix <span class="ot">&lt;-</span> similarity_score_AR<span class="sc">-</span><span class="fu">rowMeans</span>(permute_matrix)</span>
+<span id="cb191-5"><a href="archr-workflow-and-different-weight-methods.html#cb191-5" tabindex="-1"></a></span>
+<span id="cb191-6"><a href="archr-workflow-and-different-weight-methods.html#cb191-6" tabindex="-1"></a>diff_matrix_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">similarity =</span> <span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix, </span>
+<span id="cb191-7"><a href="archr-workflow-and-different-weight-methods.html#cb191-7" tabindex="-1"></a>                                                    <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>),</span>
+<span id="cb191-8"><a href="archr-workflow-and-different-weight-methods.html#cb191-8" tabindex="-1"></a>                            <span class="at">TF =</span> <span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,</span>
+<span id="cb191-9"><a href="archr-workflow-and-different-weight-methods.html#cb191-9" tabindex="-1"></a>                                                 <span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>)))</span>
+<span id="cb191-10"><a href="archr-workflow-and-different-weight-methods.html#cb191-10" tabindex="-1"></a></span>
+<span id="cb191-11"><a href="archr-workflow-and-different-weight-methods.html#cb191-11" tabindex="-1"></a>diff_matrix_df<span class="sc">$</span>TF <span class="ot">&lt;-</span> <span class="fu">factor</span>(diff_matrix_df<span class="sc">$</span>TF, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(diff_matrix_df<span class="sc">$</span>TF)))</span>
+<span id="cb191-12"><a href="archr-workflow-and-different-weight-methods.html#cb191-12" tabindex="-1"></a></span>
+<span id="cb191-13"><a href="archr-workflow-and-different-weight-methods.html#cb191-13" tabindex="-1"></a><span class="co"># plot top TFs most similar to AR</span></span>
+<span id="cb191-14"><a href="archr-workflow-and-different-weight-methods.html#cb191-14" tabindex="-1"></a>topTFplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diff_matrix_df, <span class="fu">aes</span>(<span class="at">x=</span>TF, <span class="at">y=</span>similarity)) <span class="sc">+</span></span>
+<span id="cb191-15"><a href="archr-workflow-and-different-weight-methods.html#cb191-15" tabindex="-1"></a>            <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb191-16"><a href="archr-workflow-and-different-weight-methods.html#cb191-16" tabindex="-1"></a>            <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb191-17"><a href="archr-workflow-and-different-weight-methods.html#cb191-17" tabindex="-1"></a>            <span class="fu">ggtitle</span>(<span class="st">&quot;background subtracted AR similarity &quot;</span>) <span class="sc">+</span></span>
+<span id="cb191-18"><a href="archr-workflow-and-different-weight-methods.html#cb191-18" tabindex="-1"></a>            <span class="fu">theme_classic</span>()</span>
+<span id="cb191-19"><a href="archr-workflow-and-different-weight-methods.html#cb191-19" tabindex="-1"></a><span class="fu">print</span>(topTFplot)</span></code></pre></div>
+<p><img src="Epiregulon-documentation_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="archr-workflow-and-different-weight-methods.html#cb192-1" tabindex="-1"></a><span class="co"># obtain empirical p-values</span></span>
+<span id="cb192-2"><a href="archr-workflow-and-different-weight-methods.html#cb192-2" tabindex="-1"></a>p_matrix <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(<span class="fu">apply</span>(permute_matrix, <span class="dv">2</span>, <span class="cf">function</span>(x) {x <span class="sc">&gt;</span> similarity_score_AR}))</span>
+<span id="cb192-3"><a href="archr-workflow-and-different-weight-methods.html#cb192-3" tabindex="-1"></a>p_matrix[<span class="fu">names</span>(<span class="fu">head</span>(<span class="fu">sort</span>(diff_matrix,<span class="at">decreasing =</span> <span class="cn">TRUE</span>),<span class="dv">20</span>))]</span></code></pre></div>
+<pre><code>##   JUND    MYC HOXB13  FOXA1   NFIC  CEBPB   XBP1    MAZ   ATF4   CTCF   REST  GATA2   ETV1  FOXP1  CEBPG    JUN    YY1   NFIB 
+##   0.00   0.00   0.00   0.01   0.03   0.01   0.00   0.03   0.01   0.00   0.01   0.01   0.03   0.01   0.01   0.03   0.00   0.00 
+## ZNF148   USF2 
+##   0.00   0.01</code></pre>
 
 </div>
 </div>
@@ -918,7 +797,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/prostate.ENZ.archr.Rmd",
+    "link": "https://github.com/xiaosai/epiregulon.book/edit/master/prostate.ENZ.archr.Rmd",
     "text": "Edit"
   },
   "history": {

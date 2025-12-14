@@ -2,31 +2,24 @@
 
 
 ## Install from GitHub
-All the epiregulon components are available on [GitHub](https://github.com/xiaosaiyao?tab=repositories). 
-There are three separate epiregulon packages. The core epiregulon package supports input in the form of `SingleCellExperiment` objects. If the users would like to start from `ArchR` projects, they may choose to use `epiregulon.archr` package, which allows for the seamless integration with `ArchR` package through accepting its output to be used in the downstream workflow. 
+All epiregulon components are available on [GitHub](https://github.com/xiaosaiyao?tab=repositories). There are three separate packages: <br>
+- `epiregulon` constructs the GRN. <br>
+- `epiregulon.extra` provides tools for visualization, differential TF analysis and network analysis. <br>
+- `epiregulon.archr` provides integration with `ArchR`. <br> 
 
 ```{r installation, message=FALSE, eval=FALSE}
 # install devtools
 if(!require(devtools)) install.packages("devtools")
 
-# install basic epiregulon package
 devtools::install_github(repo='xiaosaiyao/epiregulon')
-
-# install extended version of epiregulon
-devtools::install_github(repo='xiaosaiyao/epiregulon.archr')
-```
- 
-Moreover, we provide a suite of tools for the enrichment analysis, visualization, and network analysis which can be run on the `epireglon` or `epiregulon.archr` output.
-
-```{r message=FALSE, eval=FALSE}
-# install extended version of epiregulon
 devtools::install_github(repo='xiaosaiyao/epiregulon.extra')
+devtools::install_github(repo='xiaosaiyao/epiregulon.archr')
+
 ```
 
-The data package scMultiome is for storing TF ChIP-seq data and pre-processed datasets.
+The data package `scMultiome` stores ChIP-seq data and pre-processed scMultiome datasets.
 
 ```{r message=FALSE, eval=FALSE}
-# install extended version of epiregulon
 devtools::install_github(repo='xiaosaiyao/scMultiome')
 ```
 

@@ -1,11 +1,11 @@
 # Single modality: scRNA-seq only
 
-Epiregulon also supports transcription factor activity inference when users only have scRNA-seq. After all, multiome or scATAC-seq data is still relatively rare. To enable TF activity inference on scRNA-seq, users can supply a pre-constructed gene regulatory network. [Dorothea](https://saezlab.github.io/dorothea/articles/dorothea.html) provides both human and mouse pre-constructed gene regulatory networks based on curated experimental and computational data. In this vignette, we bypass the regulon construction step and go straight to calculate TF activity from a Dorothea GRN.
+Epiregulon also supports transcription factor activity inference when users only have scRNA-seq. To enable TF activity inference on scRNA-seq, users can supply a pre-constructed gene regulatory network.  In this vignette, we bypass the regulon construction step and go straight to calculate TF activity from a Dorothea GRN.
 
 
-## Load regulon
+## Load regulons
 
-Dorothea assigns confidence level to its regulons with A being the most confident (i.e. supported by multiple lines of evidence) and E being the least confident. 
+[Dorothea](https://saezlab.github.io/dorothea/articles/dorothea.html) provides both human and mouse pre-constructed gene regulatory networks based on curated experimental and computational data.
 
 ```{r load_regulon_singlemodality_scRNA_only}
 library(dorothea)
@@ -13,13 +13,13 @@ data(dorothea_mm, package = "dorothea")
 regulon <- dorothea_mm 
 
 #known tfs
-genes_to_plot <- c("Foxa1", "Neurod1","Pdx1","Arx")
+genes_to_plot <- c("Onecut1", "Hnf1a","Pdx1","Arx")
 ```
 
 
 ## Load scRNA-seq data
 
-We download the raw counts of a mouse pancreas data set from  `r BiocStyle::Biocpkg("scRNAseq")`. We add normalized logcounts, perform dimension reduction and visualize the embeddings using `r BiocStyle::Biocpkg("scater")`. 
+We download the raw counts of a mouse pancreas data set from `r BiocStyle::Biocpkg("scRNAseq")`. We add normalized logcounts, perform dimension reduction and visualize the embeddings using `r BiocStyle::Biocpkg("scater")`. 
 
 ```{r load_scRNAseq_singlemodality_scRNA_only, message = FALSE}
 
@@ -37,7 +37,7 @@ plotUMAP(sce, colour_by = "label", text_by = "label")
 
 ## Calculate activity
 
-Even though Dorothea provides weights under the mor column, we can achieve superior performance if we recompute the weights based on the correlation between tf and target gene expression based on our own data. We performed 2 steps, the first step is to add weights to the Dorothea regulons and the second step is to estimate the TF activity by taking the weighted average of the target gene expression.
+Even though Dorothea provides weights under the mor column, we can achieve superior performance if we recompute the weights based on the correlation between tf and target gene expression based on our own data. We performed 2 steps: the first step is to add weights to the Dorothea regulons and the second step is to estimate the TF activity by taking the weighted average of the target gene expression.
 
 ``` {r activity_singlemodality_scRNA_only, message=FALSE, warning=FALSE}
 
@@ -78,7 +78,7 @@ markers.sig <- getSigGenes(markers, topgenes = 5 )
 
 ## Visualize activity
 
-Finally we visualize the TF activity by either UMAP, violin plots or bubble plots. We confirm the activity of known lineage factors Pdx1 and Neurod1 in beta cells, Arx in alpha cells and Foxa1 in ductal cells.
+Finally we visualize the TF activity by either UMAP, violin plots or bubble plots. We confirm the activity of known lineage factors: Pdx1 in beta cells, Arx in alpha cells, Onecut1 in ductal cells and Hnf1a in both endocrine and exocrine cells.
 
 ```{r visualization_singlemodality_scRNA_only}
 
@@ -112,8 +112,7 @@ plotBubble(score.combine,
            clusters = sce$label)
 ```
 
-We can adapt the epiregulon package to plot gene expression. When compared against TF activity, gene expression of Foxa1 and Arx has noisy signals and high dropout rates. 
-Epiregulon enhances the signal to noise ratio of TF activity and better resolves lineage differences.
+We can adapt the epiregulon package to plot gene expression. When compared against TF activity, gene expression tends to have noisy signals and high dropout rates. Epiregulon enhances the signal to noise ratio of TF activity and better resolves lineage differences.
 
 ```{r scRNAseq_scRNA_only}
 
@@ -142,11 +141,12 @@ plotActivityViolin(logcounts(sce),
 plotBubble(logcounts(sce), 
            tf = markers.sig$tf, 
            clusters = sce$label,
-           legend.label = "gex")
+           legend.label = "gex",
+           title = "gene expression")
 ```
 
 We can visualize the target genes for transcription factors of interest
-```{r, fig.width=12}
+```{r, fig.width=12, fig.height = 8}
 plotHeatmapRegulon(sce=sce,
                    tfs=genes_to_plot,
                    regulon=regulon.ms,
@@ -157,7 +157,9 @@ plotHeatmapRegulon(sce=sce,
                    exprs_values="logcounts",
                    name="regulon heatmap",
                    column_title_rot = 45)
+```
 
+```{r, fig.width=12, fig.height = 5}
 plotHeatmapActivity(activity_matrix = score.combine,
                     sce=sce,
                     tfs=genes_to_plot,
@@ -168,11 +170,11 @@ plotHeatmapActivity(activity_matrix = score.combine,
                     column_title_rot = 45)
 ```
 
-## Pathway enrichment
+## Perform pathway enrichment
 
-Sometimes it is useful to understand what pathways are enriched in the regulons. We take the highly correlated target genes of a regulon and perform geneset enrichment using the enricher function from [clusterProfiler](http://yulab-smu.top/biomedical-knowledge-mining-book/universal-api.html).
+Sometimes it is useful to understand what pathways are enriched in the regulons. We take the highly correlated target genes of a regulon and perform geneset enrichment using the enricher function from [clusterProfiler](https://guangchuangyu.github.io/software/clusterProfiler/documentation/).
 
-```{r enrichment_singlemodality_scRNA_only, warning=FALSE, fig.height = 14}
+```{r enrichment_singlemodality_scRNA_only, warning=FALSE}
 #retrieve genesets
 MH <- EnrichmentBrowser::getGenesets(org = "mmu", 
                                     db = "msigdb", 
@@ -189,14 +191,17 @@ M7 <- EnrichmentBrowser::getGenesets(org = "mmu",
 gs <- c(MH,M7)
 gs.list <- do.call(rbind,lapply(names(gs), function(x) 
   {data.frame(gs = x, genes = gs[[x]])}))
+```
+
+```{r, fig.height = 14}
 
 enrichresults <- regulonEnrich(genes_to_plot, 
                                regulon = regulon.ms, 
                                weight = "weight",
-                               weight_cutoff = 0.5, 
+                               weight_cutoff = 0.3, 
                                genesets = gs.list)
 
 #plot results
-enrichPlot(results = enrichresults, ncol = 1)
+enrichPlot(results = enrichresults, ncol = 1, top=5)
 
 ```
